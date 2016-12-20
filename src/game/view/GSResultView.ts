@@ -3,6 +3,7 @@
  */
 //结算界面
 class GSResultView extends egret.DisplayObjectContainer {
+
     po = [130, 240, 350, 460];
     bg: egret.Shape;
     shareButton: mui.EButton;
@@ -29,39 +30,56 @@ class GSResultView extends egret.DisplayObjectContainer {
         this.initView();
     }
 
-    //绑定回调接口
-    bindInterface(face: IGameTapEvent) {
-
-        this.face = face;
-
-    }
-
     initView() {
+
+        this.loseBG = new egret.Bitmap(GameRes.getUI("JS_lose_bg"));
+        this.loseBG.anchorOffsetX = 215;
+        this.loseBG.anchorOffsetY = 224;
+        this.logoCon.addChild(this.loseBG);
+        this.winBG = new egret.Bitmap(GameRes.getUI("JS_win_bg"));
+        this.winBG.anchorOffsetX = 216;
+        this.winBG.anchorOffsetY = 220;
+        this.logoCon.addChild(this.winBG);
+
         this.bg = new egret.Shape;
         this.bg.graphics.beginFill(0, .3);
         this.bg.graphics.drawRect(0, 0, GSConfig.width, 450);
-        // this.bg.y = (GSConfig.height - 450) >> 1;
         this.bg.y = this.po[0] - 10;
         this.addChild(this.bg);
+
+        this.liujuTop = new egret.Bitmap(GameRes.getUI("JS_liuju"));
+        this.liujuTop.anchorOffsetX = 146;
+        this.liujuTop.anchorOffsetY = 58;
+        this.logoCon.addChild(this.liujuTop);
+        this.loseTop = new egret.Bitmap(GameRes.getUI("JS_lose"));
+        this.loseTop.anchorOffsetX = 142;
+        this.loseTop.anchorOffsetY = 60;
+        this.logoCon.addChild(this.loseTop);
+        this.winTop = new egret.Bitmap(GameRes.getUI("JS_win"));
+        this.winTop.anchorOffsetX = 142;
+        this.winTop.anchorOffsetY = 40;
+        this.logoCon.addChild(this.winTop);
+
         //230.327,425
         this.createLine(this.po[0] + 105);
         this.createLine(this.po[1] + 105);
         this.createLine(this.po[2] + 105);
 
-        this.createLogCon(GSConfig.width >> 1, 76);
-
+        this.logoCon = new egret.DisplayObjectContainer();
+        this.logoCon.x = GSConfig.width >> 1;
+        this.logoCon.y = 76;
+        this.addChild(this.logoCon);
 
         this.shareButton = new mui.EButton("JS_share_button", "分　享");
         this.shareButton.x = 220;
         this.shareButton.y = 565;
         this.shareButton.textField.verticalCenter = -8;
+        this.addChild(this.shareButton);
 
         this.continueButton = new mui.EButton("JS_continue_button", "继续游戏");
         this.continueButton.x = 585;
         this.continueButton.y = 565;
         this.continueButton.textField.verticalCenter = -8;
-
-        this.addChild(this.shareButton);
         this.addChild(this.continueButton);
 
         this.shareButton.addEventListener(egret.TouchEvent.TOUCH_TAP, _=> {
@@ -71,12 +89,7 @@ class GSResultView extends egret.DisplayObjectContainer {
             this.face.onContinue();
         }, this);
 
-        //this.showLogo(1);
-
-        //组牌
-
         this.personItems = [];
-
         for (var i: number = 0; i < 4; i++) {
             var personItem = new PersonItem();
             personItem.y = this.po[i];
@@ -105,41 +118,6 @@ class GSResultView extends egret.DisplayObjectContainer {
             var personItem: PersonItem = this.personItems[i];
             personItem.update(person);
         }
-    }
-
-    createLogCon(x: number, y: number) {
-        this.logoCon = new egret.DisplayObjectContainer();
-        this.logoCon.x = x;
-        this.logoCon.y = y;
-
-        this.winTop = new egret.Bitmap(GameRes.getUI("JS_win"));
-        this.winBG = new egret.Bitmap(GameRes.getUI("JS_win_bg"));
-        this.loseTop = new egret.Bitmap(GameRes.getUI("JS_lose"));
-        this.loseBG = new egret.Bitmap(GameRes.getUI("JS_lose_bg"));
-        this.liujuTop = new egret.Bitmap(GameRes.getUI("JS_liuju"));
-
-        this.winTop.anchorOffsetX = 142;
-        this.winTop.anchorOffsetY = 40;
-
-        this.winBG.anchorOffsetX = 216;
-        this.winBG.anchorOffsetY = 220;
-
-        this.loseTop.anchorOffsetX = 142;
-        this.loseTop.anchorOffsetY = 60;
-
-        this.loseBG.anchorOffsetX = 215;
-        this.loseBG.anchorOffsetY = 224;
-
-        this.liujuTop.anchorOffsetX = 146;
-        this.liujuTop.anchorOffsetY = 58;
-
-        this.logoCon.addChild(this.winBG);
-        this.logoCon.addChild(this.loseBG);
-        this.logoCon.addChild(this.winTop);
-        this.logoCon.addChild(this.loseTop);
-        this.logoCon.addChild(this.liujuTop);
-        this.addChild(this.logoCon);
-        //this.drawLine(this.logoCon);
     }
 
     drawLine(obj: any) {
@@ -185,9 +163,15 @@ class GSResultView extends egret.DisplayObjectContainer {
     }
 
     clear() {
+        var personItem: PersonItem;
         for (var i: number = 0; i < this.personItems.length; i++) {
-            var personItem: PersonItem = this.personItems[i];
+            personItem = this.personItems[i];
             personItem.clear();
         }
+    }
+
+    //绑定回调接口
+    bindInterface(face: IGameTapEvent) {
+        this.face = face;
     }
 }
