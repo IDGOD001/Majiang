@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="ResultItemViewSkin" width="960" height="100" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+<e:Skin class="ResultItemViewSkin" width="960" height="85" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Group top="0" bottom="0" left="0" right="780">
-		<ns1:HeadIcon id="headIcon" skinName="HeadIconSkin"/>
+		<ns1:HeadIcon id="headIcon" skinName="HeadIconSkin" scaleX="0.8" scaleY="0.8"/>
 		<e:Label id="lab_nick" fontFamily="微软雅黑" size="20" bottom="1" horizontalCenter="-390" text="昵称" width="180" textAlign="center"/>
 		<e:Label id="lab_uid" fontFamily="微软雅黑" textAlign="center" bottom="1" width="180" size="20" horizontalCenter="-390" x="10" y="10" visible="false"/>
 		<e:layout>
@@ -10,17 +10,17 @@
 	</e:Group>
 	<e:Group left="180" right="180" top="0" bottom="0">
 		<e:Label id="lab_description" x="150" y="3" fontFamily="微软雅黑" size="18" height="41" width="570"/>
-		<e:Group id="paiGroup" height="56" width="570" x="150" bottom="0"/>
+		<e:Group id="paiGroup" height="43" width="570" x="150" bottom="1"/>
 		<e:layout>
 			<e:VerticalLayout gap="0"/>
 		</e:layout>
 	</e:Group>
 	<e:Group width="200" top="0" bottom="0" right="0">
-		<e:Label id="lab_hu" size="20" fontFamily="微软雅黑" x="10" y="10"/>
-		<e:Label id="lab_gang" y="20" size="20" fontFamily="微软雅黑" x="20"/>
-		<e:Label id="lab_zong" fontFamily="微软雅黑" size="26" height="40" verticalAlign="bottom"/>
+		<e:Label id="lab_hu" size="20" fontFamily="微软雅黑" x="10" y="10" text="1"/>
+		<e:Label id="lab_gang" y="20" size="20" fontFamily="微软雅黑" x="20" text="1"/>
+		<e:Label id="lab_zong" fontFamily="微软雅黑" size="26" height="30" verticalAlign="bottom" text="1"/>
 		<e:layout>
-			<e:VerticalLayout gap="10"/>
+			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
 </e:Skin>

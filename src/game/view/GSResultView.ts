@@ -50,7 +50,6 @@ class GSResultView extends egret.DisplayObjectContainer {
 
         this.createLogCon(GSConfig.width >> 1, 76);
 
-
         this.shareButton = new mui.EButton("JS_share_button", "分　享");
         this.shareButton.x = 220;
         this.shareButton.y = 565;
