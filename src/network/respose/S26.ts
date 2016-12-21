@@ -24,8 +24,6 @@ class S26 {
                     game.askPanel.showMsg(function (r) {
                         location.href = gameConfig.clientUrl += "?roomid=" + game.roomid;
                     }, "当前游戏版本过低，请刷新游戏！");
-
-                    game.askPanel.hideClose();
                 }
             }
         }

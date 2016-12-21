@@ -13,6 +13,7 @@ class GameManager extends BaseDispatcher {
 
     timerManager: TimerManager;
     effectManager: EffectManager;
+    socketManager: SocketManager;
 
     constructor() {
         super();
@@ -21,13 +22,15 @@ class GameManager extends BaseDispatcher {
     init() {
         this.timerManager = TimerManager.i;
         this.effectManager = new EffectManager();
-
-        this.timerManager.addEventListener(TimerManager.Second, this.timerHandler, this);
+        this.socketManager = SocketManager.i;
     }
 
-    private timerHandler() {
-    }
-
+    /**
+     * 播放中断效果
+     * @param type
+     * @param pos
+     * @param args
+     */
     playEffect(type: InterruptType, pos: number, ...args) {
         var gender: Gender = GSDataProxy.i.gData.getSexByPos(pos);
         var dir: DirType = GSDataProxy.i.gData.getDir(pos);

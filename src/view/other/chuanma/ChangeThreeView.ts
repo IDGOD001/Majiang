@@ -51,10 +51,10 @@ class ChangeThreeView extends BaseSprite {
                 this.hide();
                 this.removeChangeThree();
 
-                SocketManager.getInstance().getGameConn().send(15, {
-                    "args": {
-                        "action": 35,
-                        "pai": game.changeThreeVo.cards
+                game.manager.socketManager.send(15, {
+                    args: {
+                        action: 35,
+                        pai: game.changeThreeVo.cards
                     }
                 });
 

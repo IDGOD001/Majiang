@@ -82,7 +82,7 @@ class RecordPanel extends BasePanel {
     public show(): void {
         super.show();
 
-        SocketManager.getInstance().getGameConn().send(19, {});
+        game.manager.socketManager.send(19, {});
     }
 
 

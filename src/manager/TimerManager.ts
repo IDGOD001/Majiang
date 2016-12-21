@@ -15,6 +15,8 @@ class TimerManager extends BaseDispatcher {
 
     private timer: egret.Timer;
 
+    private testHorn: number = 0;
+
     public constructor() {
         super();
 
@@ -25,5 +27,24 @@ class TimerManager extends BaseDispatcher {
 
     private onTimerHandler() {
         this.dispatchEvent(TimerManager.Second);
+
+
+        this.testHorn++;
+
+        if (this.testHorn >= 120) {
+            this.testHorn = 0;
+
+            game.hornList.push(gameConfig.gamewarmList[game.gamewarmIndex]);
+
+            game.gamewarmIndex++;
+
+            if (game.gamewarmIndex > gameConfig.gamewarmList.length) {
+                game.gamewarmIndex = 0;
+            }
+        }
+
+        if (game.hornList.length > 0) {
+            Global.showHorn(20, 0x40f8ff);
+        }
     }
 }

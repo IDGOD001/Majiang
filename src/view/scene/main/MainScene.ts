@@ -192,7 +192,12 @@ class MainScene extends eui.Component {
         this.update();
 
         if (game.roomid) {
-            SocketManager.getInstance().getGameConn().send(3, {"args": {"roomid": +game.roomid, "pass": "0"}});
+            game.manager.socketManager.send(3, {
+                args: {
+                    roomid: +game.roomid,
+                    pass: "0"
+                }
+            });
         }
 
         var num: number = Math.floor(Math.random() * gameConfig.gamewarmList.length);

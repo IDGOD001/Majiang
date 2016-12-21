@@ -96,7 +96,7 @@ class QueView extends BaseSprite {
                 break;
         }
 
-        SocketManager.getInstance().getGameConn().send(15, {
+        game.manager.socketManager.send(15, {
             "args": {
                 "action": 9999,
                 "pai": type

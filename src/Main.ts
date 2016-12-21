@@ -10,15 +10,21 @@ class Main extends eui.UILayer {
         var accessType = variables.variables["accessType"];
         var roomid = variables.variables["roomid"];
         var user = variables.variables["users"];
+        var ip = variables.variables["ip"];
+        var port = variables.variables["port"];
         var code = variables.variables["code"];
 
         user = user == "" ? null : user;
+        ip = ip == "" ? null : ip;
+        port = port == "" ? null : port;
         code = code == "" ? null : code;
 
         console.log(roomid, user, code, accessType);
 
         game.roomid = roomid;
         game.user = user;
+        game.ip = ip;
+        game.port = port;
 
         gameConfig.code = code;
 
@@ -49,7 +55,7 @@ class Main extends eui.UILayer {
         gameLocal.setData(gameLocal.loginCode, code);
 
         var _this = this;
-        HttpHandler.sendMsgCallBack(gameConfig.protocolType + gameConfig.address_center.ip + ":" + gameConfig.address_center.port + "/", function (obj) {
+        HttpNetwork.pull(gameConfig.protocolType + gameConfig.address_center.ip + ":" + gameConfig.address_center.port + "/", function (obj) {
             gameConfig.address_http.ip = obj.addrr;
             gameConfig.address_http.port = obj.auth_port;
             gameConfig.address_game.ip = obj.addrr;
@@ -64,7 +70,7 @@ class Main extends eui.UILayer {
 
         var arr: Array<string> = ["closeWindow", "hideMenuItems", "onMenuShareAppMessage", "onMenuShareTimeline", "startRecord", "stopRecord", "onVoiceRecordEnd", "playVoice", "pauseVoice", "stopVoice", "onVoicePlayEnd", "uploadVoice", "downloadVoice"];
 
-        HttpHandler.sendMsgCallBack(gameConfig.protocolType + gameConfig.address_http.ip + ":" + gameConfig.address_http.port, function (obj) {
+        HttpNetwork.pull(gameConfig.protocolType + gameConfig.address_http.ip + ":" + gameConfig.address_http.port, function (obj) {
             if (obj.message != "error") {
                 var data:any = JSON.parse(obj.message);
                 Weixin.config(
@@ -96,11 +102,10 @@ class Main extends eui.UILayer {
     }
 
     private onThemeLoadComplete(): void {
-        // this.startGame();
+        this.startGame();
 
-        RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
-
-        RES.loadGroup("loading");
+        // RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
+        // RES.loadGroup("loading");
     }
 
     /**

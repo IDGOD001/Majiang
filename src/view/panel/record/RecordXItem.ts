@@ -1,11 +1,10 @@
-class RecordXItem extends eui.Component
-{
-    public obj:Array<any>;
-    public constructor(some:Array<any>)
-    {
+class RecordXItem extends eui.Component {
+    public obj: Array<any>;
+
+    public constructor(some: Array<any>) {
         super();
 
-        this.addEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
+        this.addEventListener(eui.UIEvent.COMPLETE, this.onComplete, this);
 
         this.skinName = "RecordXItemSkin";
 
@@ -14,49 +13,44 @@ class RecordXItem extends eui.Component
         this.obj = some;
     }
 
-    public _rank:eui.Label;
+    public _rank: eui.Label;
 
-    public _name:eui.Label;
+    public _name: eui.Label;
 
-    public _time:eui.Label;
+    public _time: eui.Label;
 
-    private btn:mui.EButton;
+    private btn: mui.EButton;
 
-    onComplete()
-    {
+    onComplete() {
 
     }
 
-    public onUpdate():void
-    {
-        if(!this.obj || this.obj.length <= 0) return;
+    public onUpdate(): void {
+        if (!this.obj || this.obj.length <= 0) return;
 
         var t = this.obj[0];
-        var rank:number = this.obj[6];
+        var rank: number = this.obj[6];
 
-        var date:Date = new Date(t * 1000);
-        var times:string = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() +" " +
+        var date: Date = new Date(t * 1000);
+        var times: string = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
             date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
         this._time.text = "" + times;
 
-        var str:string = "";
+        var str: string = "";
 
-        var d:RecordPanel = StackManager.findDialog(RecordPanel, "RecordPanel");
-        var pcl:Array<any> = d.pcList;
+        var d: RecordPanel = StackManager.findDialog(RecordPanel, "RecordPanel");
+        var pcl: Array<any> = d.pcList;
 
-        for(var i = 2; i<= 5; i++)
-        {
-            var pos:number = this.obj[i];
+        for (var i = 2; i <= 5; i++) {
+            var pos: number = this.obj[i];
 
             var p;
 
-            for(var j = 0; j < pcl.length; j++)
-            {
+            for (var j = 0; j < pcl.length; j++) {
                 var jp = pcl[j];
 
-                if(+jp.pos == (i- 1))
-                {
+                if (+jp.pos == (i - 1)) {
                     p = jp;
                     break;
                 }
@@ -64,35 +58,30 @@ class RecordXItem extends eui.Component
 
             var nick = p.nick;
 
-            if(pos < 0)
-            {
+            if (pos < 0) {
                 str += nick + "： " + pos;
             }
-            else if(pos == 0)
-            {
+            else if (pos == 0) {
                 str += nick + "： " + pos;
             }
-            else if(pos > 0)
-            {
+            else if (pos > 0) {
                 str += nick + "：+" + pos;
             }
 
-            if(i == 3) str += "\n";
-            else if(i == 4 || i == 2) str += "　　　　";
+            if (i == 3) str += "\n";
+            else if (i == 4 || i == 2) str += "　　　　";
         }
 
-        this._name.text =  str;
+        this._name.text = str;
 
         this._rank.text = "第" + rank + "局";
     }
 
-    private onClick():void
-    {
-        SocketManager.getInstance().getGameConn().send(21, {"args":{"id":this.obj[1]}});
+    private onClick(): void {
+        game.manager.socketManager.send(21, {"args": {"id": this.obj[1]}});
     }
 
-    createChildren()
-    {
+    createChildren() {
         super.createChildren();
 
         this.btn = new mui.EButton("btn_blue", "回  放");

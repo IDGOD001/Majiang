@@ -25,9 +25,6 @@ class game {
     //解散房间
     static dissolution: DissolutionVo;
 
-    //登录等待
-    static loginWaiting: boolean = false;
-
     //服务器地址
     static ip: any;
     //服务器端口
@@ -110,8 +107,6 @@ class game {
 
         game.paiStyle = +gameLocal.getData(gameLocal.style);
         game.paiColor = +gameLocal.getData(gameLocal.color);
-
-        GameParse.Initialization();
     }
 
     //初始化房间方向

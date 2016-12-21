@@ -77,7 +77,7 @@ class GSDataProxy {
                 this.gData.roundStarted = true;
         }
 
-        SocketManager.getInstance().getGameConn().send(25, {args: {type: 3}});
+        game.manager.socketManager.send(25, {args: {type: 3}});
     }
 
 
@@ -115,7 +115,7 @@ class GSDataProxy {
 
                     if (lastPai && lastPai != "no") {
                         egret.setTimeout(function () {
-                            SocketManager.getInstance().getGameConn().send(4, {"args": lastPai});
+                            game.manager.socketManager.send(4, {"args": lastPai});
                         }, this, 2000);
                     }
                 }
@@ -688,10 +688,10 @@ class GSDataProxy {
 
         if (PublicVal.state == StateType.fen) {//分张 延时
             egret.setTimeout(this.delay_Final, this, 1200);
-
-        } else {
-            this.delay_Final();
+            return;
         }
+
+        this.delay_Final();
     }
 
     delay_Final() {
@@ -711,8 +711,7 @@ class GSDataProxy {
             FashionTools.sortPai(left);
         }
 
-        //流局
-        if (hupai == 0) {
+        if (hupai == 0) {//流局
             this.gData.resultType = 3;
             var fen = this.gData.result.fen;
             var fenLeft;
@@ -787,23 +786,16 @@ class GSDataProxy {
 
     //格式下剩余牌
     formatLeft(left, pai) {
-
         var leftLen: number = left.length;
-
         for (var k: number = 0; k < leftLen; k++) {
-
             if (left[k].number == pai.number && left[k].type == pai.type) {
                 left.splice(k, 1);
-
                 break;
             }
         }
         if (left.length != leftLen) { //如果长度变化，说明提出了胡牌
-
             left.push(pai);
         }
-
-
     }
 
     //同步继续游戏

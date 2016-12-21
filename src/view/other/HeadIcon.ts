@@ -48,7 +48,7 @@ class HeadIcon extends BaseGameSprite {
         switch (e.target) {
             case this.btn_kill:
                 if (this.player) {
-                    SocketManager.getInstance().getGameConn().send(22, {"args": {"pos": this.player.pos}});
+                    game.manager.socketManager.send(22, {"args": {"pos": this.player.pos}});
                 }
                 break;
             default:

@@ -312,7 +312,7 @@ class Weixin {
             success: function (res) {
                 var serverId = res.serverId; // 返回音频的服务器端ID
 
-                SocketManager.getInstance().getGameConn().send(25, {"args": {"type": 2, "voice": {"id": serverId}}});
+                game.manager.socketManager.send(25, {"args": {"type": 2, "voice": {"id": serverId}}});
             }
         });
     }

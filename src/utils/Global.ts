@@ -27,54 +27,54 @@ class Global {
 	static ipwarmLabel: eui.Label;
 	static ipwarmisshow: boolean = false;
 
-	/**
-	 * 掉线处理
-	 */
-	static reLogin(): void {
-		var count: number = game.connectCount;
-
-		switch (count) {
-			case 0:
-				Global.sendLoad();
-				break;
-			case 1:
-				game.askPanel.showMsg(function (r) {
-					Global.sendLoad();
-				}, "您已经掉线，请点击确定重连！");
-				break;
-			default:
-				game.player.code = null;
-				Global.sendLoad();
-				break;
-		}
-	}
-
-	/**
-	 * 掉线后发送重新登录消息  或者  重新拉取授权
-	 */
-	static sendLoad() {
-		var p = game.player;
-
-		if (p.code) {
-			SocketManager.getInstance().getGameConn().send(1, {"uid": p.uid, "code": p.code, "length": p.code.length});
-			game.connectCount++;
-		}
-		else {
-			var count: number = +gameLocal.getData(gameLocal.loginAccessCode);
-
-			if (count < 2) {
-				Weixin.getAccessCode(gameConfig.appid, gameConfig.clientUrl, game.roomid);
-				count++;
-				gameLocal.setData(gameLocal.loginAccessCode, count);
-			}
-			else {
-				game.askPanel.showMsg(function (r) {
-					NativeApi.setLocalData("getAccessCode", 0);
-					Weixin.closeWindow();
-				}, "登录失败，请退出游戏重试！\n\n(请检查是否在其他设备登录)");
-			}
-		}
-	}
+	// /**
+	//  * 掉线处理
+	//  */
+	// static reLogin(): void {
+	// 	var count: number = game.connectCount;
+    //
+	// 	switch (count) {
+	// 		case 0:
+	// 			Global.sendLoad();
+	// 			break;
+	// 		case 1:
+	// 			game.askPanel.showMsg(function (r) {
+	// 				Global.sendLoad();
+	// 			}, "您已经掉线，请点击确定重连！");
+	// 			break;
+	// 		default:
+	// 			game.player.code = null;
+	// 			Global.sendLoad();
+	// 			break;
+	// 	}
+	// }
+    //
+	// /**
+	//  * 掉线后发送重新登录消息  或者  重新拉取授权
+	//  */
+	// static sendLoad() {
+	// 	var p = game.player;
+    //
+	// 	if (p.code) {
+	// 		game.manager.socketManager.send(1, {"uid": p.uid, "code": p.code, "length": p.code.length});
+	// 		game.connectCount++;
+	// 	}
+	// 	else {
+	// 		var count: number = +gameLocal.getData(gameLocal.loginAccessCode);
+    //
+	// 		if (count < 2) {
+	// 			Weixin.getAccessCode(gameConfig.appid, gameConfig.clientUrl, game.roomid);
+	// 			count++;
+	// 			gameLocal.setData(gameLocal.loginAccessCode, count);
+	// 		}
+	// 		else {
+	// 			game.askPanel.showMsg(function (r) {
+	// 				NativeApi.setLocalData("getAccessCode", 0);
+	// 				Weixin.closeWindow();
+	// 			}, "登录失败，请退出游戏重试！\n\n(请检查是否在其他设备登录)");
+	// 		}
+	// 	}
+	// }
 
 	/**
 	 * 手机震动

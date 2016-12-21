@@ -6,7 +6,7 @@ class GSScene extends egret.DisplayObjectContainer {
 
     bg: egret.Bitmap;
     gsView: GSView;
-    gsResultView: GSResultView;
+    gsResultView: ResultScene;
     roomIDText: egret.TextField;
 
 
@@ -61,7 +61,7 @@ class GSScene extends egret.DisplayObjectContainer {
         this.gsView = new GSView;
         this.gsView.visible = false;
 
-        this.gsResultView = new GSResultView;
+        this.gsResultView = new ResultScene;
         this.gsResultView.visible = false;
 
         this.roomIDText = new egret.TextField();
@@ -95,11 +95,6 @@ class GSScene extends egret.DisplayObjectContainer {
         this.waitText.y = (GSConfig.height >> 1) - 10;
         this.waitText.visible = false;
         this.addChild(this.waitText);
-
-        //830,90 170
-
-
-
 
         //this.visibleFirstRoundButton(false);
         this.startButton.visible = this.inviteButton.visible = false;

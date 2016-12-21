@@ -22,10 +22,17 @@ class LoadingScene extends eui.Component {
             _this.img_icon.rotation = 0;
         }, this);
 
-        RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
+        RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
 
         RES.loadGroup("game");
+    }
+
+    private onResourceProgress(e: RES.ResourceEvent): void {
+        if (e.groupName == "game") {
+            this.lab_progress.text = "" + Math.floor(e.itemsLoaded / e.itemsTotal * 100) + "%";
+            this.lab_progress.visible = true;
+        }
     }
 
     /**
@@ -34,21 +41,12 @@ class LoadingScene extends eui.Component {
      */
     private onResourceLoadComplete(e: RES.ResourceEvent): void {
         if (e.groupName == "game") {
-            RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
+            RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
 
             this.lab_info.text = "正在拉取用户信息···";
 
-            game.loginWaiting = true;
-            SocketManager.getInstance().getGameConn();
-            Heart.getInstance();
-        }
-    }
-
-    private onResourceProgress(e: RES.ResourceEvent): void {
-        if (e.groupName == "game") {
-            this.lab_progress.text = "" + Math.floor(e.itemsLoaded / e.itemsTotal * 100) + "%";
-            this.lab_progress.visible = true;
+            game.manager.socketManager.connect();
         }
     }
 

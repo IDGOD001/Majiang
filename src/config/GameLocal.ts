@@ -18,8 +18,6 @@ class gameLocal {
 
     //登录Code
     static loginCode: string = "loginCode";
-    //登录AccessCode
-    static loginAccessCode: string = "loginAccessCode";
 
     //风格
     static style: string = "style";

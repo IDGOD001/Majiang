@@ -225,44 +225,29 @@ class GSConfig {
     };
     //获取方位位置
     static getPosByIndex(dir: number, style: number, index: number) {
-
         var o: any = {};
-
         //var pos = GSConfig.handPos[dir];
-
         var rule = GSConfig.posRulePlus[dir][style];
 
         switch (dir) {
-
             case 1:
-
                 o.x = index * rule.spacH;
                 o.y = 0;
-
-
                 break;
             case 2:
-
                 o.x = 0;
                 o.y = 0 - index * rule.spacH;
-
                 break;
             case 3:
                 o.x = 0 - index * rule.spacH;
                 o.y = 0;
-
                 break;
             case 4:
-
                 o.x = 0;
                 o.y = index * rule.spacH;
-
                 break;
-
         }
-
         return o;
-
     }
 
 

@@ -12,7 +12,7 @@ class GSController extends egret.EventDispatcher {
 
     scene: GSScene;
     gsView: GSView;
-    gsResultView: GSResultView;
+    gsResultView: ResultScene;
     gsTitleView: GSTotleView;
     activateCard: CardView = null;
     isAllowFuncClick: boolean;
@@ -482,7 +482,7 @@ class GSController extends egret.EventDispatcher {
 
         console.log("----发送打牌", pai);
 
-        SocketManager.getInstance().getGameConn().send(4, {"args": pai});
+        game.manager.socketManager.send(4, {"args": pai});
         //
         // this.clearDelayPushInterval();
     }
@@ -565,9 +565,13 @@ class GSController extends egret.EventDispatcher {
         }
 
         //等待结算
-        egret.setTimeout(_=> {
-            this.intoResultView()
-        }, this, 3000);
+        egret.setTimeout(this.intoResultView, this, 3000);
+    }
+
+    //进入结算界面
+    intoResultView() {
+        this.showStateView();
+        this.gsResultView.update();
     }
 
     //创建立牌 返回抓牌区
@@ -597,12 +601,6 @@ class GSController extends egret.EventDispatcher {
             catchPos.x = sx + o.x + catchPos.dx;
             catchPos.y = sy + o.y + catchPos.dy;
         }
-    }
-
-    //进入结算界面
-    intoResultView() {
-        this.showStateView();
-        this.gsResultView.update();
     }
 
     //初次发牌
@@ -656,7 +654,7 @@ class GSController extends egret.EventDispatcher {
         if (GSData.i.readyTing && this.allowPushCard) {
 
             //发送听牌
-            SocketManager.getInstance().getGameConn().send(15, {"args": {"action": 4, "pai": [pai]}});
+            game.manager.socketManager.send(15, {"args": {"action": 4, "pai": [pai]}});
 
             //this.hideFuncSelectMenu();
 
@@ -691,7 +689,7 @@ class GSController extends egret.EventDispatcher {
                         if (GSData.i.readyTing) {
 
                             //发送听牌
-                            SocketManager.getInstance().getGameConn().send(15, {"args": {"action": 4, "pai": [pai]}});
+                            game.manager.socketManager.send(15, {"args": {"action": 4, "pai": [pai]}});
 
                             PublicVal.state = -4;
 
@@ -701,7 +699,7 @@ class GSController extends egret.EventDispatcher {
 
                         } else {
 
-                            SocketManager.getInstance().getGameConn().send(4, {"args": pai});
+                            game.manager.socketManager.send(4, {"args": pai});
 
                             this.gsView.resetAllChildrenTouch();
 
