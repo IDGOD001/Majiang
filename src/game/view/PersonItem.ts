@@ -77,7 +77,7 @@ class PersonItem extends BaseGameSprite {
         //判断手牌长度进行间隔错位
         if (GSConfig.handLens[this.data.left.length]) {
             var cardView: CardView = <CardView>this.paiGroup.getElementAt(this.paiGroup.numElements - 1);
-            cardView.posView(cardView.pos.x + this.spacing, this.pos.y);
+            cardView.posView(cardView.pos.x + this.spacing, this.pos.y + 20);
         }
     }
 

@@ -40,7 +40,7 @@ class LoadingScene extends eui.Component {
             this.lab_info.text = "正在拉取用户信息···";
 
             game.loginWaiting = true;
-            SocketManager.getInstance().getGameConn().send(1);
+            SocketManager.getInstance().getGameConn();
             Heart.getInstance();
         }
     }

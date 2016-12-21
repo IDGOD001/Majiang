@@ -31,7 +31,7 @@ class Heart {
 
         this.loginTime++;
 
-        if (this.loginTime >= 50) {
+        if (this.loginTime >= 100) {
             this.loginTime = 0;
 
             if (game.loginWaiting) Global.reLogin();

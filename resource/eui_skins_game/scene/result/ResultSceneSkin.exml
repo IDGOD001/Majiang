@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="ResultSceneSkin" width="960" height="640" xmlns:e="http://ns.egret.com/eui">
+	<e:Image id="stateImgBg" source="JS_win_bg" horizontalCenter="0" top="-139" locked="true"/>
+	<e:Rect left="0" right="0" verticalCenter="-10" height="450" fillAlpha="0.4"/>
+	<e:Label id="lab_rule" text="规则" y="50" fontFamily="微软雅黑" size="16" textColor="0xC4E6A2" left="15" width="309" height="34" wordWrap="true" multiline="true"/>
+	<e:Group id="group" left="0" right="0" verticalCenter="-10">
+		<e:layout>
+			<e:VerticalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Image id="stateImg" horizontalCenter="0.5" top="0" source="JS_lose"/>
+	<e:Button id="shareButton" label="分　享" bottom="20" horizontalCenter="-200">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="JS_share_button"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="-6.5" fontFamily="微软雅黑" size="24" textColor="0xFFFFFF" stroke="1" strokeColor="0" bold="true"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="continueButton" bottom="20" label="继续游戏" horizontalCenter="200" x="10" y="10">
+		<e:skinName>
+			<e:Skin states="up,down,disabled" xmlns:w="http://ns.egret.com/wing">
+				<e:Image width="100%" height="100%" source="JS_continue_button"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="-6.5" fontFamily="微软雅黑" size="24" bold="true" stroke="1" strokeColor="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>

@@ -9,13 +9,17 @@ class S13 {
 
         GSController.i.jiesuanData = obj.data;
 
-        StackManager.closeDialog("DissolutionPanel");
+        var dialog: DissolutionPanel = StackManager.findDialog(DissolutionPanel, "DissolutionPanel");
 
-        game.dissolution = null;
+        if (dialog && LayerManager.gameLayer().panelLayer.contains(dialog)) {
+            dialog.hide();
 
-        GSController.i.closeResultView();
-        GSController.i.closeGSView();
-        GSController.i.showTitleView(GSController.i.jiesuanData);
+            GSController.i.closeResultView();
+            GSController.i.closeGSView();
+            GSController.i.showTitleView(GSController.i.jiesuanData);
+
+            game.dissolution = null;
+        }
 
         game.roomClean();
     }

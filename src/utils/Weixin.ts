@@ -7,6 +7,9 @@ class Weixin {
 
     /**
      * 获取授权code
+     * @param appid
+     * @param clientUrl
+     * @param roomid
      */
     static getAccessCode(appid: string, clientUrl: string, roomid: any) {
 
@@ -99,6 +102,8 @@ class Weixin {
 
     /**
      * 点击分享
+     * @param arr
+     * @param showBg
      */
     static onClickShare(arr: Array<any>, showBg: boolean = true) {
         var str: string = "";
@@ -163,38 +168,19 @@ class Weixin {
         var body: BodyMenuShareAppMessage = new BodyMenuShareAppMessage();
 
         if (roomid) {
-            var str: string = roomid + "";
-            var strroomid: string = "";
-            for (var i = 0; i < str.length; i++) {
-                strroomid += str.charAt(i) + " ";
-            }
+            body.title = "【" + game.roomOwner.nick + "】邀请你加入房间:" + (roomid.split("").join(" ")) + "-【" + game.gameName + "】";
 
-            if (GSData.i.roomPlayers && GSData.i.roomPlayers[1]) {
-                var name;
-                var p = GSData.i.roomPlayers[1];
-                name = p.nick;
-
-                body.desc = "房　主：" + name + " 房间号：" + strroomid;
-
-                if (game.roomRoundMax > 0) {
-                    body.desc += "【" + game.roomRoundMax + "局】" + PublicVal.i.rules;
-                }
-                else {
-                    body.desc += " " + PublicVal.i.rules;
-                }
-
-                body.title = "跟我一起开房的点此链接！";
-
-                body.link = gameConfig.clientUrl + "?roomid=" + roomid;
+            if (game.roomRoundMax > 0) {
+                body.desc = "【" + game.roomRoundMax + "局】" + PublicVal.i.rules;
             }
             else {
-                body.title = "这麻将！三天不打，上房揭瓦！";
-                body.desc = "私房麻将馆，好友组局，微信登录，玩牌交友两不误！";
-                body.link = "" + gameConfig.clientUrl;
+                body.desc = " " + PublicVal.i.rules;
             }
+
+            body.link = gameConfig.clientUrl + "?roomid=" + roomid;
         }
         else {
-            body.title = "这麻将！三天不打，上房揭瓦！";
+            body.title = "【" + game.gameName + "】无需下载，点击开战！";
             body.desc = "私房麻将馆，好友组局，微信登录，玩牌交友两不误！";
             body.link = "" + gameConfig.clientUrl;
         }
@@ -222,7 +208,7 @@ class Weixin {
         }
 
         var body: BodyMenuShareTimeline = new BodyMenuShareTimeline();
-        body.title = "这麻将！三天不打，上房揭瓦！";
+        body.title = "【" + game.gameName + "】无需下载，点击开战！";
         if (roomid) {
             body.link = gameConfig.clientUrl + "?roomid=" + roomid;
         }
