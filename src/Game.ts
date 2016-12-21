@@ -190,4 +190,25 @@ class game {
     static get stageHeight() {
         return this.stage.stageHeight;
     }
+
+    //房主
+    static get roomOwner() {
+        for (var uid in game.roomPlayers) {
+            if (game.roomPlayers[uid].dir == 1) {
+                return game.roomPlayers[uid];
+            }
+        }
+    }
+
+    //游戏名称
+    static get gameName() {
+        var name: string;
+        switch (game.gameType) {
+            case GameType.sichuan:
+                name = "欢乐四川麻将";
+                break;
+        }
+
+        return name;
+    }
 }

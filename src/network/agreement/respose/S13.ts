@@ -12,9 +12,12 @@ class S13 {
         var dialog: DissolutionPanel = StackManager.findDialog(DissolutionPanel, "DissolutionPanel");
 
         if (dialog && LayerManager.gameLayer().panelLayer.contains(dialog)) {
+            dialog.hide();
+
             GSController.i.closeResultView();
             GSController.i.closeGSView();
             GSController.i.showTitleView(GSController.i.jiesuanData);
+
             game.dissolution = null;
         }
 

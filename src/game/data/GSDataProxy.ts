@@ -57,9 +57,9 @@ class GSDataProxy {
 
         //步骤大于4，表示过了开局杠牌时间
         /*if (obj.step > 4) {
-            this.gData.isZhuangPush = true;
-            this.gData.gang_end = true;
-        }*/
+         this.gData.isZhuangPush = true;
+         this.gData.gang_end = true;
+         }*/
 
         switch (obj.status) {
             case "wait_for_join":
@@ -187,25 +187,25 @@ class GSDataProxy {
             }
             else {//自己的牌
                 //判断长度
-                if(GSConfig.handLens[shou.length]){
+                if (GSConfig.handLens[shou.length]) {
                     var zhuangpai = null;
-                    if(person.draw == "no"){
-                        zhuangpai = (this.gData.rebackData.step == 5 ? person.zhuangpai:null);
-                    }else{
+                    if (person.draw == "no") {
+                        zhuangpai = (this.gData.rebackData.step == 5 ? person.zhuangpai : null);
+                    } else {
                         zhuangpai = person.draw;
                     }
 
-                    if(zhuangpai){
-                        FashionTools.removePai(shou,zhuangpai);
+                    if (zhuangpai) {
+                        FashionTools.removePai(shou, zhuangpai);
                         FashionTools.sortPai(shou);
                         shou.push(zhuangpai);
                         this.gData.setCatchPai(1, zhuangpai);
 
-                    }else{
+                    } else {
                         FashionTools.sortPai(shou);
                         this.gData.setCatchPai(1, shou[shou.length - 1]);
                     }
-                }else{
+                } else {
                     FashionTools.sortPai(shou);
                 }
                 this.gData.setHandPais(1, shou);
@@ -223,20 +223,20 @@ class GSDataProxy {
     S2C_DeletePai(pos: number, pai: any) {
         var dir = this.gData.getDir(pos);
         //this.gData.removeHandPai(dir, pai);
-        PublicVal.i.removeHandPai(dir,pai);
+        PublicVal.i.removeHandPai(dir, pai);
 
-        if(dir == 1) FashionTools.sortPai(PublicVal.i.getHandPais(dir));
+        if (dir == 1) FashionTools.sortPai(PublicVal.i.getHandPais(dir));
 
         GSController.i.updateMJView(dir);
     }
 
     /*
-        更新功能菜单，吃蹦杠
+     更新功能菜单，吃蹦杠
      */
     S2C_Function(obj: any) {
 
         //准备听的状态，忽略其他人上线刷新的功能菜单
-        if(GSData.i.readyTing) return;
+        if (GSData.i.readyTing) return;
 
         //不能操作出牌
         this.gData.isShowFunc = true;
@@ -363,9 +363,9 @@ class GSDataProxy {
         }
 
         //断线重连上来的情况
-        if(this.gData.rebackData){
+        if (this.gData.rebackData) {
             this.gData.rebackViewFuncs.push(GSController.i.showFuncSelectMenu);
-        }else{
+        } else {
             GSController.i.showFuncSelectMenu();
         }
 
@@ -444,7 +444,7 @@ class GSDataProxy {
     }
 
     //更新结果 cur是当前分数
-    S2C_FuncResult(data:any) {
+    S2C_FuncResult(data: any) {
         var action = data.action;
         var pai = data.pai;
         var pos = data.turn;
@@ -661,15 +661,15 @@ class GSDataProxy {
         var dir = this.gData.getDir(obj.data.pos);
         this.gData.currPoolPai.dir = dir;
         //添加池牌数据
-        PublicVal.i.pushPoolPai(dir,this.gData.currPoolPai);
+        PublicVal.i.pushPoolPai(dir, this.gData.currPoolPai);
         //清除手牌数据
-        if(dir == 1){
+        if (dir == 1) {
 
             PublicVal.i.removeHandPai(dir, this.gData.currPoolPai);
 
-            if(PublicVal.state == -4) GSController.i.clearDelayPushInterval();
+            if (PublicVal.state == -4 || game.isHu) GSController.i.clearDelayPushInterval();
 
-        }else{
+        } else {
 
             PublicVal.i.removeHandPai(dir, null);
 
@@ -683,16 +683,13 @@ class GSDataProxy {
     }
 
     S2C_FinalResult(result: any) {
-
         this.gData.result = result;
         GSController.i.clearDelayPushInterval();
 
         if (PublicVal.state == StateType.fen) {//分张 延时
-
             egret.setTimeout(this.delay_Final, this, 1200);
 
         } else {
-
             this.delay_Final();
         }
     }
@@ -776,6 +773,7 @@ class GSDataProxy {
                     selfHu = true;
                     break;
             }
+
             if (selfHu) {
                 this.formatLeft(hu_left, hupai.pai);
             } else {
@@ -822,14 +820,14 @@ class GSDataProxy {
 
     //同步房间玩家信息,判断方位
     S2C_RoomPlayers() {
-        if(!this.gData.rebackData)this.gData.zhuangPos = 0;
+        if (!this.gData.rebackData)this.gData.zhuangPos = 0;
 
         game.roomPlayerCur = 0;
         game.roomPlayerOffline = 0;
         this.gData.roomPlayers = [];
 
         var leave_uid = null;
-        var player:PlayerVo;
+        var player: PlayerVo;
         for (var uid in game.roomPlayers) {
             player = game.roomPlayers[uid];
 
@@ -942,22 +940,25 @@ class GSDataProxy {
         game.roomRoundCur = obj.data.cur_round;
         game.roomRoundMax = obj.data.max_round;
 
-        PublicVal.i.allPais[2].handPais = new Array(13);
-        PublicVal.i.allPais[3].handPais = new Array(13);
-        PublicVal.i.allPais[4].handPais = new Array(13);
+        PublicVal.i.allPais[2].handPais = new Array(game.roomZhang);
+        PublicVal.i.allPais[3].handPais = new Array(game.roomZhang);
+        PublicVal.i.allPais[4].handPais = new Array(game.roomZhang);
 
         if (paiLen > 0) {
+
+            if (!obj.data.pai[paiLen - 1]) {
+                obj.data.pai.pop();
+            }
 
             //进入开局
             PublicVal.i.allPais[1].handPais = obj.data.pai;
 
-            if(obj.data.pai.length == 14)
-            {
+            if (obj.data.pai.length == game.roomZhang + 1) {
 
                 PublicVal.i.allPais[1].catchPai = obj.data.zhuangpai;
 
                 //移除手牌里的庄牌
-                FashionTools.removePai(obj.data.pai,obj.data.zhuangpai);
+                FashionTools.removePai(obj.data.pai, obj.data.zhuangpai);
 
             }
 
@@ -1001,7 +1002,7 @@ class GSDataProxy {
     //牌局都准备好.可以出牌
     S2C_RoundReadyAll() {
 
-        if(PublicVal.state == StateType.shuffle) {
+        if (PublicVal.state == StateType.shuffle) {
 
             this.gData.roundReady++;
 

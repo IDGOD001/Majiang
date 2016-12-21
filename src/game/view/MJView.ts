@@ -159,7 +159,7 @@ class MJView extends eui.Component {
         var card: CardView;
         for (var i: number = 0; i < this.handCon.numChildren; i++) {
             card = <CardView>this.handCon.getChildAt(i);
-            if (!card || card.index < 0) {
+            if (!card || card.index < 0 || !card.pai) {
                 continue;
             }
 
