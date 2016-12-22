@@ -46,10 +46,8 @@
 	<script egret="game" src="bin-debug/ace_html5_game/config/EnumTypeConfig.js"></script>
 	<script egret="game" src="bin-debug/ace_html5_game/constant/GameDir.js"></script>
 	<script egret="game" src="bin-debug/ace_html5_game/constant/GameTime.js"></script>
-	<script egret="game" src="bin-debug/ace_html5_game/manager/HttpManager.js"></script>
-	<script egret="game" src="bin-debug/ace_html5_game/manager/TimerManager.js"></script>
-	<script egret="game" src="bin-debug/ace_html5_game/network/HttpServer.js"></script>
-	<script egret="game" src="bin-debug/ace_html5_game/network/SocketServer.js"></script>
+	<script egret="game" src="bin-debug/ace_html5_game/network/HttpNetwork.js"></script>
+	<script egret="game" src="bin-debug/ace_html5_game/network/SocketNetwork.js"></script>
 	<script egret="game" src="bin-debug/ace_html5_game/utils/CheckUtils.js"></script>
 	<script egret="game" src="bin-debug/ace_html5_game/utils/effect/BaseEffect.js"></script>
 	<script egret="game" src="bin-debug/ace_html5_game/utils/effect/display/GradientEffect.js"></script>
@@ -115,14 +113,11 @@
 	<script egret="game" src="bin-debug/game/view/CenterBoom.js"></script>
 	<script egret="game" src="bin-debug/game/view/FuncEffectView.js"></script>
 	<script egret="game" src="bin-debug/game/view/FuncSelectView.js"></script>
-	<script egret="game" src="bin-debug/view/BaseGameSprite.js"></script>
-	<script egret="game" src="bin-debug/game/view/GSResultView.js"></script>
 	<script egret="game" src="bin-debug/game/view/GSScene.js"></script>
 	<script egret="game" src="bin-debug/game/view/GSTotlePerson.js"></script>
 	<script egret="game" src="bin-debug/game/view/GSTotleView.js"></script>
 	<script egret="game" src="bin-debug/game/view/GSView.js"></script>
 	<script egret="game" src="bin-debug/game/view/MJView.js"></script>
-	<script egret="game" src="bin-debug/game/view/PersonItem.js"></script>
 	<script egret="game" src="bin-debug/game/view/ReplayControllView.js"></script>
 	<script egret="game" src="bin-debug/game/view/TimeEffectView.js"></script>
 	<script egret="game" src="bin-debug/manager/GameManager.js"></script>
@@ -132,66 +127,64 @@
 	<script egret="game" src="bin-debug/manager/EffectManager.js"></script>
 	<script egret="game" src="bin-debug/manager/LayerManager.js"></script>
 	<script egret="game" src="bin-debug/manager/SceneManager.js"></script>
+	<script egret="game" src="bin-debug/manager/SocketManager.js"></script>
 	<script egret="game" src="bin-debug/manager/StackManager.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/GameParse.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/MessageID.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_1.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_10.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_11.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_12.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_13.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_14.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_15.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_16.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_17.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_18.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_19.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_2.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_20.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_21.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_22.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_23.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_24.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_25.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_26.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_27.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_3.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_4.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_5.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_6.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_7.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_8.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/request/_9.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S1.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S10.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S11.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S12.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S13.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S14.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S15.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S16.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S17.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S18.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S19.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S2.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S20.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S21.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S22.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S23.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S24.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S25.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S26.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S27.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S3.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S4.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S5.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S6.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S7.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S8.js"></script>
-	<script egret="game" src="bin-debug/network/agreement/respose/S9.js"></script>
-	<script egret="game" src="bin-debug/network/handler/HttpHandler.js"></script>
-	<script egret="game" src="bin-debug/network/handler/SocketHandler.js"></script>
-	<script egret="game" src="bin-debug/network/handler/SocketManager.js"></script>
+	<script egret="game" src="bin-debug/manager/TimerManager.js"></script>
+	<script egret="game" src="bin-debug/network/MessageID.js"></script>
+	<script egret="game" src="bin-debug/network/request/_1.js"></script>
+	<script egret="game" src="bin-debug/network/request/_10.js"></script>
+	<script egret="game" src="bin-debug/network/request/_11.js"></script>
+	<script egret="game" src="bin-debug/network/request/_12.js"></script>
+	<script egret="game" src="bin-debug/network/request/_13.js"></script>
+	<script egret="game" src="bin-debug/network/request/_14.js"></script>
+	<script egret="game" src="bin-debug/network/request/_15.js"></script>
+	<script egret="game" src="bin-debug/network/request/_16.js"></script>
+	<script egret="game" src="bin-debug/network/request/_17.js"></script>
+	<script egret="game" src="bin-debug/network/request/_18.js"></script>
+	<script egret="game" src="bin-debug/network/request/_19.js"></script>
+	<script egret="game" src="bin-debug/network/request/_2.js"></script>
+	<script egret="game" src="bin-debug/network/request/_20.js"></script>
+	<script egret="game" src="bin-debug/network/request/_21.js"></script>
+	<script egret="game" src="bin-debug/network/request/_22.js"></script>
+	<script egret="game" src="bin-debug/network/request/_23.js"></script>
+	<script egret="game" src="bin-debug/network/request/_24.js"></script>
+	<script egret="game" src="bin-debug/network/request/_25.js"></script>
+	<script egret="game" src="bin-debug/network/request/_26.js"></script>
+	<script egret="game" src="bin-debug/network/request/_27.js"></script>
+	<script egret="game" src="bin-debug/network/request/_3.js"></script>
+	<script egret="game" src="bin-debug/network/request/_4.js"></script>
+	<script egret="game" src="bin-debug/network/request/_5.js"></script>
+	<script egret="game" src="bin-debug/network/request/_6.js"></script>
+	<script egret="game" src="bin-debug/network/request/_7.js"></script>
+	<script egret="game" src="bin-debug/network/request/_8.js"></script>
+	<script egret="game" src="bin-debug/network/request/_9.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S1.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S10.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S11.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S12.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S13.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S14.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S15.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S16.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S17.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S18.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S19.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S2.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S20.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S21.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S22.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S23.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S24.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S25.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S26.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S27.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S3.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S4.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S5.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S6.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S7.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S8.js"></script>
+	<script egret="game" src="bin-debug/network/respose/S9.js"></script>
 	<script egret="game" src="bin-debug/test/Test.js"></script>
 	<script egret="game" src="bin-debug/ThemeAdapter.js"></script>
 	<script egret="game" src="bin-debug/utils/effect/CardRaiseEffect.js"></script>
@@ -199,13 +192,13 @@
 	<script egret="game" src="bin-debug/utils/effect/ChupaiTipsEffect.js"></script>
 	<script egret="game" src="bin-debug/utils/EffectUtils.js"></script>
 	<script egret="game" src="bin-debug/utils/Global.js"></script>
-	<script egret="game" src="bin-debug/utils/Heart.js"></script>
 	<script egret="game" src="bin-debug/utils/NativeApi.js"></script>
 	<script egret="game" src="bin-debug/utils/PopUpUtils.js"></script>
 	<script egret="game" src="bin-debug/utils/RegUtils.js"></script>
 	<script egret="game" src="bin-debug/utils/UtilsClass/BitmapBlink.js"></script>
 	<script egret="game" src="bin-debug/utils/UtilsClass/TipsUtils.js"></script>
 	<script egret="game" src="bin-debug/utils/Weixin.js"></script>
+	<script egret="game" src="bin-debug/view/BaseGameSprite.js"></script>
 	<script egret="game" src="bin-debug/view/other/BgView.js"></script>
 	<script egret="game" src="bin-debug/view/other/chuanma/ChangeThreeCompleteView.js"></script>
 	<script egret="game" src="bin-debug/view/other/chuanma/ChangeThreeView.js"></script>
@@ -248,6 +241,8 @@
 	<script egret="game" src="bin-debug/view/scene/loading/DialogLoding.js"></script>
 	<script egret="game" src="bin-debug/view/scene/loading/LoadingScene.js"></script>
 	<script egret="game" src="bin-debug/view/scene/main/MainScene.js"></script>
+	<script egret="game" src="bin-debug/view/scene/result/ResultItemView.js"></script>
+	<script egret="game" src="bin-debug/view/scene/result/ResultScene.js"></script>
 	<script egret="game" src="bin-debug/vo/BaseDataVo.js"></script>
 	<script egret="game" src="bin-debug/vo/ChangeThreeVo.js"></script>
 	<script egret="game" src="bin-debug/vo/DissolutionVo.js"></script>

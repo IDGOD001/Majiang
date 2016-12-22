@@ -31,10 +31,10 @@ class DissolutionPanel extends BasePanel {
     private clickHandler(e: egret.TouchEvent) {
         switch (e.currentTarget) {
             case this.btn_cancel:
-                SocketManager.getInstance().getGameConn().send(14, {"args": {"answer": 0}});  //发起解散房子
+                game.manager.socketManager.send(14, {"args": {"answer": 0}});  //发起解散房子
                 break;
             case this.btn_confirm:
-                SocketManager.getInstance().getGameConn().send(14, {"args": {"answer": 1}});  //发起解散房子
+                game.manager.socketManager.send(14, {"args": {"answer": 1}});  //发起解散房子
                 break;
         }
     }

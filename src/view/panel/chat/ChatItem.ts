@@ -24,13 +24,13 @@ class ChatItem extends eui.Component {
     }
 
     private onClick(e: egret.TouchEvent): void {
-        SocketManager.getInstance().getGameConn().send(25, {
-            "args": {
-                "type": 1,
-                "chat": {
-                    "id": this.clickey,
-                    "sex": game.player.sex,
-                    "uid": game.player.uid
+        game.manager.socketManager.send(25, {
+            args: {
+                type: 1,
+                chat: {
+                    id: this.clickey,
+                    sex: game.player.sex,
+                    uid: game.player.uid
                 }
             }
         });

@@ -17,7 +17,7 @@ class TouchBehaviour implements IGameTapEvent {
         switch (obj.index) {
             case 0://过
                 GSData.i.isShowFunc = false;
-                SocketManager.getInstance().getGameConn().send(15, {"args":{"action":obj.action, "pai":[]}});
+                game.manager.socketManager.send(15, {"args":{"action":obj.action, "pai":[]}});
 
                 GSController.i.hideFuncSelectMenu();
 
@@ -38,7 +38,7 @@ class TouchBehaviour implements IGameTapEvent {
                 GSController.i.showChiSelectView();
                 break;
             case 2://碰
-                SocketManager.getInstance().getGameConn().send(15, {"args": {"action": obj.action, "pai": obj.pai}});
+                game.manager.socketManager.send(15, {"args": {"action": obj.action, "pai": obj.pai}});
                 GSController.i.hideFuncSelectMenu();
                 break;
             case 3://杠
@@ -56,7 +56,7 @@ class TouchBehaviour implements IGameTapEvent {
                 GSController.i.doTing();
                 break;
             case 6://胡牌
-                SocketManager.getInstance().getGameConn().send(15, {"args": {"action": obj.action, "pai": []}});
+                game.manager.socketManager.send(15, {"args": {"action": obj.action, "pai": []}});
                 GSController.i.hideFuncSelectMenu();
                 break;
         }
@@ -67,7 +67,7 @@ class TouchBehaviour implements IGameTapEvent {
         if (GSController.i.funcSelectAction == 1) {//吃
             var funcSelect = GSData.i.getFuncSelectByIndex(1);
             var pais = [funcSelect.group[index].pai[0], funcSelect.group[index].pai[2]];
-            SocketManager.getInstance().getGameConn().send(15, {"args": {"action": 1, "pai": pais}});
+            game.manager.socketManager.send(15, {"args": {"action": 1, "pai": pais}});
         }
 
         if (GSController.i.funcSelectAction == 3) {//杠
@@ -75,7 +75,7 @@ class TouchBehaviour implements IGameTapEvent {
             var pai = funcSelect.group[index].pai;
             var action = funcSelect.group[index].action;
             //发送消息
-            SocketManager.getInstance().getGameConn().send(15, {"args": {"action": action, "pai": pai}});
+            game.manager.socketManager.send(15, {"args": {"action": action, "pai": pai}});
         }
 
         if (GSController.i.funcSelectAction == 4) {//补蛋
@@ -83,7 +83,7 @@ class TouchBehaviour implements IGameTapEvent {
             var pai = funcSelect.group[index].pai;
             var action = funcSelect.group[index].action;
             //发送消息
-            SocketManager.getInstance().getGameConn().send(15, {"args": {"action": action, "pai": [pai]}});
+            game.manager.socketManager.send(15, {"args": {"action": action, "pai": [pai]}});
         }
 
         GSController.i.hideFuncSelectMenu();
@@ -106,7 +106,7 @@ class TouchBehaviour implements IGameTapEvent {
         }else{
             //清理回合数据
             GSData.i.roundReset();
-            SocketManager.getInstance().getGameConn().send(17, {});
+            game.manager.socketManager.send(17, {});
         }
     }
 
@@ -138,12 +138,12 @@ class TouchBehaviour implements IGameTapEvent {
     //重连继续按钮
     onRebackContinue(e: egret.TouchEvent): void {
         e.currentTarget.visible = false;
-        SocketManager.getInstance().getGameConn().send(17, {});
+        game.manager.socketManager.send(17, {});
     }
 
     //踢人请求
     onKillTouch(pos: number) {
-        // SocketManager.getInstance().getGameConn().send(22, {"args": {"pos": pos}});
+        // game.manager.socketManager.send(22, {"args": {"pos": pos}});
     }
 
     //解散房间
@@ -155,7 +155,7 @@ class TouchBehaviour implements IGameTapEvent {
             else {
                 game.askPanel.showMsg(function (r) {
                     if (r) {
-                        SocketManager.getInstance().getGameConn().send(14, {"args": {"answer": 1}});//发起解散房子
+                        game.manager.socketManager.send(14, {"args": {"answer": 1}});//发起解散房子
                     }
                 }, "您确定发起解散房间吗？\n（当所有在线玩家同意解散之后房间将解散）");
             }
@@ -176,7 +176,7 @@ class TouchBehaviour implements IGameTapEvent {
 
             game.askPanel.showMsg(function (r) {
                 if (r) {
-                    SocketManager.getInstance().getGameConn().send(12, {});   //离开房子
+                    game.manager.socketManager.send(12, {});   //离开房子
                 }
             }, info);
         }
@@ -190,7 +190,7 @@ class TouchBehaviour implements IGameTapEvent {
 
     //游戏开始
     onStartGame(): void {
-        SocketManager.getInstance().getGameConn().send(10, {});  //发送开始游戏
+        game.manager.socketManager.send(10, {});  //发送开始游戏
     }
 
     //邀请好友

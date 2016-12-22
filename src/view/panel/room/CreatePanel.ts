@@ -94,8 +94,10 @@ class CreatePanel extends BasePanel {
     }
 
     private startGame(): void {
+        game.roomRoundMax = Number(this.view.getQuan()) * 4;
+        
         //创建房间
-        SocketManager.getInstance().getGameConn().send(2, {
+        game.manager.socketManager.send(2, {
             args: {
                 type: game.gameType,
                 pass: "0",

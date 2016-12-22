@@ -14,6 +14,7 @@ class TipsAskPanel extends BasePanel {
     childrenCreated() {
         super.childrenCreated();
 
+        this.bgView.hideClose();
         this.bgView.setTitle("msg_title");
 
         this.btn_confirm.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
@@ -33,17 +34,15 @@ class TipsAskPanel extends BasePanel {
         }
     }
 
-    public showMsg(callback: Function, text: string = "", b1: string = null, b2: string = null, hide: boolean = false): void {
+    public showMsg(callback: Function, text: string = "", confirm: string = null, cancel: string = null, hide: boolean = false): void {
         this.show();
 
-        this.showClose();
-
-        b1 = b1 == null ? "确  定" : b1;
-        b2 = b2 == null ? "取  消" : b2;
+        confirm = confirm == null ? "确  定" : confirm;
+        cancel = cancel == null ? "取  消" : cancel;
 
         this.lab_description.text = text;
-        this.btn_confirm.label = b1;
-        this.btn_cancel.label = b2;
+        this.btn_confirm.label = confirm;
+        this.btn_cancel.label = cancel;
 
         this.callback = callback;
 
@@ -55,13 +54,5 @@ class TipsAskPanel extends BasePanel {
             this.btn_cancel.visible = true;
             this.btn_confirm.horizontalCenter = 100;
         }
-    }
-
-    hideClose() {
-        this.bgView.hideClose();
-    }
-
-    showClose() {
-        this.bgView.showClose();
     }
 }

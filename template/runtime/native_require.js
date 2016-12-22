@@ -88,7 +88,7 @@ var game_file_list = [
 	"bin-debug/game/view/CenterBoom.js",
 	"bin-debug/game/view/FuncEffectView.js",
 	"bin-debug/game/view/FuncSelectView.js",
-	"bin-debug/game/view/GSResultView.js",
+	"bin-debug/game/view/ResultScene.js",
 	"bin-debug/game/view/GSScene.js",
 	"bin-debug/game/view/GSTotlePerson.js",
 	"bin-debug/game/view/GSTotleView.js",

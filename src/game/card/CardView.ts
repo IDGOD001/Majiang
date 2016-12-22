@@ -304,6 +304,7 @@ class CardView extends egret.DisplayObjectContainer {
             case 15:
                 type = 12;
                 break;
+                break;
             case 24:
                 type = 23;
                 break;

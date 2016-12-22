@@ -60,7 +60,7 @@ class JoininPanel extends BasePanel {
                 }
 
                 game.roomid = Number(this.selectNums.join(""));
-                SocketManager.getInstance().getGameConn().send(3, {args: {roomid: game.roomid, pass: "0"}});
+                game.manager.socketManager.send(3, {args: {roomid: game.roomid, pass: "0"}});
                 break;
             default:
                 if (this.selectNums.length < 6) {

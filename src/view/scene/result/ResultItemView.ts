@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/11/8.
  */
-class PersonItem extends BaseGameSprite {
+class ResultItemView extends BaseGameSprite {
 
     spacing = 105;
 
@@ -32,20 +32,7 @@ class PersonItem extends BaseGameSprite {
         this.pos = new egret.Point();
 
         this.headIcon.setState(HeadIconState.ingame);
-
-        // this.headIcon = new HeadIcon();
-        // this.headIcon.x = 40;
-        // this.headIcon.y = 40;
-        // this.headGroup.addChild(this.headIcon);
     }
-
-    // //添加胡牌 1:点炮 2:自摸
-    // addHuPai(pai: any) {
-    //     var cardView: CardView = CardView.create(1, 4, pai);
-    //     this.paiGroup.addChild(cardView);
-    //
-    //     this.cardViews.push(cardView);
-    // }
 
     update(person: any) {
         this.pos.x = this.pos.y = 0;
@@ -64,21 +51,43 @@ class PersonItem extends BaseGameSprite {
 
         this.showDown();
         this.showUp();
+        this.showHu();
+    }
+
+    //显示胡牌
+    showHu() {
+        var pai;
+        var o;
+        for (var i: number = 0; i < this.data.hus.length; i++) {
+            pai = this.data.hus[i];
+            o = GSConfig.getPosByIndex(1, 4, i);
+            this.addCardView(pai, this.pos.x + o.x, this.pos.y);
+        }
     }
 
     //显示手牌
     showUp() {
+
+        FashionTools.sortPai(this.data.left);
+
+        var pai;
+        var o;
         for (var i: number = 0; i < this.data.left.length; i++) {
-            var pai = this.data.left[i];
-            var o = GSConfig.getPosByIndex(1, 4, i);
+            pai = this.data.left[i];
+            o = GSConfig.getPosByIndex(1, 4, i);
             this.addCardView(pai, this.pos.x + o.x, this.pos.y);
         }
 
-        //判断手牌长度进行间隔错位
-        if (GSConfig.handLens[this.data.left.length]) {
-            var cardView: CardView = <CardView>this.paiGroup.getElementAt(this.paiGroup.numElements - 1);
-            cardView.posView(cardView.pos.x + this.spacing, this.pos.y + 20);
-        }
+        this.pos.x += o.x + 75;
+
+        // //判断手牌长度进行间隔错位
+        // if (GSConfig.handLens[this.data.left.length]) {
+        //     var cardView: CardView = <CardView>this.paiGroup.getElementAt(this.paiGroup.numElements - 1);
+        //     if (cardView) {
+        //         cardView.posView(cardView.pos.x + this.spacing, cardView.pos.y);
+        //         this.pos.x += this.spacing;
+        //     }
+        // }
     }
 
     //显示门前牌
@@ -148,6 +157,8 @@ class PersonItem extends BaseGameSprite {
         this.paiGroup.addChild(card);
 
         this.cardViews.push(card);
+
+        return card;
     }
 
     clear() {

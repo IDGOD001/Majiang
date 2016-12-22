@@ -6,6 +6,13 @@ enum GameType {
 }
 
 /**
+ * 连接状态
+ */
+enum ConnectStatus {
+    connecting, connected, connectFail, connectOld
+}
+
+/**
  * 状态
  */
 enum StateType {

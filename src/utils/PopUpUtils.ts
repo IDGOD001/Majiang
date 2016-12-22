@@ -14,10 +14,11 @@ class PopUpUtils {
 	 * effectType        0：没有动画 1:从中间轻微弹出 2：从中间猛烈弹出  3：从左向右 4：从右向左 5、从上到下 6、从下到上
 	 */
 	static addPopUp(panel, dark: boolean = false, popUpWidth: number = 0, popUpHeight: number = 0, effectType: number = 0, isAlert: boolean = false): void {
-		//判断是否包含panel
-		if (LayerManager.gameLayer().panelLayer.contains(panel)) {
-			return;
-		}
+		// //判断是否包含panel
+		// if (LayerManager.gameLayer().panelLayer.contains(panel)) {
+		// 	return;
+		// }
+
 		panel.scaleX = 1;
 		panel.scaleY = 1;
 		panel.x = 0;
@@ -43,6 +44,9 @@ class PopUpUtils {
 			PopUpUtils.darkSprite.visible = true;
 
 		}
+
+		egret.Tween.removeTweens(panel);
+		egret.Tween.removeTweens(PopUpUtils.darkSprite);
 
 		LayerManager.gameLayer().panelLayer.addChild(panel);
 		game.topPanel = panel;

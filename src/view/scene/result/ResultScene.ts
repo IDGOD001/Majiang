@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/11/8.
  */
 //结算界面
-class GSResultView extends BaseGameSprite {
+class ResultScene extends BaseGameSprite {
 
     stateImgBg: eui.Image;
     stateImg: eui.Image;
@@ -52,14 +52,14 @@ class GSResultView extends BaseGameSprite {
 
         this.group.removeChildren();
 
-        var personItem: PersonItem;
+        var personItem: ResultItemView;
         var persons = GSData.i.result.person;
         var person: any;
         var line: eui.Image;
         for (var i: number = 0; i < persons.length; i++) {
             person = persons[i];
 
-            personItem = new PersonItem();
+            personItem = new ResultItemView();
             this.group.addChild(personItem);
 
             personItem.update(person);

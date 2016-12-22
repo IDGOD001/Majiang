@@ -38,4 +38,36 @@ class Universal {
             return "other";
         }
     }
+
+    //获得浏览器类型 pc android ios -- 可扩展为其他 如 微信、qqzone、qq、微博、校内、facebook
+    static systemType(): string {
+        var ua = window.navigator.userAgent.toLowerCase();
+
+        var microStr = "" + ua.match(/MicroMessenger/i);
+
+        if (("" + ua.match(/windows nt/i)) == "windows nt") {
+            return "windows";
+        }
+        else if (("" + ua.match(/iphone/i)) == "iphone") {
+            return "ios";
+        }
+        else if (("" + ua.match(/android/i)) == "android") {
+            return "android";
+        }
+        else if (("" + ua.match(/ipad/i)) == "ipad") {
+            return "ipad";
+        }
+        else if (("" + ua.match(/linux/i)) == "linux") {
+            return "linux";
+        }
+        else if (("" + ua.match(/mac/i)) == "mac") {
+            return "mac";
+        }
+        else if (("" + ua.match(/ucbrower/i)) == "ucbrower") {
+            return "ucbrower";
+        }
+        else {
+            console.log("未知系统类型");
+        }
+    }
 }

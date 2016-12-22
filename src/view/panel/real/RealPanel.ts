@@ -30,10 +30,10 @@ class RealPanel extends BasePanel {
             return EffectUtils.showTips("身份证号长度不正确!");
         }
 
-        SocketManager.getInstance().getGameConn().send(27, {
-            "args": {
-                "name": this.lab_name.text,
-                "id_no": this.lab_id.text
+        game.manager.socketManager.send(27, {
+            args: {
+                name: this.lab_name.text,
+                id_no: this.lab_id.text
             }
         });
     }

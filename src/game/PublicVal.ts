@@ -84,20 +84,15 @@ class PublicVal {
 
 
     removeHandPai(dir: number, pai: any = null, sort: boolean = true) {
-
         var pais = this.getHandPais(dir);
-
         if (pai == null || pai == undefined) {
-
             pais.length--;
-
             return;
         }
 
-        FashionTools.removePai(pais,pai);
+        FashionTools.removePai(pais, pai);
 
         if (sort) FashionTools.sortPai(pais);
-
     }
 
     //往功能牌型里添加牌 排序 方位 功能 牌

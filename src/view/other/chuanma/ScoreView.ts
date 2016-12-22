@@ -58,7 +58,7 @@ class ScoreView extends BaseGameSprite {
                 break;
             case DirType.left:
                 target.x = 160;
-                target.y = game.stage.stageHeight / 2;
+                target.y = game.stage.stageHeight / 2 + 50;
                 break;
             case DirType.right:
                 target.x = game.stage.stageWidth - 160;

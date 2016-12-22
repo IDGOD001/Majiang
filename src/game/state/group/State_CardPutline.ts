@@ -83,7 +83,7 @@ class State_CardPutline extends BaseState {
 
         if (this.level == 4) {
             this.exit();
-            SocketManager.getInstance().getGameConn().send(25, {args: {type: 3}});
+            game.manager.socketManager.send(25, {args: {type: 3}});
         }
     }
 
