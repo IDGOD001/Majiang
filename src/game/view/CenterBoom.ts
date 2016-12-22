@@ -101,20 +101,18 @@ class CenterBoom extends egret.DisplayObjectContainer{
         console.log("----shake----");
     }
 
-
-    updateLeftCount(left:number){
-
-        this.leftCountText.text = ""+left;
-
+    /**
+     * 更新牌堆数
+     */
+    updateLeftCount(){
+        this.leftCountText.text = ""+game.roomPaidui;
     }
-    updateRoundCount(){
-        // var a = ((roomRoundCur - 1) /4^0) + 1;
-        // var b = roomRoundMax /4 ^ 0;
-        // if(a > b) a = b;
-        // this.roundCountText.text = a +"/"+ b;
-        console.log("==============================");
-        console.log(game.roomRoundCur, game.roomRoundMax);
-        this.roundCountText.text = game.roomRoundCur +"/"+ game.roomRoundMax;
+
+    /**
+     * 更新对局数
+     */
+    updateRoundCount() {
+        this.roundCountText.text = game.roomRoundCur + "/" + game.roomRoundMax;
     }
 
 

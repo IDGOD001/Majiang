@@ -9,22 +9,19 @@ class MJView extends eui.Component {
     handCon: egret.DisplayObjectContainer;
     poolCon: egret.DisplayObjectContainer;
     huview: HupaiquView;
+
     stateImg: egret.Bitmap;
     //最后的添加的池牌
     lastPoolCard: CardView;
 
     constructor(dir: number) {
-
         super();
 
         this.dir = dir;
-
         this.initView();
-
     }
 
     initView() {
-
         this.handCon = new egret.DisplayObjectContainer;
         this.addChild(this.handCon);
 
@@ -33,12 +30,6 @@ class MJView extends eui.Component {
 
         this.huview = new HupaiquView(this.dir);
         this.addChild(this.huview);
-
-        // var _this = this;
-        // egret.setInterval(function () {
-        //     _this.huview.addCardView({type: 1, number: 1});
-        // }, this, 3000);
-
 
         this.stateImg = new egret.Bitmap();
         this.addChild(this.stateImg);
@@ -61,6 +52,7 @@ class MJView extends eui.Component {
         switch (game.status) {
             case GameStatus.changeThree:
                 this.stateImg.texture = RES.getRes("img_txt_xuanpaizhong");
+                game.roomHuan[this.dir] && (this.stateImg.visible = false);
                 break;
             case GameStatus.missing:
                 this.stateImg.texture = RES.getRes("img_txt_dingquezhong");
@@ -97,17 +89,12 @@ class MJView extends eui.Component {
 
     //根据方位
     addHandCard(c: CardView) {
-
         (this.dir == 2) && this.handCon.addChildAt(c, 0) || this.handCon.addChild(c);
-
     }
 
     addPoolCard(c: CardView) {
-
         this.lastPoolCard = c;
-
         (this.dir == 1 || this.dir == 2) && this.poolCon.addChildAt(c, 0) || this.poolCon.addChild(c);
-
     }
 
     //移除最后加载的牌
@@ -132,17 +119,11 @@ class MJView extends eui.Component {
 
     //移除立牌
     removeIndexPai() {
-
         for (var i: number = this.handCon.numChildren - 1; i >= 0; i--) {
-
             var cardView: CardView = <CardView> this.handCon.getChildAt(i);
-
             if (cardView.index > -1) {
-
                 this.handCon.removeChild(cardView);
-
                 CardView.returnCardView(cardView);
-
             }
         }
     }
@@ -163,8 +144,7 @@ class MJView extends eui.Component {
                 continue;
             }
 
-            if (PublicVal.state == StateType.shuffle || PublicVal.state == StateType.ting
-                || game.isHu
+            if (PublicVal.state == StateType.shuffle || PublicVal.state == StateType.ting || game.isHu
                 || (gamePai.getCtLength(game.roomQue[this.dir]) != 0 && game.roomQue[this.dir] != card.pai.type)
             ) {
                 card.unactivate();

@@ -139,7 +139,6 @@ class HeadIcon extends BaseGameSprite {
     }
 
     setHeadImg(source: string|egret.Texture) {
-        console.log("================", source);
         if (typeof source == "string") {
             if (source != "") {
                 var _this = this;

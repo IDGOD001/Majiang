@@ -141,24 +141,26 @@ class GSData{
     //删除其他人的手牌
     removeOtherHandPai(dir:number,count:number) {
         var handPais = PublicVal.i.getHandPais(dir);
+        console.log("删除其他人的手牌", handPais, handPais.length);
         if (handPais && handPais.length) {
             handPais.length -= count;
+            console.log("删除其他人的手牌-成功", handPais, handPais.length);
         }
     }
 
     //删除自己多张手牌
-    removeOwnHandPais(pais:any[]){
-        for(var i:number = 0 ;i < pais.length;i++){
-            console.log("删除自己多张手牌:",pais[i].type,pais[i].number);
+    removeOwnHandPais(pais:any[]) {
+        for (var i: number = 0; i < pais.length; i++) {
+            console.log("删除自己多张手牌:", pais[i].type, pais[i].number);
         }
 
         var handPais = PublicVal.i.getHandPais(1);
-        while(pais.length){
+        while (pais.length) {
             var pai = pais.shift();
-            for(var i = 0;i<handPais.length;i++) {
+            for (var i = 0; i < handPais.length; i++) {
                 var handPai = handPais[i];
-                if(pai.type == handPai.type && pai.number == handPai.number){
-                    handPais.splice(i,1);
+                if (pai.type == handPai.type && pai.number == handPai.number) {
+                    handPais.splice(i, 1);
                     break;
                 }
             }
@@ -174,9 +176,11 @@ class GSData{
     }
 
     //手牌添加
-    pushHandPai(dir:number,pai:any){
+    pushHandPai(dir:number,pai:any) {
         var handPais = PublicVal.i.getHandPais(dir);
-        handPais.push(pai);
+        if (handPais && handPais.length <= game.roomZhang) {
+            handPais.push(pai);
+        }
     }
 
     getSexByPos(pos:number){

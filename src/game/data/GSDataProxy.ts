@@ -35,7 +35,7 @@ class GSDataProxy {
 
         this.gData.backTing = obj.ting;
 
-        PublicVal.i.dui_num = obj.dui_num;
+        game.roomPaidui = obj.dui_num;
 
         game.roomRoundCur = obj.cur_round;
 
@@ -386,7 +386,7 @@ class GSDataProxy {
         this.gData.turnDir = this.gData.getDir(pos);
         console.log("轮到 " + this.gData.turnDir + " 抓牌");
 
-        PublicVal.i.dui_num = dui_num;
+        game.roomPaidui = dui_num;
 
         if (this.gData.turnDir != 1 && PublicVal.state != StateType.shuffle) {// && this.gData.isZhuangPush) {
             //轮到他人的时候，并且庄家出完牌,进行假象牌的添加
@@ -407,7 +407,7 @@ class GSDataProxy {
 
         this.gData.pushHandPai(1, pai);
 
-        PublicVal.i.dui_num = dui_num;
+        game.roomPaidui = dui_num;
 
         this.gData.turnDir = (fen ? 0 : 1);
 
@@ -433,7 +433,7 @@ class GSDataProxy {
 
         PublicVal.i.bao = obj.bao;
 
-        PublicVal.i.dui_num = obj.dui_num;
+        game.roomPaidui = obj.dui_num;
 
         GSController.i.playBao();
     }
@@ -918,77 +918,63 @@ class GSDataProxy {
         }
     }
 
-
     //同步开局牌的信息(自己牌)
-    S2C_OwnCardInfo(obj: any) {
+    S2C_OwnCardInfo(data: any) {
+        console.log("开局,牌长度:", data.pai.length);
 
         game.roomReady();
 
-        var paiLen: number = obj.data.pai.length;
+        PublicVal.i.bao = data.bao;
 
-        console.log("开局,牌长度:", obj.data.pai.length);
+        game.roomRoundMax = data.max_round;
+        game.roomRoundCur = data.cur_round;
+        game.roomPaidui = data.dui_num;
+        game.roomZhuangDir = this.gData.getDir(data.zhuang);
 
-        PublicVal.i.bao = obj.data.bao;
+        // if (!data.pai[data.pai.length - 1]) {
+        //     data.pai.pop();
+        // }
 
-        game.roomRoundCur = obj.data.cur_round;
-        game.roomRoundMax = obj.data.max_round;
-
+        PublicVal.i.allPais[1].handPais = data.pai;
         PublicVal.i.allPais[2].handPais = new Array(game.roomZhang);
         PublicVal.i.allPais[3].handPais = new Array(game.roomZhang);
         PublicVal.i.allPais[4].handPais = new Array(game.roomZhang);
 
-        if (paiLen > 0) {
+        if (game.roomZhuangDir == 1) {
+            PublicVal.i.allPais[1].catchPai = data.zhuangpai;
+            //移除手牌里的庄牌
+            FashionTools.removePai(PublicVal.i.allPais[1].handPais, data.zhuangpai);
+        }
+        else {
+            // PublicVal.i.allPais[game.roomZhuangDir].handPais = new Array(game.roomZhang + 1);
+        }
 
-            if (!obj.data.pai[paiLen - 1]) {
-                obj.data.pai.pop();
-            }
+        this.gData.zhuangPos = data.zhuang;
 
-            //进入开局
-            PublicVal.i.allPais[1].handPais = obj.data.pai;
+        this.gData.zhuangDir = this.gData.getDir(data.zhuang);
 
-            if (obj.data.pai.length == game.roomZhang + 1) {
+        PublicVal.i.zhuangFlag = 1 << this.gData.zhuangDir;
 
-                PublicVal.i.allPais[1].catchPai = obj.data.zhuangpai;
+        //判断连庄
+        if (data.zhuang == this.gData.lastZhuangPos) {
+            this.gData.isLianZhuang = true;
+        } else {
+            this.gData.isLianZhuang = false;
+            this.gData.lastZhuangPos = data.zhuang;
+        }
 
-                //移除手牌里的庄牌
-                FashionTools.removePai(obj.data.pai, obj.data.zhuangpai);
+        //分数
+        for (var key in data.cur) {
+            GSData.i.gangCurs[GSData.i.getDir(+key)] = data.cur[+key];
+        }
 
-            }
+        PublicVal.state = StateType.gamestart;
 
-            this.gData.zhuangPos = obj.data.zhuang;
+        GSController.i.startGame();
 
-            //判断连庄
-            if (obj.data.zhuang == this.gData.lastZhuangPos) {
-
-                this.gData.isLianZhuang = true;
-            } else {
-
-                this.gData.lastZhuangPos = obj.data.zhuang;
-
-                this.gData.isLianZhuang = false;
-            }
-
-            this.gData.zhuangDir = this.gData.getDir(obj.data.zhuang);
-
-            PublicVal.i.zhuangFlag = 1 << this.gData.zhuangDir;
-
-            PublicVal.i.dui_num = obj.data.dui_num;
-
-            //this.gData.leftCount = obj.data.dui_num;
-
-            for (var k in obj.data.cur) {
-                var pos = +k;
-                GSData.i.gangCurs[GSData.i.getDir(pos)] = obj.data.cur[k];
-
-            }
-
-            PublicVal.state = StateType.gamestart;
-
-            GSController.i.startGame();
-
-            if (game.status == GameStatus.changeThree && !game.statusComplete) {
-                game.manager.dispatchEvent(EffectEvent.ChangeThree);
-            }
+        //执行换三张
+        if (game.status == GameStatus.changeThree && !game.statusComplete) {
+            game.manager.dispatchEvent(EffectEvent.ChangeThree);
         }
     }
 
