@@ -71,6 +71,9 @@ module GameMusic {
 
         if (RES.hasRes(name)) {
             RES.getResAsync(name, function () {
+                if (Universal.systemType() != "ios") {
+                    GameMusic.PlaySound(name);
+                }
                 GameMusic.PlaySound(name)
             }, this);
         }

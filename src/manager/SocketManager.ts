@@ -102,6 +102,7 @@ class SocketManager extends SocketNetwork {
 
         switch (this.data) {
             case "start":
+            case "\"start\"":
                 this.status = ConnectStatus.connected;
                 if (game.player.code) {
                     this.send(1, {
@@ -115,6 +116,7 @@ class SocketManager extends SocketNetwork {
                 }
                 break;
             case "end":
+            case "\"end\"":
                 this.status = ConnectStatus.connectFail;
                 break;
             default:
@@ -163,12 +165,12 @@ class SocketManager extends SocketNetwork {
         var _this = this;
         game.askPanel.showMsg(function (r: boolean) {
             if (r) {
-                _this.connect();
+                Weixin.getAccessCode(gameConfig.appid, gameConfig.clientUrl, game.roomid);
             }
             else {
                 Weixin.closeWindow();
             }
-        }, "登录失败，请检查是否在其他设备登录。", "重新连接", "取消");
+        }, "登录失败，请检查是否在其他设备登录。\n取消将退出游戏", "重新登录", "取消");
     }
 
     /**
@@ -213,6 +215,6 @@ class SocketManager extends SocketNetwork {
             else {
                 Weixin.closeWindow();
             }
-        }, "无法检测到网络，请确认网络连接后，重新尝试连接。\n取消将退出游戏。", "重新连接", "取消");
+        }, "无法检测到网络，请确认网络连接后，尝试重新连接。\n取消将退出游戏。", "重新连接", "取消");
     }
 }

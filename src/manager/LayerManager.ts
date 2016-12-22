@@ -65,6 +65,12 @@ class LayerManager extends eui.UILayer {
         this.effectLayer.touchChildren = false;
 
         this.loadLayer.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickLoad, this);
+
+        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onOpen, this);
+    }
+
+    private onOpen(): void {
+        GameMusic.PlaySound("music_scene");
     }
 
     private onClickLoad(): void {

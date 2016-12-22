@@ -378,30 +378,25 @@ class GSDataProxy {
 
     }
 
-    //gang_end 是否开局杠结束
+    //轮到哪个方向出牌
     S2C_TurnDir(pos: number, dui_num: number, gang_end: any = null) {
 
+        GSController.i.clearDelayPushInterval();
+
         this.gData.turnDir = this.gData.getDir(pos);
+        console.log("轮到 " + this.gData.turnDir + " 抓牌");
 
         PublicVal.i.dui_num = dui_num;
-
-        //if(gang_end != null) this.gData.gang_end = true;
 
         if (this.gData.turnDir != 1 && PublicVal.state != StateType.shuffle) {// && this.gData.isZhuangPush) {
             //轮到他人的时候，并且庄家出完牌,进行假象牌的添加
             this.gData.pushHandPai(this.gData.turnDir, null);
-
             GSController.i.catchCard(this.gData.turnDir);
-
-            console.log("轮到 " + this.gData.turnDir + " 抓牌");
         }
 
         GSController.i.setArrowDir(this.gData.turnDir);
-
         GSController.i.updateCenterInfo();
-
         GSController.i.gsView.updateRoom();
-
         GSController.i.gsView.resetAllChildrenTouch();
     }
 
@@ -616,10 +611,18 @@ class GSDataProxy {
                     poolPai = pai;
                 }
 
-                dir == 1 && (game.isHu = true);
+                if (this.gData.getDir(pai.pos) == dir) {
+                    if (dir == 1) {
+                        this.gData.removeOwnHandPais([pai]);
+                    }
+                    else {
+                        this.gData.removeOtherHandPai(dir, 1);
+                    }
+                }
 
-                dir == 1 && this.gData.getDir(pai.pos) == 1 && this.gData.removeOwnHandPais([pai]);
-                dir != 1 && this.gData.removeOtherHandPai(dir, 1);
+                if (dir == 1) {
+                    game.isHu = true
+                }
                 break;
             default:
                 console.log("未解析的功能菜单", action);
@@ -653,33 +656,31 @@ class GSDataProxy {
     S2C_PoolPai(obj: any) {
 
         GameSound.PlaySound(obj.data.type + "_" + obj.data.number + "_" + this.gData.getSexByPos(obj.data.pos));
-
         GameSound.PlaySound("sound_throw");
 
-        this.gData.currPoolPai = obj.data;
-        //this.gData.currPoolPai.dir = this.gData.getDir(obj.data.pos);
         var dir = this.gData.getDir(obj.data.pos);
+
+        this.gData.currPoolPai = obj.data;
         this.gData.currPoolPai.dir = dir;
+
         //添加池牌数据
         PublicVal.i.pushPoolPai(dir, this.gData.currPoolPai);
+
         //清除手牌数据
         if (dir == 1) {
-
             PublicVal.i.removeHandPai(dir, this.gData.currPoolPai);
-
-            if (PublicVal.state == -4 || game.isHu) GSController.i.clearDelayPushInterval();
-
+            // GSDataProxy.i.gData.removeOwnHandPais([this.gData.currPoolPai]);
         } else {
+            GSDataProxy.i.gData.removeOtherHandPai(dir, 1);
+        }
 
-            PublicVal.i.removeHandPai(dir, null);
-
+        if (PublicVal.state == StateType.ting || game.isHu) {
+            GSController.i.clearDelayPushInterval();
         }
 
         console.log("出牌人的方位:", dir);
         //触发出牌显示
         GSController.i.pushPoolCard(dir, this.gData.currPoolPai);
-
-
     }
 
     S2C_FinalResult(result: any) {

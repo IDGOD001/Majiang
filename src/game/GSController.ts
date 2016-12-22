@@ -492,7 +492,6 @@ class GSController extends egret.EventDispatcher {
         console.log("-------清除自动打牌------");
 
         egret.clearInterval(this.delayPushInterval);
-        this.delayPushInterval = 0;
     }
 
     clearActivateCard() {
