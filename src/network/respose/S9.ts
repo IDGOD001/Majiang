@@ -58,10 +58,12 @@ class S9 {
                 break;
             case 9://同步换三张
                 var dir: number = GSDataProxy.i.gData.getDir(obj.data.data);
+                game.roomHuan[dir] = true;
                 for (var i: number = 0; i < 3; i++) {
                     PublicVal.i.removeHandPai(dir);
                 }
                 GSController.i.updateMJView(dir, false, false);
+                GSController.i.gsView.updateState();
                 break;
             case 10://同步订缺
                 for (var key in obj.data.data) {

@@ -29,42 +29,46 @@ class game {
     static ip: any;
     //服务器端口
     static port: any;
-
     //用户
     static user: string;
+
     //牌风格
     static paiStyle: number = 1;
     //牌颜色
     static paiColor: number = 1;
-    //玩家连接次数
-    static connectCount: number = 0;
 
     //玩家信息
     static player: PlayerVo;
-    //房间ID
+    //房间-ID
     static roomid: number = 0;
-    //房间玩法(血流血战等等)
+    //房间-玩法(血流血战等等)
     static roomPlayType: PlayType;
-    //房间规则
+    //房间-规则
     static roomRules: any[] = [];
-    //房间番数
+    //房间-番数
     static roomRate: number = 1;
-    //房间牌张
+    //房间-牌张
     static roomZhang: number = 13;
-    //最大局数
+    //房间-最大局数
     static roomRoundMax: number;
-    //当前局数
+    //房间-当前局数
     static roomRoundCur: number;
-    //房间玩家
+    //房间-玩家
     static roomPlayers: any = {};
-    //房间玩家最大数量
+    //房间-玩家最大数量
     static roomPlayerMax: number = 4;
-    //房间玩家当前数量
+    //房间-玩家当前数量
     static roomPlayerCur: number = 0;
-    //房间玩家离线数量
+    //房间-玩家离线数量
     static roomPlayerOffline: number = 0;
-    //房间玩家缺门记录
+    //房间-玩家换三张记录
+    static roomHuan: any = {};
+    //房间-玩家缺门记录
     static roomQue: any = {};
+    //房间-牌堆剩余
+    static roomPaidui:number;
+    //房间-庄家方向
+    static roomZhuangDir:DirType;
 
     //是否是房主
     static isRoomOwner: boolean = false;
@@ -159,6 +163,7 @@ class game {
     static roomReady() {
         this.status = GameStatus.unknow;
         this.statusComplete = false;
+        this.roomHuan = {};
         this.roomQue = {};
         this.isHu = false;
         game.manager.dispatchEvent(EffectEvent.CleanAll);

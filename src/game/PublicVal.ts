@@ -25,8 +25,6 @@ class PublicVal {
     roomOwnFlag: number;
     //规则
     rules: string;
-    //剩余牌数
-    dui_num: number;
     //宝牌
     bao: any;
     //庄家pos
@@ -36,8 +34,6 @@ class PublicVal {
     pos2Dir: any = {};
 
     allPais: any = [];
-
-    roomid: number;
 
     ownPos: number;
 

@@ -502,7 +502,7 @@ class GSController extends egret.EventDispatcher {
     //更新剩余牌数量 和圈数
     updateCenterInfo() {
 
-        this.gsView.centerBoom.updateLeftCount(PublicVal.i.dui_num);
+        this.gsView.centerBoom.updateLeftCount();
 
         this.gsView.centerBoom.updateRoundCount();
 

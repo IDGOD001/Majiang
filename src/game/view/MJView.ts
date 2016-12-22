@@ -61,6 +61,7 @@ class MJView extends eui.Component {
         switch (game.status) {
             case GameStatus.changeThree:
                 this.stateImg.texture = RES.getRes("img_txt_xuanpaizhong");
+                game.roomHuan[this.dir] && (this.stateImg.visible = false);
                 break;
             case GameStatus.missing:
                 this.stateImg.texture = RES.getRes("img_txt_dingquezhong");
