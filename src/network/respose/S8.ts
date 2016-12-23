@@ -35,15 +35,15 @@ class S8 {
 
                 switch (player.status) {
                     case "leave":
-                        GameSound.PlaySound("sound_other_player_leave");
+                        GameSound.play("sound_other_player_leave");
                         EffectUtils.showTips(player.nick + " 离开了房间！", 4);
                         break;
                     case "offline":
-                        GameSound.PlaySound("sound_other_player_leave");
+                        GameSound.play("sound_other_player_leave");
                         EffectUtils.showTips(player.nick + " 离线了！", 4);
                         break;
                     case "online":
-                        GameSound.PlaySound("sound_other_player_enter");
+                        GameSound.play("sound_other_player_enter");
                         EffectUtils.showTips(player.nick + (game.roomPlayers[player.uid] ? " 回来了！" : " 加入了游戏！"), 4);
                         break;
                 }

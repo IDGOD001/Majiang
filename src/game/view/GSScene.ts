@@ -166,7 +166,7 @@ class GSScene extends egret.DisplayObjectContainer {
             this.gameFightTop.visible = false;
         }, this);
 
-        GameSound.PlaySound("sound_duijukaishi");
+        GameSound.play("sound_duijukaishi");
     }
 
     //刷新房间号

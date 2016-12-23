@@ -1,9 +1,9 @@
 /**
- * Universal
+ * common
  * @Author Ace.c
  * @Create 2016-12-20 11:59
  */
-class Universal {
+class common {
 
 
     /**

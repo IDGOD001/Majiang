@@ -86,7 +86,7 @@ module mui
             switch (e.type)
             {
                 case "touchBegin":
-                    GameSound.PlaySound("" + this._sounds);
+                    GameSound.play("" + this._sounds);
                     this.addStage();
                     my.startX = my.x;
                     my.startY = my.y;

@@ -83,7 +83,7 @@ class GameManager extends BaseDispatcher {
                 break;
         }
 
-        GameSound.PlaySound(sound);
-        GameSound.PlaySound("sound_down");
+        GameSound.play(sound);
+        GameSound.play("sound_down");
     }
 }

@@ -86,17 +86,17 @@ class ResultScene extends BaseGameSprite {
             case 1://胜利
                 this.stateImgBg.source = "JS_win_bg";
                 this.stateImg.source = "JS_win";
-                GameSound.PlaySound("sound_win");
+                GameSound.play("sound_win");
                 break;
             case 2://失败
                 this.stateImgBg.source = "JS_lose_bg";
                 this.stateImg.source = "JS_lose";
-                GameSound.PlaySound("sound_lost");
+                GameSound.play("sound_lost");
                 break;
             case 3://流局
                 this.stateImgBg.source = "JS_lose_bg";
                 this.stateImg.source = "JS_liuju";
-                GameSound.PlaySound("sound_huang");
+                GameSound.play("sound_huang");
                 break;
         }
     }
