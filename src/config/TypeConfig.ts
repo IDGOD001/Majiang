@@ -63,19 +63,3 @@ enum CardRaiseMode {
 enum InterruptType {
     chi, peng, minggang, angang, ting, hu, gangshangkaihua, yipaoduoxiang, hujiaozhuanyi
 }
-
-/**
- * 游戏玩法
- */
-enum PlayType {
-    xuezhandaodi = 17, xueliuchenghe, sanren_2 = 20, sanren_3, siren_2
-}
-
-/**
- * 游戏规则
- */
-enum GameRule {
-    jiawu = 1, qingyise, kouting, jihujipiao, zangang, shoubayi, beikaobei, zerenzhi,
-    zimojiadi = 9, zimojiafan, dianganghua_pao, dianganghua_zimo, huansanzhang, yaojiujiangdui, menqingzhongzhang, tiandihu,
-    fengding = 19, paizhang = 23, kaertiao = 24
-}

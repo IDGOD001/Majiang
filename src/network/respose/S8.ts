@@ -11,12 +11,8 @@ class S8 {
 
         if (data.hasOwnProperty("rules")) {
             game.roomRules = data.rules;
-            PublicVal.i.rules = FashionTools.formatRules(game.roomRules);
 
-            //听牌局
-            GSData.i.hasTingRule = game.roomRules.indexOf(GameRule.kouting) != -1;
-
-            game.initRoomRule();
+            RuleConfig.checkSpecial(game.roomRules);
         }
 
         if (data.hasOwnProperty("infos")) {
@@ -48,12 +44,7 @@ class S8 {
                         break;
                 }
 
-                // if (player.status == "leave") {
-                //     delete game.roomPlayers[player.uid];
-                // }
-                // else {
-                    game.roomPlayers[player.uid] = player;
-                // }
+                game.roomPlayers[player.uid] = player;
 
                 if (player.uid == game.player.uid) {
                     game.isRoomOwner = player.pos == 1;

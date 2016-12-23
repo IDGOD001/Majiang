@@ -32,12 +32,12 @@ class SettingPanel extends BasePanel {
     }
 
     private changeMusicVolume(): void {
-        gameLocal.setData(gameLocal.musicVolume, this.slider_music.value / 100);
+        GameLocal.setData(GameLocal.musicVolume, this.slider_music.value / 100);
         GameMusic.soundVolume = this.slider_music.value / 100;
     }
 
     private changeSoundVolume(): void {
-        gameLocal.setData(gameLocal.soundVolume, this.slider_sound.value / 100);
+        GameLocal.setData(GameLocal.soundVolume, this.slider_sound.value / 100);
         GameSound.soundVolume = this.slider_music.value / 100;
     }
 
@@ -69,7 +69,7 @@ class SettingPanel extends BasePanel {
     }
 
     private setMusic(): void {
-        gameLocal.setData(gameLocal.music, this.btn_music.selected ? 0 : 1);
+        GameLocal.setData(GameLocal.music, this.btn_music.selected ? 0 : 1);
 
         this.btn_music.selected ? GameMusic.stop() : GameMusic.play("music_scene");
         this.btn_music.label = this.btn_music.selected ? "关闭音乐" : "开启音乐";
@@ -77,7 +77,7 @@ class SettingPanel extends BasePanel {
     }
 
     private setSound(): void {
-        gameLocal.setData(gameLocal.sound, this.btn_sound.selected ? 0 : 1);
+        GameLocal.setData(GameLocal.sound, this.btn_sound.selected ? 0 : 1);
 
         this.btn_sound.selected && GameMusic.stop();
         this.btn_sound.label = this.btn_sound.selected ? "关闭音效" : "开启音效";
@@ -85,17 +85,17 @@ class SettingPanel extends BasePanel {
     }
 
     private setStyle(): void {
-        gameLocal.setData(gameLocal.style, this.btn_style.selected ? 0 : 1);
+        GameLocal.setData(GameLocal.style, this.btn_style.selected ? 0 : 1);
 
-        game.paiStyle = +gameLocal.getData(gameLocal.style);
+        game.paiStyle = +GameLocal.getData(GameLocal.style);
 
         FashionTools.setPaiStyle(game.paiStyle);
     }
 
     private setColor(): void {
-        gameLocal.setData(gameLocal.color, this.btn_color.selected ? 0 : 1);
+        GameLocal.setData(GameLocal.color, this.btn_color.selected ? 0 : 1);
 
-        game.paiColor = +gameLocal.getData(gameLocal.color);
+        game.paiColor = +GameLocal.getData(GameLocal.color);
 
         FashionTools.setPaiColor(game.paiColor);
     }
@@ -103,11 +103,11 @@ class SettingPanel extends BasePanel {
     public show(): void {
         super.show();
 
-        this.btn_music.selected = +gameLocal.getData(gameLocal.music) != 1;
-        this.btn_sound.selected = +gameLocal.getData(gameLocal.sound) != 1;
+        this.btn_music.selected = +GameLocal.getData(GameLocal.music) != 1;
+        this.btn_sound.selected = +GameLocal.getData(GameLocal.sound) != 1;
 
-        this.slider_music.value = +gameLocal.getData(gameLocal.musicVolume) * 100;
-        this.slider_sound.value = +gameLocal.getData(gameLocal.soundVolume) * 100;
+        this.slider_music.value = +GameLocal.getData(GameLocal.musicVolume) * 100;
+        this.slider_sound.value = +GameLocal.getData(GameLocal.soundVolume) * 100;
 
         this.btn_music.label = this.btn_music.selected ? "关闭音乐" : "开启音乐";
         this.btn_sound.label = this.btn_sound.selected ? "关闭音效" : "开启音效";
@@ -115,8 +115,8 @@ class SettingPanel extends BasePanel {
         this.slider_music.enable = !this.btn_music.selected;
         this.slider_sound.enable = !this.btn_sound.selected;
 
-        this.btn_style.selected = +gameLocal.getData(gameLocal.style) == 1 ? false : true;
-        this.btn_color.selected = +gameLocal.getData(gameLocal.color) == 1 ? false : true;
+        this.btn_style.selected = +GameLocal.getData(GameLocal.style) == 1 ? false : true;
+        this.btn_color.selected = +GameLocal.getData(GameLocal.color) == 1 ? false : true;
 
         this.lab_version.text = "当前版本号：" + game.version + "    最新版本号：" + game.player.version;
     }

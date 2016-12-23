@@ -78,9 +78,9 @@ class CreateSiren2View extends CreateBaseView {
     getRule() {
         var rule: any[] = [];
 
-        rule.push(PlayType.siren_2);
-        rule.push([GameRule.paizhang, this.getShou()]);
-        rule.push([GameRule.fengding, this.getRate()]);
+        rule.push(RuleType.siren_2);
+        rule.push([RuleType.paizhang, this.getShou()]);
+        rule.push([RuleType.fengding, this.getRate()]);
 
         var box: eui.CheckBox;
         for (var i: number = 1; i <= 10; i++) {
@@ -88,25 +88,25 @@ class CreateSiren2View extends CreateBaseView {
             if (box && box.selected) {
                 switch (i) {
                     case 1:
-                        rule.push(GameRule.zimojiadi);
+                        rule.push(RuleType.zimojiadi);
                         break;
                     case 2:
-                        rule.push(GameRule.zimojiafan);
+                        rule.push(RuleType.zimojiafan);
                         break;
                     case 3:
-                        rule.push(GameRule.dianganghua_pao);
+                        rule.push(RuleType.dianganghua_pao);
                         break;
                     case 4:
-                        rule.push(GameRule.dianganghua_zimo);
+                        rule.push(RuleType.dianganghua_zimo);
                         break;
                     case 5:
-                        rule.push(GameRule.kaertiao);
+                        rule.push(RuleType.kaertiao);
                         break;
                     case 6:
-                        rule.push(GameRule.yaojiujiangdui);
+                        rule.push(RuleType.yaojiujiangdui);
                         break;
                     case 7:
-                        rule.push(GameRule.tiandihu);
+                        rule.push(RuleType.tiandihu);
                         break;
                 }
             }

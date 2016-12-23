@@ -23,8 +23,6 @@ class PublicVal {
     zhuangFlag: number;
     //房主
     roomOwnFlag: number;
-    //规则
-    rules: string;
     //宝牌
     bao: any;
     //庄家pos

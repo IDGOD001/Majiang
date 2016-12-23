@@ -60,12 +60,12 @@ class Global {
 	// 		game.connectCount++;
 	// 	}
 	// 	else {
-	// 		var count: number = +gameLocal.getData(gameLocal.loginAccessCode);
+	// 		var count: number = +GameLocal.getData(GameLocal.loginAccessCode);
     //
 	// 		if (count < 2) {
 	// 			Weixin.getAccessCode(gameConfig.appid, gameConfig.clientUrl, game.roomid);
 	// 			count++;
-	// 			gameLocal.setData(gameLocal.loginAccessCode, count);
+	// 			GameLocal.setData(GameLocal.loginAccessCode, count);
 	// 		}
 	// 		else {
 	// 			game.askPanel.showMsg(function (r) {

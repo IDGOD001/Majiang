@@ -13,7 +13,7 @@ class GameSound {
     static play(name: string, startTime: number = 0, loops: number = 1) {
 
         //检测是否关闭
-        if (+gameLocal.getData(gameLocal.sound) == 0) {
+        if (+GameLocal.getData(GameLocal.sound) == 0) {
             this.stop();
             return;
         }
@@ -23,7 +23,7 @@ class GameSound {
             RES.getResAsync(name, function () {
                 _this.sound = RES.getRes(name);
                 _this.soundChannel = _this.sound.play(startTime, loops);
-                _this.soundVolume = +gameLocal.getData(gameLocal.musicVolume);
+                _this.soundVolume = +GameLocal.getData(GameLocal.musicVolume);
             }, this);
         }
     }

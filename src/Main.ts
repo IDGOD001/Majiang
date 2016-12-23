@@ -43,7 +43,7 @@ class Main extends eui.UILayer {
         }
 
         //本地存储code比对, 如果相同则视为无效登录
-        if (gameLocal.getData(gameLocal.loginCode) == code) {
+        if (GameLocal.getData(GameLocal.loginCode) == code) {
             code = null;
         }
 
@@ -52,7 +52,7 @@ class Main extends eui.UILayer {
             return;
         }
 
-        gameLocal.setData(gameLocal.loginCode, code);
+        GameLocal.setData(GameLocal.loginCode, code);
 
         var _this = this;
         HttpNetwork.pull(gameConfig.protocolType + gameConfig.address_center.ip + ":" + gameConfig.address_center.port + "/", function (obj) {

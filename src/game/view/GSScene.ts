@@ -175,8 +175,8 @@ class GSScene extends egret.DisplayObjectContainer {
     }
 
     //刷新规则
-    updateRule(str: string) {
-        this.ruleText.text = str;
+    updateRule() {
+        this.ruleText.text = game.roomRuleText;
         this.ruleText.anchorOffsetX = this.ruleText.width >> 1;
     }
 

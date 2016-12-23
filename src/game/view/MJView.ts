@@ -150,7 +150,7 @@ class MJView extends eui.Component {
             }
 
             if (PublicVal.state == StateType.shuffle || PublicVal.state == StateType.ting || game.isHu
-                || (gamePai.getCtLength(game.roomQue[this.dir]) != 0 && game.roomQue[this.dir] != card.pai.type)
+                || (GamePai.getCtLength(game.roomQue[this.dir]) != 0 && game.roomQue[this.dir] != card.pai.type)
             ) {
                 card.unactivate();
                 card.enabled = false;

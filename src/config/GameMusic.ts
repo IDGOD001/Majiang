@@ -14,7 +14,7 @@ class GameMusic {
     static play(name: string, startTime: number = 0, loops: number = 0) {
 
         //检测是否关闭
-        if (+gameLocal.getData(gameLocal.music) == 0) {
+        if (+GameLocal.getData(GameLocal.music) == 0) {
             this.stop();
             return;
         }
@@ -34,7 +34,7 @@ class GameMusic {
         }
 
         this.soundChannel = this.sound.play(startTime, loops);
-        this.soundVolume = +gameLocal.getData(gameLocal.musicVolume);
+        this.soundVolume = +GameLocal.getData(GameLocal.musicVolume);
 
         this.soundPlaying = true;
     }

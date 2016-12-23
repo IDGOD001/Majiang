@@ -47,10 +47,11 @@ class GSConfig {
     static poolReturnCount: number = 10;
 
     //回放里的功能菜单位置
-    static replayFuncPos = {1:{x:696,y:478,dx:-100,dy:0},
-        2:{x:773,y:466,dx:0,dy:-100},
-        3:{x:696,y:137,dx:-100,dy:0},
-        4:{x:195,y:466,dx:0,dy:-100}
+    static replayFuncPos = {
+        1: {x: 696, y: 478, dx: -100, dy: 0},
+        2: {x: 773, y: 466, dx: 0, dy: -100},
+        3: {x: 696, y: 137, dx: -100, dy: 0},
+        4: {x: 195, y: 466, dx: 0, dy: -100}
     };
 
     //头像初始位置
@@ -158,33 +159,147 @@ class GSConfig {
 
     //位置规则 1-4 逆时针 5:精致版 {1:立面,2:背面,3:躺 4:池}
     static posRule = {
-        1:{ 1:new Rule({bgosX:32,bgosY:40,toposX:24,toposY:22,spacH:64,spacV:79,showTop:false}),
-            2:new Rule({bgosX:32,bgosY:40,toposX:24,toposY:23,spacH:56,spacV:79,showTop:true}),
-            3:new Rule({bgosX:34,bgosY:44,toposX:26,toposY:40,topScaleX:0.9,topScaleY:0.9,spacH:56,spacV:70,showTop:true}),
-            4:new Rule({bgosX:18,bgosY:23,toposX:13,toposY:19,spacH:30,spacV:40,showTop:true}),
-            5:new Rule({bgosX:32,bgosY:40,bgScaleX:1.1,bgScaleY:1.1,toposX:24,toposY:23,spacH:56,spacV:79,showTop:true})
+        1: {
+            1: new Rule({bgosX: 32, bgosY: 40, toposX: 24, toposY: 22, spacH: 64, spacV: 79, showTop: false}),
+            2: new Rule({bgosX: 32, bgosY: 40, toposX: 24, toposY: 23, spacH: 56, spacV: 79, showTop: true}),
+            3: new Rule({
+                bgosX: 34,
+                bgosY: 44,
+                toposX: 26,
+                toposY: 40,
+                topScaleX: 0.9,
+                topScaleY: 0.9,
+                spacH: 56,
+                spacV: 70,
+                showTop: true
+            }),
+            4: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 40, showTop: true}),
+            5: new Rule({
+                bgosX: 32,
+                bgosY: 40,
+                bgScaleX: 1.1,
+                bgScaleY: 1.1,
+                toposX: 24,
+                toposY: 23,
+                spacH: 56,
+                spacV: 79,
+                showTop: true
+            })
         },
-        2:{ 1:new Rule({bgosX:19,bgosY:44,bgScaleX:-1,topRot:-90,spacH:23,spacV:24,showTop:false}),
-            2:new Rule({bgosX:23,bgosY:18,bgScaleX:-1,topRot:-90,spacH:23,spacV:24,showTop:false}),
-            3:new Rule({bgosX:23,bgosY:18,bgScaleX:-1,toposX:9,toposY:18,topRot:-90,topScaleX:0.75,spacH:25,spacV:24,showTop:true}),
-            4:new Rule({bgosX:23,bgosY:18,bgScaleX:-1,toposX:9,toposY:18,topRot:-90,topScaleX:0.75,spacH:25,spacV:40,showTop:true})
+        2: {
+            1: new Rule({bgosX: 19, bgosY: 44, bgScaleX: -1, topRot: -90, spacH: 23, spacV: 24, showTop: false}),
+            2: new Rule({bgosX: 23, bgosY: 18, bgScaleX: -1, topRot: -90, spacH: 23, spacV: 24, showTop: false}),
+            3: new Rule({
+                bgosX: 23,
+                bgosY: 18,
+                bgScaleX: -1,
+                toposX: 9,
+                toposY: 18,
+                topRot: -90,
+                topScaleX: 0.75,
+                spacH: 25,
+                spacV: 24,
+                showTop: true
+            }),
+            4: new Rule({
+                bgosX: 23,
+                bgosY: 18,
+                bgScaleX: -1,
+                toposX: 9,
+                toposY: 18,
+                topRot: -90,
+                topScaleX: 0.75,
+                spacH: 25,
+                spacV: 40,
+                showTop: true
+            })
         },
-        3:{ 1:new Rule({bgosX:18,bgosY:29,topRot:-180,topScaleX:0.5,topScaleY:0.5,spacH:30,spacV:36,showTop:false}),
-            2:new Rule({bgosX:18,bgosY:29,topRot:-180,topScaleX:0.5,topScaleY:0.5,spacH:30,spacV:36,showTop:false}),
-            3:new Rule({bgosX:18,bgosY:23,toposX:13,toposY:19,spacH:30,spacV:34,showTop:true}),
-            4:new Rule({bgosX:18,bgosY:23,toposX:13,toposY:19,spacH:30,spacV:40,showTop:true})
+        3: {
+            1: new Rule({
+                bgosX: 18,
+                bgosY: 29,
+                topRot: -180,
+                topScaleX: 0.5,
+                topScaleY: 0.5,
+                spacH: 30,
+                spacV: 36,
+                showTop: false
+            }),
+            2: new Rule({
+                bgosX: 18,
+                bgosY: 29,
+                topRot: -180,
+                topScaleX: 0.5,
+                topScaleY: 0.5,
+                spacH: 30,
+                spacV: 36,
+                showTop: false
+            }),
+            3: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 34, showTop: true}),
+            4: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 40, showTop: true})
 
         },
-        4:{ 1:new Rule({bgosX:19,bgosY:44,topRot:90,spacH:23,spacV:24,showTop:false}),
-            2:new Rule({bgosX:23,bgosY:18,topRot:90,spacH:23,spacV:24,showTop:false}),
-            3:new Rule({bgosX:23,bgosY:18,toposX:18,toposY:18,topRot:90,topScaleX:0.75,spacH:25,spacV:24,showTop:true}),
-            4:new Rule({bgosX:23,bgosY:18,toposX:18,toposY:18,topRot:90,topScaleX:0.75,spacH:25,spacV:40,showTop:true})
+        4: {
+            1: new Rule({bgosX: 19, bgosY: 44, topRot: 90, spacH: 23, spacV: 24, showTop: false}),
+            2: new Rule({bgosX: 23, bgosY: 18, topRot: 90, spacH: 23, spacV: 24, showTop: false}),
+            3: new Rule({
+                bgosX: 23,
+                bgosY: 18,
+                toposX: 18,
+                toposY: 18,
+                topRot: 90,
+                topScaleX: 0.75,
+                spacH: 25,
+                spacV: 24,
+                showTop: true
+            }),
+            4: new Rule({
+                bgosX: 23,
+                bgosY: 18,
+                toposX: 18,
+                toposY: 18,
+                topRot: 90,
+                topScaleX: 0.75,
+                spacH: 25,
+                spacV: 40,
+                showTop: true
+            })
         },
-        5:{ 1:new Rule({bgosX:32,bgosY:40,toposX:24,toposY:22,spacH:64*0.92,spacV:79,scale:0.92,showTop:false}),
-            2:new Rule({bgosX:32,bgosY:40,toposX:24,toposY:23,spacH:56,spacV:79,showTop:true}),
-            3:new Rule({bgosX:34,bgosY:44,toposX:26,toposY:40,topScaleX:0.9,topScaleY:0.9,spacH:56,spacV:70,showTop:true}),
-            4:new Rule({bgosX:18,bgosY:23,toposX:13,toposY:19,spacH:30,spacV:40,showTop:true}),
-            5:new Rule({bgosX:32,bgosY:40,bgScaleX:1.1,bgScaleY:1.1,toposX:24,toposY:23,spacH:56,spacV:79,showTop:true})
+        5: {
+            1: new Rule({
+                bgosX: 32,
+                bgosY: 40,
+                toposX: 24,
+                toposY: 22,
+                spacH: 64 * 0.92,
+                spacV: 79,
+                scale: 0.92,
+                showTop: false
+            }),
+            2: new Rule({bgosX: 32, bgosY: 40, toposX: 24, toposY: 23, spacH: 56, spacV: 79, showTop: true}),
+            3: new Rule({
+                bgosX: 34,
+                bgosY: 44,
+                toposX: 26,
+                toposY: 40,
+                topScaleX: 0.9,
+                topScaleY: 0.9,
+                spacH: 56,
+                spacV: 70,
+                showTop: true
+            }),
+            4: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 40, showTop: true}),
+            5: new Rule({
+                bgosX: 32,
+                bgosY: 40,
+                bgScaleX: 1.1,
+                bgScaleY: 1.1,
+                toposX: 24,
+                toposY: 23,
+                spacH: 56,
+                spacV: 79,
+                showTop: true
+            })
         }
     };
 
@@ -219,6 +334,7 @@ class GSConfig {
     static funcSelectRes = ["F_guo", "F_chi", "F_peng", "F_gang", "F_budan", "F_ting", "F_hu"];
 
     static actionPVP = {
+        0: 0,
         1: 1,
         2: 2,
         4: 5,
@@ -230,6 +346,7 @@ class GSConfig {
         28: 4,
         99: 6
     };
+
     //获取方位位置
     static getPosByIndex(dir: number, style: number, index: number) {
         var o: any = {};
@@ -301,49 +418,6 @@ class GSConfig {
     }
 
     static handLens = {2: true, 5: true, 8: true, 11: true, 14: true};
-
-    static huTypeMap = {
-        6: "庄家",
-        7: "自摸",
-        8: "站立",
-        9: "带鸡",
-        10: "夹胡",
-        11: "双飘",
-        12: "对对胡",
-        13: "摸宝",
-        14: "宝中宝",
-        15: "通宝",
-        16: "门清",
-        17: "点炮",
-        18: "清一色",
-        19: "杠上开花",
-        20: "暗叫",
-        21: "扫底胡",
-        24: "暗杠",
-        25: "明杠",
-        29: "天胡",
-        30: "夹五",
-        31: "七对",
-        33: "258将",
-        34: "中张",
-        35: "换三张",
-        36: "金钩吊",
-        37: "地胡",
-        38: "全幺九",
-        39: "过手杠",
-        40: "一炮多响",
-        41: "杠上炮",
-        42: "将七对",
-        43: "龙七对",
-        44: "抢杠胡",
-        45: "接炮",
-        46: "根儿",
-        47: "查大叫",
-        48: "卡二条",
-        49: "点杠",
-        51: "扫底炮",
-        99: "平胡"
-    };
     //暗杠牌的顶牌类型
     static gameAnGangStyle = {1: 3, 2: 2, 3: 2, 4: 2};
     static replayAnGangStyle = {1: 3, 2: 3, 3: 3, 4: 3};

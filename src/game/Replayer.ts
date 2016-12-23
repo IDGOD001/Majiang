@@ -2,11 +2,11 @@
  * Created by Administrator on 2016/12/1.
  */
 //回放播放器
-class Replayer implements IUpdate{
+class Replayer implements IUpdate {
 
-    static _i:Replayer;
+    static _i: Replayer;
 
-    constructor(){
+    constructor() {
 
         this.clear();
 
@@ -14,56 +14,56 @@ class Replayer implements IUpdate{
 
     }
 
-    static get i(){
+    static get i() {
 
         return Replayer._i || (Replayer._i = new Replayer);
 
     }
 
-    static replaySpeed:number = 800;
-    static startDelay:number = 1000;
+    static replaySpeed: number = 800;
+    static startDelay: number = 1000;
 
-    actions:any ;
+    actions: any;
 
-    interval:number;
+    interval: number;
 
-    passTime:number;
+    passTime: number;
 
 
-    dirMap:any;
+    dirMap: any;
 
     //ownPos:number;
 
-    data:any;
+    data: any;
 
     //缓存牌
-    cachePaiArr:any;
+    cachePaiArr: any;
 
 
     //当前步骤
-    lastIndex:number;
+    lastIndex: number;
 
     //步骤
-    index:number;
+    index: number;
 
     //是否暂停
     //isPause:boolean;
 
     //是否回退
-    isFB:boolean;
+    isFB: boolean;
 
-    exitInterval:number;
+    exitInterval: number;
 
-    funcInterval:number;
+    funcInterval: number;
 
     //本地锁
-    lock:boolean;
+    lock: boolean;
     //锁定计数
-    lockCount:number;
+    lockCount: number;
 
-    lockMaxCount:number = 10;
+    lockMaxCount: number = 10;
 
-    clear(){
+    clear() {
 
         //this.isPause = false;
         this.isFB = false;
@@ -92,7 +92,8 @@ class Replayer implements IUpdate{
         this.clearFuncView();
 
     }
-    exit(){
+
+    exit() {
 
         GSController.i.exit();
 
@@ -105,41 +106,44 @@ class Replayer implements IUpdate{
     }
 
     /*
-        回放
+     回放
      */
     /*Replay(){
-        this.clear();
-        PublicVal.i.clear();
-        this.parseData(this.data);
-    }*/
+     this.clear();
+     PublicVal.i.clear();
+     this.parseData(this.data);
+     }*/
     /*
-        暂停
+     暂停
      */
-    Pause(){
+    Pause() {
 
         //this.isPause = true;
         this.stop = true;
     }
+
     /*
-        播放
+     播放
      */
     Play() {
 
         this.stop = false;
     }
+
     /*
-        快进
+     快进
      */
-    FF(){
+    FF() {
 
         this.passTime = Replayer.replaySpeed;
 
         this.lockCount = this.lockMaxCount;
     }
+
     /*
-        回退
+     回退
      */
-    FB(){
+    FB() {
 
         this.clearExitInterval();
 
@@ -147,7 +151,7 @@ class Replayer implements IUpdate{
 
         this.clearFuncView();
 
-        for(var i:number=1;i<=4;i++){
+        for (var i: number = 1; i <= 4; i++) {
             var mjview: MJView = GSController.i.gsView.MJViews[i];
             mjview.huview.clean();
         }
@@ -156,10 +160,10 @@ class Replayer implements IUpdate{
         this.actions = [];
         this.parseData(this.data);
 
-        this.lastIndex -- ;
+        this.lastIndex--;
         this.prevIndex(this.lastIndex);
         this.index = this.lastIndex + 1;
-        if(this.lastIndex == -1) {
+        if (this.lastIndex == -1) {
             this.lastIndex = 0;
         }
         this.isFB = false;
@@ -170,15 +174,15 @@ class Replayer implements IUpdate{
     /*
      退到某步
      */
-    prevIndex(index:number){
+    prevIndex(index: number) {
 
-        if(index < 0 ) return;
+        if (index < 0) return;
 
         //console.log("--------回退开始");
 
-        var i:number = 0;
+        var i: number = 0;
 
-        while( i <= index){
+        while (i <= index) {
             this.goIndex(i);
             i++;
         }
@@ -217,9 +221,9 @@ class Replayer implements IUpdate{
      get_shou_origin(4)
      ]
      */
-    parseData(data:any){
+    parseData(data: any) {
 
-        if(data == null) return;
+        if (data == null) return;
 
         this.data = data;
 
@@ -227,61 +231,61 @@ class Replayer implements IUpdate{
 
         PublicVal.i.roomOwnFlag = 1 << this.returnDir(1);
 
-        for(var i:number = 0 ; i <data.length;i++) {
+        for (var i: number = 0; i < data.length; i++) {
             var arr = data[i];
             var action: number = arr[0];
-            this["__action_" + action](arr,i);
+            this["__action_" + action](arr, i);
         }
         this.show();
     }
 
-    __action_7(arr:any,index:number){
+    __action_7(arr: any, index: number) {
 
-        this.actions.push({index:index,action: 7, pai:arr[1]});
+        this.actions.push({index: index, action: 7, pai: arr[1]});
 
     }
 
 
-    __action_1(arr:any,index:number){
+    __action_1(arr: any, index: number) {
         this.cachePaiArr = arr;
         var all = arr[1];
-        for(var k:number= 0;k < all.length;k++){
+        for (var k: number = 0; k < all.length; k++) {
             var obj = all[k];
             //1万 2条 3桶 4中发白 5东南西北
-            var pais = FashionTools.formatPai(1,obj[1]).
-                        concat(FashionTools.formatPai(2,obj[2])).
-                        concat(FashionTools.formatPai(3,obj[3])).
-                        concat(FashionTools.formatPai(4,obj[4])).
-                        concat(FashionTools.formatPai(5,obj[5]));
+            var pais = FashionTools.formatPai(1, obj[1]).concat(FashionTools.formatPai(2, obj[2])).concat(FashionTools.formatPai(3, obj[3])).concat(FashionTools.formatPai(4, obj[4])).concat(FashionTools.formatPai(5, obj[5]));
             // console.log(pais);
             // console.log(this.dirMap);
             PublicVal.i.allPais[this.returnDir(k + 1)].handPais = pais;
         }
     }
-    __action_2(arr:any,index:number){
-        this.actions.push({action:2,pai:{type:arr[1],number:arr[2]},pos:arr[3]});
+
+    __action_2(arr: any, index: number) {
+        this.actions.push({action: 2, pai: {type: arr[1], number: arr[2]}, pos: arr[3]});
     }
-    __action_3(arr:any,index:number) {
-        this.actions.push({action:3,pai:{type:arr[1],number:arr[2]},pos:arr[3]});
+
+    __action_3(arr: any, index: number) {
+        this.actions.push({action: 3, pai: {type: arr[1], number: arr[2]}, pos: arr[3]});
     }
-    __action_4(arr:any,index:number){
+
+    __action_4(arr: any, index: number) {
 
         //旧版本直接返回
-        if(!PublicVal.i.replayVer) return;
+        if (!PublicVal.i.replayVer) return;
 
-        this.actions.push({action:4,funcs:arr[3],pos:arr[2]});
+        this.actions.push({action: 4, funcs: arr[3], pos: arr[2]});
     }
-    __action_5(arr:any,index:number){
 
-        var pos:number = arr[1];
+    __action_5(arr: any, index: number) {
 
-        var funcID:number = arr[2];
+        var pos: number = arr[1];
 
-        switch(funcID){
+        var funcID: number = arr[2];
+
+        switch (funcID) {
 
             case 0://过
-                if(!PublicVal.i.replayVer) return;
-                this.actions.push({index:index,action: 5, funcID:funcID,pos:pos});
+                if (!PublicVal.i.replayVer) return;
+                this.actions.push({index: index, action: 5, funcID: funcID, pos: pos});
                 break;
 
             case 1://吃
@@ -291,23 +295,38 @@ class Replayer implements IUpdate{
             case 26://中发白杠
             case 27://幺九杠的补蛋
             case 28://中发白杠的补蛋
-                this.actions.push({index:index,action: 5, funcID:funcID, pais:arr[3], pos:pos,from: arr[3][1].pos});
+                this.actions.push({
+                    index: index,
+                    action: 5,
+                    funcID: funcID,
+                    pais: arr[3],
+                    pos: pos,
+                    from: arr[3][1].pos
+                });
                 break;
             case 25://明杠
-                this.actions.push({index:index,action: 5, funcID:funcID, pais:arr[3], pos:pos ,from: arr[3][0].pos});
+                this.actions.push({
+                    index: index,
+                    action: 5,
+                    funcID: funcID,
+                    pais: arr[3],
+                    pos: pos,
+                    from: arr[3][0].pos
+                });
                 break;
 
             case 4://听牌
             case 1001://潇洒
-                this.actions.push({index:index,action: 5, funcID:funcID,pos:pos});
+                this.actions.push({index: index, action: 5, funcID: funcID, pos: pos});
                 break;
             case 99://胡牌
-                this.actions.push({index:index,action: 5, funcID:funcID, pai:arr[3], pos:pos ,from: arr[3].pos});
+                this.actions.push({index: index, action: 5, funcID: funcID, pai: arr[3], pos: pos, from: arr[3].pos});
                 break;
         }
     }
-    __action_6(arr,index:number){
-        PublicVal.i.rules = FashionTools.formatRules(arr[1][0]);
+
+    __action_6(arr, index: number) {
+        game.roomRules = arr[1][0];
         game.roomPaidui = arr[1][1];
         game.roomRoundCur = arr[1][2];
         game.roomRoundMax = arr[1][3];
@@ -318,8 +337,9 @@ class Replayer implements IUpdate{
         PublicVal.i.zhuangFlag = 1 << this.returnDir(PublicVal.i.zhuang);
         //console.log(PublicVal.i.rules,game.roomPaidui,PublicVal.i.cur_round,PublicVal.i.max_round);
     }
+
     //展示
-    show(){
+    show() {
         FashionTools.setPaiColor(game.paiColor);
 
         PublicVal.state = 6;
@@ -333,7 +353,7 @@ class Replayer implements IUpdate{
         GSController.i.setArrowDir(0);
         GSController.i.setBoomDir(PublicVal.i.ownPos);
         GSController.i.scene.updateRoomID(game.roomid);
-        GSController.i.scene.updateRule(PublicVal.i.rules);
+        GSController.i.scene.updateRule();
         GSController.i.visibleRoomOwn();
         GSController.i.visibleZhuang();
         GSController.i.updateBaoView();
@@ -343,11 +363,11 @@ class Replayer implements IUpdate{
 
     }
 
-    __play(){
+    __play() {
 
         this.initMJViews();
 
-        if(!this.isFB) {
+        if (!this.isFB) {
 
             this.interval = egret.setTimeout(_=> {
                     this.Play();
@@ -360,9 +380,9 @@ class Replayer implements IUpdate{
     /*
      初始化麻将
      */
-    initMJViews(){
+    initMJViews() {
 
-        for(var i:number = 1; i <=4 ; i ++){
+        for (var i: number = 1; i <= 4; i++) {
             FashionTools.sortPai(PublicVal.i.getHandPais(i));
             GSController.i.updateMJView(i);
             GSController.i.updatePoolPaiView(i);
@@ -370,21 +390,20 @@ class Replayer implements IUpdate{
     }
 
 
-
     //解析玩家
-    parsePersons(list:any){
+    parsePersons(list: any) {
 
         var posPerson = [];
 
-        var a,b,c,d;
+        var a, b, c, d;
 
-        for(var i:number = 0 ; i < list.length;i++){
+        for (var i: number = 0; i < list.length; i++) {
 
             var person = list[i];
 
             posPerson[person.pos] = person;
 
-            if(game.player.uid == person.uid){
+            if (game.player.uid == person.uid) {
 
                 //确定方位
                 a = person.pos;
@@ -411,25 +430,26 @@ class Replayer implements IUpdate{
         PublicVal.i.dirPerson[3] = posPerson[c];
         PublicVal.i.dirPerson[4] = posPerson[d];
     }
+
     //返回dir
-    returnDir(pos:number){
+    returnDir(pos: number) {
 
         return this.dirMap[pos];
 
     }
 
-    play_action_2(action:any){
-
-        //console.log("打牌",action);
+    play_action_2(action: any) {
 
         var pos = action.pos;
         var pai = action.pai;
         var dir = this.returnDir(pos);
 
 
-        PublicVal.i.removeHandPai(dir,pai);
+        // console.log("打牌", action, pai);
 
-        PublicVal.i.pushPoolPai(dir,pai);
+        PublicVal.i.removeHandPai(dir, pai);
+
+        PublicVal.i.pushPoolPai(dir, pai);
 
 
         GSController.i.updateMJView(dir);
@@ -437,42 +457,44 @@ class Replayer implements IUpdate{
         GSController.i.updatePoolPaiView(dir);
 
     }
-    play_action_3(action:any){
 
-        //console.log("抓牌",action);
+    play_action_3(action: any) {
 
         var pos = action.pos;
         var pai = action.pai;
         var dir = this.returnDir(pos);
 
-        PublicVal.i.addHandPai(dir,pai,false);
+        // console.log("抓牌", action, pai);
+
+        PublicVal.i.addHandPai(dir, pai, false);
 
         GSController.i.updateMJView(dir);
 
-        game.roomPaidui --;
+        game.roomPaidui--;
 
         GSController.i.updateCenterInfo();
 
     }
+
     //换宝
-    play_action_7(action:any){
+    play_action_7(action: any) {
 
         PublicVal.i.bao = action.pai;
 
-        game.roomPaidui --;
+        game.roomPaidui--;
 
         GSController.i.updateBaoView();
 
         GSController.i.updateCenterInfo();
 
-        if(!this.isFB){
+        if (!this.isFB) {
 
             GSController.i.gsView.playBaoEffect();
         }
     }
 
     //展示功能菜单
-    play_action_4(action:any){
+    play_action_4(action: any) {
 
         //this.stop = true;
 
@@ -482,13 +504,12 @@ class Replayer implements IUpdate{
 
         var dir = this.returnDir(pos);
 
-        GSController.i.gsView.frontUIContainer.addReplayFuncs(dir,action.funcs);
+        GSController.i.gsView.frontUIContainer.addReplayFuncs(dir, action.funcs);
 
     }
 
 
-
-    play_action_5(action:any){
+    play_action_5(action: any) {
 
         //console.log("功能牌",action);
 
@@ -498,20 +519,20 @@ class Replayer implements IUpdate{
 
         this.lockCount = 0;
 
-        if(!PublicVal.i.replayVer){
+        if (!PublicVal.i.replayVer) {
 
             this.lockCount = this.lockMaxCount;
-        }else{
+        } else {
             GSController.i.gsView.frontUIContainer.handFocus(funcID);
         }
 
         //GSController.i.gsView.frontUIContainer.handFocus(funcID);
 
-        if(this.isFB){
+        if (this.isFB) {
 
-            child.call(this,action);
+            child.call(this, action);
             this.clearFuncView();
-        }else {
+        } else {
             this.funcInterval = egret.setInterval(_=> {
 
                 this.lockCount++;
@@ -524,7 +545,7 @@ class Replayer implements IUpdate{
                 }
             }, this, 100);
         }
-        function child(action:any) {
+        function child(action: any) {
 
             var funcID = action.funcID;
             var pos = action.pos;
@@ -709,33 +730,32 @@ class Replayer implements IUpdate{
 
     }
 
-    playFuncEffect(dir:number,funcID:number){
+    playFuncEffect(dir: number, funcID: number) {
 
-        if(! this.isFB) {
+        if (!this.isFB) {
             GSController.i.playEffect(dir, funcID);
         }
 
     }
 
 
-    update(advanceTime:number,timeStamp ?:number):void{
+    update(advanceTime: number, timeStamp ?: number): void {
 
-        if(this.lock) return;
+        if (this.lock) return;
 
         this.passTime += advanceTime;
 
-        if(this.passTime >= Replayer.replaySpeed){
+        if (this.passTime >= Replayer.replaySpeed) {
 
-            if(this.index < this.actions.length)
-            {
+            if (this.index < this.actions.length) {
 
                 this.goIndex(this.index);
 
                 this.passTime = 0;
 
-                this.index ++;
+                this.index++;
 
-            }else{
+            } else {
 
                 console.log("-----回放结束!-----");
 
@@ -745,31 +765,31 @@ class Replayer implements IUpdate{
 
                 this.clearExitInterval();
 
-                this.exitInterval = egret.setTimeout(this.exit,this,3000);
+                this.exitInterval = egret.setTimeout(this.exit, this, 3000);
             }
 
         }
     }
 
-    clearExitInterval(){
+    clearExitInterval() {
 
-        if(this.exitInterval){
+        if (this.exitInterval) {
             egret.clearTimeout(this.exitInterval);
         }
     }
 
 
-    goIndex(index:number){
+    goIndex(index: number) {
 
         var action = this.actions[index];
 
-        this["play_action_"+action.action](action);
+        this["play_action_" + action.action](action);
 
         this.lastIndex = index;
 
     }
 
-    clearFuncView(){
+    clearFuncView() {
 
         this.lock = false;
 
@@ -778,11 +798,9 @@ class Replayer implements IUpdate{
         GSController.i.gsView.frontUIContainer.clear();
     }
 
-
-
-    completed:boolean;
+    completed: boolean;
     //自动移除
-    autoRemove :boolean;
+    autoRemove: boolean;
     //停止刷新
-    stop :boolean;
+    stop: boolean;
 }

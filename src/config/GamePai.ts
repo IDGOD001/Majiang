@@ -3,7 +3,7 @@
  * @Author Ace.c
  * @Create 2016-12-14 10:49
  */
-class gamePai {
+class GamePai {
 
 
 

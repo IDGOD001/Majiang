@@ -78,7 +78,7 @@ class ResultScene extends BaseGameSprite {
     }
 
     updateRule() {
-        this.lab_rule.text = PublicVal.i.rules;
+        this.lab_rule.text = game.roomRuleText;
     }
 
     updateState(type: number) {

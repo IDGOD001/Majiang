@@ -52,7 +52,7 @@ class ChangeThreeVo extends BaseDataVo {
             return false;
         }
 
-        if (gamePai.getCtLength(type) < 3) {
+        if (GamePai.getCtLength(type) < 3) {
             return false;
         }
         return true;
@@ -63,8 +63,8 @@ class ChangeThreeVo extends BaseDataVo {
      * @returns {any[]}
      */
     getRecommend(): any[] {
-        this.type = gamePai.getCtShortest(3);
-        this.cards = gamePai.getCtCards(this.type, 3);
+        this.type = GamePai.getCtShortest(3);
+        this.cards = GamePai.getCtCards(this.type, 3);
         return this.cards;
     }
 }

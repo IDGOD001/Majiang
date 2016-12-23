@@ -105,7 +105,7 @@ class QueView extends BaseSprite {
     }
 
     private recommend() {
-        var type: CardType = gamePai.getCtShortest();
+        var type: CardType = GamePai.getCtShortest();
         switch (type) {
             case CardType.tiao:
                 this.playRecommend(this.btn_tiao);
@@ -121,7 +121,7 @@ class QueView extends BaseSprite {
         var types: CardType[] = [CardType.tong, CardType.tiao, CardType.wan];
 
         for (var i: number = 0; i < types.length; i++) {
-            if (types[i] != type && gamePai.getCtLength(type) == gamePai.getCtLength(types[i])) {
+            if (types[i] != type && GamePai.getCtLength(type) == GamePai.getCtLength(types[i])) {
                 switch (types[i]) {
                     case CardType.tiao:
                         this.playRecommend(this.btn_tiao);

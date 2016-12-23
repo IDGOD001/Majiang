@@ -9,7 +9,7 @@ class RulePanel extends BasePanel {
 
     private text: eui.Label;
 
-    private type: PlayType;
+    private type: RuleType;
 
     public constructor() {
         super();
@@ -22,7 +22,7 @@ class RulePanel extends BasePanel {
 
         this.bgView.setTitle("rule_txt");
 
-        this.type = PlayType.xueliuchenghe;
+        this.type = RuleType.xueliuchenghe;
 
         this.decode();
 
@@ -35,17 +35,18 @@ class RulePanel extends BasePanel {
 
         this.cleanButton();
 
-        e.currentTarget.enabled = true;
+        var btn: eui.Button = <eui.Button>e.currentTarget;
+        btn.enabled = false;
 
-        switch (e.currentTarget) {
+        switch (btn) {
             case this.btn_xueliu:
-                this.type = PlayType.xueliuchenghe;
+                this.type = RuleType.xueliuchenghe;
                 break;
             case this.btn_xuezhan:
-                this.type = PlayType.xuezhandaodi;
+                this.type = RuleType.xuezhandaodi;
                 break;
             case this.btn_siren2:
-                this.type = PlayType.siren_2;
+                this.type = RuleType.siren_2;
                 break;
         }
 
@@ -56,13 +57,13 @@ class RulePanel extends BasePanel {
 
         var key: string;
         switch (this.type) {
-            case PlayType.xuezhandaodi:
+            case RuleType.xuezhandaodi:
                 key = "rule_xuezhandaodi";
                 break;
-            case PlayType.xueliuchenghe:
+            case RuleType.xueliuchenghe:
                 key = "rule_xueliuchenghe";
                 break;
-            case PlayType.siren_2:
+            case RuleType.siren_2:
                 key = "rule_sirenliangfang";
                 break;
             default:
@@ -108,8 +109,9 @@ class RulePanel extends BasePanel {
     }
 
     private cleanButton() {
-        this.btn_xuezhan.enabled = false;
-        this.btn_xueliu.enabled = false;
-        this.btn_siren2.enabled = false;
+        var arr: any[] = [this.btn_xueliu, this.btn_xuezhan, this.btn_siren2];
+        for (var i: number = 0; i < arr.length; i++) {
+            arr[i].enabled = true;
+        }
     }
 }

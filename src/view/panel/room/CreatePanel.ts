@@ -11,7 +11,7 @@ class CreatePanel extends BasePanel {
     private xueliuView: CreateXueliuView;
     private siren2View: CreateSiren2View;
 
-    private playType: PlayType = PlayType.xueliuchenghe;
+    private playType: RuleType = RuleType.xueliuchenghe;
     private view: CreateBaseView;
 
     public constructor() {
@@ -42,13 +42,13 @@ class CreatePanel extends BasePanel {
     private clickHandler(e: egret.TouchEvent) {
         switch (e.currentTarget) {
             case this.btn_xuezhan:
-                this.playType = PlayType.xuezhandaodi;
+                this.playType = RuleType.xuezhandaodi;
                 break;
             case this.btn_xueliu:
-                this.playType = PlayType.xueliuchenghe;
+                this.playType = RuleType.xueliuchenghe;
                 break;
             case this.btn_siren2:
-                this.playType = PlayType.siren_2;
+                this.playType = RuleType.siren_2;
                 break;
         }
 
@@ -60,19 +60,19 @@ class CreatePanel extends BasePanel {
         this.clear();
 
         switch (this.playType) {
-            case PlayType.xueliuchenghe:
+            case RuleType.xueliuchenghe:
                 this.btn_xueliu.enabled = false;
                 this.view = this.xueliuView;
                 break;
-            case PlayType.xuezhandaodi:
+            case RuleType.xuezhandaodi:
                 this.btn_xuezhan.enabled = false;
                 this.view = this.xuezhanView;
                 break;
-            case PlayType.sanren_2:
+            case RuleType.sanren_2:
                 break;
-            case PlayType.sanren_3:
+            case RuleType.sanren_3:
                 break;
-            case PlayType.siren_2:
+            case RuleType.siren_2:
                 this.btn_siren2.enabled = false;
                 this.view = this.siren2View;
                 break;
