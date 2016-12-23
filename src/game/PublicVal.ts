@@ -29,6 +29,8 @@ class PublicVal {
     bao: any;
     //庄家pos
     zhuang: number;
+    //回放版本号
+    replayVer:string;
 
     dir2Pos: any = {};
     pos2Dir: any = {};
@@ -44,6 +46,8 @@ class PublicVal {
     }
 
     clear() {
+
+        console.log("=======================");
 
         this.bao = null;
         this.zhuangFlag = 0;

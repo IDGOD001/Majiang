@@ -871,6 +871,10 @@
 				{
 					"compress":false,
 					"key":"create_siren2"
+				},
+				{
+					"compress":false,
+					"key":"logo"
 				}
 			],
 			"sort":0
@@ -1062,6 +1066,10 @@
 				{
 					"compress":false,
 					"key":"sound_open_btn"
+				},
+				{
+					"compress":false,
+					"key":"RP_hand"
 				}
 			],
 			"sort":0

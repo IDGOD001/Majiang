@@ -8,6 +8,7 @@ class S21 {
 
         if (+obj.code == 0) {
             var dialog: RecordPanel = StackManager.findDialog(RecordPanel, "RecordPanel");
+            dialog.isXiang = false;
             dialog.hide();
         }
 

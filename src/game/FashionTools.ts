@@ -145,6 +145,7 @@ class FashionTools {
      * @param pai
      */
     static removePai(list: any, pai: any) {
+        // console.log(list, pai);
         for (var i: number = 0; i < list.length; i++) {
             if (list[i].type == pai.type && list[i].number == pai.number) {
                 list.splice(i, 1);

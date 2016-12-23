@@ -137,6 +137,11 @@ class MJView extends eui.Component {
 
     //重置所有子对象
     resetAllChildrenTouch() {
+
+        if (PublicVal.state == 6) {
+            return;
+        }
+
         var card: CardView;
         for (var i: number = 0; i < this.handCon.numChildren; i++) {
             card = <CardView>this.handCon.getChildAt(i);

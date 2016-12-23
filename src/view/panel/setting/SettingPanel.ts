@@ -60,6 +60,10 @@ class SettingPanel extends BasePanel {
     }
 
     private changeMusic(): void {
+        if (this.btn_music.selected) {
+            GameMusic.SoundPlayed["music_scene"] = null;
+        }
+
         gameLocal.setData(gameLocal.music, this.btn_music.selected ? 0 : 1);
         this.btn_music.selected ? GameMusic.CloseAllSound() : GameMusic.PlaySound("music_scene");
         this.btn_music.label = this.btn_music.selected ? "关闭音乐" : "开启音乐";

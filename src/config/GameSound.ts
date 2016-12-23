@@ -1,24 +1,24 @@
 /**
  * 游戏音效播放管理
  */
-module GameSound {
+class GameSound {
     /**
      * 音效对象池
      * @type {{}}
      */
-    export var SoundDict = {};
+    static SoundDict = {};
 
     /**
      * 加载过的资源
      */
-    export var  loadList = {};
+    static loadList = {};
 
     /**
      * 音效音量
      * @type {number}
      * @private
      */
-    export var  _volume: number = 1;
+    static _volume: number = 1;
 
     /**
      * @param name  音乐文件名
@@ -26,7 +26,7 @@ module GameSound {
      * @param startTime 开始播放的时间 默认是0
      * @constructor
      */
-    export function PlaySound(name: string, loops: number = 1, startTime: number = 0) {
+    static PlaySound(name: string, loops: number = 1, startTime: number = 0) {
         var _switch: number = +gameLocal.getData(gameLocal.sound);
         if (_switch == 0) return;
 
@@ -50,7 +50,7 @@ module GameSound {
 
         channel = sound.play(startTime, loops);
 
-        channel.volume = GameSound._volume / 100;
+        channel.volume = GameSound._volume;
 
         SoundDict[name] = {"s": sound, "c": channel};
     }
@@ -59,7 +59,7 @@ module GameSound {
      * 关闭所有在播放的音效
      * @constructor
      */
-    export function CloseAllSound(): void {
+    static CloseAllSound(): void {
         var SoundDict = GameSound.SoundDict;
 
         for (var name in SoundDict) {
@@ -74,11 +74,11 @@ module GameSound {
      * @param name
      * @constructor
      */
-    export function CloseSound(name: string): void {
+    static CloseSound(name: string): void {
 
-        if (!SoundDict[name]) return;
+        if (!this.SoundDict[name]) return;
 
-        var channel: egret.SoundChannel = SoundDict[name]["c"];
+        var channel: egret.SoundChannel = this.SoundDict[name]["c"];
 
         if (channel) channel.stop();
     }
@@ -87,7 +87,7 @@ module GameSound {
      * 加载一个音效
      * @param name
      */
-    export function loadMusic(name: string): void {
+    static loadMusic(name: string): void {
         GameSound.loadList[name] = name;
 
         if (RES.hasRes(name)) {
@@ -101,8 +101,8 @@ module GameSound {
      * 设置音效音量
      * @param volume
      */
-    export function setSoundVolume(volume: number = 0): void {
-        GameSound._volume = volume;
+    static setSoundVolume(volume: number = 0): void {
+        GameSound._volume = volume / 100;
 
         var SoundDict = GameSound.SoundDict;
 
@@ -110,7 +110,7 @@ module GameSound {
             var channel: egret.SoundChannel = SoundDict[name]["c"];
 
             if (channel && channel.position > 0) {
-                channel.volume = volume / 100;
+                channel.volume = volume;
             }
         }
     }

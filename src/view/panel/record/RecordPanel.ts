@@ -12,7 +12,7 @@ class RecordPanel extends BasePanel {
     public pcList: Array<any> = [];
 
 
-    private isXiang: boolean = false;
+    isXiang: boolean = false;
 
     public constructor() {
         super();

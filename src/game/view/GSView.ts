@@ -18,7 +18,7 @@ class GSView extends egret.Sprite {
     funcSelectView: FuncSelectView;
 
     //上级UI层
-    frontUIContainer: egret.DisplayObjectContainer;
+    frontUIContainer: FrontUIContainer;
 
     //上层特效层
     frontEffectContainer: egret.DisplayObjectContainer;
@@ -87,7 +87,7 @@ class GSView extends egret.Sprite {
 
         this.funcSelectView = new FuncSelectView;
 
-        this.frontUIContainer = new egret.DisplayObjectContainer;
+        this.frontUIContainer = new FrontUIContainer;
 
         this.frontEffectContainer = new egret.DisplayObjectContainer;
 

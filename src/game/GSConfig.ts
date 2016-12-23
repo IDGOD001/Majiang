@@ -46,6 +46,13 @@ class GSConfig {
 
     static poolReturnCount: number = 10;
 
+    //回放里的功能菜单位置
+    static replayFuncPos = {1:{x:696,y:478,dx:-100,dy:0},
+        2:{x:773,y:466,dx:0,dy:-100},
+        3:{x:696,y:137,dx:-100,dy:0},
+        4:{x:195,y:466,dx:0,dy:-100}
+    };
+
     //头像初始位置
     static headinitPos = {
         1: {x: 440, y: 440},

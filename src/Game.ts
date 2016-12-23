@@ -106,8 +106,8 @@ class game {
         game.ruleVo = new GameRuleVo();
         game.changeThreeVo = new ChangeThreeVo();
 
-        GameMusic._volume = +gameLocal.getData(gameLocal.musicVolume);
-        GameSound._volume = +gameLocal.getData(gameLocal.soundVolume);
+        GameMusic.setSoundVolume(+gameLocal.getData(gameLocal.musicVolume));
+        GameSound.setSoundVolume(+gameLocal.getData(gameLocal.soundVolume));
 
         game.paiStyle = +gameLocal.getData(gameLocal.style);
         game.paiColor = +gameLocal.getData(gameLocal.color);

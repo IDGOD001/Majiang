@@ -38,7 +38,7 @@ class TimerManager extends BaseDispatcher {
 
             game.gamewarmIndex++;
 
-            if (game.gamewarmIndex > gameConfig.gamewarmList.length) {
+            if (game.gamewarmIndex >= gameConfig.gamewarmList.length) {
                 game.gamewarmIndex = 0;
             }
         }
