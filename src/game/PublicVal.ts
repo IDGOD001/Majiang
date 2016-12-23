@@ -47,8 +47,6 @@ class PublicVal {
 
     clear() {
 
-        console.log("=======================");
-
         this.bao = null;
         this.zhuangFlag = 0;
         //this.rules = "";

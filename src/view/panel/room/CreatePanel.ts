@@ -1,8 +1,10 @@
 class CreatePanel extends BasePanel {
 
+    private btnGroup: eui.Group;
     private btn_xuezhan: eui.Button;
     private btn_xueliu: eui.Button;
     private btn_siren2: eui.Button;
+    private ruleGroup: eui.Group;
     private scroller: eui.Scroller;
     private viewGroup: eui.Group;
     private btn_start: eui.Button;
@@ -25,6 +27,17 @@ class CreatePanel extends BasePanel {
 
         this.bgView.setType(BgViewType.curtain);
         this.bgView.setTitle("create_btn");
+
+        switch (game.gameType) {
+            case GameType.sichuan:
+                this.btnGroup.visible = true;
+                this.ruleGroup.left = 173;
+                break;
+            default:
+                this.btnGroup.visible = false;
+                this.ruleGroup.left = 23;
+                break;
+        }
 
         this.xuezhanView = new CreateXuezhanView();
         this.xueliuView = new CreateXueliuView();

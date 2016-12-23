@@ -167,8 +167,6 @@ class Weixin {
 
         var body: BodyMenuShareAppMessage = new BodyMenuShareAppMessage();
 
-        console.log("===============", game.roomRoundMax);
-
         if (roomid) {
             body.title = "【" + game.roomOwner.nick + "】邀请你加入房间:" + (roomid.split("").join(" ")) + "-【" + game.gameName + "】";
 
