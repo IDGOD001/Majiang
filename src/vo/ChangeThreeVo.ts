@@ -6,7 +6,7 @@
 class ChangeThreeVo extends BaseDataVo {
 
     //换三张类型
-    type: CardType;
+    type: PaiType;
     //换三张队列
     cards: any[] = [];
 
@@ -42,7 +42,7 @@ class ChangeThreeVo extends BaseDataVo {
      * @param type
      * @returns {boolean}
      */
-    checkType(type: CardType) {
+    checkType(type: PaiType) {
         if (this.type != null && this.type != type) {
             return false;
         }
@@ -52,7 +52,7 @@ class ChangeThreeVo extends BaseDataVo {
             return false;
         }
 
-        if (gamePai.getCtLength(type) < 3) {
+        if (GamePai.getCtLength(type) < 3) {
             return false;
         }
         return true;
@@ -63,8 +63,8 @@ class ChangeThreeVo extends BaseDataVo {
      * @returns {any[]}
      */
     getRecommend(): any[] {
-        this.type = gamePai.getCtShortest(3);
-        this.cards = gamePai.getCtCards(this.type, 3);
+        this.type = GamePai.getCtShortest(3);
+        this.cards = GamePai.getCtCards(this.type, 3);
         return this.cards;
     }
 }

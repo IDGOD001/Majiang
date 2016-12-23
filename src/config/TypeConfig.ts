@@ -28,17 +28,9 @@ enum GameStatus {
 }
 
 /**
- * 方向
+ * 卡牌类型(1万 2条 3筒 4中发白)
  */
-enum DirType {
-    bottom = 1, right, top, left
-}
-
-/**
- * 卡牌类型
- * 1万 2条 3筒 4中发白
- */
-enum CardType {
+enum PaiType {
     unknow, wan = 1, tiao, tong, zi
 }
 
@@ -46,9 +38,7 @@ enum CardType {
  * 换三张类型
  */
 enum ChangeThreeType {
-    clockwise = 1,
-    anti_clockwise,
-    other
+    clockwise = 1, anti_clockwise, other
 }
 
 /**
@@ -63,20 +53,4 @@ enum CardRaiseMode {
  */
 enum InterruptType {
     chi, peng, minggang, angang, ting, hu, gangshangkaihua, yipaoduoxiang, hujiaozhuanyi
-}
-
-/**
- * 游戏玩法
- */
-enum PlayType {
-    xuezhandaodi = 17, xueliuchenghe, sanren_2 = 20, sanren_3, siren_2
-}
-
-/**
- * 游戏规则
- */
-enum GameRule {
-    jiawu = 1, qingyise, kouting, jihujipiao, zangang, shoubayi, beikaobei, zerenzhi,
-    zimojiadi = 9, zimojiafan, dianganghua_pao, dianganghua_zimo, huansanzhang, yaojiujiangdui, menqingzhongzhang, tiandihu,
-    fengding = 19, paizhang = 23, kaertiao = 24
 }

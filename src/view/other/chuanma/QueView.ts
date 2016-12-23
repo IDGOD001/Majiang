@@ -82,17 +82,17 @@ class QueView extends BaseSprite {
 
         this.hide();
 
-        var type: CardType = CardType.unknow;
+        var type: PaiType = PaiType.unknow;
 
         switch (this.queBtn) {
             case this.btn_wan:
-                type = CardType.wan;
+                type = PaiType.wan;
                 break;
             case this.btn_tiao:
-                type = CardType.tiao;
+                type = PaiType.tiao;
                 break;
             case this.btn_tong:
-                type = CardType.tong;
+                type = PaiType.tong;
                 break;
         }
 
@@ -105,31 +105,31 @@ class QueView extends BaseSprite {
     }
 
     private recommend() {
-        var type: CardType = gamePai.getCtShortest();
+        var type: PaiType = GamePai.getCtShortest();
         switch (type) {
-            case CardType.tiao:
+            case PaiType.tiao:
                 this.playRecommend(this.btn_tiao);
                 break;
-            case CardType.tong:
+            case PaiType.tong:
                 this.playRecommend(this.btn_tong);
                 break;
-            case CardType.wan:
+            case PaiType.wan:
                 this.playRecommend(this.btn_wan);
                 break;
         }
 
-        var types: CardType[] = [CardType.tong, CardType.tiao, CardType.wan];
+        var types: PaiType[] = [PaiType.tong, PaiType.tiao, PaiType.wan];
 
         for (var i: number = 0; i < types.length; i++) {
-            if (types[i] != type && gamePai.getCtLength(type) == gamePai.getCtLength(types[i])) {
+            if (types[i] != type && GamePai.getCtLength(type) == GamePai.getCtLength(types[i])) {
                 switch (types[i]) {
-                    case CardType.tiao:
+                    case PaiType.tiao:
                         this.playRecommend(this.btn_tiao);
                         break;
-                    case CardType.tong:
+                    case PaiType.tong:
                         this.playRecommend(this.btn_tong);
                         break;
-                    case CardType.wan:
+                    case PaiType.wan:
                         this.playRecommend(this.btn_wan);
                         break;
                 }

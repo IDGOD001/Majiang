@@ -56,23 +56,23 @@ class EffectManager extends BaseManager {
         this.scoreView.play(scores);
     }
 
-    private onGangshangkaihua(dir: DirType) {
+    private onGangshangkaihua(dir: Dir4) {
         this.gangshangkaihuaView.play(dir);
     }
 
-    private onYipaoduoxiang(dirs: DirType[]) {
+    private onYipaoduoxiang(dirs: Dir4[]) {
         this.yipaoduoxiangView.play(dirs);
     }
 
-    private onHujiaozhuanyi(dirs: DirType[]) {
+    private onHujiaozhuanyi(dirs: Dir4[]) {
         this.hujiaozhuanyiView.play(dirs);
     }
 
-    private onRaining(dir: DirType) {
+    private onRaining(dir: Dir4) {
         this.xiayuView.play(dir);
     }
 
-    private onWindy(dir: DirType) {
+    private onWindy(dir: Dir4) {
         this.guafengView.play(dir);
     }
 

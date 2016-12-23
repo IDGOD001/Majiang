@@ -42,7 +42,7 @@ class MJView extends eui.Component {
     }
 
     updateState() {
-        if (this.dir == DirType.bottom) {
+        if (this.dir == Dir4.bottom) {
             this.stateImg.visible = false;
             return;
         }
@@ -68,13 +68,13 @@ class MJView extends eui.Component {
         this.stateImg.y = acekit.height >> 1;
 
         switch (this.dir) {
-            case DirType.right:
+            case Dir4.right:
                 this.stateImg.x += 300;
                 break;
-            case DirType.top:
+            case Dir4.top:
                 this.stateImg.y -= 200;
                 break;
-            case DirType.left:
+            case Dir4.left:
                 this.stateImg.x -= 300;
                 break;
         }
@@ -150,7 +150,7 @@ class MJView extends eui.Component {
             }
 
             if (PublicVal.state == StateType.shuffle || PublicVal.state == StateType.ting || game.isHu
-                || (gamePai.getCtLength(game.roomQue[this.dir]) != 0 && game.roomQue[this.dir] != card.pai.type)
+                || (GamePai.getCtLength(game.roomQue[this.dir]) != 0 && game.roomQue[this.dir] != card.pai.type)
             ) {
                 card.unactivate();
                 card.enabled = false;

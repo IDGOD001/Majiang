@@ -12,8 +12,9 @@ class CreatePanel extends BasePanel {
     private xuezhanView: CreateXuezhanView;
     private xueliuView: CreateXueliuView;
     private siren2View: CreateSiren2View;
+    private shenyangView: CreateShenyangView;
 
-    private playType: PlayType = PlayType.xueliuchenghe;
+    private playType: RuleType = RuleType.shenyangmajiang;
     private view: CreateBaseView;
 
     public constructor() {
@@ -34,6 +35,7 @@ class CreatePanel extends BasePanel {
                 this.ruleGroup.left = 173;
                 break;
             default:
+                this.width = 730;
                 this.btnGroup.visible = false;
                 this.ruleGroup.left = 23;
                 break;
@@ -42,6 +44,7 @@ class CreatePanel extends BasePanel {
         this.xuezhanView = new CreateXuezhanView();
         this.xueliuView = new CreateXueliuView();
         this.siren2View = new CreateSiren2View();
+        this.shenyangView = new CreateShenyangView();
 
         this.update();
 
@@ -53,16 +56,26 @@ class CreatePanel extends BasePanel {
     }
 
     private clickHandler(e: egret.TouchEvent) {
-        switch (e.currentTarget) {
-            case this.btn_xuezhan:
-                this.playType = PlayType.xuezhandaodi;
-                break;
-            case this.btn_xueliu:
-                this.playType = PlayType.xueliuchenghe;
-                break;
-            case this.btn_siren2:
-                this.playType = PlayType.siren_2;
-                break;
+
+        var arr: any[] = [this.btn_xueliu, this.btn_xuezhan, this.btn_siren2];
+        for (var i: number = 0; i < arr.length; i++) {
+            arr[i].enabled = true;
+        }
+
+        var btn: eui.Button = <eui.Button>e.currentTarget;
+        if (btn) {
+            btn.enabled = false;
+            switch (e.currentTarget) {
+                case this.btn_xuezhan:
+                    this.playType = RuleType.xuezhandaodi;
+                    break;
+                case this.btn_xueliu:
+                    this.playType = RuleType.xueliuchenghe;
+                    break;
+                case this.btn_siren2:
+                    this.playType = RuleType.siren_2;
+                    break;
+            }
         }
 
         this.update();
@@ -70,45 +83,36 @@ class CreatePanel extends BasePanel {
 
     private update() {
 
-        this.clear();
+        this.scroller.viewport.scrollV = 0;
+        this.scroller.validateNow();
+
+        this.viewGroup.removeChildren();
 
         switch (this.playType) {
-            case PlayType.xueliuchenghe:
-                this.btn_xueliu.enabled = false;
+            case RuleType.xueliuchenghe:
                 this.view = this.xueliuView;
                 break;
-            case PlayType.xuezhandaodi:
-                this.btn_xuezhan.enabled = false;
+            case RuleType.xuezhandaodi:
                 this.view = this.xuezhanView;
                 break;
-            case PlayType.sanren_2:
+            case RuleType.sanren_2:
                 break;
-            case PlayType.sanren_3:
+            case RuleType.sanren_3:
                 break;
-            case PlayType.siren_2:
-                this.btn_siren2.enabled = false;
+            case RuleType.siren_2:
                 this.view = this.siren2View;
+                break;
+            case RuleType.shenyangmajiang:
+                this.view = this.shenyangView;
                 break;
         }
 
         this.viewGroup.addChild(this.view);
     }
 
-    clear() {
-        this.viewGroup.removeChildren();
-
-        this.scroller.viewport.scrollV = 0;
-        this.scroller.validateNow();
-
-        var arr: any[] = [this.btn_xueliu, this.btn_xuezhan, this.btn_siren2];
-        for (var i: number = 0; i < arr.length; i++) {
-            arr[i].enabled = true;
-        }
-    }
-
     private startGame(): void {
         game.roomRoundMax = Number(this.view.getQuan()) * 4;
-        
+
         //创建房间
         game.manager.socketManager.send(2, {
             args: {

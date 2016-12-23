@@ -63,8 +63,8 @@ class CreateXuezhanView extends CreateBaseView {
     getRule() {
         var rule: any[] = [];
 
-        rule.push(PlayType.xuezhandaodi);
-        rule.push([GameRule.fengding, this.getRate()]);
+        rule.push(RuleType.xuezhandaodi);
+        rule.push([RuleType.fengding, this.getRate()]);
 
         var box: eui.CheckBox;
         for (var i: number = 1; i <= 8; i++) {
@@ -72,28 +72,28 @@ class CreateXuezhanView extends CreateBaseView {
             if (box && box.selected) {
                 switch (i) {
                     case 1:
-                        rule.push(GameRule.zimojiadi);
+                        rule.push(RuleType.zimojiadi);
                         break;
                     case 2:
-                        rule.push(GameRule.zimojiafan);
+                        rule.push(RuleType.zimojiafan);
                         break;
                     case 3:
-                        rule.push(GameRule.dianganghua_pao);
+                        rule.push(RuleType.dianganghua_pao);
                         break;
                     case 4:
-                        rule.push(GameRule.dianganghua_zimo);
+                        rule.push(RuleType.dianganghua_zimo);
                         break;
                     case 5:
-                        rule.push(GameRule.huansanzhang);
+                        rule.push(RuleType.huansanzhang);
                         break;
                     case 6:
-                        rule.push(GameRule.yaojiujiangdui);
+                        rule.push(RuleType.yaojiujiangdui);
                         break;
                     case 7:
-                        rule.push(GameRule.menqingzhongzhang);
+                        rule.push(RuleType.menqingzhongzhang);
                         break;
                     case 8:
-                        rule.push(GameRule.tiandihu);
+                        rule.push(RuleType.tiandihu);
                         break;
                 }
             }

@@ -48,19 +48,19 @@ class ScoreView extends BaseGameSprite {
         }
 
         switch (Number(dir)) {
-            case DirType.top:
+            case Dir4.top:
                 target.x = game.stage.stageWidth / 2;
                 target.y = 90;
                 break;
-            case DirType.bottom:
+            case Dir4.bottom:
                 target.x = game.stage.stageWidth / 2;
                 target.y = 430;
                 break;
-            case DirType.left:
+            case Dir4.left:
                 target.x = 40;
                 target.y = game.stage.stageHeight / 2 + 50;
                 break;
-            case DirType.right:
+            case Dir4.right:
                 target.x = game.stage.stageWidth - 60;
                 target.y = game.stage.stageHeight / 2 + 50;
                 break;

@@ -30,7 +30,7 @@ class YipaoduoxiangView extends BaseSprite {
         this.clean();
     }
 
-    play(dirs: DirType[]) {
+    play(dirs: Dir4[]) {
         this.show();
 
         for (var i: number = 0; i < dirs.length; i++) {
@@ -38,23 +38,23 @@ class YipaoduoxiangView extends BaseSprite {
         }
     }
 
-    excute(index: number, dir: DirType) {
+    excute(index: number, dir: Dir4) {
         var target: any = this["icon" + index];
 
         switch (dir) {
-            case DirType.top:
+            case Dir4.top:
                 target.x = game.stage.stageWidth / 2;
                 target.y = 100;
                 break;
-            case DirType.bottom:
+            case Dir4.bottom:
                 target.x = game.stage.stageWidth / 2;
                 target.y = 480;
                 break;
-            case DirType.left:
+            case Dir4.left:
                 target.x = 160;
                 target.y = game.stage.stageHeight / 2 + 50;
                 break;
-            case DirType.right:
+            case Dir4.right:
                 target.x = game.stage.stageWidth - 160;
                 target.y = game.stage.stageHeight / 2;
                 break;

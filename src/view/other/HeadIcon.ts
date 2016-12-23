@@ -15,12 +15,12 @@ class HeadIcon extends BaseGameSprite {
     private _isOwner: boolean = false;
     private _isZhuang: boolean = false;
     private _isOffline: boolean = false;
-    private _que: CardType = CardType.unknow;
+    private _que: PaiType = PaiType.unknow;
 
-    dir: DirType;
+    dir: Dir4;
     player: PlayerVo;
 
-    constructor(dir: DirType = DirType.bottom) {
+    constructor(dir: Dir4 = Dir4.bottom) {
         super();
         this.skinName = "HeadIconSkin";
         this.dir = dir;
@@ -109,19 +109,19 @@ class HeadIcon extends BaseGameSprite {
         this.img_kuang_normal.visible = !value;
     }
 
-    set que(value: CardType) {
+    set que(value: PaiType) {
         this._que = value;
 
         this.img_que.visible = true;
 
         switch (value) {
-            case CardType.wan:
+            case PaiType.wan:
                 this.img_que.source = "img_dq_1";
                 break;
-            case CardType.tiao:
+            case PaiType.tiao:
                 this.img_que.source = "img_dq_2";
                 break;
-            case CardType.tong:
+            case PaiType.tong:
                 this.img_que.source = "img_dq_3";
                 break;
             default:
@@ -172,13 +172,13 @@ class HeadIcon extends BaseGameSprite {
 
     reset() {
         this.isZhuang = false;
-        this.que = CardType.unknow;
+        this.que = PaiType.unknow;
     }
 
     clean() {
         this.isZhuang = false;
         this.isOwner = false;
-        this.que = CardType.unknow;
+        this.que = PaiType.unknow;
         this.player = null;
         this.img_head.source = "game_head_null";
         this.lab_nick.text = "";

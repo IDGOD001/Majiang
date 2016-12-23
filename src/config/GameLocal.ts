@@ -1,9 +1,9 @@
 /**
- * gameLocal
+ * GameLocal
  * @Author Ace.c
  * @Create 2016-12-12 19:36
  */
-class gameLocal {
+class GameLocal {
 
     //游戏存储key
     static get localKey(): string {
@@ -34,12 +34,12 @@ class gameLocal {
     static soundVolume: string = "soundVolume";
 
     static init() {
-        if (!gameLocal.getData(gameLocal.style)) gameLocal.setData(gameLocal.style, 1);
-        if (!gameLocal.getData(gameLocal.color)) gameLocal.setData(gameLocal.color, 1);
-        if (!gameLocal.getData(gameLocal.music)) gameLocal.setData(gameLocal.music, 1);
-        if (!gameLocal.getData(gameLocal.sound)) gameLocal.setData(gameLocal.sound, 1);
-        if (!gameLocal.getData(gameLocal.musicVolume)) gameLocal.setData(gameLocal.musicVolume, 0.2);
-        if (!gameLocal.getData(gameLocal.soundVolume)) gameLocal.setData(gameLocal.soundVolume, 0.5);
+        if (!GameLocal.getData(GameLocal.style)) GameLocal.setData(GameLocal.style, 1);
+        if (!GameLocal.getData(GameLocal.color)) GameLocal.setData(GameLocal.color, 1);
+        if (!GameLocal.getData(GameLocal.music)) GameLocal.setData(GameLocal.music, 1);
+        if (!GameLocal.getData(GameLocal.sound)) GameLocal.setData(GameLocal.sound, 1);
+        if (!GameLocal.getData(GameLocal.musicVolume)) GameLocal.setData(GameLocal.musicVolume, 0.2);
+        if (!GameLocal.getData(GameLocal.soundVolume)) GameLocal.setData(GameLocal.soundVolume, 0.5);
     }
 
     //读取数据

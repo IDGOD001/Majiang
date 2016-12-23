@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="CreateShenyangViewSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect left="0" right="0" top="0" bottom="0" visible="false"/>
+	<e:Group right="0" left="0" x="10">
+		<e:layout>
+			<e:HorizontalLayout gap="20" verticalAlign="middle"/>
+		</e:layout>
+		<e:Image source="create_mode" x="544" y="-92"/>
+		<e:Group left="130" top="0" width="501">
+			<e:RadioButton id="btn_quan_1" label="4局（房卡x2）" skinName="skins.CheckBox_Round_LeftSkin" horizontalCenter="0" selected="true" groupName="shenyang_quan"/>
+			<e:RadioButton id="btn_quan_2" label="8局（房卡x3）" horizontalCenter="0" x="10" y="10" skinName="skins.CheckBox_Round_RightSkin" groupName="shenyang_quan"/>
+			<e:layout>
+				<e:HorizontalLayout gap="0" horizontalAlign="justify"/>
+			</e:layout>
+		</e:Group>
+	</e:Group>
+	<e:Group left="0" right="0" top="70" bottom="0">
+		<e:Group right="0" left="0" top="161" x="10" y="10">
+			<e:layout>
+				<e:HorizontalLayout gap="20"/>
+			</e:layout>
+			<e:Image source="create_play" x="505" y="-122"/>
+			<e:Group left="150" top="140">
+				<e:CheckBox id="btn_rule_1" x="10" y="10" label="点炮包三家" selected="true" width="170"/>
+				<e:CheckBox id="btn_rule_2" y="20" label="摆夹" x="20" width="170" selected="true"/>
+				<e:CheckBox id="btn_rule_3" y="30" label="吃开门" x="30" selected="true" width="170"/>
+				<e:CheckBox id="btn_rule_4" y="40" label="闷胡" x="40" width="170" selected="true"/>
+				<e:CheckBox id="btn_rule_5" y="50" label="报听加倍" x="50" selected="true" width="170"/>
+				<e:layout>
+					<e:TileLayout requestedColumnCount="3"/>
+				</e:layout>
+			</e:Group>
+		</e:Group>
+		<e:layout>
+			<e:VerticalLayout/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

@@ -22,23 +22,23 @@ class GuafengView extends BaseSprite {
         this.clean();
     }
 
-    play(dir: DirType) {
+    play(dir: Dir4) {
         this.show();
 
         switch (dir) {
-            case DirType.top:
+            case Dir4.top:
                 this.icon.x = game.stage.stageWidth / 2;
                 this.icon.y = 100;
                 break;
-            case DirType.bottom:
+            case Dir4.bottom:
                 this.icon.x = game.stage.stageWidth / 2;
                 this.icon.y = 480;
                 break;
-            case DirType.left:
+            case Dir4.left:
                 this.icon.x = 160;
                 this.icon.y = game.stage.stageHeight / 2;
                 break;
-            case DirType.right:
+            case Dir4.right:
                 this.icon.x = game.stage.stageWidth - 160;
                 this.icon.y = game.stage.stageHeight / 2;
                 break;

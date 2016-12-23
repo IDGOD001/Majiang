@@ -184,7 +184,7 @@ class ResultItemView extends BaseGameSprite {
             types = hu_types[i];
 
             if (typeof types == "number") {
-                hu_desc += GSConfig.huTypeMap[types] + " ";
+                hu_desc += HuConfig.getHuTypeName(types) + " ";
                 continue;
             }
 
@@ -192,17 +192,17 @@ class ResultItemView extends BaseGameSprite {
                 continue;
             }
             if (types[0] == 24 || types[0] == 25 || types[0] == 49) {
-                hu_desc += "" + GSConfig.huTypeMap[types[0]] + "x" + types[1] + " ";
+                hu_desc += "" + HuConfig.getHuTypeName(types[0]) + "x" + types[1] + " ";
             }
             else {
-                hu_desc += "" + GSConfig.huTypeMap[types[0]];
+                hu_desc += "" + HuConfig.getHuTypeName(types[0]);
                 hu_desc += "(";
                 for (var j: number = 1; j < types.length; j++) {
                     if (types[j].length) {
-                        hu_desc += GSConfig.huTypeMap[types[j][0]] + "x" + types[j][1];
+                        hu_desc += HuConfig.getHuTypeName(types[j][0]) + "x" + types[j][1];
                     }
                     else {
-                        hu_desc += GSConfig.huTypeMap[types[j]];
+                        hu_desc += HuConfig.getHuTypeName(types[j]);
                     }
                     if (j != types.length - 1) {
                         hu_desc += " ";

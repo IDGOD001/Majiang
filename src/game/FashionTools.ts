@@ -67,31 +67,6 @@ class FashionTools {
         GSController.i.updateGameStyle();
     }
 
-
-    /**
-     * 格式化规则文字
-     * @param rules
-     * @returns {string}
-     */
-    static formatRules(rules: number[]) {
-        var ruleStr: string = "";
-        for (var i: number = 0; i < rules.length; i++) {
-            if (typeof rules[i] == "number") {
-                if (gameConfig.rules[rules[i]]) {
-                    ruleStr += gameConfig.rules[rules[i]] + " ";
-                }
-            }
-            else {
-                switch (rules[i][0]) {
-                    case GameRule.fengding:
-                        ruleStr += rules[i][1] + "番" + gameConfig.rules[rules[i][0]] + " ";
-                        break;
-                }
-            }
-        }
-        return ruleStr;
-    }
-
     /**
      * 格式化牌型
      * @param type

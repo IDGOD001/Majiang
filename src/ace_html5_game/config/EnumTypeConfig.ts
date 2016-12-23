@@ -1,6 +1,6 @@
 
 /**
- * Gender
+ * 性别
  * @Author Ace.c
  * @Create 2016-11-18 11:06
  */
@@ -9,7 +9,25 @@ enum Gender {
 }
 
 /**
- * Language
+ * 4方向
+ * @Author Ace.c
+ * @Create 2016-11-18 14:34
+ */
+enum Dir4 {
+    bottom = 1, right, top, left
+}
+
+/**
+ * 8方向
+ * @Author Ace.c
+ * @Create 2016-11-18 11:07
+ */
+enum Dir8 {
+    up, down, left, right, upl, upr, downl, downr
+}
+
+/**
+ * 语言
  * @Author Ace.c
  * @Create 2016-11-18 11:05
  */
@@ -19,7 +37,7 @@ enum Language {
 }
 
 /**
- * Color
+ * 颜色
  * @Author Ace.c
  * @Create 2016-11-18 11:10
  */
@@ -41,7 +59,7 @@ enum Color {
 }
 
 /**
- * GameQuality
+ * 品质
  * @Author Ace.c
  * @Create 2016-11-18 11:09
  */
@@ -54,7 +72,7 @@ enum Quality {
 }
 
 /**
- * 获取品质颜色
+ * 品质颜色
  * @param quality
  * @returns {Color}
  */

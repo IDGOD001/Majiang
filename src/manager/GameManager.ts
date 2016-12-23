@@ -33,7 +33,7 @@ class GameManager extends BaseDispatcher {
      */
     playEffect(type: InterruptType, pos: number, ...args) {
         var gender: Gender = GSDataProxy.i.gData.getSexByPos(pos);
-        var dir: DirType = GSDataProxy.i.gData.getDir(pos);
+        var dir: Dir4 = GSDataProxy.i.gData.getDir(pos);
         var sound: string;
         switch (type) {
             case InterruptType.chi:

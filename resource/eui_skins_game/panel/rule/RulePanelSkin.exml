@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="RulePanelSkin" width="880" height="570" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<ns1:BgView left="0" right="0" bottom="0" top="0" skinName="BgViewSkin"/>
-	<e:Group top="110" left="13" bottom="30">
+	<e:Group left="13" bottom="30" top="90">
 		<e:Image source="activit_jian" y="92" x="104" locked="true"/>
 		<e:Image source="lashen_15" y="127" scale9Grid="2,1,2,2" width="166" height="3" x="35" locked="true"/>
 		<e:Scroller y="132" height="346" x="35">
@@ -28,7 +28,7 @@
 			<e:VerticalLayout horizontalAlign="center"/>
 		</e:layout>
 	</e:Group>
-	<e:Group bottom="31" right="24" left="173" top="109">
+	<e:Group bottom="31" right="24" left="173" top="90">
 		<e:Image source="panel_1" left="0" bottom="0" top="0" scale9Grid="20,20,23,15" right="0" x="10" y="10" locked="true"/>
 		<e:Scroller id="scroller" left="10" right="10" top="10" bottom="10">
 			<e:Group id="group">

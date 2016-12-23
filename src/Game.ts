@@ -6,7 +6,7 @@
 class game {
 
     //游戏类型
-    static gameType: GameType = GameType.sichuan;
+    static gameType: GameType = GameType.shenyang;
     //版本号
     static version: string = "0.1.0";
 
@@ -41,13 +41,16 @@ class game {
     static player: PlayerVo;
     //房间-ID
     static roomid: number = 0;
-    //房间-玩法(血流血战等等)
-    static roomPlayType: PlayType;
     //房间-规则
     static roomRules: any[] = [];
+    //房间-规则文本
+    static get roomRuleText():string {
+        return RuleConfig.ruleText(this.roomRules);
+    }
+
     //房间-番数
     static roomRate: number = 1;
-    //房间-牌张
+    //房间-牌张(默认13张,特殊规则需要特殊处理,转至RuleConfig)
     static roomZhang: number = 13;
     //房间-最大局数
     static roomRoundMax: number;
@@ -66,9 +69,9 @@ class game {
     //房间-玩家缺门记录
     static roomQue: any = {};
     //房间-牌堆剩余
-    static roomPaidui:number;
+    static roomPaidui: number;
     //房间-庄家方向
-    static roomZhuangDir:DirType;
+    static roomZhuangDir: Dir4;
 
     //是否是房主
     static isRoomOwner: boolean = false;
@@ -95,7 +98,7 @@ class game {
         this.stage = stage;
 
         acekit.init(stage);
-        gameLocal.init();
+        GameLocal.init();
         this.manager.init();
 
         stage.addChild(LayerManager.gameLayer());
@@ -106,8 +109,8 @@ class game {
         game.ruleVo = new GameRuleVo();
         game.changeThreeVo = new ChangeThreeVo();
 
-        game.paiStyle = +gameLocal.getData(gameLocal.style);
-        game.paiColor = +gameLocal.getData(gameLocal.color);
+        game.paiStyle = +GameLocal.getData(GameLocal.style);
+        game.paiColor = +GameLocal.getData(GameLocal.color);
     }
 
     //初始化房间方向
@@ -129,31 +132,6 @@ class game {
         gData.pos2Dir[b] = 2;
         gData.pos2Dir[c] = 3;
         gData.pos2Dir[d] = 4;
-    }
-
-    //初始化房间方向
-    static initRoomRule() {
-        for (var i: number = 0; i < game.roomRules.length; i++) {
-            if (typeof game.roomRules[i] == "object") {
-                var arr: number = game.roomRules[i];
-                if (arr[0] == 19) {//番数
-                    game.roomRate = arr[1];
-                }
-                else if (arr[0] == 23) {//张数
-                    game.roomZhang = arr[1];
-                }
-                continue;
-            }
-            switch (game.roomRules[i]) {
-                case PlayType.xueliuchenghe:
-                case PlayType.xuezhandaodi:
-                case PlayType.siren_2:
-                case PlayType.sanren_3:
-                case PlayType.sanren_2:
-                    game.roomPlayType = game.roomRules[i];
-                    break;
-            }
-        }
     }
 
     //房间准备

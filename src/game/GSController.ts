@@ -246,7 +246,7 @@ class GSController extends egret.EventDispatcher {
     //刷新房间人员信息
     updateRoom() {
         this.scene.updateRoomID(game.roomid);
-        this.scene.updateRule(PublicVal.i.rules);
+        this.scene.updateRule();
         this.gsView.updateRoom();
         this.visibleReadyIcon();
         this.visibleStartButton();

@@ -3,7 +3,7 @@
  * @Author Ace.c
  * @Create 2016-12-14 10:49
  */
-class gamePai {
+class GamePai {
 
 
 
@@ -12,11 +12,11 @@ class gamePai {
      * @param limitLength 最低限制长度(大于等于该长度, 默认为-1不限制)
      * @returns {any}
      */
-    static getCtShortest(limitLength: number = -1): CardType {
+    static getCtShortest(limitLength: number = -1): PaiType {
         var list: any[][] = [
-            [CardType.wan, this.getCtLength(CardType.wan)],
-            [CardType.tiao, this.getCtLength(CardType.tiao)],
-            [CardType.tong, this.getCtLength(CardType.tong)]
+            [PaiType.wan, this.getCtLength(PaiType.wan)],
+            [PaiType.tiao, this.getCtLength(PaiType.tiao)],
+            [PaiType.tong, this.getCtLength(PaiType.tong)]
         ];
 
         list.sort(function (a, b) {
@@ -49,7 +49,7 @@ class gamePai {
      * @param type
      * @returns {number}
      */
-    static getCtLength(type: CardType): number {
+    static getCtLength(type: PaiType): number {
         var handCards: any[] = PublicVal.i.getHandPais(1);
         var length: number = 0;
         var card: any;
@@ -70,7 +70,7 @@ class gamePai {
      * @param length
      * @returns {any[]}
      */
-    static getCtCards(type: CardType, length: number = -1): any[] {
+    static getCtCards(type: PaiType, length: number = -1): any[] {
         var handCards: any[] = PublicVal.i.getHandPais(1);
         var cards: any[] = [];
         var card: any;
