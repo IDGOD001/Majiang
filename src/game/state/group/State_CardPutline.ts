@@ -33,7 +33,7 @@ class State_CardPutline extends BaseState {
             this.showTime += advanceTime;
 
             if (this.showTime >= this.showDelayTime) {
-                GameSound.PlaySound("sound_card_hover");
+                GameSound.play("sound_card_hover");
 
                 for (var i: number = 1; i <= 4; i++) {
                     var cardView: CardView = this.mjviews[i].getHandCard(this.showIndex);

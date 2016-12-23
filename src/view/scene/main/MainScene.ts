@@ -187,7 +187,7 @@ class MainScene extends eui.Component {
         this.head_group.addChild(_shpBeMask);
         this._head.mask = _shpBeMask;
 
-        GameMusic.PlaySound("music_scene");
+        GameMusic.play("music_scene");
 
         this.update();
 

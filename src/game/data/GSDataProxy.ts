@@ -420,7 +420,7 @@ class GSDataProxy {
 
         GSController.i.updateCenterInfo();
 
-        GameSound.PlaySound("sound_card_hover");
+        GameSound.play("sound_card_hover");
 
         FashionTools.autoPush();
     }
@@ -478,7 +478,7 @@ class GSDataProxy {
             case 4://听牌
                 break;
             case 22://幺九杠
-                // GameSound.PlaySound((pai[0].number == 1 ? "yaogang_" : "jiugang_") + this.gData.getSexByPos(pos));
+                // GameSound.play((pai[0].number == 1 ? "yaogang_" : "jiugang_") + this.gData.getSexByPos(pos));
                 // this.gData.addFuncPai(3, dir, action, pai, pai[0].number, true);
                 // if (dir == 1) {
                 //     //删除手牌数据 3
@@ -486,7 +486,7 @@ class GSDataProxy {
                 // } else {
                 //     this.gData.removeOtherHandPai(dir, 3);
                 // }
-                // GameSound.PlaySound("sound_down");
+                // GameSound.play("sound_down");
                 break;
             case 23://旋风杠
                 break;
@@ -526,7 +526,7 @@ class GSDataProxy {
                 game.manager.dispatchEvent(EffectEvent.Guafeng, dir);//刮风特效
                 break;
             case 26://中发白杠
-                // GameSound.PlaySound("xuanfenggang_" + this.gData.getSexByPos(pos));
+                // GameSound.play("xuanfenggang_" + this.gData.getSexByPos(pos));
                 // this.gData.addFuncPai(0, dir, action, pai, 0, true);
                 // if (dir == 1) {
                 //     //删除手牌数据 3
@@ -534,10 +534,10 @@ class GSDataProxy {
                 // } else {
                 //     this.gData.removeOtherHandPai(dir, 3);
                 // }
-                // GameSound.PlaySound("sound_down");
+                // GameSound.play("sound_down");
                 break;
             case 27://幺九杠 补蛋
-                // GameSound.PlaySound("bugang_" + this.gData.getSexByPos(pos));
+                // GameSound.play("bugang_" + this.gData.getSexByPos(pos));
                 // pai.length -= 3;
                 // var everPai = PublicVal.i.getPai(dir, 22, pai[0].number);
                 // var everSrc = [1, 1, 1];
@@ -552,10 +552,10 @@ class GSDataProxy {
                 // } else {
                 //     this.gData.removeOtherHandPai(dir, 1);
                 // }
-                // GameSound.PlaySound("sound_down");
+                // GameSound.play("sound_down");
                 break;
             case 28://中发白  补蛋
-                // GameSound.PlaySound("bugang_" + this.gData.getSexByPos(pos));
+                // GameSound.play("bugang_" + this.gData.getSexByPos(pos));
                 // pai.length -= 3;
                 // var everPai = PublicVal.i.getPai(dir, 26);
                 // var everSrc = [1, 1, 1];
@@ -569,7 +569,7 @@ class GSDataProxy {
                 // } else {
                 //     this.gData.removeOtherHandPai(dir, 1);
                 // }
-                // GameSound.PlaySound("sound_down");
+                // GameSound.play("sound_down");
                 break;
             case 99://胡牌
                 var mjview: MJView = GSController.i.gsView.MJViews[dir];
@@ -655,8 +655,8 @@ class GSDataProxy {
     //S2C 更新打入池中的牌子
     S2C_PoolPai(obj: any) {
 
-        GameSound.PlaySound(obj.data.type + "_" + obj.data.number + "_" + this.gData.getSexByPos(obj.data.pos));
-        GameSound.PlaySound("sound_throw");
+        GameSound.play(obj.data.type + "_" + obj.data.number + "_" + this.gData.getSexByPos(obj.data.pos));
+        GameSound.play("sound_throw");
 
         var dir = this.gData.getDir(obj.data.pos);
 
@@ -758,18 +758,18 @@ class GSDataProxy {
                 case 17://点炮
                     this.gData.result.dianPaoPos = hupai.pos;
                     //this.gData.result.dianPaoPai = hupai.pai;
-                    GameSound.PlaySound("dianpao_" + this.gData.getSexByPos(hupai.pos_hu));
+                    GameSound.play("dianpao_" + this.gData.getSexByPos(hupai.pos_hu));
                     break;
                 case 29://天胡
-                    GameSound.PlaySound("zimo_" + this.gData.getSexByPos(hupai.pos_hu));
+                    GameSound.play("zimo_" + this.gData.getSexByPos(hupai.pos_hu));
                     selfHu = true;
                     break;
                 case 13://摸宝
-                    GameSound.PlaySound("bao_" + this.gData.getSexByPos(hupai.pos_hu));
+                    GameSound.play("bao_" + this.gData.getSexByPos(hupai.pos_hu));
                     selfHu = true;
                     break;
                 case 7://自摸
-                    GameSound.PlaySound("zimo_" + this.gData.getSexByPos(hupai.pos_hu));
+                    GameSound.play("zimo_" + this.gData.getSexByPos(hupai.pos_hu));
                     selfHu = true;
                     break;
             }

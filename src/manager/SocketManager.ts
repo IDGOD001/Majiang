@@ -5,8 +5,8 @@ class SocketManager extends SocketNetwork {
         return this._i || (this._i = new SocketManager());
     }
 
-    private timeOutId: any;
     private status: ConnectStatus;
+    private timestamp: number;
 
     public Agree: any = {};
 
@@ -28,11 +28,16 @@ class SocketManager extends SocketNetwork {
     closeHandler() {
         super.closeHandler();
 
-        egret.clearTimeout(this.timeOutId);
+        console.log(this.timestamp, common.timestamp);
 
         switch (this.status) {
             case ConnectStatus.connecting://连接中断开
-                this.networkIsNot();
+                if (common.timestamp - this.timestamp < 1000) {
+                    this.networkIsNot();
+                }
+                else {
+                    this.connectTimeOut();
+                }
                 break;
             case ConnectStatus.connected://连接成功后断开
                 this.loginConflict();
@@ -68,15 +73,9 @@ class SocketManager extends SocketNetwork {
             port = gameConfig.address_game.port;
         }
 
-        super.connect(ip, port, linkType);
+        this.timestamp = common.timestamp;
 
-        var _this = this;
-        this.timeOutId = egret.setTimeout(function () {
-            if (!this.connected) {
-                _this.close();
-                _this.connectTimeOut();
-            }
-        }, this, 10000);
+        super.connect(ip, port, linkType);
     }
 
     send(messageID: number, data: any = null) {

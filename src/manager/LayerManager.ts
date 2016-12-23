@@ -69,8 +69,11 @@ class LayerManager extends eui.UILayer {
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onOpen, this);
     }
 
-    private onOpen(): void {
-        GameMusic.PlaySound("music_scene");
+    private onOpen(e:egret.TouchEvent): void {
+        GameMusic.play("music_scene");
+        // if (e.target instanceof eui.Button) {
+        //     GameSound.play("sound_clock");
+        // }
     }
 
     private onClickLoad(): void {

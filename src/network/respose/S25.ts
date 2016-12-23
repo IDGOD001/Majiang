@@ -16,7 +16,7 @@ class S25 {
                     var clickey: number = +chat.id;
                     var sex: number = +chat.sex;
                     Global.showPao(chat);
-                    GameSound.PlaySound("chat_" + sex + "_" + clickey);
+                    GameSound.play("chat_" + sex + "_" + clickey);
                     break;
                 case 2:     //语音聊天
                     var voice = some.voice;
