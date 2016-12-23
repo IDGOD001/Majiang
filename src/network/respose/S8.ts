@@ -48,12 +48,7 @@ class S8 {
                         break;
                 }
 
-                // if (player.status == "leave") {
-                //     delete game.roomPlayers[player.uid];
-                // }
-                // else {
-                    game.roomPlayers[player.uid] = player;
-                // }
+                game.roomPlayers[player.uid] = player;
 
                 if (player.uid == game.player.uid) {
                     game.isRoomOwner = player.pos == 1;
