@@ -5,6 +5,13 @@
  */
 class common {
 
+    /**
+     * 时间戳
+     * @returns {number}
+     */
+    static get timestamp(): number {
+        return new Date().getTime();
+    }
 
     /**
      * 获得平台类型 如 微信、qqzone、qq、微博、校内、facebook

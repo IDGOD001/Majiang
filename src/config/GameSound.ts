@@ -12,9 +12,11 @@ class GameSound {
      */
     static play(name: string, startTime: number = 0, loops: number = 1) {
 
-        //设置关闭
-        if (+gameLocal.getData(gameLocal.sound) == 0) return;
-
+        //检测是否关闭
+        if (+gameLocal.getData(gameLocal.sound) == 0) {
+            this.stop();
+            return;
+        }
 
         if (RES.hasRes(name)) {
             var _this = this;

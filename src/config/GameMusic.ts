@@ -2,6 +2,7 @@ class GameMusic {
 
     private static sound: egret.Sound;
     private static soundChannel: egret.SoundChannel;
+    private static soundPlaying: boolean = false;
 
     /**
      * 播放
@@ -12,20 +13,30 @@ class GameMusic {
      */
     static play(name: string, startTime: number = 0, loops: number = 0) {
 
-        //设置关闭
-        if (+gameLocal.getData(gameLocal.music) == 0) return;
+        //检测是否关闭
+        if (+gameLocal.getData(gameLocal.music) == 0) {
+            this.stop();
+            return;
+        }
 
         if (!this.sound) {
             if (RES.hasRes(name)) {
                 var _this = this;
                 RES.getResAsync(name, function () {
-                    if (_this.sound)return;
                     _this.sound = RES.getRes(name);
-                    _this.soundChannel = _this.sound.play(startTime, loops);
-                    _this.soundVolume = +gameLocal.getData(gameLocal.musicVolume);
                 }, this);
             }
+            return;
         }
+
+        if (this.soundPlaying) {
+            return;
+        }
+
+        this.soundChannel = this.sound.play(startTime, loops);
+        this.soundVolume = +gameLocal.getData(gameLocal.musicVolume);
+
+        this.soundPlaying = true;
     }
 
     /**
@@ -38,6 +49,7 @@ class GameMusic {
 
         this.sound = null;
         this.soundChannel = null;
+        this.soundPlaying = false;
     }
 
     /**

@@ -65,35 +65,36 @@ class HeadIcon extends BaseGameSprite {
         this.player = player;
 
         if (player) {
-            this.setHeadImg(game.player.pic);
+
+            this.updateHeadImg();
+
             this.lab_nick.text = "" + this.player.nick;
             this.lab_uid.text = "" + this.player.uid;
             this.isOwner = this.player.pos == 1;
-            this.isOffline = this.player.status == "offline";
             this.que = game.roomQue[player.dir];
+
+            if (this.player && PublicVal.state == StateType.ready) {
+                this.btn_kill.visible = this.player && PublicVal.state == StateType.ready && game.isRoomOwner && this.player.pos != 1;
+            }
+            else {
+                this.btn_kill.visible = false;
+            }
         }
         else {
             this.clean();
         }
     }
 
-    set isOffline(value: boolean) {
-        this._isOffline = value;
-        if (value) {
-            this.img_head.source = "game_head_lixian";
-        }
-        else if (!this.player) {
+    updateHeadImg() {
+        this.img_head.source = null;
+
+        if (!this.player) {
             this.img_head.source = "game_head_null";
+        } else if (this.player.status == "offline") {
+            this.img_head.source = "game_head_lixian";
         }
         else {
             this.setHeadImg(this.player.pic);
-        }
-
-        if (this.player && PublicVal.state == StateType.ready) {
-            this.btn_kill.visible = this.player && PublicVal.state == StateType.ready && game.isRoomOwner && this.player.pos != 1;
-        }
-        else {
-            this.btn_kill.visible = false;
         }
     }
 
@@ -175,7 +176,6 @@ class HeadIcon extends BaseGameSprite {
     }
 
     clean() {
-        this.isOffline = false;
         this.isZhuang = false;
         this.isOwner = false;
         this.que = CardType.unknow;
@@ -184,6 +184,7 @@ class HeadIcon extends BaseGameSprite {
         this.lab_nick.text = "";
         this.lab_uid.text = "";
         this.lab_fen.text = "";
+        this.btn_kill.visible = false;
     }
 }
 
