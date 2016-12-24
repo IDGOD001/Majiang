@@ -489,6 +489,15 @@ class GSDataProxy {
                 // GameSound.play("sound_down");
                 break;
             case 23://旋风杠
+                game.manager.playEffect(InterruptType.fenggang, pos);
+
+                this.gData.addFuncPai(0, dir, action, pai, 0, true);
+                if (dir == 1) {
+                    this.gData.removeOwnHandPais(pai);
+                }
+                else {
+                    this.gData.removeOtherHandPai(dir, 4);
+                }
                 break;
             case 24://暗杠
                 game.manager.playEffect(InterruptType.angang, pos);
@@ -526,15 +535,14 @@ class GSDataProxy {
                 if(game.gameType == GameType.sichuan)game.manager.dispatchEvent(EffectEvent.Guafeng, dir);//刮风特效
                 break;
             case 26://中发白杠
-                // GameSound.play("xuanfenggang_" + this.gData.getSexByPos(pos));
-                // this.gData.addFuncPai(0, dir, action, pai, 0, true);
-                // if (dir == 1) {
-                //     //删除手牌数据 3
-                //     this.gData.removeOwnHandPais([pai[0], pai[1], pai[2]]);
-                // } else {
-                //     this.gData.removeOtherHandPai(dir, 3);
-                // }
-                // GameSound.play("sound_down");
+                game.manager.playEffect(InterruptType.zigang, pos);
+
+                this.gData.addFuncPai(0, dir, action, pai, 0, true);
+                if (dir == 1) {
+                    this.gData.removeOwnHandPais([pai[0], pai[1], pai[2]]);
+                } else {
+                    this.gData.removeOtherHandPai(dir, 3);
+                }
                 break;
             case 27://幺九杠 补蛋
                 // GameSound.play("bugang_" + this.gData.getSexByPos(pos));

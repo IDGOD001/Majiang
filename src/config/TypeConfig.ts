@@ -52,5 +52,5 @@ enum CardRaiseMode {
  * 中断类型
  */
 enum InterruptType {
-    chi, peng, minggang, angang, ting, hu, gangshangkaihua, yipaoduoxiang, hujiaozhuanyi
+    chi, peng, minggang, angang, zigang, fenggang, ting, hu, gangshangkaihua, yipaoduoxiang, hujiaozhuanyi
 }
