@@ -112,7 +112,17 @@ class CenterBoom extends egret.DisplayObjectContainer{
      * 更新对局数
      */
     updateRoundCount() {
-        this.roundCountText.text = game.roomRoundCur + "/" + game.roomRoundMax;
+        switch (game.gameType) {
+            case GameType.sichuan:
+                this.roundCountText.text = game.roomRoundCur + "/" + game.roomRoundMax;
+                break;
+            default:
+                var a = ((game.roomRoundCur - 1) / 4 ^ 0) + 1;
+                var b = game.roomRoundMax / 4 ^ 0;
+                a = a > b ? b : a;
+                this.roundCountText.text = a + "/" + b;
+                break;
+        }
     }
 
 

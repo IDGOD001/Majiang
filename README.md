@@ -101,7 +101,17 @@
 -define(Choice_Rule_Shoupaishu,23).
 %%卡二条
 -define(Choice_Rule_Kaertiao,24).
-
+%%摆夹（默认勾选）
+-define(Choice_Rule_Baijia,101).
+%%吃开门（默认未勾选）
+%%勾选后允许玩家用吃牌开门，如果未勾选则不碰不开门
+-define(Choice_Rule_Chikaimen,102).
+%%闷胡（默认未勾选）
+-define(Choice_Rule_Menting,103).
+%%报听加倍（默认未勾选）
+-define(Choice_Rule_Baotingjiabei,104).
+%%包一家
+-define(Choice_Rule_Baoyijia,105).
 
 # -----------------------------------中断类型
 
@@ -155,6 +165,10 @@
 -define(Interrupt_Hu_Kaertiao,48).%%卡二条
 -define(Interrupt_Gang_Dian,49).%%点杠
 -define(Interrupt_Hu_Jiangdui,50).%%将对
+-define(Interrupt_Hu_Menting,52).%%闷听
+-define(Interrupt_Hu_Baoting,53).%%报听
+-define(Interrupt_Hu_Sanqing,54).%%三清
+-define(Interrupt_Hu_Siqing,55).%%四清
 -define(Interrupt_Hu,99).
 -define(Interrupt_Jiang,999).
 -define(Interrupt_Dingque,9999).

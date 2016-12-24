@@ -3,7 +3,7 @@
  * 游戏类型
  */
 enum GameType {
-    baicheng = 1, sichuan = 100, shenyang
+    baicheng = 1, shenyang, sichuan = 100
 }
 
 /**

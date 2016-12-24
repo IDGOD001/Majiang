@@ -5,8 +5,9 @@
  */
 class CreateShenyangView extends CreateBaseView {
 
-    private btn_quan_1: eui.RadioButton;
     private btn_quan_2: eui.RadioButton;
+    private btn_quan_4: eui.RadioButton;
+    private btn_quan_8: eui.RadioButton;
 
     private btn_rule_1: eui.CheckBox;
     private btn_rule_2: eui.CheckBox;
@@ -14,27 +15,22 @@ class CreateShenyangView extends CreateBaseView {
     private btn_rule_4: eui.CheckBox;
     private btn_rule_5: eui.CheckBox;
 
-    //圈数
-    private quan: number = 1;
-    //番数
-    private rate: number = 2;
-
-    private ruleVo: GameRuleVo;
-
     public constructor() {
         super();
 
-        this.skinName = "CreateXuezhanViewSkin";
+        this.skinName = "CreateShenyangViewSkin";
     }
 
     public childrenCreated() {
         super.childrenCreated();
-
     }
 
     getQuan() {
-        if (this.btn_quan_1.selected) {
-            return 1;
+        if (this.btn_quan_8.selected) {
+            return 8;
+        }
+        else if (this.btn_quan_4.selected) {
+            return 4;
         }
         else if (this.btn_quan_2.selected) {
             return 2;
@@ -44,15 +40,16 @@ class CreateShenyangView extends CreateBaseView {
     getRule() {
         var rule: any[] = [];
 
-        // rule.push(RuleType.shenyangmajiang);
-
         var box: eui.CheckBox;
-        for (var i: number = 1; i <= 8; i++) {
+        for (var i: number = 0; i <= 5; i++) {
             box = this["btn_rule_" + i];
             if (box && box.selected) {
                 switch (i) {
+                    case 0:
+                        rule.push(RuleType.baoyijia);
+                        break;
                     case 1:
-                        rule.push(RuleType.baosanjia);
+                        rule.push(RuleType.zerenzhi);
                         break;
                     case 2:
                         rule.push(RuleType.baijia);

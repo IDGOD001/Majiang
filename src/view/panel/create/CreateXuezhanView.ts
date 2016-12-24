@@ -21,13 +21,6 @@ class CreateXuezhanView extends CreateBaseView {
     private btn_rule_7: eui.CheckBox;
     private btn_rule_8: eui.CheckBox;
 
-    //圈数
-    private quan: number = 1;
-    //番数
-    private rate: number = 2;
-
-    private ruleVo: GameRuleVo;
-
     public constructor() {
         super();
 

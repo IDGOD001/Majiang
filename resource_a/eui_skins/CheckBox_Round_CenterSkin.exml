@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.CheckBox_Round_CenterSkin" states="up,down,disabled,upAndSelected,downAndSelected,disabledAndSelected" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="40">
+	<e:Image width.disabledAndSelected="100%" width="100%" source="select_center" horizontalCenter="0"/>
+	<e:Image source="room_btn" y="1" includeIn="upAndSelected,downAndSelected,disabledAndSelected" horizontalCenter="4"/>
+	<e:Label verticalAlign="middle" fontFamily="微软雅黑" textAlign="center" size="18" id="labelDisplay" textColor="0xA07A4B" top="45" textColor.upAndSelected="0xFE0004" textColor.downAndSelected="0xFE0004" textColor.disabledAndSelected="0xFE0004" bold="true" horizontalCenter="4"/>
+</e:Skin>

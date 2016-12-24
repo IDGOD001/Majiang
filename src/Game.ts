@@ -111,6 +111,18 @@ class game {
 
         game.paiStyle = +GameLocal.getData(GameLocal.style);
         game.paiColor = +GameLocal.getData(GameLocal.color);
+
+        switch (this.gameType){
+            case GameType.sichuan:
+                gameConfig.address_test.ip = "192.168.2.251";
+                gameConfig.address_test.port = 10615;
+                break;
+            case GameType.shenyang:
+            default:
+                gameConfig.address_test.ip = "192.168.2.22";
+                gameConfig.address_test.port = 10415;
+                break;
+        }
     }
 
     //初始化房间方向

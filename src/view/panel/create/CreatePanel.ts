@@ -1,10 +1,8 @@
 class CreatePanel extends BasePanel {
 
-    private btnGroup: eui.Group;
     private btn_xuezhan: eui.Button;
     private btn_xueliu: eui.Button;
     private btn_siren2: eui.Button;
-    private ruleGroup: eui.Group;
     private scroller: eui.Scroller;
     private viewGroup: eui.Group;
     private btn_start: eui.Button;
@@ -14,7 +12,7 @@ class CreatePanel extends BasePanel {
     private siren2View: CreateSiren2View;
     private shenyangView: CreateShenyangView;
 
-    private playType: RuleType = RuleType.shenyangmajiang;
+    private ruleType: RuleType;
     private view: CreateBaseView;
 
     public constructor() {
@@ -30,14 +28,13 @@ class CreatePanel extends BasePanel {
         this.bgView.setTitle("create_btn");
 
         switch (game.gameType) {
-            case GameType.sichuan:
-                this.btnGroup.visible = true;
-                this.ruleGroup.left = 173;
+            case GameType.sichuan://四川麻将
+                this.skinState = "sichuan";
+                this.ruleType = RuleType.xueliuchenghe;//血流成河
                 break;
+            case GameType.shenyang://沈阳麻将
             default:
-                this.width = 730;
-                this.btnGroup.visible = false;
-                this.ruleGroup.left = 23;
+                this.skinState = "default";
                 break;
         }
 
@@ -48,11 +45,25 @@ class CreatePanel extends BasePanel {
 
         this.update();
 
-        this.btn_start.addEventListener(egret.TouchEvent.TOUCH_TAP, this.startGame, this);
+        this.btn_start.addEventListener(egret.TouchEvent.TOUCH_TAP, this.startHandler, this);
 
         this.btn_xuezhan.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
         this.btn_xueliu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
         this.btn_siren2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
+    }
+
+    private startHandler(e: egret.TouchEvent): void {
+        game.roomRoundMax = Number(this.view.getQuan()) * 4;
+
+        //创建房间
+        game.manager.socketManager.send(2, {
+            args: {
+                type: game.gameType,
+                pass: "0",
+                round: this.view.getQuan(),
+                rules: this.view.getRule()
+            }
+        });
     }
 
     private clickHandler(e: egret.TouchEvent) {
@@ -67,13 +78,13 @@ class CreatePanel extends BasePanel {
             btn.enabled = false;
             switch (e.currentTarget) {
                 case this.btn_xuezhan:
-                    this.playType = RuleType.xuezhandaodi;
+                    this.ruleType = RuleType.xuezhandaodi;
                     break;
                 case this.btn_xueliu:
-                    this.playType = RuleType.xueliuchenghe;
+                    this.ruleType = RuleType.xueliuchenghe;
                     break;
                 case this.btn_siren2:
-                    this.playType = RuleType.siren_2;
+                    this.ruleType = RuleType.siren_2;
                     break;
             }
         }
@@ -88,39 +99,44 @@ class CreatePanel extends BasePanel {
 
         this.viewGroup.removeChildren();
 
-        switch (this.playType) {
+        switch (game.gameType) {
+            case GameType.sichuan:
+                this.view = this.getSichuan();
+                break;
+            case GameType.shenyang:
+                this.view = this.getShenyang();
+                break;
+        }
+
+        if (this.view) {
+            this.viewGroup.addChild(this.view);
+        }
+    }
+
+    //沈阳麻将
+    private getShenyang() {
+        return this.shenyangView;
+    }
+
+    //四川麻将
+    private getSichuan() {
+        var view: CreateBaseView;
+
+        switch (this.ruleType) {
             case RuleType.xueliuchenghe:
-                this.view = this.xueliuView;
+                view = this.xueliuView;
                 break;
             case RuleType.xuezhandaodi:
-                this.view = this.xuezhanView;
+                view = this.xuezhanView;
+                break;
+            case RuleType.siren_2:
+                view = this.siren2View;
                 break;
             case RuleType.sanren_2:
                 break;
             case RuleType.sanren_3:
                 break;
-            case RuleType.siren_2:
-                this.view = this.siren2View;
-                break;
-            case RuleType.shenyangmajiang:
-                this.view = this.shenyangView;
-                break;
         }
-
-        this.viewGroup.addChild(this.view);
-    }
-
-    private startGame(): void {
-        game.roomRoundMax = Number(this.view.getQuan()) * 4;
-
-        //创建房间
-        game.manager.socketManager.send(2, {
-            args: {
-                type: game.gameType,
-                pass: "0",
-                round: this.view.getQuan(),
-                rules: this.view.getRule()
-            }
-        });
+        return view;
     }
 }

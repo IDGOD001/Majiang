@@ -7,8 +7,7 @@ enum RuleType {
     fengding = 19, zimojiadi = 9, zimojiafan, dianganghua_pao, dianganghua_zimo, huansanzhang, yaojiujiangdui, menqingzhongzhang, tiandihu,
     paizhang = 23, kaertiao,
     xuezhandaodi = 17, xueliuchenghe, sanren_2 = 20, sanren_3, siren_2,
-    baosanjia = 100, baijia, chikaimen, menhu, baotingjiabei,
-    shenyangmajiang = 1001
+    baijia = 101, chikaimen, menhu, baotingjiabei, baoyijia
 }
 
 /**
@@ -27,7 +26,7 @@ class RuleConfig {
         5: "攒杠",
         6: "手把一",
         7: "背靠背",
-        8: "责任制",
+        8: "包三家",
         9: "自摸加底",
         10: "自摸加番",
         11: "点杠花(点炮)",
@@ -44,6 +43,11 @@ class RuleConfig {
         22: "四人两房",
         23: "牌张",
         24: "卡二条",
+        101: "摆夹",
+        102: "吃开门",
+        103: "闷胡",
+        104: "报听加倍",
+        105: "包一家",
     };
 
     //特殊规则的处理

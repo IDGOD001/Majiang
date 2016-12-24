@@ -501,7 +501,7 @@ class GSDataProxy {
                     this.gData.removeOtherHandPai(dir, 4);
                 }
 
-                game.manager.dispatchEvent(EffectEvent.Xiayu, dir);//下雨特效
+                if(game.gameType == GameType.sichuan)game.manager.dispatchEvent(EffectEvent.Xiayu, dir);//下雨特效
                 break;
             case 25://明杠分(两种 1.3张手牌杠池牌 2.已经碰牌再明杠)
                 game.manager.playEffect(InterruptType.minggang, pos);
@@ -523,7 +523,7 @@ class GSDataProxy {
                 }
                 if (removeLen == 3) poolPai = tmpPai;
 
-                game.manager.dispatchEvent(EffectEvent.Guafeng, dir);//刮风特效
+                if(game.gameType == GameType.sichuan)game.manager.dispatchEvent(EffectEvent.Guafeng, dir);//刮风特效
                 break;
             case 26://中发白杠
                 // GameSound.play("xuanfenggang_" + this.gData.getSexByPos(pos));

@@ -3,13 +3,12 @@ class RulePanel extends BasePanel {
     private btn_xuezhan: eui.Button;
     private btn_xueliu: eui.Button;
     private btn_siren2: eui.Button;
+
     private scroller: eui.Scroller;
     private group: eui.Group;
     private lab_description: eui.Label;
 
-    private text: eui.Label;
-
-    private type: RuleType;
+    private ruleType: RuleType;
 
     public constructor() {
         super();
@@ -22,9 +21,18 @@ class RulePanel extends BasePanel {
 
         this.bgView.setTitle("rule_txt");
 
-        this.type = RuleType.xueliuchenghe;
+        switch (game.gameType) {
+            case GameType.sichuan://四川麻将
+                this.skinState = "sichuan";
+                this.ruleType = RuleType.xueliuchenghe;//血流成河
+                break;
+            case GameType.shenyang://沈阳麻将
+            default:
+                this.skinState = "default";
+                break;
+        }
 
-        this.decode();
+        this.update();
 
         this.btn_xuezhan.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
         this.btn_xueliu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
@@ -33,54 +41,48 @@ class RulePanel extends BasePanel {
 
     private clickHandler(e: egret.TouchEvent) {
 
-        this.cleanButton();
+        var arr: any[] = [this.btn_xueliu, this.btn_xuezhan, this.btn_siren2];
+        for (var i: number = 0; i < arr.length; i++) {
+            arr[i].enabled = true;
+        }
 
         var btn: eui.Button = <eui.Button>e.currentTarget;
         btn.enabled = false;
 
         switch (btn) {
             case this.btn_xueliu:
-                this.type = RuleType.xueliuchenghe;
+                this.ruleType = RuleType.xueliuchenghe;
                 break;
             case this.btn_xuezhan:
-                this.type = RuleType.xuezhandaodi;
+                this.ruleType = RuleType.xuezhandaodi;
                 break;
             case this.btn_siren2:
-                this.type = RuleType.siren_2;
+                this.ruleType = RuleType.siren_2;
                 break;
         }
 
-        this.decode();
+        this.update();
     }
 
-    public decode(): void {
+    public update(): void {
 
-        var key: string;
-        switch (this.type) {
-            case RuleType.xuezhandaodi:
-                key = "rule_xuezhandaodi";
+        var url: string;
+
+        switch (game.gameType) {
+            case GameType.sichuan:
+                url = this.getSichuan();
                 break;
-            case RuleType.xueliuchenghe:
-                key = "rule_xueliuchenghe";
-                break;
-            case RuleType.siren_2:
-                key = "rule_sirenliangfang";
-                break;
-            default:
-                key = "rule_xueliuchenghe";
+            case GameType.shenyang:
+                url = this.getShenyang();
                 break;
         }
 
         var _this = this;
-
-        RES.getResAsync(key, function (json, k) {
-
-            if (k != key)return;
-
+        RES.getResAsync(url, function (json, k) {
+            if (k != url)return;
             if (!json) return;
 
             var desc: string = "";
-
             if (json.title && json.title != "") {
                 desc += "　　" + json.title;
             }
@@ -108,10 +110,30 @@ class RulePanel extends BasePanel {
         }, this);
     }
 
-    private cleanButton() {
-        var arr: any[] = [this.btn_xueliu, this.btn_xuezhan, this.btn_siren2];
-        for (var i: number = 0; i < arr.length; i++) {
-            arr[i].enabled = true;
+    //沈阳麻将
+    private getShenyang() {
+        return "rule_shenyang";
+    }
+
+    //四川麻将
+    private getSichuan() {
+        var name: string;
+
+        switch (this.ruleType) {
+            case RuleType.xueliuchenghe:
+                name = "rule_xueliuchenghe";
+                break;
+            case RuleType.xuezhandaodi:
+                name = "rule_xuezhandaodi";
+                break;
+            case RuleType.siren_2:
+                name = "rule_sirenliangfang";
+                break;
+            case RuleType.sanren_2:
+                break;
+            case RuleType.sanren_3:
+                break;
         }
+        return name;
     }
 }
