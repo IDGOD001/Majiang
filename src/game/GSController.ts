@@ -431,9 +431,12 @@ class GSController extends egret.EventDispatcher {
             //设置按键事件 抓牌动画
             cardView.activate();
             cardView.addClick(this.onCardClick, this);
-            cardView.y = pos.y - 30;
-            egret.Tween.get(cardView).to({y: pos.y}, 200);
-            this.clearActivateCard();
+
+            if (game.status != GameStatus.changeThree) {
+                cardView.y = pos.y - 30;
+                egret.Tween.get(cardView).to({y: pos.y}, 200);
+                this.clearActivateCard();
+            }
 
             this.playTimeEffect(true, true);
 

@@ -196,12 +196,16 @@ class CardView extends egret.DisplayObjectContainer {
 
     //移出
     moveUp(tween: boolean = true) {
+        egret.Tween.removeTweens(this);
+
         if (tween)egret.Tween.get(this).to({y: this.pos.y - GSConfig.moveUpDis}, 200);
         else this.y = this.pos.y - GSConfig.moveUpDis;
     }
 
     //移回
     moveDown(tween: boolean = true) {
+        egret.Tween.removeTweens(this);
+
         if (tween)egret.Tween.get(this).to({y: this.pos.y}, 200);
         else this.y = this.pos.y;
     }

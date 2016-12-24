@@ -1066,6 +1066,10 @@
 				{
 					"compress":false,
 					"key":"sound_open_btn"
+				},
+				{
+					"compress":false,
+					"key":"RP_hand"
 				}
 			],
 			"sort":0

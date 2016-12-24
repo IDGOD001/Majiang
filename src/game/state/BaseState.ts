@@ -1,12 +1,12 @@
 /**
  * Created by Administrator on 2016/10/30.
  */
-class BaseState implements IState{
-    completed:boolean;
-    autoRemove:boolean;
-    stop:boolean;
+class BaseState implements IState {
+    completed: boolean;
+    autoRemove: boolean;
+    stop: boolean;
 
-    constructor(){
+    constructor() {
 
         this.stop = true;
     }
@@ -16,7 +16,7 @@ class BaseState implements IState{
         this.reset();
     }
 
-    exit(){
+    exit() {
 
         this.stop = true;
     }
@@ -27,7 +27,7 @@ class BaseState implements IState{
         this.stop = false;
     }
 
-    update(advanceTime:number, timeStamp?:number):void {
+    update(advanceTime: number, timeStamp?: number): void {
     }
 
 }

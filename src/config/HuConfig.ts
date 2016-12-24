@@ -130,5 +130,6 @@ class HuConfig {
                 name = "平胡";
                 break;
         }
+        return name;
     }
 }
