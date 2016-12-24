@@ -28,7 +28,7 @@ class gameConfig {
     //游戏服务器地址
     static address_game: any = {ip: "sichuan01.37gjw.com", port: 10415};
     //测试游戏服务器地址
-    static address_test: any = {ip: "192.168.2.22", port: 10415};
+    static address_test: any = {ip: "192.168.2.251", port: 10615};
 
     //TODO 常规设置
     //通用字体
