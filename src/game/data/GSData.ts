@@ -1,14 +1,14 @@
 /**
  * Created by Administrator on 2016/10/29.
  */
-class GSData{
+class GSData {
 
-    private static _i : GSData;
-    static get i(){
+    private static _i: GSData;
+    static get i() {
         return GSData._i || (GSData._i = new GSData);
     }
 
-    roomPlayers:PlayerVo[];
+    roomPlayers: PlayerVo[];
 
     //庄家是否出过牌
     //isZhuangPush:boolean;
@@ -16,74 +16,74 @@ class GSData{
     //更新轮到别人抓牌(庄家出完牌算开始抓牌!)
     //gang_end:boolean;
     //---------------------------------------
-    roomPass:number = 0;
-    dir2Pos:any = {};
-    pos2Dir:any = {};
+    roomPass: number = 0;
+    dir2Pos: any = {};
+    pos2Dir: any = {};
     //庄的pos
-    zhuangPos:number = -1;
+    zhuangPos: number = -1;
     //庄的dir
-    zhuangDir:number;
-    fen:boolean;
-    funcSelects : any;
-    chiObj:any;//属于funcSelects里的
+    zhuangDir: number;
+    fen: boolean;
+    funcSelects: any;
+    chiObj: any;//属于funcSelects里的
     //当前池牌
-    currPoolPai:any;
+    currPoolPai: any;
 
-    readyFlag:number = 0;
+    readyFlag: number = 0;
 
-    roomOwnDir:number = 0;
+    roomOwnDir: number = 0;
     //牌局开始过
-    roundStarted:boolean;
+    roundStarted: boolean;
     //更新轮到别人抓牌(庄家出完牌算开始抓牌!)
     // gang_end:boolean;
     //杠的分数
-    gangCurs:number[];
+    gangCurs: number[];
 
     //当前抓牌位置
-    turnPos:number;
+    turnPos: number;
     //当前抓牌方向(位置转换)
-    turnDir:number;
+    turnDir: number;
 
     //结算对象 存个data
-    result:any;
+    result: any;
     //结算类型 1-3 :胜利 失败 流局
-    resultType:number;
+    resultType: number;
 
     //重连后上来的四方牌局
-    rebackData:any;
+    rebackData: any;
     //重连上来的状态
-    rebackStatus:number = 0;
+    rebackStatus: number = 0;
     //重连的开始功能缓存执行显示
-    rebackViewFuncs:any[] = [];
+    rebackViewFuncs: any[] = [];
 
     //首次进入某房间
-    firstInRoom:boolean;
+    firstInRoom: boolean;
     //准备听牌
-    readyTing:boolean;
+    readyTing: boolean;
     //牌局准备好
-    roundReady:number;
+    roundReady: number;
 
     //是否显示功能菜单
-    isShowFunc:boolean;
+    isShowFunc: boolean;
     //庄家是否出过牌
     // isZhuangPush:boolean;
     //前一次庄家位置
-    lastZhuangPos:number;
+    lastZhuangPos: number;
     //是否连庄
-    isLianZhuang:boolean;
+    isLianZhuang: boolean;
     //断线重连后是否听牌
-    backTing:number;
+    backTing: number;
     //听牌结束后摊牌亮牌
-    tingEndShow:boolean;
+    tingEndShow: boolean;
     //是否听牌局
-    hasTingRule:boolean;
+    hasTingRule: boolean;
 
-    constructor(){
+    constructor() {
         this.clear();
     }
 
     //所有数据清理
-    clear(){
+    clear() {
         this.roundReset();
 
         PublicVal.state = StateType.ready;
@@ -91,14 +91,14 @@ class GSData{
         this.firstInRoom = false;
         this.roundStarted = false;
         this.readyFlag = 0;
-        this.gangCurs = [0,0,0,0,0];
+        this.gangCurs = [0, 0, 0, 0, 0];
         this.lastZhuangPos = 0;
         this.hasTingRule = false;
         this.isLianZhuang = false;
     }
 
     //继续回合的部分数据重置
-    roundReset(){
+    roundReset() {
         PublicVal.i.clear();
         PublicVal.state = StateType.continue;
 
@@ -114,32 +114,33 @@ class GSData{
         this.tingEndShow = false;
     }
 
-    setHandPais(dir,pais){
+    setHandPais(dir, pais) {
         PublicVal.i.allPais[dir].handPais = pais;
     }
 
     //添加功能牌
-    pushFuncPais(dir,obj){
+    pushFuncPais(dir, obj) {
         var funcPais = PublicVal.i.getFuncPais(dir);
         funcPais.push(obj);
     }
 
     //设置池牌
-    setPoolPais(dir,pais){
+    setPoolPais(dir, pais) {
         PublicVal.i.allPais[dir].poolPais = pais;
     }
 
     //获取抓牌
-    getCatchPai(dir:number){
+    getCatchPai(dir: number) {
         return PublicVal.i.allPais[dir].catchPai;
     }
+
     //赋值抓牌
-    setCatchPai(dir,pai){
+    setCatchPai(dir, pai) {
         PublicVal.i.allPais[dir].catchPai = pai;
     }
 
     //删除其他人的手牌
-    removeOtherHandPai(dir:number,count:number) {
+    removeOtherHandPai(dir: number, count: number) {
         var handPais = PublicVal.i.getHandPais(dir);
         console.log("删除其他人的手牌", handPais, handPais.length);
         if (handPais && handPais.length) {
@@ -149,7 +150,7 @@ class GSData{
     }
 
     //删除自己多张手牌
-    removeOwnHandPais(pais:any[]) {
+    removeOwnHandPais(pais: any[]) {
         for (var i: number = 0; i < pais.length; i++) {
             console.log("删除自己多张手牌:", pais[i].type, pais[i].number);
         }
@@ -169,26 +170,26 @@ class GSData{
     }
 
     //添加开局手牌(假象)
-    pushStartHandPai(){
+    pushStartHandPai() {
         var dir = this.zhuangDir;
         var catchPai = this.getCatchPai(dir);
-        this.pushHandPai(dir,catchPai);
+        this.pushHandPai(dir, catchPai);
     }
 
     //手牌添加
-    pushHandPai(dir:number,pai:any) {
+    pushHandPai(dir: number, pai: any) {
         var handPais = PublicVal.i.getHandPais(dir);
         if (handPais && handPais.length <= game.roomZhang) {
             handPais.push(pai);
         }
     }
 
-    getSexByPos(pos:number){
+    getSexByPos(pos: number) {
         return this.getRoomPlayerByPos(pos).sex;
     }
 
     //往功能牌型里添加牌 排序 方位 功能 牌
-    addFuncPai(sort:number,dir:number,action:number,pai:any[],number:number = 0,ever : any = null ) {
+    addFuncPai(sort: number, dir: number, action: number, pai: any[], number: number = 0, ever: any = null) {
         var funcPais = PublicVal.i.getFuncPais(dir);
         if (ever != null) ever = [1, 1, 1];
         if (action == 1) {
@@ -207,39 +208,40 @@ class GSData{
     }
 
     //获取功能选项存储
-    getFuncSelectByIndex(index:number){
-        for(var i:number = 0 ; i < this.funcSelects.length;i++){
-            if(index == this.funcSelects[i].index){
+    getFuncSelectByIndex(index: number) {
+        for (var i: number = 0; i < this.funcSelects.length; i++) {
+            if (index == this.funcSelects[i].index) {
                 return this.funcSelects[i];
             }
         }
     }
 
     //获取
-    getResultPersonLeft(dir:number){
+    getResultPersonLeft(dir: number) {
         var pos = this.getPos(dir);
-        for(var i:number = 0 ; i < this.result.person.length;i++){
+        for (var i: number = 0; i < this.result.person.length; i++) {
             var person = this.result.person[i];
-            if(person.pos == pos) return person.left;
+            if (person.pos == pos) return person.left;
         }
     }
 
     //通过pos取得方位
-    getDir(pos:number){
+    getDir(pos: number) {
         return this.pos2Dir[pos];
     }
 
     //通过方位获取pos
-    getPos(dir:number){
+    getPos(dir: number) {
         return this.dir2Pos[dir];
     }
 
     //根据pos获取玩家信息
-    getRoomPlayerByPos(pos:number):PlayerVo{
+    getRoomPlayerByPos(pos: number): PlayerVo {
         return this.roomPlayers[pos];
     }
+
     //根据dir获取玩家信息
-    getRoomPlayerByDir(dir:number){
+    getRoomPlayerByDir(dir: number) {
         return this.getRoomPlayerByPos(this.getPos(dir));
     }
 }

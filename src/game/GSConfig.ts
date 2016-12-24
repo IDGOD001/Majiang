@@ -420,6 +420,7 @@ class GSConfig {
     static handLens = {2: true, 5: true, 8: true, 11: true, 14: true};
     //暗杠牌的顶牌类型
     static gameAnGangStyle = {1: 3, 2: 2, 3: 2, 4: 2};
+    static gameAnGangStyleForChuanma = {1: 3, 2: 3, 3: 3, 4: 3};
     static replayAnGangStyle = {1: 3, 2: 3, 3: 3, 4: 3};
 
     static anGangStylePlus: any;
@@ -447,7 +448,15 @@ class GSConfig {
     static gameConfigInit() {
 
         GSConfig.handStylesPlus = GSConfig.gameHandStyles;
-        GSConfig.anGangStylePlus = GSConfig.gameAnGangStyle;
+
+        switch (game.gameType) {
+            case GameType.sichuan:
+                GSConfig.anGangStylePlus = GSConfig.gameAnGangStyleForChuanma;
+                break;
+            default:
+                GSConfig.anGangStylePlus = GSConfig.gameAnGangStyle;
+                break;
+        }
 
         for (var i: number = 1; i <= 4; i++) {
 
