@@ -346,6 +346,7 @@ class Replayer implements IUpdate {
         GSController.i.startView();
         GSConfig.replayConfigInit();
 
+        game.roomReady();
 
         GSController.i.gsView.replayControllView.visible = true;
 
@@ -358,6 +359,7 @@ class Replayer implements IUpdate {
         GSController.i.visibleZhuang();
         GSController.i.updateBaoView();
         GSController.i.updateReplayRoom(PublicVal.i.dirPerson);
+        GSController.i.gsView.updateState();
 
         this.__play();
 
