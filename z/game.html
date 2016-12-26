@@ -2,16 +2,16 @@
 <html>
 <body>
     <script>
-        function getParam(key) {
-            var r = new RegExp("(\\?|#|&)" + key + "=([^&#]*)(&|#|$)");
-            var m = location.href.match(r);
-            return decodeURIComponent(!m ? "" : m[2]);
+        function getUrlParams(val) {
+            var uri = window.location.search;
+            var re = new RegExp("" + val + "=([^&?]*)", "ig");
+            return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : "");
         }
 
 		location.href = "" +
                 "https://weixinhlmj.37gjw.com/chuanma/161224191953/index.html" +
-                "?roomid=" + getParam("roomid") +
-                "&code=" + getParam("code");
+                "?roomid=" + getUrlParams("roomid") +
+                "&code=" + getUrlParams("code");
     </script>
 </body>
 </html>
