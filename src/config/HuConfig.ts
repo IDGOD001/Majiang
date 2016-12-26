@@ -124,7 +124,7 @@ class HuConfig {
                 name = "点杠";
                 break;
             case 51:
-                name = "扫底炮";
+                name = "海底炮";
                 break;
             case 99:
                 name = "平胡";

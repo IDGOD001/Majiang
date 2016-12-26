@@ -35,7 +35,7 @@ class GameLocal {
 
     static init() {
         if (!GameLocal.getData(GameLocal.style)) GameLocal.setData(GameLocal.style, 1);
-        if (!GameLocal.getData(GameLocal.color)) GameLocal.setData(GameLocal.color, 1);
+        if (!GameLocal.getData(GameLocal.color)) GameLocal.setData(GameLocal.color, 0);
         if (!GameLocal.getData(GameLocal.music)) GameLocal.setData(GameLocal.music, 1);
         if (!GameLocal.getData(GameLocal.sound)) GameLocal.setData(GameLocal.sound, 1);
         if (!GameLocal.getData(GameLocal.musicVolume)) GameLocal.setData(GameLocal.musicVolume, 0.2);
