@@ -41,10 +41,10 @@ class Main extends eui.UILayer {
 
         //TODO 动态修改游戏地址访问地址
         if (accessType == "test") {//测试
-            GameConfig.clientUrl = GameConfig.protocolType + GameConfig.domainName + "chuanma/test.html";
+            GameConfig.clientUrl = GameConfig.protocolType + GameConfig.domainName + "shenyang/test.html";
         }
         else {//正式
-            GameConfig.clientUrl = GameConfig.protocolType + GameConfig.domainName + "chuanma/game.html";
+            GameConfig.clientUrl = GameConfig.protocolType + GameConfig.domainName + "shenyang/game.html";
         }
 
         //本地存储code比对, 如果相同则视为无效登录

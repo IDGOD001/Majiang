@@ -6,24 +6,24 @@ class GameConfig {
     //协议类型
     static protocolType: string = "https://";
     //游戏域名
-    static domainName: string = "weixinhlmj.37gjw.com/";
+    static domainName: string = "mj.h5sd.com/";
     //游戏地址
-    static clientUrl: string = GameConfig.protocolType + GameConfig.domainName + "chuanma/game.html";
+    static clientUrl: string = GameConfig.protocolType + GameConfig.domainName + "shenyang/game.html";
     //分享默认图
-    static shareImgUrl: string = GameConfig.protocolType + GameConfig.domainName + "chuanma/share.png";
+    static shareImgUrl: string = GameConfig.protocolType + GameConfig.domainName + "shenyang/share.png";
 
     //中心服务器地址 注意：这两个更换测试服 一定要改
-    static address_center: any = {ip: "sichuan01.37gjw.com", port: 10416};   //dbmj01.h5sd.com   lyqptest.h5sd.com
+    static address_center: any = {ip: "shenyang01.h5sd.com", port: 10416};   //dbmj01.h5sd.com   lyqptest.h5sd.com
     //HTTP服务器地址
-    static address_http: any = {ip: "sichuan01.37gjw.com", port: 9009};
+    static address_http: any = {ip: "shenyang01.h5sd.com", port: 9009};
     //游戏服务器地址
-    static address_game: any = {ip: "sichuan01.37gjw.com", port: 10415};
+    static address_game: any = {ip: "shenyang01.h5sd.com", port: 10415};
     //测试游戏服务器地址
     static address_test: any = {ip: "192.168.2.22", port: 10415};
 
     //TODO 微信
     //公众号的唯一标识
-    static appid: string = "wx1310f5f590acf9d5";
+    static appid: string = "wxb6349744356b5312";
     //回调code
     static code: string;
 
