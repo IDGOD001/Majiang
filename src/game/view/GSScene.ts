@@ -116,7 +116,7 @@ class GSScene extends egret.DisplayObjectContainer {
         this.ruleText.textColor = 0xc4e6a2;
         this.ruleText.size = 14;
 
-        this.ruleText.width = 360;
+        this.ruleText.width = 460;
         this.ruleText.height = 20;
         this.ruleText.anchorOffsetX = this.ruleText.width >> 1;
         this.ruleText.anchorOffsetY = 30;

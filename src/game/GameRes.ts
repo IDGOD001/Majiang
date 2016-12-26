@@ -19,7 +19,7 @@ class GameRes{
 
         GameRes.cardSheet || (GameRes.cardSheet = RES.getRes("card"));
 
-        return GameRes.cardSheet.getTexture(name) ;
+        return GameRes.cardSheet.getTexture(name);
 
     }
 

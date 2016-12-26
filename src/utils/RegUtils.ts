@@ -56,7 +56,7 @@ module RegUtils
 	    }
 	    else
 		{
-	        alert("您输入的Email地址格式不正确！");
+	        EffectUtils.showTips("您输入的Email地址格式不正确！");
 	        return false;
 	    }
 	}
@@ -127,7 +127,7 @@ module RegUtils
 	        }
 	        else
 			{
-	            alert( prompt );
+	            EffectUtils.showTips( prompt );
 	            return false;
 	        }
 	    }
@@ -139,7 +139,7 @@ module RegUtils
 	        }
 	        else
 			{
-	            alert( prompt );
+				EffectUtils.showTips( prompt );
 	            return false;
 	        }
 	    }

@@ -7,6 +7,8 @@ class _2
     {
         if(!obj) return;
 
+        console.log("创建房子： ",obj);
+
         return JSON.stringify(obj);
     }
 }

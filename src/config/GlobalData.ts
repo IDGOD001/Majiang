@@ -7,7 +7,7 @@ class GlobalData {
     /**
      * 版本号
      */
-    public resourceCode:string = "";  //0.2.0
+    public resourceCode:string = "0.5.0";  //0.5.0
 
     /**
      * 玩家信息
@@ -50,16 +50,12 @@ class GlobalData {
     public personList:any;
     
     /**
-     * type 1 条子（number  1 - 9 条）     2  筒子 （number  1 - 9 筒）     3  万字（number  1 - 9 万）    4  箭牌  ｛number   1 红中   2  发财   3白班｝
-     */
-
-    /**
      * 游戏提示
      * @type {string|string|string[]}
      */
     public gamewarmList:Array<string> =
     [
-        "代理咨询请联系微信：lyqp01；关注微信公众号【老友棋牌】，领取房卡奖励；文明娱乐，禁止赌博。",
+        "代理咨询请联系微信：lyqp110；关注微信公众号【老友棋牌】，领取房卡奖励；文明娱乐，禁止赌博。"
     ];
 
     /**

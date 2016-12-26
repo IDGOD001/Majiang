@@ -36,7 +36,7 @@ class Heart
 
         this.loginTime ++;
 
-        if(this.loginTime >= 50)
+        if(this.loginTime >= 100)
         {
             this.loginTime = 0;
 
@@ -58,7 +58,7 @@ class Heart
 
                 GlobalData.getInstance().gamewarmIndex++;
 
-                if(GlobalData.getInstance().gamewarmIndex > GlobalData.getInstance().gamewarmList.length) GlobalData.getInstance().gamewarmIndex = 0;
+                if(GlobalData.getInstance().gamewarmIndex > (GlobalData.getInstance().gamewarmList.length - 1)) GlobalData.getInstance().gamewarmIndex = 0;
             }
 
             if(GlobalData.getInstance().hornList.length > 0) Global.showHorn(20, 0x40f8ff);

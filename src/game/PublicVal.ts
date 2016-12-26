@@ -36,6 +36,8 @@ class PublicVal{
     bao:any;
     //庄家pos
     zhuang:number;
+    //回放版本号
+    replayVer:string;
 
     dir2Pos:any = {};
     pos2Dir:any = {};
@@ -66,6 +68,40 @@ class PublicVal{
     }
 
 
+    /*
+        初始化pos和dir映射表
+        pos : 玩家自己的pos
+        playerCount: 玩家总数量
+    * */
+    initPosAndDir(pos:number,playerCount:number = 4){
+
+        this.pos2Dir = {};
+        this.dir2Pos = {};
+
+        var a = pos;
+        var b = 1 + pos % playerCount;
+        var c = 1 + (pos + 1) % playerCount ;
+        var d = 1 + (pos + 2) % playerCount ;
+
+        this.pos2Dir[a] = 1;
+        this.pos2Dir[b] = 2;
+        this.pos2Dir[c] = 3;
+        this.pos2Dir[d] = 4;
+
+        this.dir2Pos[1] = a;
+        this.dir2Pos[2] = b;
+        this.dir2Pos[3] = c;
+        this.dir2Pos[4] = d;
+    }
+
+    //通过pos取得方位
+    getPlayerDir(pos:number){
+        return this.pos2Dir[pos];
+    }
+    //通过方位获取pos
+    getPlayerPos(dir:number){
+        return this.dir2Pos[dir];
+    }
 
     //获取手牌牌
     getHandPais(dir:number){

@@ -74,10 +74,12 @@ class FashionTools{
 
         for (var i: number = 0; i < rules.length; i++) {
 
+            if(+rules[i] == 3) continue;
+            
             ruleStr += GameConfig.rules[rules[i]] + " ";
 
         }
-        return ruleStr;
+        return ruleStr + " 单吊夹 流泪 三清 杠上开花";
 
     }
     /*
@@ -121,9 +123,11 @@ class FashionTools{
 
                 list.splice(i,1);
 
-                break;
+                return true;
             }
         }
+
+        return false;
     }
 
 }

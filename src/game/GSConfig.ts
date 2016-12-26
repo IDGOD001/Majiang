@@ -40,11 +40,19 @@ class GSConfig{
 
     static height:number = 640;
 
+    //玩家总人数
     static playerCount:number = 4;
 
     static moveUpDis:number = 25;
 
     static poolReturnCount:number = 10;
+
+    //回放里的功能菜单位置
+    static replayFuncPos = {1:{x:696,y:478,dx:-100,dy:0},
+                            2:{x:773,y:466,dx:0,dy:-100},
+                            3:{x:696,y:137,dx:-100,dy:0},
+                            4:{x:195,y:466,dx:0,dy:-100}
+                            };
 
     //头像初始位置
     static headinitPos = {
@@ -181,7 +189,7 @@ class GSConfig{
     //规则加强
     static posRulePlus:any = {1:GSConfig.posRule[1],2:GSConfig.posRule[2],3:GSConfig.posRule[3],4:GSConfig.posRule[4]};
 
-    static testPais : any[] = [ {type:3,number:1},
+/*    static testPais : any[] = [ {type:3,number:1},
                                 {type:3,number:2},
                                 {type:3,number:9},
                                 {type:3,number:9},
@@ -198,12 +206,12 @@ class GSConfig{
 
                                 {type:4,number:2},
                                 {type:4,number:2}
-                                ];
+                                ];*/
 
+    static funcSelectRes = ["F_guo","F_chi","F_peng","F_gang","F_budan","F_ting","F_xiaosa", "F_hu"];
 
-    static funcSelectRes = ["F_guo","F_chi","F_peng","F_gang","F_budan","F_ting","F_hu"];
-
-    static actionPVP = {    1:1,
+    static actionPVP = {    0:0,
+                            1:1,
                             2:2,
                             22:3,
                             24:3,
@@ -212,13 +220,13 @@ class GSConfig{
                             27:4,
                             28:4,
                             4 :5,
-                            99:6    };
+                            1001:6,
+                            99:7
+    };
     //获取方位位置
     static getPosByIndex(dir:number,style:number,index:number){
 
         var o : any = {};
-
-        //var pos = GSConfig.handPos[dir];
 
         var rule = GSConfig.posRulePlus[dir][style];
 
@@ -310,30 +318,42 @@ class GSConfig{
     }
     static handLens = {2:true,5:true,8:true,11:true,14:true};
 
+    /*
+        允许的手牌长度
+     */
     static allowLens(len:number){
-
         return GSConfig.handLens[len];
     }
 
-    static huTypeMap = {6:"庄家",
-                        7:"自摸",
-                        8:"站立",
-                        9:"带鸡",
-                        10:"夹胡",
-                        11:"双飘",
-                        12:"单飘",
-                        13:"摸宝",
-                        14:"宝中宝",
-                        15:"通宝",
-                        16:"门清",
-                        17:"点炮",
-                        18:"清一色",
-                        20:"暗叫",
-                        21:"海底捞月",
-                        29:"天胡",
-                        30:"夹五",
-                        99:"胡"
-                        };
+    static huTypeMap = {
+                            6:"庄家",
+                            7:"自摸",
+                            8:"站立",
+                            9:"带鸡",
+                            10:"夹胡",
+                            11:"双飘",
+                            12:"单飘",
+                            13:"",//摸宝
+                            14:"",//宝中宝
+                            15:"通宝",
+                            16:"门清",
+                            17:"点炮",
+                            18:"清一色",
+                            20:"暗叫",
+                            21:"海底捞月",
+                            29:"天胡",
+                            30:"夹五",
+                            31:"七对",
+                            99:"胡",
+                            10001:"杠上开花",
+                            10002:"潇洒",
+                            10003:"三清",
+                            10004:"流泪",
+                            10005:"跟庄有赏",
+                            10006:"扎五",
+                            10007:"点炮扎五"
+    };
+
         /*
         暗杠牌的顶牌类型
          */

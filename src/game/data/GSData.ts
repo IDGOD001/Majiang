@@ -81,6 +81,10 @@ class GSData{
 
     turnPos:number;
 
+    ting_list:Array<any>;
+
+    xiaosa_list:Array<any>;
+
     //当前局数
     //cur_round:number;
     //总局数
@@ -126,24 +130,33 @@ class GSData{
     //断线重连后是否听牌
     backTing:number;
 
+    //断线重连记录上次最后一张牌
+    endpai:any;
+
     //听牌结束后摊牌亮牌
     tingEndShow:boolean;
+
+    /**
+     * 听牌的类型
+     */
+    tingAction:number = 4;
 
     //是否听牌局
     hasTingRule:boolean;
 
+    //是否潇洒
+    hasXiaosaRule:boolean;
+
     //玩家辅助数据
-    //playerDB : PlayerDB;
+    playerDB : PlayerDB;
 
     constructor(){
 
-        //this.playerDB = new PlayerDB;
+        this.playerDB = new PlayerDB;
 
         this.clear();
 
     }
-
-
 
     //所有数据清理
     clear(){
@@ -170,7 +183,7 @@ class GSData{
 
         this.hasTingRule = false;
 
-        //this.playerDB.clearReadyFlags();
+        this.playerDB.clearReadyFlags();
 
     }
 
@@ -310,7 +323,10 @@ class GSData{
 
         var dir = this.zhuangDir;
 
-        var catchPai = this.getCatchPai(dir);
+        var catchPai;
+
+        if(!GSData.i.endpai) catchPai = this.getCatchPai(dir);
+        else catchPai = GSData.i.endpai;
 
         this.pushHandPai(dir,catchPai);
 
@@ -382,7 +398,7 @@ class GSData{
     //获取
     getResultPersonLeft(dir:number){
 
-        var pos = this.getPos(dir);
+        var pos = PublicVal.i.getPlayerPos(dir);
 
         for(var i:number = 0 ; i < this.result.person.length;i++){
 
@@ -394,20 +410,6 @@ class GSData{
 
     }
 
-
-    //通过pos取得方位
-    getDir(pos:number){
-
-        return this.pos2Dir[pos];
-
-    }
-
-    //通过方位获取pos
-    getPos(dir:number){
-
-        return this.dir2Pos[dir];
-    }
-
     //根据pos获取玩家信息
     getRoomPlayerByPos(pos:number):RoomPlayer{
 
@@ -417,7 +419,7 @@ class GSData{
     //根据dir获取玩家信息
     getRoomPlayerByDir(dir:number){
 
-        return this.getRoomPlayerByPos(this.getPos(dir));
+        return this.getRoomPlayerByPos(PublicVal.i.getPlayerPos(dir));
 
     }
 

@@ -79,6 +79,8 @@ class GameLayerManager extends eui.UILayer
         this.effectLayer.touchChildren =false;
 
         this.loadLayer.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickLoad, this);
+
+        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onOpen, this);
     }
 
     private onClickLoad():void
@@ -125,6 +127,11 @@ class GameLayerManager extends eui.UILayer
         {
             EffectUtils.showTips("未找到这个场景类", 5);
         }
+    }
+
+    private onOpen():void
+    {
+        GameMusic.PlaySound("music_scene");
     }
 }
 

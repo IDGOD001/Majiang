@@ -36,8 +36,8 @@ class GSTotlePerson extends eui.Component
         0:"坐　庄：",
         1:"胡　牌：",
         2:"点　炮：",
-        3:"摸　宝：",
-        4:"宝中宝：",
+        3:"自　摸：",
+        4:"潇　洒：",
         5:"积　分："
     };
 
@@ -180,10 +180,10 @@ class GSTotlePerson extends eui.Component
         var pao_num:number = this.pserson.pao_num;  //点炮次数
         list.push(pao_num);
 
-        var bao_num:number = this.pserson.bao_num;  //摸宝次数
+        var bao_num:number = this.pserson.zimo_num;  //自摸次数  bao_num摸宝次数
         list.push(bao_num);
 
-        var baozhongbao_num:number = this.pserson.baozhongbao_num;  //宝中宝次数
+        var baozhongbao_num:number = this.pserson.xiaosa_num; //潇洒    baozhongbao_num;  //宝中宝次数
         list.push(baozhongbao_num);
 
         var fen_num:number = this.pserson.cur;  //玩家总分数

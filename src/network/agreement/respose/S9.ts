@@ -44,8 +44,31 @@ class S9 {
                 GSDataProxy.i.S2C_DeletePai(obj.data.data.pos, obj.data.data.pai);
                 break;
             case 6:
-                var dir = GSData.i.getDir(obj.data.data.pos);
+                var dir = PublicVal.i.getPlayerDir(obj.data.data.pos);
                 GameDispatcher.ins.dispatchEvent(EventType.Trigger_Play_Tips, [dir, obj.data.data.pai]);
+                break;
+            case 7:
+                var uidArr:Array<any> = obj.data.data;
+                if(!uidArr) break;
+                if(uidArr.length <= 0)
+                {
+                    EffectUtils.showTips("有玩家网络不稳定!", 5);
+                }
+                else
+                {
+                    var username:string = "玩家 ";
+                    for(var u = 0; u < uidArr.length; u++)
+                    {
+                        var uid = uidArr[u];
+
+                        var nm = GSData.i.roomPlayerMap[uid].nick;
+
+                        username += nm + " ";
+                    }
+                    username += "网络环境较差！";
+                    EffectUtils.showTips(username, 5);
+                }
+
                 break;
         }
     }

@@ -28,6 +28,9 @@
 			"name": "tween"
 		},
 		{
+			"name": "particle"
+		},
+		{
 			"name": "weixinapi",
 			"path": "extensions/weixinapi"
 		}

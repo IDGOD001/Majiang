@@ -55,6 +55,8 @@ class LoginScene extends eui.Component
             SocketManager.getInstance().getGameConn();
 
             GlobalData.getInstance().sendLogin = true;
+            
+            
         }
     }
 

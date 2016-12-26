@@ -26,7 +26,7 @@ class GSHeadIcon extends egret.DisplayObjectContainer{
 
     killIcon:egret.Bitmap;
 
-
+    tingIcon:egret.Bitmap;
 
 
     pic:string;
@@ -76,6 +76,12 @@ class GSHeadIcon extends egret.DisplayObjectContainer{
         this.zhuangIcon.x = -40;
         this.zhuangIcon.y = -40;
 
+        this.tingIcon = new egret.Bitmap();
+        this.tingIcon.texture = RES.getRes("ting_icon");
+        this.tingIcon.anchorOffsetX = this.tingIcon.width >> 1;
+        this.tingIcon.anchorOffsetY = this.tingIcon.height >> 1;
+
+
 
         this.killIcon = new egret.Bitmap(GameRes.getUI("JS_close"));
 
@@ -94,10 +100,12 @@ class GSHeadIcon extends egret.DisplayObjectContainer{
         this.addChild(this.roomOwn_kuang);
         this.addChild(this.zhuangIcon);
         this.addChild(this.killIcon);
+        this.addChild(this.tingIcon);
 
         this.nullIcon();
 
         this.killIcon.visible = false;
+        this.tingIcon.visible = false;
 
     }
     nullIcon(){
@@ -108,6 +116,7 @@ class GSHeadIcon extends egret.DisplayObjectContainer{
         this.pic = "";
         this.headImg.source = "";
         this.killIcon.visible = false;
+        this.clearTing();
     }
 
     setHeadPic(pic:string){
@@ -148,7 +157,36 @@ class GSHeadIcon extends egret.DisplayObjectContainer{
 
         this.offlineImg.visible = false;
         //this.resize();
-
     }
 
+    setTingSize(action:number, dir:number)
+    {
+        switch (action)
+        {
+            case 4:
+                this.tingIcon.texture = RES.getRes("ting_icon");
+                break;
+            case 1001:
+                this.tingIcon.texture = RES.getRes("xiaosa_icon");
+                break;
+        }
+
+        if(dir != 3)
+        {
+            this.tingIcon.x = 0;
+            this.tingIcon.y = -55;
+        }
+        else
+        {
+            this.tingIcon.x = 65;
+            this.tingIcon.y = 0;
+        }
+
+        this.tingIcon.visible = true;
+    }
+
+    clearTing()
+    {
+        this.tingIcon.visible = false;
+    }
 }

@@ -52,8 +52,16 @@ class Replayer implements IUpdate{
     //是否回退
     isFB:boolean;
 
-
     exitInterval:number;
+
+    funcInterval:number;
+
+    //本地锁
+    lock:boolean;
+    //锁定计数
+    lockCount:number;
+
+    lockMaxCount:number = 10;
 
     clear(){
 
@@ -70,6 +78,8 @@ class Replayer implements IUpdate{
 
         this.actions = [];
 
+        this.lock = false;
+
         egret.clearTimeout(this.interval);
 
         egret.clearTimeout(this.exitInterval);
@@ -78,6 +88,9 @@ class Replayer implements IUpdate{
         GSController.i.gsView.replayControllView.visible = false;
 
         GSController.i.gsView.replayControllView.play();
+
+        this.clearFuncView();
+
     }
     exit(){
 
@@ -120,6 +133,8 @@ class Replayer implements IUpdate{
     FF(){
 
         this.passTime = Replayer.replaySpeed;
+
+        this.lockCount = this.lockMaxCount;
     }
     /*
         回退
@@ -129,6 +144,9 @@ class Replayer implements IUpdate{
         this.clearExitInterval();
 
         PublicVal.i.clear();
+
+        this.clearFuncView();
+
         this.isFB = true;
         this.actions = [];
         this.parseData(this.data);
@@ -245,13 +263,24 @@ class Replayer implements IUpdate{
     }
     __action_4(arr:any,index:number){
 
+        //旧版本直接返回
+        if(!PublicVal.i.replayVer) return;
+
+        this.actions.push({action:4,funcs:arr[3],pos:arr[2]});
     }
     __action_5(arr:any,index:number){
 
         var pos:number = arr[1];
 
         var funcID:number = arr[2];
+
         switch(funcID){
+
+            case 0://过
+                if(!PublicVal.i.replayVer) return;
+                this.actions.push({index:index,action: 5, funcID:funcID,pos:pos});
+                break;
+
             case 1://吃
             case 2://碰
             case 22://幺九杠
@@ -264,8 +293,8 @@ class Replayer implements IUpdate{
             case 25://明杠
                 this.actions.push({index:index,action: 5, funcID:funcID, pais:arr[3], pos:pos ,from: arr[3][0].pos});
                 break;
+
             case 4://听牌
-                this.actions.push({index:index,action: 5, funcID:funcID,pos:pos});
             case 1001://潇洒
                 this.actions.push({index:index,action: 5, funcID:funcID,pos:pos});
                 break;
@@ -281,6 +310,8 @@ class Replayer implements IUpdate{
         PublicVal.i.max_round = arr[1][3];
         PublicVal.i.bao = arr[1][4];
         PublicVal.i.zhuang = arr[1][5];
+        PublicVal.i.replayVer = arr[1][6];
+
         PublicVal.i.zhuangFlag = 1 << this.returnDir(PublicVal.i.zhuang);
         //console.log(PublicVal.i.rules,PublicVal.i.dui_num,PublicVal.i.cur_round,PublicVal.i.max_round);
     }
@@ -354,9 +385,9 @@ class Replayer implements IUpdate{
 
                 //确定方位
                 a = person.pos;
-                b = 1 + (person.pos) % 4;
-                c = 1 + (person.pos + 1) % 4;
-                d = 1 + (person.pos + 2) % 4;
+                b = 1 + a % 4;
+                c = 1 + (a + 1) % 4;
+                d = 1 + (a + 2) % 4;
 
                 this.dirMap = {};
 
@@ -437,6 +468,20 @@ class Replayer implements IUpdate{
         }
     }
 
+    //展示功能菜单
+    play_action_4(action:any){
+
+        //this.stop = true;
+
+        var pos = action.pos;
+
+        var funcs = action.funcs;
+
+        var dir = this.returnDir(pos);
+
+        GSController.i.gsView.frontUIContainer.addReplayFuncs(dir,action.funcs);
+
+    }
 
 
 
@@ -445,175 +490,216 @@ class Replayer implements IUpdate{
         //console.log("功能牌",action);
 
         var funcID = action.funcID;
-        var pos = action.pos;
-        var from = action.from;
-        var pais = action.pais;
-        var pai = action.pai;
+
+        this.lock = true;
+
+        this.lockCount = 0;
+
+        if(!PublicVal.i.replayVer){
+
+            this.lockCount = this.lockMaxCount;
+        }else{
+            GSController.i.gsView.frontUIContainer.handFocus(funcID);
+        }
+
+        //GSController.i.gsView.frontUIContainer.handFocus(funcID);
+
+        if(this.isFB){
+
+            child.call(this,action);
+            this.clearFuncView();
+        }else {
+            this.funcInterval = egret.setInterval(_=> {
+
+                this.lockCount++;
+
+                if (this.lockCount >= this.lockMaxCount) {
+
+                    child.call(this, action);
+
+                    this.clearFuncView();
+                }
+            }, this, 100);
+        }
+        function child(action:any) {
+
+            var funcID = action.funcID;
+            var pos = action.pos;
+            var from = action.from;
+            var pais = action.pais;
+            var pai = action.pai;
 
 
-        var dir = this.returnDir(pos);
-        var fromDir = this.returnDir(from);
+            var dir = this.returnDir(pos);
+
+            var fromDir = this.returnDir(from);
 
 
-        switch(funcID){
+            switch (funcID) {
 
-            case 1:
+                case 1:
 
-                PublicVal.i.removeHandPai(dir,pais[0],false);
-                PublicVal.i.removeHandPai(dir,pais[2]);
-                PublicVal.i.popPoolPai(fromDir);
-
-                PublicVal.i.addFuncPai(5, dir, funcID, pais);
-
-
-                GSController.i.updateMJView(dir);
-
-                GSController.i.updatePoolPaiView(fromDir);
-
-                this.playFuncEffect(dir,funcID);
-                break;
-
-            case 2:
-                PublicVal.i.removeHandPai(dir,pais[0],false);
-                PublicVal.i.removeHandPai(dir,pais[2]);
-                PublicVal.i.popPoolPai(fromDir);
-
-                PublicVal.i.addFuncPai(4, dir, funcID, pais);
-
-                GSController.i.updateMJView(dir);
-                GSController.i.updatePoolPaiView(fromDir);
-
-                this.playFuncEffect(dir,funcID);
-
-
-                break;
-            case 22:
-                PublicVal.i.removeHandPai(dir,pais[0],false);
-                PublicVal.i.removeHandPai(dir,pais[1],false);
-                PublicVal.i.removeHandPai(dir,pais[2]);
-                PublicVal.i.addFuncPai(3, dir, funcID, pais, pais[0].number, true);
-
-                GSController.i.updateMJView(dir);
-
-                this.playFuncEffect(dir,funcID);
-
-                break;
-            case 24://暗杠
-                PublicVal.i.removeHandPai(dir,pais[0],false);
-                PublicVal.i.removeHandPai(dir,pais[1],false);
-                PublicVal.i.removeHandPai(dir,pais[2],false);
-                PublicVal.i.removeHandPai(dir,pais[3]);
-                PublicVal.i.addFuncPai(1, dir, funcID, pais);
-
-                GSController.i.updateMJView(dir);
-
-                this.playFuncEffect(dir,funcID);
-                break;
-            case 25://明杠
-
-                var pai0 = pais[0];
-                var hasPeng:boolean = PublicVal.i.removePengFunc(dir, pai0);
-                if(hasPeng){//有碰的明杠
-
-                    PublicVal.i.removeHandPai(dir,pai0);
-
-                }else{
-
+                    PublicVal.i.removeHandPai(dir, pais[0], false);
+                    PublicVal.i.removeHandPai(dir, pais[2]);
                     PublicVal.i.popPoolPai(fromDir);
-                    PublicVal.i.removeHandPai(dir,pai0,false);
-                    PublicVal.i.removeHandPai(dir,pai0,false);
-                    PublicVal.i.removeHandPai(dir,pai0);
 
-                }
-                PublicVal.i.addFuncPai(2, dir, funcID, pais);
+                    PublicVal.i.addFuncPai(5, dir, funcID, pais);
 
-                GSController.i.updateMJView(dir);
-                GSController.i.updatePoolPaiView(fromDir);
 
-                this.playFuncEffect(dir,funcID);
+                    GSController.i.updateMJView(dir);
 
-                break;
-            case 26://中发白杠
+                    GSController.i.updatePoolPaiView(fromDir);
 
-                PublicVal.i.removeHandPai(dir,pais[0],false);
-                PublicVal.i.removeHandPai(dir,pais[1],false);
-                PublicVal.i.removeHandPai(dir,pais[2]);
-                PublicVal.i.addFuncPai(0, dir, funcID, pais, 0, true);
+                    this.playFuncEffect(dir, funcID);
+                    break;
 
-                GSController.i.updateMJView(dir);
-
-                this.playFuncEffect(dir,funcID);
-
-                break;
-
-            case 27://幺九杠 补蛋
-
-                //pais.length -= 3;
-
-                var sPais = pais.slice(0,-3);
-
-                var everPai = PublicVal.i.getPai(dir, 22, sPais[0].number);
-
-                var everSrc = [1, 1, 1];
-
-                for (var i: number = 0; i < sPais.length; i++) {
-
-                    everSrc[sPais[i].type - 1]++;
-
-                }
-                everPai.ever = everSrc;
-
-                PublicVal.i.removeHandPai(dir,sPais[0]);
-
-                GSController.i.updateMJView(dir);
-
-                this.playFuncEffect(dir,funcID);
-
-                break;
-            case 28://中发白 补蛋
-
-                //pais.length -= 3;
-
-                var sPais = pais.slice(0,-3);
-
-                var everPai = PublicVal.i.getPai(dir, 26);
-
-                var everSrc = [1, 1, 1];
-
-                for (var i: number = 0; i < sPais.length; i++) {
-                    everSrc[sPais[i].number - 1]++;
-                }
-                everPai.ever = everSrc;
-
-                PublicVal.i.removeHandPai(dir,sPais[0]);
-
-                GSController.i.updateMJView(dir);
-
-                this.playFuncEffect(dir,funcID);
-
-                break;
-            case 4://听
-
-                this.playFuncEffect(dir,funcID);
-
-                break;
-
-            case 99:
-                if(from){//点炮
-                    PublicVal.i.addHandPai(dir,pai,false);
-
+                case 2:
+                    PublicVal.i.removeHandPai(dir, pais[0], false);
+                    PublicVal.i.removeHandPai(dir, pais[2]);
                     PublicVal.i.popPoolPai(fromDir);
+
+                    PublicVal.i.addFuncPai(4, dir, funcID, pais);
 
                     GSController.i.updateMJView(dir);
                     GSController.i.updatePoolPaiView(fromDir);
-                }else{
-                    //console.log("自摸胡牌!");
-                }
-                this.playFuncEffect(dir,funcID);
 
-                break;
+                    this.playFuncEffect(dir, funcID);
+
+
+                    break;
+                case 22:
+                    PublicVal.i.removeHandPai(dir, pais[0], false);
+                    PublicVal.i.removeHandPai(dir, pais[1], false);
+                    PublicVal.i.removeHandPai(dir, pais[2]);
+                    PublicVal.i.addFuncPai(3, dir, funcID, pais, pais[0].number, true);
+
+                    GSController.i.updateMJView(dir);
+
+                    this.playFuncEffect(dir, funcID);
+
+                    break;
+                case 24://暗杠
+                    PublicVal.i.removeHandPai(dir, pais[0], false);
+                    PublicVal.i.removeHandPai(dir, pais[1], false);
+                    PublicVal.i.removeHandPai(dir, pais[2], false);
+                    PublicVal.i.removeHandPai(dir, pais[3]);
+                    PublicVal.i.addFuncPai(1, dir, funcID, pais);
+
+                    GSController.i.updateMJView(dir);
+
+                    this.playFuncEffect(dir, funcID);
+                    break;
+                case 25://明杠
+
+                    var pai0 = pais[0];
+                    var hasPeng: boolean = PublicVal.i.removePengFunc(dir, pai0);
+                    if (hasPeng) {//有碰的明杠
+
+                        PublicVal.i.removeHandPai(dir, pai0);
+
+                    } else {
+
+                        PublicVal.i.popPoolPai(fromDir);
+                        PublicVal.i.removeHandPai(dir, pai0, false);
+                        PublicVal.i.removeHandPai(dir, pai0, false);
+                        PublicVal.i.removeHandPai(dir, pai0);
+
+                    }
+                    PublicVal.i.addFuncPai(2, dir, funcID, pais);
+
+                    GSController.i.updateMJView(dir);
+                    GSController.i.updatePoolPaiView(fromDir);
+
+                    this.playFuncEffect(dir, funcID);
+
+                    break;
+                case 26://中发白杠
+
+                    PublicVal.i.removeHandPai(dir, pais[0], false);
+                    PublicVal.i.removeHandPai(dir, pais[1], false);
+                    PublicVal.i.removeHandPai(dir, pais[2]);
+                    PublicVal.i.addFuncPai(0, dir, funcID, pais, 0, true);
+
+                    GSController.i.updateMJView(dir);
+
+                    this.playFuncEffect(dir, funcID);
+
+                    break;
+
+                case 27://幺九杠 补蛋
+
+                    //pais.length -= 3;
+
+                    var sPais = pais.slice(0, -3);
+
+                    var everPai = PublicVal.i.getPai(dir, 22, sPais[0].number);
+
+                    var everSrc = [1, 1, 1];
+
+                    for (var i: number = 0; i < sPais.length; i++) {
+
+                        everSrc[sPais[i].type - 1]++;
+
+                    }
+                    everPai.ever = everSrc;
+
+                    PublicVal.i.removeHandPai(dir, sPais[0]);
+
+                    GSController.i.updateMJView(dir);
+
+                    this.playFuncEffect(dir, funcID);
+
+                    break;
+                case 28://中发白 补蛋
+
+                    //pais.length -= 3;
+
+                    var sPais = pais.slice(0, -3);
+
+                    var everPai = PublicVal.i.getPai(dir, 26);
+
+                    var everSrc = [1, 1, 1];
+
+                    for (var i: number = 0; i < sPais.length; i++) {
+                        everSrc[sPais[i].number - 1]++;
+                    }
+                    everPai.ever = everSrc;
+
+                    PublicVal.i.removeHandPai(dir, sPais[0]);
+
+                    GSController.i.updateMJView(dir);
+
+                    this.playFuncEffect(dir, funcID);
+
+                    break;
+                case 4://听
+
+                    this.playFuncEffect(dir, funcID);
+                    var hting = GSController.i.gsView.headViews[dir];
+                    hting.headIcon.setTingSize(4, dir);
+                    break;
+                case 1001:
+                    this.playFuncEffect(dir, funcID);
+                    var hxiaosa = GSController.i.gsView.headViews[dir];
+                    hxiaosa.headIcon.setTingSize(1001, dir);
+                    break;
+
+                case 99:
+                    if (from) {//点炮
+                        PublicVal.i.addHandPai(dir, pai, false);
+
+                        PublicVal.i.popPoolPai(fromDir);
+
+                        GSController.i.updateMJView(dir);
+                        GSController.i.updatePoolPaiView(fromDir);
+                    } else {
+                        //console.log("自摸胡牌!");
+                    }
+                    this.playFuncEffect(dir, funcID);
+
+                    break;
+            }
         }
-
 
     }
 
@@ -625,7 +711,10 @@ class Replayer implements IUpdate{
 
     }
 
+
     update(advanceTime:number,timeStamp ?:number):void{
+
+        if(this.lock) return;
 
         this.passTime += advanceTime;
 
@@ -674,7 +763,14 @@ class Replayer implements IUpdate{
 
     }
 
+    clearFuncView(){
 
+        this.lock = false;
+
+        egret.clearInterval(this.funcInterval);
+
+        GSController.i.gsView.frontUIContainer.clear();
+    }
 
 
 

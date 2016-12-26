@@ -2,20 +2,18 @@ class CreateDialog extends BaseDialog
 {
 
     private checkBoxSize:any = {
-        1:{x:307, y:187},
-        2:{x:467, y:187},
-        3:{x:627, y:187},
-        4:{x:307, y:231},
-        5:{x:467, y:231},
-        6:{x:627, y:231},
-        7:{x:307, y:278},
-        8:{x:467, y:278}
+        2:{x:307, y:187},  //187
+        6:{x:467, y:231},
+        1001:{x:627, y:231},
+        1002:{x:307, y:231},  //231
+        1003:{x:467, y:187},
+        1004:{x:627, y:187}
+
     };
 
     private _xy:any = {
         1:{x:198, y:113},
-        2:{x:403, y:113},
-        3:{x:607, y:113}
+        2:{x:608, y:113}
     };
     private m_UI:CreateUI;
 
@@ -48,39 +46,26 @@ class CreateDialog extends BaseDialog
 
         this.m_UI.btn_start.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
-        for(var i = 1; i <= 8; i++)
+        for(var i in GameConfig.rules)
         {
             var ck:mui.ERadio = new mui.ERadio();
+            var lab:eui.Label = this.m_UI["_tg"+i];
             this.m_UI.addChild(ck);
             ck.name = "" + i;
             ck.x = this.checkBoxSize[i]["x"];
             ck.y = this.checkBoxSize[i]["y"];
-            //if(i == 3) ck.visible = false;
-            var lab:eui.Label = this.m_UI["_tg" + i];
-
-            if(i <= 3)
-            {
-                ck.setSelectIndex(0);
-                lab.textColor = 0xA07A4B;
-            }
-            else
-            {
-                ck.setSelectIndex(1);
-                lab.textColor = 0xff2f19;
-            }
 
             this.checkBoxSize[i]["item"] = ck;
+
+            lab.text = GameConfig.rules[i] + "";
 
             ck.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onRadio, this);
         }
 
         this.m_UI._center_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSize, this);
         this.m_UI._lef_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSize, this);
-        this.m_UI._right_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSize, this);
 
         this.m_UI.btn_fanxuan.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCheck, this);
-
-        this.m_UI.btn_suiji.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onRandom, this);
 
         this.m_UI._riado.touchEnabled = false;
         //this.m_UI._riado.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
@@ -122,7 +107,6 @@ class CreateDialog extends BaseDialog
         this.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
     }
 
-
     private onRandom():void
     {
         var str:string = "";
@@ -157,7 +141,7 @@ class CreateDialog extends BaseDialog
     {
         this.m_UI.btn_fanxuan.textImg.source = "create_xz" + index;
 
-        for(var i = 1; i <= 8; i++)
+        for(var i in GameConfig.rules)
         {
             var ck:mui.ERadio = this.checkBoxSize[i]["item"];
 
@@ -178,7 +162,7 @@ class CreateDialog extends BaseDialog
 
     private refreshText():void
     {
-        for(var i = 1; i <= 8; i++)
+        for(var i in GameConfig.rules)
         {
             var ck:mui.ERadio = this.checkBoxSize[i]["item"];
 
@@ -203,19 +187,11 @@ class CreateDialog extends BaseDialog
                 this.selectIndex = 2;
                 this.m_UI._tq1.textColor = 0xA07A4B;
                 this.m_UI._tq2.textColor = 0xff2f19;
-                this.m_UI._tq3.textColor = 0xA07A4B;
                 break;
             case this.m_UI._lef_btn:
                 this.selectIndex = 1;
                 this.m_UI._tq1.textColor = 0xff2f19;
                 this.m_UI._tq2.textColor = 0xA07A4B;
-                this.m_UI._tq3.textColor = 0xA07A4B;
-                break;
-            case this.m_UI._right_btn:
-                this.selectIndex = 3;
-                this.m_UI._tq1.textColor = 0xA07A4B;
-                this.m_UI._tq2.textColor = 0xA07A4B;
-                this.m_UI._tq3.textColor = 0xff2f19;
                 break;
         }
 
@@ -240,20 +216,21 @@ class CreateDialog extends BaseDialog
 
         var arr:Array<any> = [];
 
-        for(var i = 1; i <= 8; i++)
+        for(var i in GameConfig.rules)
         {
             var ck:mui.ERadio = this.checkBoxSize[i]["item"];
 
             if(ck.selectIndex == 1)
             {
-                //if(i != 3)
-                    arr.push(i);
+                arr.push(+i);
             }
         }
 
+        arr.push(3);
+
         GlobalData.getInstance().roomRound = +this.roudList[this.selectIndex];
 
-        SocketManager.getInstance().getGameConn().send(2, {"args":{"type":1,"round":this.roudList[this.selectIndex], "rules":arr, "pass":"0"}});  //创建房间
+        SocketManager.getInstance().getGameConn().send(2, {"args":{"type":1001,"round":this.roudList[this.selectIndex], "rules":arr, "pass":"0"}});  //创建房间
     }
 
     /**
@@ -267,11 +244,13 @@ class CreateDialog extends BaseDialog
     {
         super.show(true, this.width, this.height, 1, false);
 
-        for(var i = 1; i <= 8; i++)
+        for(var i in GameConfig.rules)
         {
             var ck:mui.ERadio = this.checkBoxSize[i]["item"];
+
             var lab:eui.Label = this.m_UI["_tg"+i];
-            if(i <= 3)
+
+            if(+i == 2 || +i == 1003)
             {
                 ck.setSelectIndex(0);
                 lab.textColor = 0xA07A4B;
@@ -281,14 +260,13 @@ class CreateDialog extends BaseDialog
                 ck.setSelectIndex(1);
                 lab.textColor = 0xff2f19;
             }
+
         }
 
         this.m_UI.btn_fanxuan.textImg.source = "create_xz" + this.checkIndex;
 
         this.m_UI._riado.x = this._xy[this.selectIndex]["x"];
         this.m_UI._riado.y = this._xy[this.selectIndex]["y"];
-
-        this.m_UI._edit.text = "0000";
     }
 
     /**

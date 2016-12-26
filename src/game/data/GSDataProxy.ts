@@ -35,6 +35,12 @@ class GSDataProxy {
 
         this.gData.backTing = obj.ting;
 
+        this.gData.endpai = obj.draw;
+
+        this.gData.ting_list = obj.ting_list;
+
+        this.gData.xiaosa_list = obj.xiaosa_list;
+
         PublicVal.i.dui_num = obj.dui_num;
 
         PublicVal.i.cur_round = obj.cur_round;
@@ -80,9 +86,9 @@ class GSDataProxy {
     //解析离线数据
     parseRebackPai() {
 
-        this.gData.turnDir = this.gData.getDir(this.gData.turnPos);
+        this.gData.turnDir = PublicVal.i.getPlayerDir(this.gData.turnPos);
 
-        this.gData.zhuangDir = this.gData.getDir(this.gData.zhuangPos);
+        this.gData.zhuangDir = PublicVal.i.getPlayerDir(this.gData.zhuangPos);
 
         PublicVal.i.zhuangFlag = 1 << this.gData.zhuangDir;
 
@@ -94,7 +100,7 @@ class GSDataProxy {
 
             var pos = person.pos;
 
-            var dir = this.gData.getDir(pos);
+            var dir = PublicVal.i.getPlayerDir(pos);
 
             var men = person.men;
 
@@ -197,7 +203,14 @@ class GSDataProxy {
 
                     if(person.draw == "no"){
 
-                        zhuangpai = (this.gData.rebackData.step == 5 ? person.zhuangpai:null);
+                        if (Object.keys(men).length > 0)
+                        {
+                            zhuangpai = null;
+                        }
+                        else
+                        {
+                            zhuangpai = (this.gData.rebackData.step == 5 ? person.zhuangpai:null);
+                        }
 
                     }else{
 
@@ -206,10 +219,17 @@ class GSDataProxy {
 
                     if(zhuangpai){
 
-                        FashionTools.removePai(shou,zhuangpai);
+                        var removeSuccess = FashionTools.removePai(shou,zhuangpai);
                         FashionTools.sortPai(shou);
-                        shou.push(zhuangpai);
-                        this.gData.setCatchPai(1, zhuangpai);
+                        //如果删除成功，就设置删除的牌为最后抓牌
+                        //否则,设置最后一张牌为抓牌
+                        if(removeSuccess) {
+                            shou.push(zhuangpai);
+                            this.gData.setCatchPai(1, zhuangpai);
+                        }else{
+                            this.gData.setCatchPai(1, shou[shou.length - 1]);
+                        }
+
 
                     }else{
 
@@ -240,7 +260,7 @@ class GSDataProxy {
 
     //删除手牌
     S2C_DeletePai(pos: number, pai: any) {
-        var dir = this.gData.getDir(pos);
+        var dir = PublicVal.i.getPlayerDir(pos);
         //this.gData.removeHandPai(dir, pai);
         PublicVal.i.removeHandPai(dir,pai);
 
@@ -371,18 +391,22 @@ class GSDataProxy {
 
             this.gData.funcSelects.push({index: 5, action: 4, group: obj[4]});
 
+            if(GSData.i.rebackData || GSData.i.hasXiaosaRule)
+            {
+                this.gData.funcSelects.push({index: 6, action: 1001, group: obj[4]});
+            }
         }
         if (obj[99]) {//胡
 
             //this.gData.funcSelects.push({index: 5, action: 4, pai: obj[4]});
 
-            this.gData.funcSelects.push({index: 6, action: 99, pai: obj[99]});
+            this.gData.funcSelects.push({index: 7, action: 99, pai: obj[99]});
 
         }
 
         //断线重连上来的情况
         if(this.gData.rebackData){
-
+            this.gData.rebackViewFuncs.push(GSController.i.showFuncSelectMenuX);
             this.gData.rebackViewFuncs.push(GSController.i.showFuncSelectMenu);
         }else{
 
@@ -401,7 +425,7 @@ class GSDataProxy {
     //gang_end 是否开局杠结束
     S2C_TurnDir(pos: number, dui_num: number,gang_end:any = null) {
 
-        this.gData.turnDir = this.gData.getDir(pos);
+        this.gData.turnDir = PublicVal.i.getPlayerDir(pos);
 
         PublicVal.i.dui_num = dui_num;
 
@@ -419,8 +443,6 @@ class GSDataProxy {
         GSController.i.setArrowDir(this.gData.turnDir);
 
         GSController.i.updateCenterInfo();
-
-
     }
 
     //更新自己抓牌
@@ -454,7 +476,6 @@ class GSDataProxy {
 
     S2C_Bao(obj: any) {
 
-        console.log("换宝!");
 
         //this.gData.baoPai = obj.bao;
 
@@ -470,7 +491,7 @@ class GSDataProxy {
 
         this.gData.isShowFunc = false;
 
-        var dir = this.gData.getDir(pos);
+        var dir = PublicVal.i.getPlayerDir(pos);
 
         this.gData.turnDir = dir;
 
@@ -645,10 +666,16 @@ class GSDataProxy {
                 }
                 GameSound.PlaySound("sound_down");
                 break;
-            case 4://听牌
-
+            case 4:
+                GameSound.PlaySound("ting_" + this.gData.getSexByPos(pos));
+                var hting = GSController.i.gsView.headViews[dir];
+                hting.headIcon.setTingSize(4, dir);
                 break;
-
+            case 1001:
+                var hxiaosa = GSController.i.gsView.headViews[dir];
+                hxiaosa.headIcon.setTingSize(1001, dir);
+                GameSound.PlaySound("xiaosa_" + this.gData.getSexByPos(pos));
+                break;
             default:
                 console.log("未解析的功能菜单", action);
                 break;
@@ -660,7 +687,7 @@ class GSDataProxy {
 
                 var pos: any = +k;
 
-                this.gData.gangCurs[this.gData.getDir(pos)] = cur[k];
+                this.gData.gangCurs[PublicVal.i.getPlayerDir(pos)] = cur[k];
             }
 
             GSController.i.updateGangCur();
@@ -669,7 +696,7 @@ class GSDataProxy {
 
         //删除池子牌显示
         if (poolPai && poolPai.pos > 0) {
-            var poolPaiDir = GSData.i.getDir(poolPai.pos);
+            var poolPaiDir = PublicVal.i.getPlayerDir(poolPai.pos);
             PublicVal.i.popPoolPai(poolPaiDir);
             GSController.i.removePoolCard(poolPaiDir);
         }
@@ -690,13 +717,14 @@ class GSDataProxy {
     //S2C 更新打入池中的牌子
     S2C_PoolPai(obj: any) {
 
+
         GameSound.PlaySound(obj.data.type + "_" + obj.data.number + "_" + this.gData.getSexByPos(obj.data.pos));
 
         GameSound.PlaySound("sound_throw");
 
         this.gData.currPoolPai = obj.data;
         //this.gData.currPoolPai.dir = this.gData.getDir(obj.data.pos);
-        var dir = this.gData.getDir(obj.data.pos);
+        var dir = PublicVal.i.getPlayerDir(obj.data.pos);
         this.gData.currPoolPai.dir = dir;
         //添加池牌数据
         PublicVal.i.pushPoolPai(dir,this.gData.currPoolPai);
@@ -762,7 +790,7 @@ class GSDataProxy {
 
             if(fen[1]){
 
-                fenLeft = GSData.i.getResultPersonLeft(GSData.i.getDir(1));
+                fenLeft = GSData.i.getResultPersonLeft(PublicVal.i.getPlayerDir(1));
 
                 this.formatLeft(fenLeft,fen[1]);
 
@@ -770,7 +798,7 @@ class GSDataProxy {
             if(fen[2]){
 
 
-                fenLeft = GSData.i.getResultPersonLeft(GSData.i.getDir(2));
+                fenLeft = GSData.i.getResultPersonLeft(PublicVal.i.getPlayerDir(2));
 
                 this.formatLeft(fenLeft,fen[2]);
 
@@ -778,7 +806,7 @@ class GSDataProxy {
             if(fen[3]){
 
 
-                fenLeft = GSData.i.getResultPersonLeft(GSData.i.getDir(3));
+                fenLeft = GSData.i.getResultPersonLeft(PublicVal.i.getPlayerDir(3));
 
                 this.formatLeft(fenLeft,fen[3]);
 
@@ -786,7 +814,7 @@ class GSDataProxy {
             if(fen[4]){
 
 
-                fenLeft = GSData.i.getResultPersonLeft(GSData.i.getDir(4));
+                fenLeft = GSData.i.getResultPersonLeft(PublicVal.i.getPlayerDir(4));
 
                 this.formatLeft(fenLeft,fen[4]);
 
@@ -797,7 +825,7 @@ class GSDataProxy {
 
             this.gData.result.hupaiPos = hupai.pos_hu;
 
-            var huDir = this.gData.getDir(hupai.pos_hu);
+            var huDir = PublicVal.i.getPlayerDir(hupai.pos_hu);
 
             //胡家的剩余牌
             var hu_left = GSData.i.getResultPersonLeft(huDir);
@@ -823,10 +851,10 @@ class GSDataProxy {
 
                     break;
                 case 13://摸宝
-                    GameSound.PlaySound("bao_" + this.gData.getSexByPos(hupai.pos_hu));
-                    selfHu = true;
+                    //GameSound.PlaySound("bao_" + this.gData.getSexByPos(hupai.pos_hu));
+                    //selfHu = true;
 
-                    break;
+                    //break;
                 case 7://自摸
                     GameSound.PlaySound("zimo_" + this.gData.getSexByPos(hupai.pos_hu));
                     selfHu = true;
@@ -869,7 +897,7 @@ class GSDataProxy {
     //同步继续游戏
     S2C_ContinueGame(obj:any){
 
-        var dir : number = this.gData.getDir(obj.pos);
+        var dir : number = PublicVal.i.getPlayerDir(obj.pos);
 
 
         this.gData.readyFlag |= 1 << dir;
@@ -884,11 +912,20 @@ class GSDataProxy {
         }
     }
     //同步房间玩家信息,判断方位
-    S2C_RoomPlayers(rules:number[],infos:any[]){
+    S2C_RoomPlayers(rules:any[],infos:any[]){
 
         if(rules) {
             //听牌局
-            if(rules.indexOf(3) > - 1) GSData.i.hasTingRule = true;
+            if(rules.indexOf(3) > - 1)
+            {
+                GSData.i.hasTingRule = true;
+            }
+
+            //潇洒
+            if(rules.indexOf(1001) > - 1)
+            {
+                GSData.i.hasXiaosaRule = true;
+            }
 
             PublicVal.i.rules = FashionTools.formatRules(rules);
 
@@ -930,14 +967,18 @@ class GSDataProxy {
             //判断玩家自己,进游戏界面初始化
             if(roomPlayer.uid == GlobalData.getInstance().player.uid){
 
+
                 PublicVal.i.ownPos = roomPlayer.pos;
 
-                //互相映射
+                PublicVal.i.initPosAndDir(roomPlayer.pos);
 
-                var a = PublicVal.i.ownPos;
-                var b = 1 + (PublicVal.i.ownPos + 0) % 4;
-                var c = 1 + (PublicVal.i.ownPos + 1) % 4;
-                var d = 1 + (PublicVal.i.ownPos + 2) % 4;
+
+ /*               //互相映射
+
+                var a = roomPlayer.pos;
+                var b = 1 + a % 4;
+                var c = 1 + (a + 1) % 4;
+                var d = 1 + (a + 2) % 4;
 
                 this.gData.dir2Pos[1] = a;
                 this.gData.dir2Pos[2] = b;
@@ -947,17 +988,17 @@ class GSDataProxy {
                 this.gData.pos2Dir[a] = 1;
                 this.gData.pos2Dir[b] = 2;
                 this.gData.pos2Dir[c] = 3;
-                this.gData.pos2Dir[d] = 4;
+                this.gData.pos2Dir[d] = 4;*/
 
                 this.gData.firstInRoom = true;
+
 
                 if(!this.gData.rebackData)this.gData.zhuangPos = 0;
             }
 
-            roomPlayer.dir = this.gData.getDir(roomPlayer.pos);
+            roomPlayer.dir = PublicVal.i.getPlayerDir(roomPlayer.pos);
 
         }
-
 
         this.gData.roomPlayers = [];
 
@@ -969,7 +1010,7 @@ class GSDataProxy {
 
             var player: RoomPlayer = this.gData.roomPlayerMap[id];
 
-            var playerDir:number = this.gData.getDir(player.pos);
+            var playerDir:number = PublicVal.i.getPlayerDir(player.pos);
 
 
             switch(player.status){
@@ -1007,11 +1048,9 @@ class GSDataProxy {
 
         delete this.gData.roomPlayerMap[leave_uid];
 
-
         Global.showIP(this.gData.roomPlayers);
 
-
-        this.gData.roomOwnDir = this.gData.getDir(1);
+        this.gData.roomOwnDir = PublicVal.i.getPlayerDir(1);
 
         PublicVal.i.roomOwnFlag = 1 << this.gData.roomOwnDir;
 
@@ -1079,7 +1118,7 @@ class GSDataProxy {
 
                         var pos = gContinue[i];
 
-                        var dir = this.gData.getDir(pos);
+                        var dir = PublicVal.i.getPlayerDir(pos);
 
                         this.gData.readyFlag |= 1 << dir;
 
@@ -1149,7 +1188,7 @@ class GSDataProxy {
                 this.gData.isLianZhuang = false;
             }
 
-            this.gData.zhuangDir = this.gData.getDir(obj.data.zhuang);
+            this.gData.zhuangDir = PublicVal.i.getPlayerDir(obj.data.zhuang);
 
             PublicVal.i.zhuangFlag = 1 << this.gData.zhuangDir;
 
@@ -1160,7 +1199,7 @@ class GSDataProxy {
             for(var k in obj.data.cur){
 
                 var pos = + k;
-                GSData.i.gangCurs[GSData.i.getDir(pos)] = obj.data.cur[k];
+                GSData.i.gangCurs[PublicVal.i.getPlayerDir(pos)] = obj.data.cur[k];
 
             }
             PublicVal.state = 3;

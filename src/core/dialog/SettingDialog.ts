@@ -42,7 +42,7 @@ class SettingDialog extends BaseDialog
 
         this.slider_sound.x = 95;
 
-        this.slider_sound.y = 170;
+        this.slider_sound.y = 185;
 
         this.slider_sound.width = 250;
 
@@ -57,8 +57,6 @@ class SettingDialog extends BaseDialog
         this.m_UI._btn_pai.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPai, this);
 
         this.m_UI._btn_color.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChange, this);
-
-        
     }
 
     private onChange( ):void
@@ -126,15 +124,18 @@ class SettingDialog extends BaseDialog
             this.slider_music.touchEnabled = false;
             this.slider_music.touchChildren = false;
             this.slider_music.filters = Global.getColorFlilter();
+            this.m_UI._txt_music.text = "点击开启";
         }
         else
         {
             NativeApi.setLocalData("music", 1);
             this.m_UI._btn_music.textImg.source = "sound_open_btn";
+            GameMusic.SoundPlayed["music_scene"] = null;
             GameMusic.PlaySound("music_scene");
             this.slider_music.touchEnabled = true;
             this.slider_music.touchChildren = true;
             this.slider_music.filters = [];
+            this.m_UI._txt_music.text = "点击关闭";
         }
     }
 
@@ -153,6 +154,7 @@ class SettingDialog extends BaseDialog
             this.slider_sound.touchEnabled = false;
             this.slider_sound.touchChildren = false;
             this.slider_sound.filters = Global.getColorFlilter();
+            this.m_UI._txt_sound.text = "点击开启";
         }
         else
         {
@@ -163,6 +165,7 @@ class SettingDialog extends BaseDialog
             this.slider_sound.touchEnabled = true;
             this.slider_sound.touchChildren = true;
             this.slider_sound.filters = [];
+            this.m_UI._txt_sound.text = "点击关闭";
         }
 
     }
@@ -221,6 +224,7 @@ class SettingDialog extends BaseDialog
             this.slider_music.touchEnabled = false;
             this.slider_music.touchChildren = false;
             this.slider_music.filters = Global.getColorFlilter();
+            this.m_UI._txt_music.text = "点击开启";
         }
         else
         {
@@ -229,6 +233,7 @@ class SettingDialog extends BaseDialog
             this.slider_music.touchEnabled = true;
             this.slider_music.touchChildren = true;
             this.slider_music.filters = [];
+            this.m_UI._txt_music.text = "点击关闭";
         }
 
         var _switch:number = +NativeApi.getLocalData("switch");
@@ -240,6 +245,7 @@ class SettingDialog extends BaseDialog
             this.slider_sound.touchEnabled = false;
             this.slider_sound.touchChildren = false;
             this.slider_sound.filters = Global.getColorFlilter();
+            this.m_UI._txt_sound.text = "点击开启";
         }
         else
         {
@@ -248,6 +254,7 @@ class SettingDialog extends BaseDialog
             this.slider_sound.touchEnabled = true;
             this.slider_sound.touchChildren = true;
             this.slider_sound.filters = [];
+            this.m_UI._txt_sound.text = "点击关闭";
         }
 
         var _music_volume:number = +NativeApi.getLocalData("music_volume");

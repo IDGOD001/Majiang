@@ -15,14 +15,14 @@ module GameConfig {
     export var http_address:any = {ip:"dbmj01.h5sd.com", port:9009};
 
     //游戏服务器地址
-    export var address_game:any = {ip:"dbmj01.h5sd.com", port:10415};
+    export var address_game:any = {ip:"dbmj01.h5sd.com", port:10515};
 
     //测试游戏服务器地址
-    export var address_test:any = {ip:"192.168.2.251", port:10415};
+    export var address_test:any = {ip:"dbmj01.h5sd.com", port:10515};
 
     //中心服务器地址 注意：这两个更换测试服 一定要改
-    export var address_center:any = {ip:"lyqptest.h5sd.com", port:10416};   //dbmj01.h5sd.com   lyqptest.h5sd.com
-    export var wei_href_address:string = "https://mj.h5sd.com/bcmj/index.html";
+    export var address_center:any = {ip:"dbmj01.h5sd.com", port:10516};   // lyqptest.h5sd.com   dbmj01.h5sd.com
+    export var wei_href_address:string = "https://mj.h5sd.com/fxmj/index.html";
 
     export var appid:string = "wxb6349744356b5312";
 
@@ -57,6 +57,15 @@ module GameConfig {
      */
     export var FontFamily:string = "Microsoft YaHei";
 
+    /**
+     * 万 = 1
+     * 条 = 2
+     * 饼 = 3
+     * 箭牌 = 4
+     * 风 = 5  东南西北 1 2 3 4
+     * 花 = 6
+     */
+
     //全局字体颜色表--可以扩展
     export var TextColors =
     {
@@ -89,15 +98,13 @@ module GameConfig {
      * 规则
      * @type {{1: string, 2: string, 3: string, 4: string, 5: string, 6: string, 7: string, 8: string}}
      */
-    export var rules:any = {
-        1:"夹五",
+    export var rules:any = {   //8:"责任制",
         2:"清一色",
-        3:"扣听",
-        4:"鸡胡鸡飘",
-        5:"攒杠",
         6:"手把一",
-        7:"背靠背",
-        8:"责任制",
+        1001:"潇洒",
+        1002:"跟庄有赏",
+        1003:"七对",
+        1004:"扎五"
     };
 
     export function pushData(data:any)

@@ -150,7 +150,7 @@ class Weixin {
         body.title = "" + title;
         body.desc = "" + str;
         body.link = "" + GameConfig.wei_href_address;
-        body.imgUrl = "https://mj.h5sd.com/wdmj/weishare.png";
+        body.imgUrl = "https://mj.h5sd.com/fxmj/weishare.png";
         body.type = "link";
         body.dataUrl = "";
         body.success = success;
@@ -191,36 +191,34 @@ class Weixin {
                 var p = GSData.i.roomPlayers[1];
                 name = p.nick;
 
-                body.desc = "房　主：" + name + " 房间号：" + strroomid;
+                body.title = "【" + name + "】邀请你加入房间：" + strroomid + "-【阜新麻将】";
 
                 if(GlobalData.getInstance().roomRound > 0)
                 {
-                    body.desc += "【" + GlobalData.getInstance().roomRound + "圈】" + PublicVal.i.rules;
+                    body.desc = "【" + GlobalData.getInstance().roomRound + "圈】" + PublicVal.i.rules;
                 }
                 else
                 {
-                    body.desc += " " + PublicVal.i.rules;
+                    body.desc = " " + PublicVal.i.rules;
                 }
-
-                body.title = "跟我一起开房的点此链接！";
 
                 body.link = GameConfig.wei_href_address + "?roomid=" + roomid;
             }
             else
             {
-                body.title = "这麻将！三天不打，上房揭瓦！";
+                body.title = "【老友棋牌】最好玩的阜新麻将！无需下载，等你来战！";
                 body.desc = "私房麻将馆，好友组局，微信登录，玩牌交友两不误！";
                 body.link = ""+ GameConfig.wei_href_address;
             }
         }
         else
         {
-            body.title = "这麻将！三天不打，上房揭瓦！";
+            body.title = "【老友棋牌】最好玩的阜新麻将！无需下载，等你来战！";
             body.desc = "私房麻将馆，好友组局，微信登录，玩牌交友两不误！";
             body.link = "" + GameConfig.wei_href_address;
         }
 
-        body.imgUrl = "https://mj.h5sd.com/wdmj/weishare.png";
+        body.imgUrl = "https://mj.h5sd.com/fxmj/weishare.png";
         body.type = "link";
         body.dataUrl = "";
         body.success = success;
@@ -246,7 +244,7 @@ class Weixin {
         }
 
         var body:BodyMenuShareTimeline = new BodyMenuShareTimeline();
-        body.title = "这麻将！三天不打，上房揭瓦！";
+        body.title = "【老友棋牌】最好玩的阜新麻将！无需下载，等你来战！";
         if(roomid)
         {
             body.link =  GameConfig.wei_href_address + "?roomid=" + roomid;
@@ -256,7 +254,7 @@ class Weixin {
             body.link = "" + GameConfig.wei_href_address;
         }
 
-        body.imgUrl = "https://mj.h5sd.com/wdmj/weishare.png";
+        body.imgUrl = "https://mj.h5sd.com/fxmj/weishare.png";
         body.success = success;
         body.cancel = cancel;
         wx.onMenuShareTimeline(body);

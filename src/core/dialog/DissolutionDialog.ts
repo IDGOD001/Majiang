@@ -27,7 +27,9 @@ class DissolutionDialog extends BaseDialog
 
         this.m_UI.btn_false.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onQuxiao, this);
 
-        this.m_UI.time_text.text = "玩家离线5分钟后将视为同意解散";
+        this.m_UI.time_text.text = "若无人拒绝，则房间将在05:00后自动解散";
+
+        this.m_dialog.btn_close.visible = false;
 
     }
 
@@ -77,22 +79,20 @@ class DissolutionDialog extends BaseDialog
             this.m_UI.btn_false.visible = false;
             this.m_UI.btn_true.visible = false;
             this.m_UI._desc.visible = true;
-            this.m_dialog.btn_close.visible = true;
+
         }
         else
         {
             this.m_UI.btn_false.visible = true;
             this.m_UI.btn_true.visible = true;
             this.m_UI._desc.visible = false;
-
-            this.m_dialog.btn_close.visible = false;
         }
 
         var index:number = 1;
 
         var num:number = 0;
 
-        var isan:boolean = false;
+        var isan:string;
 
         for(var k in GSData.i.roomPlayerMap)
         {
@@ -138,7 +138,7 @@ class DissolutionDialog extends BaseDialog
                 else
                 {
                     img.source = "diss_cuo";
-                    isan = true;
+                    isan = "" + p.nick;
                 }
 
                 num ++;
@@ -151,20 +151,14 @@ class DissolutionDialog extends BaseDialog
 
         if(isan)
         {
-            egret.setTimeout(function ()
-            {
-                my.clear();
+            my.clear();
 
-                EffectUtils.showTips("因有玩家拒绝解散，房间未能解散", 5);
-
-            },this, 1000);
+            EffectUtils.showTips(isan + "不同意解散房间", 5);
         }
         else
         {
             if(num >= 4)
             {
-
-
                 egret.setTimeout(function ()
                 {
                     my.clear();

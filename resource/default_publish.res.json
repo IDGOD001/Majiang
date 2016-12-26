@@ -8,122 +8,6 @@
 		"res":[
 		{
 			"compress":false,
-			"key":"create_btn_img"
-		},
-		{
-			"compress":false,
-			"key":"create_password_bg"
-		},
-		{
-			"compress":false,
-			"key":"create_qd"
-		},
-		{
-			"compress":false,
-			"key":"room_btn"
-		},
-		{
-			"compress":false,
-			"key":"select_center"
-		},
-		{
-			"compress":false,
-			"key":"select_left"
-		},
-		{
-			"compress":false,
-			"key":"create_xz0"
-		},
-		{
-			"compress":false,
-			"key":"create_xz1"
-		},
-		{
-			"compress":false,
-			"key":"clickeff_of_btn"
-		},
-		{
-			"compress":false,
-			"key":"joinpassword_txt"
-		},
-		{
-			"compress":false,
-			"key":"btn_green"
-		},
-		{
-			"compress":false,
-			"key":"btn_red"
-		},
-		{
-			"compress":false,
-			"key":"random_img"
-		},
-		{
-			"compress":false,
-			"key":"bind_img"
-		},
-		{
-			"compress":false,
-			"key":"msg_title"
-		},
-		{
-			"compress":false,
-			"key":"diss_cuo"
-		},
-		{
-			"compress":false,
-			"key":"diss_dui"
-		},
-		{
-			"compress":false,
-			"key":"diss_title"
-		},
-		{
-			"compress":false,
-			"key":"JS_share_button_png"
-		},
-		{
-			"compress":false,
-			"key":"JS_continue_button_png"
-		},
-		{
-			"compress":false,
-			"key":"game_button_quit_png"
-		},
-		{
-			"compress":false,
-			"key":"game_button_setting_png"
-		},
-		{
-			"compress":false,
-			"key":"game_siri_png"
-		},
-		{
-			"compress":false,
-			"key":"game_talk_png"
-		},
-		{
-			"compress":false,
-			"key":"btn_cheng"
-		},
-		{
-			"compress":false,
-			"key":"lashen_15"
-		},
-		{
-			"compress":false,
-			"key":"activit_jian"
-		},
-		{
-			"compress":false,
-			"key":"card_add"
-		},
-		{
-			"compress":false,
-			"key":"voice_icon"
-		},
-		{
-			"compress":false,
 			"key":"check_off_btn"
 		},
 		{
@@ -133,6 +17,42 @@
 		{
 			"compress":false,
 			"key":"create_btn"
+		},
+		{
+			"compress":false,
+			"key":"btn_shiming"
+		},
+		{
+			"compress":false,
+			"key":"idcard_title"
+		},
+		{
+			"compress":false,
+			"key":"game_create"
+		},
+		{
+			"compress":false,
+			"key":"RP_xin3"
+		},
+		{
+			"compress":false,
+			"key":"RP_xin4"
+		},
+		{
+			"compress":false,
+			"key":"RP_xin5"
+		},
+		{
+			"compress":false,
+			"key":"RP_xin2"
+		},
+		{
+			"compress":false,
+			"key":"card_style_blue"
+		},
+		{
+			"compress":false,
+			"key":"card_style_green"
 		},
 		{
 			"compress":false,
@@ -200,10 +120,6 @@
 		},
 		{
 			"compress":false,
-			"key":"rule_txt"
-		},
-		{
-			"compress":false,
 			"key":"radio_btn"
 		},
 		{
@@ -248,6 +164,10 @@
 		},
 		{
 			"compress":false,
+			"key":"yellow_game_btn"
+		},
+		{
+			"compress":false,
 			"key":"panel_1"
 		},
 		{
@@ -284,6 +204,90 @@
 		},
 		{
 			"compress":false,
+			"key":"create_btn_img"
+		},
+		{
+			"compress":false,
+			"key":"create_qd"
+		},
+		{
+			"compress":false,
+			"key":"room_btn"
+		},
+		{
+			"compress":false,
+			"key":"select_center"
+		},
+		{
+			"compress":false,
+			"key":"select_left"
+		},
+		{
+			"compress":false,
+			"key":"create_xz0"
+		},
+		{
+			"compress":false,
+			"key":"create_xz1"
+		},
+		{
+			"compress":false,
+			"key":"clickeff_of_btn"
+		},
+		{
+			"compress":false,
+			"key":"joinpassword_txt"
+		},
+		{
+			"compress":false,
+			"key":"btn_green"
+		},
+		{
+			"compress":false,
+			"key":"btn_red"
+		},
+		{
+			"compress":false,
+			"key":"bind_img"
+		},
+		{
+			"compress":false,
+			"key":"msg_title"
+		},
+		{
+			"compress":false,
+			"key":"diss_cuo"
+		},
+		{
+			"compress":false,
+			"key":"diss_dui"
+		},
+		{
+			"compress":false,
+			"key":"diss_title"
+		},
+		{
+			"compress":false,
+			"key":"btn_cheng"
+		},
+		{
+			"compress":false,
+			"key":"lashen_15"
+		},
+		{
+			"compress":false,
+			"key":"activit_jian"
+		},
+		{
+			"compress":false,
+			"key":"card_add"
+		},
+		{
+			"compress":false,
+			"key":"voice_icon"
+		},
+		{
+			"compress":false,
 			"key":"game_weixin_button"
 		},
 		{
@@ -300,7 +304,7 @@
 		},
 		{
 			"compress":false,
-			"key":"logo"
+			"key":"rule_txt"
 		},
 		{
 			"compress":false,
@@ -344,11 +348,11 @@
 		},
 		{
 			"compress":false,
-			"key":"card_0_btn"
+			"key":"card_1_btn"
 		},
 		{
 			"compress":false,
-			"key":"card_1_btn"
+			"key":"card_0_btn"
 		},
 		{
 			"compress":false,
@@ -368,70 +372,54 @@
 		},
 		{
 			"compress":false,
-			"key":"yellow_game_btn"
+			"key":"xiaosa_icon"
 		},
 		{
 			"compress":false,
-			"key":"btn_shiming"
+			"key":"ting_icon"
 		},
 		{
 			"compress":false,
-			"key":"idcard_title"
+			"key":"game_button_quit"
 		},
 		{
 			"compress":false,
-			"key":"game_create"
+			"key":"game_button_setting"
 		},
 		{
 			"compress":false,
-			"key":"RP_xin3"
+			"key":"game_siri"
 		},
 		{
 			"compress":false,
-			"key":"RP_xin4"
+			"key":"game_talk"
 		},
 		{
 			"compress":false,
-			"key":"RP_xin5"
+			"key":"JS_continue_button"
 		},
 		{
 			"compress":false,
-			"key":"RP_xin2"
+			"key":"JS_share_button"
 		},
 		{
 			"compress":false,
-			"key":"card_style_blue"
+			"key":"game_start_button"
 		},
 		{
 			"compress":false,
-			"key":"card_style_green"
+			"key":"snow2_png"
+		},
+		{
+			"compress":false,
+			"key":"snow1_png"
 		}],
 		"sort":0
 	}],
 	"publishCopyAll":false,
-	"publishPath":"E:/code/CardRoom/resource_Publish/",
-	"sourcePath":"E:/code/CardRoom/resource/",
+	"publishPath":"E:/code/fxmj/resource_Publish/",
+	"sourcePath":"E:/code/fxmj/resource/",
 	"unPackGroup":[
-	{
-		"compress":false,
-		"key":"game_bg"
-	},
-	{
-		"compress":false,
-		"key":"loadingeff_bg"
-	},
-	{
-		"compress":false,
-		"key":"game_scene"
-	},
-	{
-		"compress":false,
-		"key":"blue_game_btn"
-	},
-	{
-		"compress":false,
-		"key":"red_game_btn"
-	},
 	{
 		"compress":false,
 		"key":"expression19.1"
@@ -591,5 +579,25 @@
 	{
 		"compress":false,
 		"key":"expression18.2"
+	},
+	{
+		"compress":false,
+		"key":"loadingeff_bg"
+	},
+	{
+		"compress":false,
+		"key":"blue_game_btn"
+	},
+	{
+		"compress":false,
+		"key":"red_game_btn"
+	},
+	{
+		"compress":false,
+		"key":"game_scene"
+	},
+	{
+		"compress":false,
+		"key":"game_bg"
 	}]
 }

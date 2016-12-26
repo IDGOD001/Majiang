@@ -8,6 +8,10 @@ class GSResultView extends egret.DisplayObjectContainer{
     shareButton:mui.EButton;
     continueButton:mui.EButton;
     face : IGameTapEvent;
+    /**
+     * 结束时间
+     */
+    private endTime:eui.Label;
 
     //胜利失败的logo容器
     logoCon:egret.DisplayObjectContainer;
@@ -22,7 +26,7 @@ class GSResultView extends egret.DisplayObjectContainer{
 
     personItems : PersonItem[];
 
-    baoPaiView:BaoPaiView;
+    //baoPaiView:BaoPaiView;
 
     constructor(){
         super();
@@ -81,15 +85,26 @@ class GSResultView extends egret.DisplayObjectContainer{
             this.personItems.push(personItem);
 
         }
-        this.baoPaiView = new BaoPaiView;
-        this.baoPaiView.x = 910;
-        this.baoPaiView.y = 167;
-        this.addChild(this.baoPaiView);
+        // this.baoPaiView = new BaoPaiView;
+        // this.baoPaiView.x = 910;
+        // this.baoPaiView.y = 167;
+        // this.addChild(this.baoPaiView);
+
+
+        this.endTime = new eui.Label();
+        this.addChild(this.endTime);
+        this.endTime.size = 20;
+        this.endTime.textAlign = "center";
+        this.endTime.textColor = 0xffffff;
+        this.endTime.fontFamily = GameConfig.FontFamily;
+        this.endTime.width = 200;
+        this.endTime.x = this.width - 240;
+        this.endTime.y = this.bg.y - 30;
     }
 
     updateBaoPai(pai:any){
 
-        this.baoPaiView.updatePai(pai);
+        //this.baoPaiView.updatePai(pai);
     }
 
 
@@ -109,7 +124,7 @@ class GSResultView extends egret.DisplayObjectContainer{
 
             var person_pos = person.pos;
 
-            var dir:number = GSData.i.getDir(person_pos);
+            var dir:number = PublicVal.i.getPlayerDir(person_pos);
 
             personItem.headIcon.setHeadPic(person.pic);
 
@@ -119,22 +134,33 @@ class GSResultView extends egret.DisplayObjectContainer{
 
             if(GSData.i.result.hupaiPos == person_pos){
 
+                personItem.ishu = true;
+
                 personItem.updateHuLogo(1);
 
                 personItem.updatePai(person);
 
+
+
             }else if(GSData.i.result.dianPaoPos == person_pos){
 
+                personItem.ishu = false;
                 personItem.updatePai(person);
 
                 personItem.updateHuLogo(2);
             }else{
 
+                personItem.ishu = false;
                 personItem.updatePai(person);
 
                 personItem.updateHuLogo(0);
             }
         }
+
+        var date:Date = new Date(Date.now());
+        var times:string = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() +" " +
+            date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        this.endTime.text = "" + times;
     }
 
 

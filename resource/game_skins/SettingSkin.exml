@@ -4,8 +4,8 @@
 	<e:Image source="setting_huawen" y="33" x="288" scaleX="-1"/>
 	<e:Image source="setting_line" x="415" y="94" height="150"/>
 	<e:Label text="音乐" x="28" y="115" size="24" fontFamily="微软雅黑" textColor="0xA97144" width="59" height="26" textAlign="center" verticalAlign="middle"/>
-	<e:Label y="185" textColor="0xA97144" verticalAlign="middle" text="音效" fontFamily="微软雅黑" textAlign="center" width="59" height="26" size="24" x="28"/>
+	<e:Label y="200" textColor="0xA97144" verticalAlign="middle" text="音效" fontFamily="微软雅黑" textAlign="center" width="59" height="26" size="24" x="28"/>
 	<e:Label y="115" textColor="0xA97144" verticalAlign="middle" text="手牌尺寸" fontFamily="微软雅黑" textAlign="center" width="112" height="26" size="24" x="418"/>
-	<e:Label verticalAlign="middle" y="185" textColor="0xA97144" height="26" text="手牌颜色" fontFamily="微软雅黑" textAlign="center" width="112" size="24" x="418"/>
+	<e:Label verticalAlign="middle" y="200" textColor="0xA97144" height="26" text="手牌颜色" fontFamily="微软雅黑" textAlign="center" width="112" size="24" x="418"/>
 	<e:Label id="_ver" y="279" width="654" height="43" size="20" textAlign="center" verticalAlign="middle" fontFamily="微软雅黑" textColor="0xA97144" lineSpacing="10" horizontalCenter="0"/>
 </e:Skin>

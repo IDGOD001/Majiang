@@ -84,7 +84,7 @@ class GSTotleView extends eui.Component
         this.ruleLabel.top = 80;
         this.ruleLabel.bold = true;
         this.ruleLabel.size = 20;
-        this.ruleLabel.text = "" + PublicVal.i.rules;
+
 
         this._group = new eui.Group();
         this._group.right = this._group.left = this._group.bottom = this._group.top = 0;
@@ -101,11 +101,11 @@ class GSTotleView extends eui.Component
 
         this.logoImg = new eui.Image();
         this.addChild(this.logoImg);
-        this.logoImg.source = "logo";
+        this.logoImg.source = "lymj_text";
         this.logoImg.top = 0;
         this.logoImg.right = 90;
-        this.logoImg.width *= 0.5;
-        this.logoImg.height *= 0.5;
+        //this.logoImg.width *= 0.5;
+        //this.logoImg.height *= 0.5;
 
         this.btn_close = new mui.EButton("JS_close");
         this.addChild(this.btn_close);
@@ -159,7 +159,7 @@ class GSTotleView extends eui.Component
 
         if(!obj) return;
 
-
+        this.ruleLabel.text = "" + PublicVal.i.rules;
 
         this._group.removeChildren();
 
@@ -278,6 +278,6 @@ class GSTotleView extends eui.Component
 
     update()
     {
-
+       
     }
 }

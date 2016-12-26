@@ -20,7 +20,7 @@ class GSView extends egret.Sprite {
     funcSelectView: FuncSelectView;
 
     //上级UI层
-    frontUIContainer: egret.DisplayObjectContainer;
+    frontUIContainer: FrontUIContainer;
 
     //上层特效层
     frontEffectContainer: egret.DisplayObjectContainer;
@@ -34,7 +34,7 @@ class GSView extends egret.Sprite {
 
     readyIcons: egret.Bitmap[];
 
-    baoPaiView: BaoPaiView;
+    //baoPaiView: BaoPaiView;
 
     funcEffect: FuncEffectView;
 
@@ -267,7 +267,7 @@ class GSView extends egret.Sprite {
 
         this.funcSelectView = new FuncSelectView;
 
-        this.frontUIContainer = new egret.DisplayObjectContainer;
+        this.frontUIContainer = new FrontUIContainer;
 
         this.frontEffectContainer = new egret.DisplayObjectContainer;
 
@@ -368,10 +368,10 @@ class GSView extends egret.Sprite {
             this.readyIcons[i] = readyIcon;
         }
 
-        this.baoPaiView = new BaoPaiView;
-        this.baoPaiView.x = 56;
-        this.baoPaiView.y = 95;
-        this.addChild(this.baoPaiView);
+        // this.baoPaiView = new BaoPaiView;
+        // this.baoPaiView.x = 56;
+        // this.baoPaiView.y = 95;
+        // this.addChild(this.baoPaiView);
 
         //////////////////////////////////////////////
         this.funcEffect = new FuncEffectView;
@@ -385,7 +385,7 @@ class GSView extends egret.Sprite {
         this.baoText = new egret.TextField();
         this.baoText.size = 30;
         this.baoText.bold = true;
-        this.baoText.text = "换宝牌了!";
+        //this.baoText.text = "换宝牌了!";
         this.baoText.anchorOffsetX = this.baoText.textWidth >> 1;
         this.baoText.anchorOffsetY = this.baoText.textHeight >> 1;
         this.baoText.x = this.baoEffect.x;
@@ -448,7 +448,7 @@ class GSView extends egret.Sprite {
     //更新房间信息
     updateRoom() {
 
-        for (var i: number = 1; i <= 4; i++) {
+        for (var i: number = 1; i <= GSConfig.playerCount; i++) {
 
             var headView = this.headViews[i];
 
@@ -514,7 +514,7 @@ class GSView extends egret.Sprite {
     //隐藏所有准备图标
     hideReadyIcons() {
 
-        for (var i: number = 1; i <= 4; i++) {
+        for (var i: number = 1; i <= GSConfig.playerCount; i++) {
 
             this.readyIcons[i].visible = false;
 
@@ -525,7 +525,7 @@ class GSView extends egret.Sprite {
 
     updateBaoPai(pai: any) {
 
-        this.baoPaiView.updatePai(pai);
+        //this.baoPaiView.updatePai(pai);
     }
 
     //清理牌局麻将
@@ -547,7 +547,7 @@ class GSView extends egret.Sprite {
     //牌桌状态的头像重置
     readyStateHeadReset() {
 
-        for (var i: number = 1; i <= 4; i++) {
+        for (var i: number = 1; i <= GSConfig.playerCount; i++) {
 
             var headView: GSHeadView = this.headViews[i];
 
@@ -562,13 +562,14 @@ class GSView extends egret.Sprite {
             headView.idText.visible = true;
 
             headView.numText.visible = false;
+            headView.headIcon.clearTing();
         }
     }
 
     //牌局状态的头像重置
     playStateHeadReset() {
 
-        for (var i: number = 1; i <= 4; i++) {
+        for (var i: number = 1; i <= GSConfig.playerCount; i++) {
 
             var headView: GSHeadView = this.headViews[i];
 
@@ -613,7 +614,6 @@ class GSView extends egret.Sprite {
 
     //播放换宝特效
     playBaoEffect() {
-
         this.baoEffect.visible = this.baoText.visible = true;
         this.baoText.scaleX = this.baoText.scaleX = 3;
         egret.Tween.get(this.baoText).to({scaleX: 1, scaleY: 1}, 500).to({}, 1500).call(_=> {
@@ -627,7 +627,7 @@ class GSView extends egret.Sprite {
 
         var icon = e.currentTarget;
 
-        this.face.onKillTouch(GSData.i.getPos(+icon.name));
+        this.face.onKillTouch(PublicVal.i.getPlayerPos(+icon.name));
 
     }
 

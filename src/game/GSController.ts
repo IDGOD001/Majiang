@@ -102,7 +102,7 @@ class GSController extends egret.EventDispatcher{
                 this.visibleZhuang();
 
                 this.gsView.visible = true;
-                this.gsView.baoPaiView.visible = false;
+                //this.gsView.baoPaiView.visible = false;
                 this.gsView.centerBoom.visible = false;
                 this.gsResultView.visible = false;
 
@@ -132,7 +132,7 @@ class GSController extends egret.EventDispatcher{
                 this.visibleZhuang();
 
                 this.gsView.visible = true;
-                this.gsView.baoPaiView.visible = false;
+                //this.gsView.baoPaiView.visible = false;
                 this.gsView.centerBoom.visible = false;
                 this.gsResultView.visible = false;
 
@@ -168,7 +168,7 @@ class GSController extends egret.EventDispatcher{
                 this.visibleZhuang();
 
                 this.gsView.centerBoom.visible = true;
-                this.gsView.baoPaiView.visible = true;
+                //this.gsView.baoPaiView.visible = true;
 
                 this.gsView.playStateHeadReset();
 
@@ -203,7 +203,7 @@ class GSController extends egret.EventDispatcher{
                 this.visibleZhuang();
 
                 this.gsView.centerBoom.visible = true;
-                this.gsView.baoPaiView.visible = true;
+                //this.gsView.baoPaiView.visible = true;
 
                 this.gsView.playStateHeadReset();
 
@@ -278,7 +278,7 @@ class GSController extends egret.EventDispatcher{
     //刷新杠的分数
     updateGangCur(){
 
-        for(var i:number = 1; i <= 4 ;i++){
+        for(var i:number = 1; i <= GSConfig.playerCount ;i++){
 
             this.gsView.headViews[i].numText.text = "" + GSData.i.gangCurs[i];
         }
@@ -429,6 +429,38 @@ class GSController extends egret.EventDispatcher{
 
             }
         }
+
+
+        var tl = GSDataProxy.i.gData.ting_list;
+
+        var xl = GSDataProxy.i.gData.xiaosa_list;
+
+        if(tl)
+        {
+            for(var ti = 0; ti<tl.length; ti++)
+            {
+                var pos:number = tl[ti];
+
+                var dir:number = PublicVal.i.getPlayerDir(pos);
+
+                var head = this.gsView.headViews[dir];
+
+                head.headIcon.setTingSize(4, dir);
+            }
+        }
+
+        if(xl)
+        {
+            for(var xi = 0; xi < xl.length; xi++)
+            {
+                var xpos:number = xl[xi];
+                var xdir:number = PublicVal.i.getPlayerDir(xpos);
+
+                var xhead = this.gsView.headViews[xdir];
+
+                xhead.headIcon.setTingSize(1001, dir);
+            }
+        }
     }
 
     //开始游戏
@@ -469,7 +501,7 @@ class GSController extends egret.EventDispatcher{
 
         if(PublicVal.state == 1 || PublicVal.state == 2) {
 
-            for (var i: number = 1; i <= 4; i++) {
+            for (var i: number = 1; i <= GSConfig.playerCount; i++) {
 
                 var readyIcon = this.gsView.readyIcons[i];
 
@@ -651,6 +683,8 @@ class GSController extends egret.EventDispatcher{
     //播放换宝
     playBao(){
 
+        return;
+        
         this.gsView.playBaoEffect();
 
         this.updateBaoView();
@@ -672,7 +706,7 @@ class GSController extends egret.EventDispatcher{
             if (hupai.type == 17) {
 
 
-                var dianPaoDir = GSData.i.getDir(GSData.i.result.dianPaoPos);
+                var dianPaoDir = PublicVal.i.getPlayerDir(GSData.i.result.dianPaoPos);
 
                 this.removePoolCard(dianPaoDir);
 
@@ -808,7 +842,7 @@ class GSController extends egret.EventDispatcher{
         if(GSData.i.readyTing && this.allowPushCard) {
 
             //发送听牌
-            SocketManager.getInstance().getGameConn().send(15, {"args":{"action":4, "pai":[pai]}});
+            SocketManager.getInstance().getGameConn().send(15, {"args":{"action":GSData.i.tingAction, "pai":[pai]}});
 
             //this.hideFuncSelectMenu();
 
@@ -944,7 +978,7 @@ class GSController extends egret.EventDispatcher{
     //显示吃碰杠功能菜单
     showFuncSelectMenu(tip:boolean = true) {
 
-        if((PublicVal.state == 3 || PublicVal.state == -4 )&& GSData.i.funcSelects.length > 0) {
+        if((PublicVal.state == 3 || PublicVal.state == -4) && GSData.i.funcSelects.length > 0) {
 
             this.moveBack(false);
 
@@ -954,6 +988,24 @@ class GSController extends egret.EventDispatcher{
 
             //TODO 相关手牌提示
             if(tip) GameDispatcher.ins.dispatchEvent(EventType.Trigger_Prompt, true);
+        }
+    }
+
+    showFuncSelectMenuX():void
+    {
+        if(!GSData.i.hasXiaosaRule)
+        {
+            for(var k in GSData.i.funcSelects)
+            {
+                if(!GSData.i.funcSelects["k"]) continue;
+
+                if(+GSData.i.funcSelects["k"].index == 6)
+                {
+                    GSData.i.funcSelects.splice(+k, 1);
+
+                    break;
+                }
+            }
         }
     }
 
@@ -1309,6 +1361,32 @@ class GSController extends egret.EventDispatcher{
 
     }
 
+    //处理听牌
+    doTingX() {
+
+        GSData.i.readyTing = true;
+
+        var funcSelect = GSData.i.getFuncSelectByIndex(6);
+
+        var group = funcSelect.group;
+
+        var playPais = [];
+
+        for(var i = 0 ; i < group.length;i++){
+
+            var obj = group[i];
+
+            playPais.push(obj.play);
+        }
+        //GSData.i.funcSelects = [{index: 0, action: 0, pai: null}];
+
+        //GSData.i.roundStartHasFunction = true;
+
+        //this.showFuncSelectMenu(false);
+
+        this.readyTingView(playPais);
+
+    }
 
     //处理听牌
     doTing() {
@@ -1470,8 +1548,8 @@ class GSController extends egret.EventDispatcher{
 
             this.scene.updateTableBG();
 
-            this.gsView.baoPaiView.cardView.changeBGStyle();
-            this.gsResultView.baoPaiView.cardView.changeBGStyle();
+            //this.gsView.baoPaiView.cardView.changeBGStyle();
+            //this.gsResultView.baoPaiView.cardView.changeBGStyle();
 
             for(var i:number = 1;i <=4;i ++){
 

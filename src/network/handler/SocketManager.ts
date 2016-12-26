@@ -116,9 +116,7 @@ class SocketHandler {
     
     onConnect(){
         //this.socket.connect(this.ip, this.port);
-
         this.socket.connectByUrl("wss://"+this.ip+":"+this.port);
-
         this.status = 1;
         console.log("请求链接！" + this.type);
     }
@@ -248,7 +246,7 @@ class SocketHandler {
     
     send(messageID: number, obj: any = null)
     {
-        
+
         var request = SocketManager.getInstance().Agree["_" + messageID];
 
         if(!request)
@@ -258,6 +256,8 @@ class SocketHandler {
         else
         {
             if(obj && messageID != 1) obj["sequence"] = messageID;
+
+            if(obj) console.log("send : " + obj["sequence"], obj);
 
             this.socket.writeUTF(request.writeData(obj));
         }

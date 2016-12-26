@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>四川麻将</title>
+    <title>阜新麻将</title>
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="full-screen" content="true"/>
@@ -12,7 +12,7 @@
     <style>
         html, body {
             -ms-touch-action: none;
-            background: #020000;
+            background: #043a31;
             padding: 0;
             border: 0;
             margin: 0;
@@ -30,6 +30,7 @@
 	<script egret="lib" src="libs/modules/game/game.web.js" src-release="libs/modules/game/game.web.min.js"></script>
 	<script egret="lib" src="libs/modules/socket/socket.js" src-release="libs/modules/socket/socket.min.js"></script>
 	<script egret="lib" src="libs/modules/tween/tween.js" src-release="libs/modules/tween/tween.min.js"></script>
+	<script egret="lib" src="libs/modules/particle/particle.js" src-release="libs/modules/particle/particle.min.js"></script>
 	<script egret="lib" src="libs/modules/weixinapi/weixinapi.js" src-release="libs/modules/weixinapi/weixinapi.min.js"></script>
 	<!--modules_files_end-->
 
@@ -54,6 +55,7 @@
 	<script egret="game" src="bin-debug/core/dialog/ChatDialog.js"></script>
 	<script egret="game" src="bin-debug/core/dialog/CreateDialog.js"></script>
 	<script egret="game" src="bin-debug/core/dialog/DissolutionDialog.js"></script>
+	<script egret="game" src="bin-debug/core/dialog/IDCardDialog.js"></script>
 	<script egret="game" src="bin-debug/core/dialog/JoinDialog.js"></script>
 	<script egret="game" src="bin-debug/core/dialog/JoinPasswordDialog.js"></script>
 	<script egret="game" src="bin-debug/core/dialog/MessageDialog.js"></script>
@@ -73,12 +75,14 @@
 	<script egret="game" src="bin-debug/core/scene/LoginScene.js"></script>
 	<script egret="game" src="bin-debug/core/SceneManager.js"></script>
 	<script egret="game" src="bin-debug/core/StackManager.js"></script>
+	<script egret="game" src="bin-debug/core/uicom/ChatExpression.js"></script>
 	<script egret="game" src="bin-debug/core/uicom/ChatListUI.js"></script>
 	<script egret="game" src="bin-debug/core/uicom/ChatPao.js"></script>
 	<script egret="game" src="bin-debug/core/uicom/ChatUI.js"></script>
 	<script egret="game" src="bin-debug/core/uicom/CreateUI.js"></script>
 	<script egret="game" src="bin-debug/core/uicom/DialogUI.js"></script>
 	<script egret="game" src="bin-debug/core/uicom/DissolutionUI.js"></script>
+	<script egret="game" src="bin-debug/core/uicom/IDCardUI.js"></script>
 	<script egret="game" src="bin-debug/core/uicom/JoinPasswordUI.js"></script>
 	<script egret="game" src="bin-debug/core/uicom/JoinUI.js"></script>
 	<script egret="game" src="bin-debug/core/uicom/MessageUI.js"></script>
@@ -99,22 +103,23 @@
 	<script egret="game" src="bin-debug/game/data/GSData.js"></script>
 	<script egret="game" src="bin-debug/game/data/GSDataProxy.js"></script>
 	<script egret="game" src="bin-debug/game/data/Person.js"></script>
+	<script egret="game" src="bin-debug/game/data/PlayerDB.js"></script>
 	<script egret="game" src="bin-debug/game/data/RoomPlayer.js"></script>
+	<script egret="game" src="bin-debug/game/FashionTools.js"></script>
 	<script egret="game" src="bin-debug/game/GameRes.js"></script>
 	<script egret="game" src="bin-debug/game/GameUtils.js"></script>
 	<script egret="game" src="bin-debug/game/GSConfig.js"></script>
 	<script egret="game" src="bin-debug/game/GSController.js"></script>
 	<script egret="game" src="bin-debug/game/GSUpdate.js"></script>
 	<script egret="game" src="bin-debug/game/interface/IAnimation.js"></script>
-	<script egret="game" src="bin-debug/game/interface/IFuncSelectClick.js"></script>
 	<script egret="game" src="bin-debug/game/interface/IGame.js"></script>
 	<script egret="game" src="bin-debug/game/interface/IGameTapEvent.js"></script>
-	<script egret="game" src="bin-debug/game/interface/IResultTapEvent.js"></script>
-	<script egret="game" src="bin-debug/game/interface/ISceneTapEvent.js"></script>
 	<script egret="game" src="bin-debug/game/interface/IShow.js"></script>
 	<script egret="game" src="bin-debug/game/interface/IState.js"></script>
 	<script egret="game" src="bin-debug/game/interface/IUpdate.js"></script>
 	<script egret="game" src="bin-debug/game/interface/IUpdatePlus.js"></script>
+	<script egret="game" src="bin-debug/game/PublicVal.js"></script>
+	<script egret="game" src="bin-debug/game/Replayer.js"></script>
 	<script egret="game" src="bin-debug/game/state/BaseState.js"></script>
 	<script egret="game" src="bin-debug/game/state/group/State_CardPutline.js"></script>
 	<script egret="game" src="bin-debug/game/state/group/State_FuncSelect.js"></script>
@@ -128,6 +133,7 @@
 	<script egret="game" src="bin-debug/game/TouchBehaviour.js"></script>
 	<script egret="game" src="bin-debug/game/view/BaoPaiView.js"></script>
 	<script egret="game" src="bin-debug/game/view/CenterBoom.js"></script>
+	<script egret="game" src="bin-debug/game/view/FrontUIContainer.js"></script>
 	<script egret="game" src="bin-debug/game/view/FuncEffectView.js"></script>
 	<script egret="game" src="bin-debug/game/view/FuncSelectView.js"></script>
 	<script egret="game" src="bin-debug/game/view/GSHeadIcon.js"></script>
@@ -139,6 +145,7 @@
 	<script egret="game" src="bin-debug/game/view/GSView.js"></script>
 	<script egret="game" src="bin-debug/game/view/MJView.js"></script>
 	<script egret="game" src="bin-debug/game/view/PersonItem.js"></script>
+	<script egret="game" src="bin-debug/game/view/ReplayControllView.js"></script>
 	<script egret="game" src="bin-debug/game/view/TimeEffectView.js"></script>
 	<script egret="game" src="bin-debug/Main.js"></script>
 	<script egret="game" src="bin-debug/model/player.js"></script>
@@ -162,6 +169,8 @@
 	<script egret="game" src="bin-debug/network/agreement/request/_23.js"></script>
 	<script egret="game" src="bin-debug/network/agreement/request/_24.js"></script>
 	<script egret="game" src="bin-debug/network/agreement/request/_25.js"></script>
+	<script egret="game" src="bin-debug/network/agreement/request/_26.js"></script>
+	<script egret="game" src="bin-debug/network/agreement/request/_27.js"></script>
 	<script egret="game" src="bin-debug/network/agreement/request/_3.js"></script>
 	<script egret="game" src="bin-debug/network/agreement/request/_4.js"></script>
 	<script egret="game" src="bin-debug/network/agreement/request/_5.js"></script>
@@ -187,6 +196,8 @@
 	<script egret="game" src="bin-debug/network/agreement/respose/S23.js"></script>
 	<script egret="game" src="bin-debug/network/agreement/respose/S24.js"></script>
 	<script egret="game" src="bin-debug/network/agreement/respose/S25.js"></script>
+	<script egret="game" src="bin-debug/network/agreement/respose/S26.js"></script>
+	<script egret="game" src="bin-debug/network/agreement/respose/S27.js"></script>
 	<script egret="game" src="bin-debug/network/agreement/respose/S3.js"></script>
 	<script egret="game" src="bin-debug/network/agreement/respose/S4.js"></script>
 	<script egret="game" src="bin-debug/network/agreement/respose/S5.js"></script>
@@ -199,6 +210,7 @@
 	<script egret="game" src="bin-debug/sound/GameMusic.js"></script>
 	<script egret="game" src="bin-debug/sound/GameSound.js"></script>
 	<script egret="game" src="bin-debug/Test.js"></script>
+	<script egret="game" src="bin-debug/TestBall.js"></script>
 	<script egret="game" src="bin-debug/ThemeAdapter.js"></script>
 	<script egret="game" src="bin-debug/utils/EffectUtils.js"></script>
 	<script egret="game" src="bin-debug/utils/Global.js"></script>
@@ -217,7 +229,7 @@
 
     <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
          data-entry-class="Main"
-         data-orientation="landscape"
+         data-orientation="landscapeFlipped"
          data-scale-mode="showAll"
          data-frame-rate="30"
          data-content-width="960"
@@ -229,7 +241,7 @@
     </div>
     <script>
         //默认使用 WebGL 渲染模式
-        egret.runEgret({renderMode:"webgl"});
+		egret.runEgret({renderMode:"canvas"});
     </script>
 </body>
 </html>
