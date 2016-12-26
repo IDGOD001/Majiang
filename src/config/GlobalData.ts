@@ -7,7 +7,7 @@ class GlobalData {
     /**
      * 版本号
      */
-    public resourceCode:string = "";  //0.2.0
+    public resourceCode:string = "";  //0.3.0
 
     /**
      * 玩家信息

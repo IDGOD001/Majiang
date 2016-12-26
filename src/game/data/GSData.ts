@@ -133,17 +133,15 @@ class GSData{
     hasTingRule:boolean;
 
     //玩家辅助数据
-    //playerDB : PlayerDB;
+    playerDB : PlayerDB;
 
     constructor(){
 
-        //this.playerDB = new PlayerDB;
+        this.playerDB = new PlayerDB;
 
         this.clear();
 
     }
-
-
 
     //所有数据清理
     clear(){
@@ -170,7 +168,7 @@ class GSData{
 
         this.hasTingRule = false;
 
-        //this.playerDB.clearReadyFlags();
+        this.playerDB.clearReadyFlags();
 
     }
 
@@ -382,7 +380,7 @@ class GSData{
     //获取
     getResultPersonLeft(dir:number){
 
-        var pos = this.getPos(dir);
+        var pos = PublicVal.i.getPlayerPos(dir);
 
         for(var i:number = 0 ; i < this.result.person.length;i++){
 
@@ -394,20 +392,6 @@ class GSData{
 
     }
 
-
-    //通过pos取得方位
-    getDir(pos:number){
-
-        return this.pos2Dir[pos];
-
-    }
-
-    //通过方位获取pos
-    getPos(dir:number){
-
-        return this.dir2Pos[dir];
-    }
-
     //根据pos获取玩家信息
     getRoomPlayerByPos(pos:number):RoomPlayer{
 
@@ -417,7 +401,7 @@ class GSData{
     //根据dir获取玩家信息
     getRoomPlayerByDir(dir:number){
 
-        return this.getRoomPlayerByPos(this.getPos(dir));
+        return this.getRoomPlayerByPos(PublicVal.i.getPlayerPos(dir));
 
     }
 

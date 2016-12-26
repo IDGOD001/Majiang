@@ -18,16 +18,18 @@ class SettingUI extends eui.Component
 
     public _ver:eui.Label;
 
+    public _txt_sound:eui.Label;
+    public _txt_music:eui.Label;
 
     onComplete()
     {
         this._btn_sound = new mui.EButton("sound_open_btn");
-        this._btn_sound.x = 355;
-        this._btn_sound.y = 180;
+        this._btn_sound.x = 353;
+        this._btn_sound.y = 190;
         this.addChild(this._btn_sound);
 
         this._btn_music = new mui.EButton("sound_open_btn");
-        this._btn_music.x = 355;
+        this._btn_music.x = 353;
         this._btn_music.y = 100;
         this.addChild(this._btn_music);
 
@@ -41,8 +43,30 @@ class SettingUI extends eui.Component
         this._btn_color = new eui.Image();
         this._btn_color.source = "card_style_green";
         this._btn_color.x = 530;
-        this._btn_color.y = 170;
+        this._btn_color.y = 185;
         this.addChild(this._btn_color);
+
+        this._txt_music = new eui.Label();
+        this._txt_music.size = 18;
+        this._txt_music.textColor = 0xA97144;
+        this._txt_music.fontFamily = "微软雅黑";
+        this._txt_music.bold = true;
+        this._txt_music.x = this._btn_music.x - 12;
+        this._txt_music.y = this._btn_music.y + 54;
+        this.addChild(this._txt_music);
+
+        this._txt_music.text = "点击关闭";
+
+        this._txt_sound = new eui.Label();
+        this._txt_sound.size = 18;
+        this._txt_sound.textColor = 0xA97144;
+        this._txt_sound.fontFamily = "微软雅黑";
+        this._txt_sound.x = this._btn_sound.x - 12;
+        this._txt_sound.y = this._btn_sound.y + 54;
+        this._txt_sound.bold = true;
+        this.addChild(this._txt_sound);
+
+        this._txt_sound.text = "点击打开";
     }
 
     createChildren()

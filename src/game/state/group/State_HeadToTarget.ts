@@ -21,7 +21,6 @@ class State_HeadToTarget extends BaseState{
 
         }
 
-
     }
 
     moveComplete(){

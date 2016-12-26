@@ -20,7 +20,7 @@ class GSView extends egret.Sprite {
     funcSelectView: FuncSelectView;
 
     //上级UI层
-    frontUIContainer: egret.DisplayObjectContainer;
+    frontUIContainer: FrontUIContainer;
 
     //上层特效层
     frontEffectContainer: egret.DisplayObjectContainer;
@@ -267,7 +267,7 @@ class GSView extends egret.Sprite {
 
         this.funcSelectView = new FuncSelectView;
 
-        this.frontUIContainer = new egret.DisplayObjectContainer;
+        this.frontUIContainer = new FrontUIContainer;
 
         this.frontEffectContainer = new egret.DisplayObjectContainer;
 
@@ -448,7 +448,7 @@ class GSView extends egret.Sprite {
     //更新房间信息
     updateRoom() {
 
-        for (var i: number = 1; i <= 4; i++) {
+        for (var i: number = 1; i <= GSConfig.playerCount; i++) {
 
             var headView = this.headViews[i];
 
@@ -514,7 +514,7 @@ class GSView extends egret.Sprite {
     //隐藏所有准备图标
     hideReadyIcons() {
 
-        for (var i: number = 1; i <= 4; i++) {
+        for (var i: number = 1; i <= GSConfig.playerCount; i++) {
 
             this.readyIcons[i].visible = false;
 
@@ -547,7 +547,7 @@ class GSView extends egret.Sprite {
     //牌桌状态的头像重置
     readyStateHeadReset() {
 
-        for (var i: number = 1; i <= 4; i++) {
+        for (var i: number = 1; i <= GSConfig.playerCount; i++) {
 
             var headView: GSHeadView = this.headViews[i];
 
@@ -568,7 +568,7 @@ class GSView extends egret.Sprite {
     //牌局状态的头像重置
     playStateHeadReset() {
 
-        for (var i: number = 1; i <= 4; i++) {
+        for (var i: number = 1; i <= GSConfig.playerCount; i++) {
 
             var headView: GSHeadView = this.headViews[i];
 
@@ -627,7 +627,7 @@ class GSView extends egret.Sprite {
 
         var icon = e.currentTarget;
 
-        this.face.onKillTouch(GSData.i.getPos(+icon.name));
+        this.face.onKillTouch(PublicVal.i.getPlayerPos(+icon.name));
 
     }
 

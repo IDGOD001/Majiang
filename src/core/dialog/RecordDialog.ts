@@ -105,7 +105,7 @@ class RecordDialog extends BaseDialog
     {
         super.show(true, this.width, this.height, 1, false);
 
-        SocketManager.getInstance().getGameConn().send(19,{});
+        
     }
 
     /**

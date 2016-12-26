@@ -25,8 +25,6 @@ class CreateUI extends eui.Component
 
     public _edit:eui.Label;
 
-    public btn_suiji:eui.Image;
-
     public _tq1:eui.Label;
     public _tq2:eui.Label;
     public _tq3:eui.Label;
@@ -42,7 +40,7 @@ class CreateUI extends eui.Component
 
     onComplete()
     {
-        this.btn_start = new mui.EButton("game_create", "开始牌局");
+        this.btn_start = new mui.EButton("game_create");
         this.btn_start.x = 284;
         this.btn_start.y = 390;
         this.addChild(this.btn_start);

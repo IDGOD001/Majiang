@@ -2,6 +2,8 @@ module GameMusic
 {
     export var SoundDict = {};
 
+    export var SoundPlayed = {};
+
     export var _volume:number = 1;
 
     /**
@@ -17,9 +19,16 @@ module GameMusic
      */
     export function PlaySound(name:string, loops:number = 0, startTime:number = 0)
     {
-        var _switch:number = +NativeApi.getLocalData("music");
-        if(_switch == 0) return;
-        
+        if(NativeApi.getLocalData("music"))
+        {
+            var _switch:number = +NativeApi.getLocalData("music");
+            if(+_switch == 0) return;
+        }
+
+        if(GameMusic.SoundPlayed[name]) return;
+
+        //if(!GameMusic.SoundLoaded[name]) return;
+
         var SoundDict = GameMusic.SoundDict;
 
         var sound:egret.Sound;
@@ -48,6 +57,8 @@ module GameMusic
         channel.volume = GameMusic._volume;
 
         SoundDict[name] = {"s":sound,"c":channel};
+
+        GameMusic.SoundPlayed[name] = true;
     }
 
     export function CloseAllSound():void
@@ -59,6 +70,20 @@ module GameMusic
             var channel:egret.SoundChannel = SoundDict[name]["c"];
 
             if(channel) channel.stop();
+        }
+    }
+
+    export function checkMusic(name:string = ""):boolean
+    {
+        var SoundDict = GameMusic.SoundDict;
+
+        if(SoundDict[name]["c"])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -80,7 +105,14 @@ module GameMusic
         {
             RES.getResAsync(name,function ()
             {
-               GameMusic.PlaySound(name)
+                if(GameConfig.systemType() == "ios")
+                {
+
+                }
+                else
+                {
+                    GameMusic.PlaySound(name);
+                }
             },this);
         }
     }

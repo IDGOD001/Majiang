@@ -9,7 +9,7 @@ class CreateDialog extends BaseDialog
         5:{x:467, y:231},
         6:{x:627, y:231},
         7:{x:307, y:278},
-        8:{x:467, y:278}
+        8:{x:627, y:187} //467  278
     };
 
     private _xy:any = {
@@ -55,7 +55,7 @@ class CreateDialog extends BaseDialog
             ck.name = "" + i;
             ck.x = this.checkBoxSize[i]["x"];
             ck.y = this.checkBoxSize[i]["y"];
-            //if(i == 3) ck.visible = false;
+            if(i == 3) ck.visible = false;
             var lab:eui.Label = this.m_UI["_tg" + i];
 
             if(i <= 3)
@@ -80,7 +80,6 @@ class CreateDialog extends BaseDialog
 
         this.m_UI.btn_fanxuan.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCheck, this);
 
-        this.m_UI.btn_suiji.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onRandom, this);
 
         this.m_UI._riado.touchEnabled = false;
         //this.m_UI._riado.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
@@ -121,7 +120,6 @@ class CreateDialog extends BaseDialog
 
         this.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
     }
-
 
     private onRandom():void
     {

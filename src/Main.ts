@@ -43,7 +43,16 @@ class Main extends eui.UILayer {
             if(roomid) addres += "?roomid=" + roomid;
             Weixin.getAccessCode(GameConfig.appid, addres);
         }
+    }
+    /**
+     * 加载进度界面
+     * loading process interface
+     */
+    protected createChildren(): void
+    {
+        super.createChildren();
 
+        var my = this;
 
         HttpHandler.sendMsgCallBack("https://"+GameConfig.address_center.ip+":"+GameConfig.address_center.port+"/", "action=serverlist", function (obj)
         {
@@ -56,17 +65,15 @@ class Main extends eui.UILayer {
 
             GameConfig.address_game.ip = addrr;
             GameConfig.address_game.port = port;
+
+            my.initload();
+
         }, egret.URLRequestMethod.POST, this);
 
     }
-    /**
-     * 加载进度界面
-     * loading process interface
-     */
-    protected createChildren(): void
-    {
-        super.createChildren();
 
+    private initload():void
+    {
         //inject the custom material parser
         //注入自定义的素材解析器
         var assetAdapter = new AssetAdapter();

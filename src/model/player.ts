@@ -38,12 +38,12 @@ class Player
     /**
      * 玩家头像链接
      */
-    public pic:string = "";//http://img5.imgtn.bdimg.com/it/u=3367843572,1393769595&fm=21&gp=0.jpg";
+    public pic:string = "";
 
     /**
      * 玩家IP
      */
-    public ip:string = "192.168.2.1";
+    public ip:string = "";
 
     /**
      * 当前房卡数量
@@ -108,7 +108,20 @@ class Player
 
         for(var k in obj)
         {
-            this[k] = obj[k];
+            if(k == "pic")
+            {
+                var pic:string = obj[k]+"";
+                if(pic.indexOf("http") > -1)
+                {
+                    pic = pic.replace("http", "https");
+                }
+                this[k] = pic;
+            }
+            else
+            {
+                this[k] = obj[k];
+            }
+
         }
 
         this.sex = (this.sex == 1 ? 1 : 0);

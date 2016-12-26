@@ -40,11 +40,19 @@ class GSConfig{
 
     static height:number = 640;
 
+    //玩家总人数
     static playerCount:number = 4;
 
     static moveUpDis:number = 25;
 
     static poolReturnCount:number = 10;
+
+    //回放里的功能菜单位置
+    static replayFuncPos = {1:{x:696,y:478,dx:-100,dy:0},
+                            2:{x:773,y:466,dx:0,dy:-100},
+                            3:{x:696,y:137,dx:-100,dy:0},
+                            4:{x:195,y:466,dx:0,dy:-100}
+                            };
 
     //头像初始位置
     static headinitPos = {
@@ -181,7 +189,7 @@ class GSConfig{
     //规则加强
     static posRulePlus:any = {1:GSConfig.posRule[1],2:GSConfig.posRule[2],3:GSConfig.posRule[3],4:GSConfig.posRule[4]};
 
-    static testPais : any[] = [ {type:3,number:1},
+/*    static testPais : any[] = [ {type:3,number:1},
                                 {type:3,number:2},
                                 {type:3,number:9},
                                 {type:3,number:9},
@@ -198,12 +206,13 @@ class GSConfig{
 
                                 {type:4,number:2},
                                 {type:4,number:2}
-                                ];
+                                ];*/
 
 
     static funcSelectRes = ["F_guo","F_chi","F_peng","F_gang","F_budan","F_ting","F_hu"];
 
-    static actionPVP = {    1:1,
+    static actionPVP = {    0:0,
+                            1:1,
                             2:2,
                             22:3,
                             24:3,
@@ -217,8 +226,6 @@ class GSConfig{
     static getPosByIndex(dir:number,style:number,index:number){
 
         var o : any = {};
-
-        //var pos = GSConfig.handPos[dir];
 
         var rule = GSConfig.posRulePlus[dir][style];
 
@@ -310,6 +317,9 @@ class GSConfig{
     }
     static handLens = {2:true,5:true,8:true,11:true,14:true};
 
+    /*
+        允许的手牌长度
+     */
     static allowLens(len:number){
 
         return GSConfig.handLens[len];
@@ -349,8 +359,8 @@ class GSConfig{
     static normal_table_bg_res:string = "game_bg";
     static soft_table_bg_res:string = "game_bg";
 
-    static normal_card_bg_style:string = "N_";
-    static soft_card_bg_style:string = "M_";
+    static normal_card_bg_style:string = "M_";
+    static soft_card_bg_style:string = "N_";
 
     static table_bg_res:string = GSConfig.normal_table_bg_res;
 

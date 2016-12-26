@@ -48,12 +48,12 @@ module TipsUtils
         };
         var onComplete1:Function = function()
         {
-            egret.Tween.get(effectTips).to({alpha:0},500).call(onComplete2,this);   
+            egret.Tween.get(effectTips).to({alpha:0},1000).call(onComplete2,this);
         };
 
         effectTips.visible = true;
 
-        egret.Tween.get(effectTips).to({y:effectTips.y - 120,alpha:1},800,egret.Ease.backOut).call(onComplete1,this);   
+        egret.Tween.get(effectTips).to({y:effectTips.y - 120,alpha:1},1000,egret.Ease.backOut).call(onComplete1,this);
     }    
 
     //从左至右 或者 从右至左
@@ -106,36 +106,36 @@ module TipsUtils
 
         if(isFromeLeft)
         {
-            egret.Tween.get(effectTips).to({x:GameConfig.curWidth()/2 - effectTips.width/2 - 50,alpha:1},300,egret.Ease.sineInOut);   
+            egret.Tween.get(effectTips).to({x:GameConfig.curWidth()/2 - effectTips.width/2 - 50,alpha:1},500,egret.Ease.sineInOut);
         }
         else
         {
-            egret.Tween.get(effectTips).to({x:GameConfig.curWidth()/2 - effectTips.width/2 + 50,alpha:1},300,egret.Ease.sineInOut);   
+            egret.Tween.get(effectTips).to({x:GameConfig.curWidth()/2 - effectTips.width/2 + 50,alpha:1},500,egret.Ease.sineInOut);
         }
 
         egret.setTimeout(function ()
         {
             if(isFromeLeft)
             {
-                egret.Tween.get(effectTips).to({x:effectTips.x + 100},500);  
+                egret.Tween.get(effectTips).to({x:effectTips.x + 100},1000);
             }
             else
             {
-                egret.Tween.get(effectTips).to({x:effectTips.x - 100},500);   
+                egret.Tween.get(effectTips).to({x:effectTips.x - 100},1000);
             }
-        }, this, 300);  
+        }, this, 500);
 
         egret.setTimeout(function ()
         {
             if(isFromeLeft)
             {
-                egret.Tween.get(effectTips).to({x:GameConfig.curWidth()},300,egret.Ease.sineIn);    
+                egret.Tween.get(effectTips).to({x:GameConfig.curWidth()},500,egret.Ease.sineIn);
             }
             else
             {
-                egret.Tween.get(effectTips).to({x:-effectTips.width},300,egret.Ease.sineIn);    
+                egret.Tween.get(effectTips).to({x:-effectTips.width},500,egret.Ease.sineIn);
             }
-        }, this, 800);  
+        }, this, 1000);
 
         egret.setTimeout(function ()
         {
@@ -194,11 +194,11 @@ module TipsUtils
             }
         };
 
-        egret.Tween.get(effectTips).to({scaleX:1,scaleY:1,alpha:1},200);
+        egret.Tween.get(effectTips).to({scaleX:1,scaleY:1,alpha:1},300);
 
         egret.setTimeout(function ()
         {
-            egret.Tween.get(effectTips).to({alpha:0},500).call(onComplete2,this);   
+            egret.Tween.get(effectTips).to({alpha:0},1000).call(onComplete2,this);
         }, this, 1000);   
 
     }    
@@ -248,11 +248,11 @@ module TipsUtils
             }
         };
 
-        egret.Tween.get(effectTips).to({scaleX:1,scaleY:1,alpha:1},200); 
+        egret.Tween.get(effectTips).to({scaleX:1,scaleY:1,alpha:1},300);
 
         egret.setTimeout(function ()
         {
-            egret.Tween.get(effectTips).to({alpha:0},500).call(onComplete2,this);
+            egret.Tween.get(effectTips).to({alpha:0},1000).call(onComplete2,this);
 
         }, this, 1000);   
 

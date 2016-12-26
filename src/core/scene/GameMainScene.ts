@@ -114,16 +114,7 @@ class GameMainScene extends eui.Component
          */
         this.btn_record.addEventListener(egret.TouchEvent.TOUCH_TAP, function ()
         {
-            StackManager.open(RecordDialog, "RecordDialog");
-
-            // var rt:egret.RenderTexture = new egret.RenderTexture();
-            // var clip:egret.Rectangle = new egret.Rectangle(0,0,this._head.width, this._head.height);
-            // rt.drawToTexture( this._head, clip);
-            // var testImg:egret.Bitmap = new egret.Bitmap();
-            // testImg.texture = rt;
-            // var t:egret.Texture = rt;
-            // console.log(t.toDataURL("image/png", clip));
-            // t.saveToFile("image/png", "", clip);
+            SocketManager.getInstance().getGameConn().send(19,{});
         }, this);
 
         /**
@@ -164,6 +155,20 @@ class GameMainScene extends eui.Component
         //this.bg_img.width = GameConfig.curWidth();
 
         //this.bg_img.height = GameConfig.curHeight();
+
+        var system1;
+        var texture1 = RES.getRes("snow2_png");
+        var config1 = RES.getRes("snow2_json");
+        system1 = new particle.GravityParticleSystem(texture1, config1);
+        system1.start();
+        this.addChildAt(system1, 1);
+
+        var system2;
+        var texture2 = RES.getRes("snow1_png");
+        var config2 = RES.getRes("snow1_json");
+        system2 = new particle.GravityParticleSystem(texture2, config2);
+        system2.start();
+        this.addChild(system2);
     }
 
     /**

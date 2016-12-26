@@ -278,7 +278,7 @@ class GSController extends egret.EventDispatcher{
     //刷新杠的分数
     updateGangCur(){
 
-        for(var i:number = 1; i <= 4 ;i++){
+        for(var i:number = 1; i <= GSConfig.playerCount ;i++){
 
             this.gsView.headViews[i].numText.text = "" + GSData.i.gangCurs[i];
         }
@@ -469,7 +469,7 @@ class GSController extends egret.EventDispatcher{
 
         if(PublicVal.state == 1 || PublicVal.state == 2) {
 
-            for (var i: number = 1; i <= 4; i++) {
+            for (var i: number = 1; i <= GSConfig.playerCount; i++) {
 
                 var readyIcon = this.gsView.readyIcons[i];
 
@@ -672,7 +672,7 @@ class GSController extends egret.EventDispatcher{
             if (hupai.type == 17) {
 
 
-                var dianPaoDir = GSData.i.getDir(GSData.i.result.dianPaoPos);
+                var dianPaoDir = PublicVal.i.getPlayerDir(GSData.i.result.dianPaoPos);
 
                 this.removePoolCard(dianPaoDir);
 

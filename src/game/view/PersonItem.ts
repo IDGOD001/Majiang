@@ -18,9 +18,9 @@ class PersonItem extends egret.DisplayObjectContainer {
         1: {ox: 127,oy:0, w: 130},
         2: {ox: 200,oy:0, w: 130},
         3: {ox: 451,oy:0, w: 130},
-        4: {ox: 652,oy:0, w: 130},
-        5:{ox:703,oy:30,w:130},
-        6:{ox:703,oy:50,w:130}
+        4: {ox: 703,oy:60, w: 130},
+        5:{ox:703,oy:0,w:130},
+        6:{ox:703,oy:25,w:130}
     };
     texts: egret.TextField[];
 
@@ -73,6 +73,7 @@ class PersonItem extends egret.DisplayObjectContainer {
         for (var i: number = 1; i <= 6; i++) {
             var t = new egret.TextField();
             t.size = 18;
+            if(i == 4) t.size = 20;
             t.x = this.o[i].ox;
             t.y = this.o[i].oy;
             t.width = this.o[i].w;
@@ -162,9 +163,9 @@ class PersonItem extends egret.DisplayObjectContainer {
         this.texts[2].text = obj.nick;
         //this.texts[2].text = (obj.ting == 0 ? "未听牌 " : "听牌 ") + hu_info;
         this.texts[3].text = ting + hu_info;
-        this.texts[4].text = "合计: "+(obj.fan ? obj.fan : 0)+"番";
-        this.texts[5].text = "胡: "+obj.cur;
-        this.texts[6].text = "杠: "+obj.gang;
+        this.texts[4].text = "合计: "+ (obj.cur + obj.gang);
+        this.texts[5].text = "胡分: "+obj.cur;
+        this.texts[6].text = "杠分: "+obj.gang;
 
         //判断牌型 可以排序
         this.switchPai(1,obj[1]);
