@@ -6,6 +6,11 @@ class Main extends eui.UILayer {
     public constructor() {
         super();
 
+        // var str:string = '{"sequence":11,"data":{"turn":1,"pai":[{"type":5,"number":1},{"type":5,"number":2},{"type":5,"number":3},{"type":5,"number":4}],"ex_hu_type":[],"cur":{"4":0,"3":0,"2":0,"1":0},"action":23},"code":0}';
+        // console.log(JSON.parse(str));
+        // console.log(eval('(' + str + ')'));
+        // console.log( (new Function("return " + str))());
+
         var variables: egret.URLVariables = new egret.URLVariables(location.search);
         var accessType = variables.variables["accessType"];
         var roomid = variables.variables["roomid"];

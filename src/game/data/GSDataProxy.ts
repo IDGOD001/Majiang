@@ -482,20 +482,24 @@ class GSDataProxy {
             case 4://听牌
                 break;
             case 22://幺九杠
-                // GameSound.play((pai[0].number == 1 ? "yaogang_" : "jiugang_") + this.gData.getSexByPos(pos));
-                // this.gData.addFuncPai(3, dir, action, pai, pai[0].number, true);
-                // if (dir == 1) {
-                //     //删除手牌数据 3
-                //     this.gData.removeOwnHandPais([pai[0], pai[1], pai[2]]);
-                // } else {
-                //     this.gData.removeOtherHandPai(dir, 3);
-                // }
-                // GameSound.play("sound_down");
-                break;
+            // GameSound.play((pai[0].number == 1 ? "yaogang_" : "jiugang_") + this.gData.getSexByPos(pos));
+            // this.gData.addFuncPai(3, dir, action, pai, pai[0].number, true);
+            // if (dir == 1) {
+            //     //删除手牌数据 3
+            //     this.gData.removeOwnHandPais([pai[0], pai[1], pai[2]]);
+            // } else {
+            //     this.gData.removeOtherHandPai(dir, 3);
+            //
+            // GameSound.play("sound_down");
+            //              break;
             case 23://旋风杠
                 game.manager.soundPlay(InterruptType.fenggang, pos);
 
-                this.gData.addFuncPai(0, dir, action, pai, 0, true);
+                this.gData.addFuncPai(2, dir, action, {type: 5, number: 2});
+                this.gData.addFuncPai(2, dir, action, {type: 5, number: 3});
+                this.gData.addFuncPai(2, dir, action, {type: 5, number: 4});
+                this.gData.addFuncPai(2, dir, action, {type: 5, number: 1});
+
                 if (dir == 1) {
                     this.gData.removeOwnHandPais(pai);
                 }

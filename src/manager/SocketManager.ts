@@ -97,10 +97,11 @@ class SocketManager extends SocketNetwork {
     readUTF() {
         super.readUTF();
 
-        console.log("==================", this.data);
+        console.log("==================", "" + this.data);
 
         switch (this.data) {
             case "start":
+            case "\'start\'":
             case "\"start\"":
                 this.status = ConnectStatus.connected;
                 if (game.player.code) {
@@ -115,15 +116,18 @@ class SocketManager extends SocketNetwork {
                 }
                 break;
             case "end":
+            case "\'end\'":
             case "\"end\"":
                 this.status = ConnectStatus.connectFail;
                 break;
             default:
                 this.status = ConnectStatus.connectOld;
 
-                // var obj: any = JSON.parse(this.data);
+                var obj: any = JSON.parse(this.data);
+                // var obj: any = JSON.parse(this.data.split("").join(""));
+                // var obj: any = JSON.parse(decodeURI(this.data));
                 // var obj: any = eval('(' + this.data + ')');
-                var obj: any = (new Function("return " + this.data))();
+                // var obj: any = (new Function("return " + this.data))();
 
                 if (obj.code > 0) {
                     var msg: string = TextConfig.errorCodes[obj.code];

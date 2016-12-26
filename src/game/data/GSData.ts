@@ -189,7 +189,7 @@ class GSData {
     }
 
     //往功能牌型里添加牌 排序 方位 功能 牌
-    addFuncPai(sort: number, dir: number, action: number, pai: any[], number: number = 0, ever: any = null) {
+    addFuncPai(sort: number, dir: number, action: number, pai: any|any[], number: number = 0, ever: any = null) {
         var funcPais = PublicVal.i.getFuncPais(dir);
         if (ever != null) ever = [1, 1, 1];
         if (action == 1) {
