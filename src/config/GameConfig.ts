@@ -36,16 +36,31 @@ class GameConfig {
 
     //游戏名称
     static get name() {
-        var name: string;
+        var str: string;
         switch (game.gameType) {
             case GameType.sichuan:
-                name = "欢乐四川麻将";
+                str = "欢乐四川麻将";
                 break;
             case GameType.shenyang:
-                name = "沈阳麻将";
+                str = "沈阳麻将";
                 break;
         }
 
-        return name;
+        return str;
+    }
+
+    //对局
+    static get round() {
+        var str: string = game.roomRoundMax + "";
+        switch (game.gameType) {
+            case GameType.sichuan:
+                str += "局";
+                break;
+            default:
+                str += "圈";
+                break;
+        }
+
+        return str;
     }
 }

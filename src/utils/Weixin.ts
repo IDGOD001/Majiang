@@ -171,7 +171,7 @@ class Weixin {
             body.title = "【" + game.roomOwner.nick + "】邀请你加入房间:" + (roomid.split("").join(" ")) + "-【" + GameConfig.name + "】";
 
             if (game.roomRoundMax > 0) {
-                body.desc = "【" + game.roomRoundMax + "局】" + game.roomRuleText;
+                body.desc = "【" + GameConfig.round + "】" + game.roomRuleText;
             }
             else {
                 body.desc = " " + game.roomRuleText;
