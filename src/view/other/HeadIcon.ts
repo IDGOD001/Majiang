@@ -143,7 +143,7 @@ class HeadIcon extends BaseGameSprite {
         if (typeof source == "string") {
             if (source != "") {
                 var _this = this;
-                RES.getResByUrl(gameConfig.protocolType + this.player.pic.split("//")[1], function (t) {
+                RES.getResByUrl(GameConfig.protocolType + this.player.pic.split("//")[1], function (t) {
                     _this.img_head.source = t;
                 }, this, RES.ResourceItem.TYPE_IMAGE)
             }

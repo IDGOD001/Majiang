@@ -143,8 +143,8 @@ class Weixin {
         var body: BodyMenuShareAppMessage = new BodyMenuShareAppMessage();
         body.title = "" + title;
         body.desc = "" + str;
-        body.link = "" + gameConfig.clientUrl;
-        body.imgUrl = gameConfig.shareImgUrl;
+        body.link = "" + GameConfig.clientUrl;
+        body.imgUrl = GameConfig.shareImgUrl;
         body.type = "link";
         body.dataUrl = "";
         body.success = success;
@@ -168,7 +168,7 @@ class Weixin {
         var body: BodyMenuShareAppMessage = new BodyMenuShareAppMessage();
 
         if (roomid) {
-            body.title = "【" + game.roomOwner.nick + "】邀请你加入房间:" + (roomid.split("").join(" ")) + "-【" + game.gameName + "】";
+            body.title = "【" + game.roomOwner.nick + "】邀请你加入房间:" + (roomid.split("").join(" ")) + "-【" + GameConfig.name + "】";
 
             if (game.roomRoundMax > 0) {
                 body.desc = "【" + game.roomRoundMax + "局】" + game.roomRuleText;
@@ -177,15 +177,15 @@ class Weixin {
                 body.desc = " " + game.roomRuleText;
             }
 
-            body.link = gameConfig.clientUrl + "?roomid=" + roomid;
+            body.link = GameConfig.clientUrl + "?roomid=" + roomid;
         }
         else {
-            body.title = "【" + game.gameName + "】无需下载，点击开战！";
+            body.title = "【" + GameConfig.name + "】无需下载，点击开战！";
             body.desc = "私房麻将馆，好友组局，微信登录，玩牌交友两不误！";
-            body.link = "" + gameConfig.clientUrl;
+            body.link = "" + GameConfig.clientUrl;
         }
 
-        body.imgUrl = gameConfig.shareImgUrl;
+        body.imgUrl = GameConfig.shareImgUrl;
         body.type = "link";
         body.dataUrl = "";
         body.success = success;
@@ -208,15 +208,15 @@ class Weixin {
         }
 
         var body: BodyMenuShareTimeline = new BodyMenuShareTimeline();
-        body.title = "【" + game.gameName + "】无需下载，点击开战！";
+        body.title = "【" + GameConfig.name + "】无需下载，点击开战！";
         if (roomid) {
-            body.link = gameConfig.clientUrl + "?roomid=" + roomid;
+            body.link = GameConfig.clientUrl + "?roomid=" + roomid;
         }
         else {
-            body.link = "" + gameConfig.clientUrl;
+            body.link = "" + GameConfig.clientUrl;
         }
 
-        body.imgUrl = gameConfig.shareImgUrl;
+        body.imgUrl = GameConfig.shareImgUrl;
         body.success = success;
         body.cancel = cancel;
         wx.onMenuShareTimeline(body);

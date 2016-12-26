@@ -161,6 +161,12 @@ class GSDataProxy {
                         funcPais.push({sort: 3, action: 22, pais: [{pai: pais, number: num, ever: ever}]});
                     }
                 }
+                if (men[23]) {//旋风杠
+                    for (var k: number = 1; k < men[23].length; k++) {
+                        this.gData.addFuncPai(2, dir, 23, men[23][k]);
+                    }
+                    this.gData.addFuncPai(2, dir, 23, men[23][0]);
+                }
                 if (men[24]) {//暗杠
                     for (var k: number = 0; k < men[24].length; k++) {
                         this.gData.addFuncPai(1, dir, 24, men[24][k]);
@@ -275,7 +281,7 @@ class GSDataProxy {
                 }
             }
             if (obj[23]) {//旋风杠
-
+                group.push({action: 23, pai: obj[23]});
             }
             if (obj[24]) {//暗杠
 
@@ -298,12 +304,10 @@ class GSDataProxy {
                 }
             }
             if (obj[26]) {//中发白杠
-
                 group.push({action: 26, pai: obj[26]});
 
             }
             this.gData.funcSelects.push({index: 3, group: group});
-
         }
 
         if (obj[27] || obj[28]) {
@@ -452,7 +456,7 @@ class GSDataProxy {
 
         switch (action) {
             case 1://吃
-                game.manager.playEffect(InterruptType.chi, pos);
+                game.manager.soundPlay(InterruptType.chi, pos);
                 this.gData.addFuncPai(5, dir, action, pai);
                 if (dir == 1) {
                     //删除手牌数据
@@ -464,7 +468,7 @@ class GSDataProxy {
                 poolPai = pai[1];
                 break;
             case 2://碰
-                game.manager.playEffect(InterruptType.peng, pos);
+                game.manager.soundPlay(InterruptType.peng, pos);
                 this.gData.addFuncPai(4, dir, action, pai);
                 if (dir == 1) {
                     //删除手牌数据
@@ -489,7 +493,7 @@ class GSDataProxy {
                 // GameSound.play("sound_down");
                 break;
             case 23://旋风杠
-                game.manager.playEffect(InterruptType.fenggang, pos);
+                game.manager.soundPlay(InterruptType.fenggang, pos);
 
                 this.gData.addFuncPai(0, dir, action, pai, 0, true);
                 if (dir == 1) {
@@ -500,7 +504,7 @@ class GSDataProxy {
                 }
                 break;
             case 24://暗杠
-                game.manager.playEffect(InterruptType.angang, pos);
+                game.manager.soundPlay(InterruptType.angang, pos);
                 this.gData.addFuncPai(1, dir, action, pai);
                 //删除手牌数据 3
                 if (dir == 1) {
@@ -510,10 +514,10 @@ class GSDataProxy {
                     this.gData.removeOtherHandPai(dir, 4);
                 }
 
-                if(game.gameType == GameType.sichuan)game.manager.dispatchEvent(EffectEvent.Xiayu, dir);//下雨特效
+                game.manager.dispatchEvent(EffectEvent.Xiayu, dir);//下雨特效
                 break;
             case 25://明杠分(两种 1.3张手牌杠池牌 2.已经碰牌再明杠)
-                game.manager.playEffect(InterruptType.minggang, pos);
+                game.manager.soundPlay(InterruptType.minggang, pos);
                 this.gData.addFuncPai(2, dir, action, pai);
 
                 var tmpPai = pai[0];
@@ -532,10 +536,10 @@ class GSDataProxy {
                 }
                 if (removeLen == 3) poolPai = tmpPai;
 
-                if(game.gameType == GameType.sichuan)game.manager.dispatchEvent(EffectEvent.Guafeng, dir);//刮风特效
+                game.manager.dispatchEvent(EffectEvent.Guafeng, dir);//刮风特效
                 break;
             case 26://中发白杠
-                game.manager.playEffect(InterruptType.zigang, pos);
+                game.manager.soundPlay(InterruptType.zigang, pos);
 
                 this.gData.addFuncPai(0, dir, action, pai, 0, true);
                 if (dir == 1) {
@@ -588,10 +592,10 @@ class GSDataProxy {
                     for (var i: number = 0; i < hu_types.length; i++) {
                         var val: any = hu_types[i];
                         if (val == 19) {//杠上开花
-                            game.manager.playEffect(InterruptType.gangshangkaihua, data.turn);
+                            game.manager.soundPlay(InterruptType.gangshangkaihua, data.turn);
                         }
                         else if (val[0] == 41) {//呼叫转移
-                            game.manager.playEffect(InterruptType.hujiaozhuanyi, data.turn, this.gData.getDir(val[1]));
+                            game.manager.soundPlay(InterruptType.hujiaozhuanyi, data.turn, this.gData.getDir(val[1]));
                         }
                         else if (val[0] == 40) {//一炮多响
                             var posArr: any = val[1];
@@ -607,12 +611,12 @@ class GSDataProxy {
                                 }
                             }
 
-                            game.manager.playEffect(InterruptType.yipaoduoxiang, posArr[i], dirArr);
+                            game.manager.soundPlay(InterruptType.yipaoduoxiang, posArr[i], dirArr);
                         }
                     }
                 }
                 else {
-                    game.manager.playEffect(InterruptType.hu, data.turn, this.gData.turnDir == dir);
+                    game.manager.soundPlay(InterruptType.hu, data.turn, this.gData.turnDir == dir);
                 }
 
                 if (this.gData.turnDir != dir) {//接炮胡
@@ -655,7 +659,7 @@ class GSDataProxy {
 
         GSController.i.setArrowDir(dir);
         GSController.i.updateMJView(dir);
-        // GSController.i.playEffect(dir, action);
+        // GSController.i.soundPlay(dir, action);
 
         GSController.i.playTimeEffect(true, dir == 1);
     }

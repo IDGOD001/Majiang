@@ -81,7 +81,7 @@ class ChangeThreeView extends BaseSprite {
         this.y = acekit.height - 220;
         GSController.i.gsView.frontUIContainer.addChild(this);
 
-        this.time = GameConst.ChangeThreeTime;
+        this.time = GameConfig.ChangeThreeTime;
         this.lab_time.text = "" + this.time;
         TimerManager.i.addEventListener(TimerManager.Second, this.timeHandler, this);
     }

@@ -134,9 +134,9 @@ class MainScene extends eui.Component {
          */
         //TipsManager.addTips(this._money,"再点也不会变多 <(￣︶￣)>！", 1);
 
-        //this.bg_img.width = gameConfig.curWidth();
+        //this.bg_img.width = GameConfig.curWidth();
 
-        //this.bg_img.height = gameConfig.curHeight();
+        //this.bg_img.height = GameConfig.curHeight();
     }
 
     /**
@@ -200,8 +200,8 @@ class MainScene extends eui.Component {
             });
         }
 
-        var num: number = Math.floor(Math.random() * gameConfig.gamewarmList.length);
-        game.hornList.push(gameConfig.gamewarmList[num]);
+        var num: number = Math.floor(Math.random() * TextConfig.notices.length);
+        game.noticeList.push(TextConfig.notices[num]);
 
         egret.setTimeout(this.onWeiJs, this, 1000);
     }
@@ -231,7 +231,7 @@ class MainScene extends eui.Component {
         }
 
         if (game.player.pic != "") {
-            RES.getResByUrl(gameConfig.protocolType + game.player.pic.split("//")[1], function (t: egret.Texture) {
+            RES.getResByUrl(GameConfig.protocolType + game.player.pic.split("//")[1], function (t: egret.Texture) {
                 if (t) {
                     game.player.playerHeadTexture = t;
                     my._head.source = t;

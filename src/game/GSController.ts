@@ -926,26 +926,16 @@ class GSController extends egret.EventDispatcher {
                 var pais = obj.pais;
 
                 switch (action) {
-
                     case 1://吃
                     case 2://碰
-
                         for (var j: number = 0; j < pais.length; j++) {
-
                             var jpai = pais[j];
-
                             var kLen: number = jpai.pai.length;
-
                             for (var k: number = 0; k < kLen; k++) {
-
                                 var cardView: CardView = CardView.create(dir, 3, jpai.pai[k]);
-
                                 var o = GSConfig.getPosByIndex(dir, 3, k);
-
                                 cardView.posView(sPosX + o.x, sPosY + o.y);
-
                                 mjView.addHandCard(cardView);
-
                             }
                             sPosX += pos.dx;
                             sPosY += pos.dy;
@@ -953,24 +943,40 @@ class GSController extends egret.EventDispatcher {
                         break;
                     case 22://幺九杠
                         for (var j: number = 0; j < pais.length; j++) {
-
                             var jpai = pais[j];
-
                             for (var k: number = 0; k < 3; k++) {
-
                                 var cardView: CardView = CardView.create(dir, 3, jpai.pai[k], jpai.ever[k]);
-
                                 var o = GSConfig.getPosByIndex(dir, 3, k);
-
                                 cardView.posView(sPosX + o.x, sPosY + o.y);
-
                                 mjView.addHandCard(cardView);
-
                             }
                             sPosX += pos.dx;
                             sPosY += pos.dy;
                         }
 
+                        break;
+                    case 23://旋风杠
+                        console.log("============================");
+                        console.log(pais);
+                        var g = GSConfig.diePaiPos[dir];
+                        var style: number = 3;
+                        for (var k: number = 0; k < pais.length; k++) {
+                            var gx: number = 0;
+                            var gy: number = 0;
+                            if (k == 3) {
+                                gx = g.x;
+                                gy = g.y;
+                            }
+                            var cardView: CardView = CardView.create(dir, style, pais[k].pai);
+                            var o = GSConfig.getPosByIndex(dir, style, k);
+                            cardView.posView(sPosX + o.x + gx, sPosY + o.y + gy);
+                            mjView.addHandCard(cardView);
+                        }
+                        sPosX += pos.dx;
+                        sPosY += pos.dy;
+                        if (dir == 2) {
+                            cardView.parent.setChildIndex(cardView, cardView.parent.numChildren - 1);
+                        }
                         break;
                     case 24://暗杠
 
@@ -1015,15 +1021,10 @@ class GSController extends egret.EventDispatcher {
 
                         break;
                     case 25://明杠
-
                         var g = GSConfig.diePaiPos[dir];
-
                         var style: number = 3;
-
                         for (var j: number = 0; j < pais.length; j++) {
-
                             var jpai = pais[j];
-
                             for (var k: number = 0; k < 4; k++) {
                                 var gx: number = 0;
                                 var gy: number = 0;
@@ -1032,18 +1033,13 @@ class GSController extends egret.EventDispatcher {
                                     gy = g.y;
                                 }
                                 var cardView: CardView = CardView.create(dir, style, jpai.pai[k]);
-
                                 var o = GSConfig.getPosByIndex(dir, style, k);
-
                                 cardView.posView(sPosX + o.x + gx, sPosY + o.y + gy);
-
                                 mjView.addHandCard(cardView);
-
                             }
                             sPosX += pos.dx;
                             sPosY += pos.dy;
                             if (dir == 2) {
-
                                 cardView.parent.setChildIndex(cardView, cardView.parent.numChildren - 1);
                             }
                         }

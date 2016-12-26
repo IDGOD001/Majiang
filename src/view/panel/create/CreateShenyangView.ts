@@ -40,6 +40,8 @@ class CreateShenyangView extends CreateBaseView {
     getRule() {
         var rule: any[] = [];
 
+        rule.push(RuleType.kouting);
+
         var box: eui.CheckBox;
         for (var i: number = 0; i <= 5; i++) {
             box = this["btn_rule_" + i];

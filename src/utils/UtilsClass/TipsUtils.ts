@@ -25,7 +25,7 @@ module TipsUtils {
         effectTips.stroke = 2;
         effectTips.bold = true;
         effectTips.textAlign = egret.HorizontalAlign.CENTER;
-        effectTips.fontFamily = gameConfig.FontFamily;
+        effectTips.fontFamily = GameConfig.defaultFont;
 
         effectTips.touchEnabled = false;
 
@@ -85,7 +85,7 @@ module TipsUtils {
 
         effectTips.textAlign = egret.HorizontalAlign.CENTER;
 
-        effectTips.fontFamily = gameConfig.FontFamily;
+        effectTips.fontFamily = GameConfig.defaultFont;
 
         effectTips.touchEnabled = false;
 
@@ -154,7 +154,7 @@ module TipsUtils {
         effectTips.stroke = 2;
         effectTips.bold = true;
         effectTips.textAlign = egret.HorizontalAlign.CENTER;
-        effectTips.fontFamily = gameConfig.FontFamily;
+        effectTips.fontFamily = GameConfig.defaultFont;
         effectTips.touchEnabled = false;
 
         if (!LayerManager.gameLayer().loadLayer.contains(effectTips)) {
@@ -201,7 +201,7 @@ module TipsUtils {
         effectTips.stroke = 2;
         effectTips.bold = true;
         effectTips.textAlign = egret.HorizontalAlign.CENTER;
-        effectTips.fontFamily = gameConfig.FontFamily;
+        effectTips.fontFamily = GameConfig.defaultFont;
         effectTips.touchEnabled = false;
 
         if (!LayerManager.gameLayer().loadLayer.contains(effectTips)) {

@@ -98,7 +98,7 @@ class GSTotleView extends eui.Component {
 
         this.logoImg = new eui.Image();
         this.addChild(this.logoImg);
-        this.logoImg.source = "logo";
+        this.logoImg.source = "lymj_text";
         this.logoImg.top = 0;
         this.logoImg.right = 90;
         this.logoImg.width *= 0.5;
@@ -123,7 +123,7 @@ class GSTotleView extends eui.Component {
         this.endTime.size = 20;
         this.endTime.textAlign = "center";
         this.endTime.textColor = 0xffffff;
-        this.endTime.fontFamily = gameConfig.FontFamily;
+        this.endTime.fontFamily = GameConfig.defaultFont;
         this.endTime.right = 10;
         this.endTime.bottom = 70;
     }

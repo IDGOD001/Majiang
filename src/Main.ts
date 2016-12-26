@@ -26,20 +26,20 @@ class Main extends eui.UILayer {
         game.ip = ip;
         game.port = port;
 
-        gameConfig.code = code;
+        GameConfig.code = code;
 
         if (user) {
-            gameConfig.address_game.ip = gameConfig.address_test.ip;
-            gameConfig.address_game.port = gameConfig.address_test.port;
+            GameConfig.address_game.ip = GameConfig.address_test.ip;
+            GameConfig.address_game.port = GameConfig.address_test.port;
             return;
         }
 
         //TODO 动态修改游戏地址访问地址
         if (accessType == "test") {//测试
-            gameConfig.clientUrl = gameConfig.protocolType + gameConfig.domainName + "chuanma/test.html";
+            GameConfig.clientUrl = GameConfig.protocolType + GameConfig.domainName + "chuanma/test.html";
         }
         else {//正式
-            gameConfig.clientUrl = gameConfig.protocolType + gameConfig.domainName + "chuanma/game.html";
+            GameConfig.clientUrl = GameConfig.protocolType + GameConfig.domainName + "chuanma/game.html";
         }
 
         //本地存储code比对, 如果相同则视为无效登录
@@ -48,18 +48,18 @@ class Main extends eui.UILayer {
         }
 
         if (!user && !code) {
-            Weixin.getAccessCode(gameConfig.appid, gameConfig.clientUrl, roomid);
+            Weixin.getAccessCode(GameConfig.appid, GameConfig.clientUrl, roomid);
             return;
         }
 
         GameLocal.setData(GameLocal.loginCode, code);
 
         var _this = this;
-        HttpNetwork.pull(gameConfig.protocolType + gameConfig.address_center.ip + ":" + gameConfig.address_center.port + "/", function (obj) {
-            gameConfig.address_http.ip = obj.addrr;
-            gameConfig.address_http.port = obj.auth_port;
-            gameConfig.address_game.ip = obj.addrr;
-            gameConfig.address_game.port = obj.port;
+        HttpNetwork.pull(GameConfig.protocolType + GameConfig.address_center.ip + ":" + GameConfig.address_center.port + "/", function (obj) {
+            GameConfig.address_http.ip = obj.addrr;
+            GameConfig.address_http.port = obj.auth_port;
+            GameConfig.address_game.ip = obj.addrr;
+            GameConfig.address_game.port = obj.port;
 
             _this.wxConfig();
         }, this, "action=serverlist");
@@ -70,11 +70,11 @@ class Main extends eui.UILayer {
 
         var arr: Array<string> = ["closeWindow", "hideMenuItems", "onMenuShareAppMessage", "onMenuShareTimeline", "startRecord", "stopRecord", "onVoiceRecordEnd", "playVoice", "pauseVoice", "stopVoice", "onVoicePlayEnd", "uploadVoice", "downloadVoice"];
 
-        HttpNetwork.pull(gameConfig.protocolType + gameConfig.address_http.ip + ":" + gameConfig.address_http.port, function (obj) {
+        HttpNetwork.pull(GameConfig.protocolType + GameConfig.address_http.ip + ":" + GameConfig.address_http.port, function (obj) {
             if (obj.message != "error") {
                 var data:any = JSON.parse(obj.message);
                 Weixin.config(
-                    gameConfig.appid,
+                    GameConfig.appid,
                     data.timestamp,
                     data.noncestr,
                     data.signature,

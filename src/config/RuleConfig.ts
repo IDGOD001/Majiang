@@ -63,9 +63,6 @@ class RuleConfig {
                     case RuleType.paizhang://牌张
                         game.roomZhang = rule[1];
                         break;
-                    case RuleType.kouting://扣听
-                        GSData.i.hasTingRule = true;
-                        break;
                     default:
                         break;
                 }

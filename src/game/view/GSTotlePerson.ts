@@ -69,7 +69,7 @@ class GSTotlePerson extends eui.Component {
         this._name.size = 20;
         this._name.textAlign = "center";
         this._name.textColor = 0xffffff;
-        this._name.fontFamily = gameConfig.FontFamily;
+        this._name.fontFamily = GameConfig.defaultFont;
 
         this._name.y = 110;
         this._name.x = 40 - this._name.textWidth * 0.5;
@@ -172,7 +172,7 @@ class GSTotlePerson extends eui.Component {
             label.text = txtList[i] + "：" + numlist[i];
             label.size = 20;
             label.textColor = 0xffffff;
-            label.fontFamily = gameConfig.FontFamily;
+            label.fontFamily = GameConfig.defaultFont;
             label.x = 40 - label.textWidth * 0.5;
 
             if (i == (numlist.length - 1)) {

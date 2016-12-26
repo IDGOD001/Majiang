@@ -26,12 +26,12 @@ class GameManager extends BaseDispatcher {
     }
 
     /**
-     * 播放中断效果
+     * 中断声音播放
      * @param type
      * @param pos
      * @param args
      */
-    playEffect(type: InterruptType, pos: number, ...args) {
+    soundPlay(type: InterruptType, pos: number, ...args) {
         var gender: Gender = GSDataProxy.i.gData.getSexByPos(pos);
         var dir: Dir4 = GSDataProxy.i.gData.getDir(pos);
         var sound: string;

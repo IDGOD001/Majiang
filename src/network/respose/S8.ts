@@ -12,6 +12,8 @@ class S8 {
         if (data.hasOwnProperty("rules")) {
             game.roomRules = data.rules;
 
+            GSData.i.hasTingRule = game.roomRules.indexOf(RuleType.kouting) != -1;
+
             RuleConfig.checkSpecial(game.roomRules);
         }
 

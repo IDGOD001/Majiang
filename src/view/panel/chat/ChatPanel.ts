@@ -15,12 +15,12 @@ class ChatPanel extends BasePanel {
 
         this.bgView.setType(BgViewType.normal);
 
-        for (var k in gameConfig.chat) {
+        for (var k in TextConfig.chatContents) {
             var item: ChatItem = new ChatItem();
             this.chatGroup.addChild(item);
 
-            item.clickey = +gameConfig.chat[k].id;
-            item.lab_content.text = gameConfig.chat[k].text;
+            item.clickey = +TextConfig.chatContents[k].id;
+            item.lab_content.text = TextConfig.chatContents[k].text;
         }
 
         for (var i = 1; i <= 20; i++) {

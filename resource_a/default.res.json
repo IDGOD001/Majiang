@@ -2181,11 +2181,6 @@
 			"url":"assets/game/text/create_siren2.png"
 		},
 		{
-			"name":"logo",
-			"type":"image",
-			"url":"assets/game/text/logo.png"
-		},
-		{
 			"name":"RP_hand",
 			"type":"image",
 			"url":"assets/game/RP_hand.png"

@@ -17,8 +17,8 @@ class _1 {
             else {
                 obj = {
                     "channel": "" + common.platformType(),
-                    "length": gameConfig.code.length,
-                    "code": gameConfig.code
+                    "length": GameConfig.code.length,
+                    "code": GameConfig.code
                 };
             }
         }

@@ -22,7 +22,7 @@ class S26 {
 
                 if (oldArr[0] != newArr[0] || oldArr[1] != newArr[1]) {
                     game.askPanel.showMsg(function (r) {
-                        location.href = gameConfig.clientUrl += "?roomid=" + game.roomid;
+                        location.href = GameConfig.clientUrl += "?roomid=" + game.roomid;
                     }, "当前游戏版本过低，请刷新游戏！");
                 }
             }

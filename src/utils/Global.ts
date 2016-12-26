@@ -63,7 +63,7 @@ class Global {
 	// 		var count: number = +GameLocal.getData(GameLocal.loginAccessCode);
     //
 	// 		if (count < 2) {
-	// 			Weixin.getAccessCode(gameConfig.appid, gameConfig.clientUrl, game.roomid);
+	// 			Weixin.getAccessCode(GameConfig.appid, GameConfig.clientUrl, game.roomid);
 	// 			count++;
 	// 			GameLocal.setData(GameLocal.loginAccessCode, count);
 	// 		}
@@ -145,7 +145,7 @@ class Global {
 			this.ipwarmLabel.verticalCenter = 0;
 			this.ipwarmLabel.textAlign = "center";
 			this.ipwarmLabel.size = 20;
-			this.ipwarmLabel.fontFamily = gameConfig.FontFamily;
+			this.ipwarmLabel.fontFamily = GameConfig.defaultFont;
 			this.ipwarmLabel.text = "注意：有玩家IP地址相同，请点击玩家头像查看";
 			this.ipwarmGroup.addChild(this.ipwarmLabel);
 		}
@@ -235,7 +235,7 @@ class Global {
 
 		var chat_pao: ChatPao = new ChatPao();
 
-		var chatlist: any = gameConfig.chat;
+		var chatlist: any = TextConfig.chatContents;
 
 		var layer = LayerManager.gameLayer().mainLayer;
 

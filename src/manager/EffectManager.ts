@@ -24,32 +24,42 @@ class EffectManager extends BaseManager {
     init() {
         super.init();
 
-        this.changeThreeView = new ChangeThreeView();
-        this.changeThreeAnimation = new ChangeThreeCompleteView();
-        this.queView = new QueView();
-        this.queCompleteView = new QueCompleteView();
-        this.xiayuView = new XiayuView();
-        this.guafengView = new GuafengView();
-        this.hujiaozhuanyiView = new HujiaozhuanyiView();
-        this.gangshangkaihuaView = new GangshangkaihuaView();
-        this.yipaoduoxiangView = new YipaoduoxiangView();
-        this.scoreView = new ScoreView();
-
         this.gameManager.addEventListener(EffectEvent.CleanAll, this.onCleanAll, this);
-        this.gameManager.addEventListener(EffectEvent.ChangeThree, this.onChangeThree, this);
-        this.gameManager.addEventListener(EffectEvent.ChangeThreeComplete, this.onChangeThreeComplete, this);
-        this.gameManager.addEventListener(EffectEvent.Que, this.onQue, this);
-        this.gameManager.addEventListener(EffectEvent.QueComplete, this.onQueComplete, this);
         this.gameManager.addEventListener(EffectEvent.CardRaise, this.onCardRaise, this);
         this.gameManager.addEventListener(EffectEvent.CardThrow, this.onCardThrow, this);
         this.gameManager.addEventListener(EffectEvent.CardThrowTips, this.onCardThrowTips, this);
-        this.gameManager.addEventListener(EffectEvent.Xiayu, this.onRaining, this);
-        this.gameManager.addEventListener(EffectEvent.Guafeng, this.onWindy, this);
-        this.gameManager.addEventListener(EffectEvent.Hujiaozhuanyi, this.onHujiaozhuanyi, this);
-        this.gameManager.addEventListener(EffectEvent.Gangshangkaihua, this.onGangshangkaihua, this);
-        this.gameManager.addEventListener(EffectEvent.Yipaoduoxiang, this.onYipaoduoxiang, this);
+
+        this.scoreView = new ScoreView();
         this.gameManager.addEventListener(EffectEvent.ScoreTips, this.onScoreTips, this);
 
+        if (game.gameType == GameType.sichuan) {
+            this.changeThreeView = new ChangeThreeView();
+            this.gameManager.addEventListener(EffectEvent.ChangeThree, this.onChangeThree, this);
+
+            this.changeThreeAnimation = new ChangeThreeCompleteView();
+            this.gameManager.addEventListener(EffectEvent.ChangeThreeComplete, this.onChangeThreeComplete, this);
+
+            this.queView = new QueView();
+            this.gameManager.addEventListener(EffectEvent.Que, this.onQue, this);
+
+            this.queCompleteView = new QueCompleteView();
+            this.gameManager.addEventListener(EffectEvent.QueComplete, this.onQueComplete, this);
+
+            this.xiayuView = new XiayuView();
+            this.gameManager.addEventListener(EffectEvent.Xiayu, this.onRaining, this);
+
+            this.guafengView = new GuafengView();
+            this.gameManager.addEventListener(EffectEvent.Guafeng, this.onWindy, this);
+
+            this.hujiaozhuanyiView = new HujiaozhuanyiView();
+            this.gameManager.addEventListener(EffectEvent.Hujiaozhuanyi, this.onHujiaozhuanyi, this);
+
+            this.gangshangkaihuaView = new GangshangkaihuaView();
+            this.gameManager.addEventListener(EffectEvent.Gangshangkaihua, this.onGangshangkaihua, this);
+
+            this.yipaoduoxiangView = new YipaoduoxiangView();
+            this.gameManager.addEventListener(EffectEvent.Yipaoduoxiang, this.onYipaoduoxiang, this);
+        }
     }
 
     private onScoreTips(scores: any) {
@@ -77,10 +87,10 @@ class EffectManager extends BaseManager {
     }
 
     private onCleanAll() {
-        this.changeThreeView.hide();
-        this.changeThreeAnimation.hide();
 
-        this.queView.hide();
+        this.changeThreeView && this.changeThreeView.hide();
+        this.changeThreeAnimation && this.changeThreeAnimation.hide();
+        this.queView && this.queView.hide();
 
         GSController.i.gsView.updateState();
     }

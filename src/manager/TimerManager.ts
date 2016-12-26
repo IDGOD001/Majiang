@@ -34,16 +34,16 @@ class TimerManager extends BaseDispatcher {
         if (this.testHorn >= 120) {
             this.testHorn = 0;
 
-            game.hornList.push(gameConfig.gamewarmList[game.gamewarmIndex]);
+            game.noticeList.push(TextConfig.notices[game.noticeIndex]);
 
-            game.gamewarmIndex++;
+            game.noticeIndex++;
 
-            if (game.gamewarmIndex >= gameConfig.gamewarmList.length) {
-                game.gamewarmIndex = 0;
+            if (game.noticeIndex >= TextConfig.notices.length) {
+                game.noticeIndex = 0;
             }
         }
 
-        if (game.hornList.length > 0) {
+        if (game.noticeList.length > 0) {
             Global.showHorn(20, 0x40f8ff);
         }
     }

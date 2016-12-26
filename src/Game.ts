@@ -89,10 +89,10 @@ class game {
 
     //战绩详情用户列表
     static recordInfos: any;
-    //游戏提示播放顺序
-    static gamewarmIndex: number = 0;
-    //喇叭列表
-    static hornList: string[] = [];
+    //广播索引
+    static noticeIndex: number = 0;
+    //广播内容列表
+    static noticeList: string[] = [];
 
     static init(stage) {
         this.stage = stage;
@@ -114,13 +114,13 @@ class game {
 
         switch (this.gameType){
             case GameType.sichuan:
-                gameConfig.address_test.ip = "192.168.2.251";
-                gameConfig.address_test.port = 10615;
+                GameConfig.address_test.ip = "192.168.2.251";
+                GameConfig.address_test.port = 10615;
                 break;
             case GameType.shenyang:
             default:
-                gameConfig.address_test.ip = "192.168.2.22";
-                gameConfig.address_test.port = 10415;
+                GameConfig.address_test.ip = "192.168.2.22";
+                GameConfig.address_test.port = 10415;
                 break;
         }
     }
@@ -185,17 +185,5 @@ class game {
                 return game.roomPlayers[uid];
             }
         }
-    }
-
-    //游戏名称
-    static get gameName() {
-        var name: string;
-        switch (game.gameType) {
-            case GameType.sichuan:
-                name = "欢乐四川麻将";
-                break;
-        }
-
-        return name;
     }
 }
