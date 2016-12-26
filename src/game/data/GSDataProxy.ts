@@ -773,7 +773,7 @@ class GSDataProxy {
             this.gData.result.hupaiPos = hupai.pos_hu;
             var huDir = this.gData.getDir(hupai.pos_hu);
             //胡家的剩余牌
-            var hu_left = GSData.i.getResultPersonLeft(huDir);
+            var hu_left: any[] = GSData.i.getResultPersonLeft(huDir);
             if (huDir == 1) {
                 this.gData.resultType = 1;
             } else {
@@ -806,6 +806,8 @@ class GSDataProxy {
             } else {
                 hu_left.push(hupai.pai);
             }
+
+            hu_left.pop();
 
             GSController.i.playEffect(huDir, 99);
         }

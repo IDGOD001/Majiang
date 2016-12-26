@@ -364,6 +364,11 @@ class GSController extends egret.EventDispatcher {
 
         this.updateCenterInfo();
 
+        for (var i: number = 1; i <= 4; i++) {
+            var head: HeadIcon = GSController.i.gsView.getHeadView(i);
+            head.isTing = false;
+        }
+
         if (GSData.i.isLianZhuang) {
             EffectUtils.showTips("恭喜庄家连庄！", 1);
         }
@@ -854,9 +859,7 @@ class GSController extends egret.EventDispatcher {
 
     //根据pos设置轮盘方向
     setBoomDir(pos: number) {
-
         this.gsView.centerBoom.bg.rotation = 90 * pos - 180;
-
     }
 
     setArrowDir(dir: number) {
@@ -865,11 +868,8 @@ class GSController extends egret.EventDispatcher {
 
     clear() {
         this.allowPushCard = true;
-
         this.isAllowFuncClick = true;
-
         this.clearActivateCard();
-
         this.clearDelayPushInterval();
     }
 

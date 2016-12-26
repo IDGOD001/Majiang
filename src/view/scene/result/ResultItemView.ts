@@ -13,6 +13,7 @@ class ResultItemView extends BaseGameSprite {
     private lab_hu: eui.Label;
     private lab_gang: eui.Label;
     private lab_zong: eui.Label;
+    private img_hu: eui.Image;
 
     headIcon: HeadIcon;
     cardViews: CardView[];
@@ -68,9 +69,13 @@ class ResultItemView extends BaseGameSprite {
                 break;
             default:
                 var hupai = GSData.i.result.hupai;
+
+                this.img_hu.visible = hupai.pos_hu == this.data.pos;
+
                 if (hupai.pos_hu == this.data.pos) {
                     pai = hupai.pai;
                     this.addCardView(pai, this.pos.x, this.pos.y);
+
                 }
                 break;
         }
