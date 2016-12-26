@@ -392,6 +392,10 @@ class GSDataProxy {
 
         game.roomPaidui = dui_num;
 
+        if (game.roomPaidui == 4) {
+            EffectUtils.showTips("剩余最后4张", 5);
+        }
+
         if (this.gData.turnDir != 1 && PublicVal.state != StateType.shuffle) {// && this.gData.isZhuangPush) {
             //轮到他人的时候，并且庄家出完牌,进行假象牌的添加
             this.gData.pushHandPai(this.gData.turnDir, null);
@@ -413,11 +417,15 @@ class GSDataProxy {
 
         game.roomPaidui = dui_num;
 
+        if (game.roomPaidui == 4) {
+            EffectUtils.showTips("剩余最后4张", 5);
+        }
+
         this.gData.turnDir = (fen ? 0 : 1);
 
         if (fen) {
-            console.log("尾局分张");
             PublicVal.state = StateType.fen;
+            console.log("尾局分张");
         }
 
         GSController.i.catchCard(1);
