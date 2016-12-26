@@ -70,8 +70,7 @@ class ResultItemView extends BaseGameSprite {
                 var hupai = GSData.i.result.hupai;
                 if (hupai.pos_hu == this.data.pos) {
                     pai = hupai.pai;
-                    o = GSConfig.getPosByIndex(1, 4, 1);
-                    this.addCardView(pai, this.pos.x + o.x, this.pos.y);
+                    this.addCardView(pai, this.pos.x, this.pos.y);
                 }
                 break;
         }
