@@ -5,6 +5,7 @@ class HeadIcon extends BaseGameSprite {
     private img_kuang_owner: eui.Image;
     private img_zhuang: eui.Image;
     private img_que: eui.Image;
+    private img_ting: eui.Image;
     private lab_nick: eui.Label;
     private lab_uid: eui.Label;
     private lab_fen: eui.Label;
@@ -156,6 +157,20 @@ class HeadIcon extends BaseGameSprite {
         }
     }
 
+    set isTing(va: boolean) {
+        switch (this.dir) {
+            case 3:
+                this.img_ting.horizontalCenter = 65;
+                this.img_ting.verticalCenter = 0;
+                break;
+            default:
+                this.img_ting.horizontalCenter = 0;
+                this.img_ting.verticalCenter = 55;
+                break;
+        }
+        this.img_ting.visible = true;
+    }
+
     setState(state: HeadIconState) {
         switch (state) {
             case HeadIconState.normal:
@@ -179,6 +194,7 @@ class HeadIcon extends BaseGameSprite {
         this.isZhuang = false;
         this.isOwner = false;
         this.que = PaiType.unknow;
+        this.img_ting.visible = false;
         this.player = null;
         this.img_head.source = "game_head_null";
         this.lab_nick.text = "";
