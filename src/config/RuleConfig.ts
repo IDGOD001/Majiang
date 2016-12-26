@@ -90,6 +90,10 @@ class RuleConfig {
                 continue;
             }
 
+            if (game.gameType == GameType.shenyang && rules[i] == RuleType.kouting) {
+                continue;
+            }
+
             text += this.rules[rules[i]] + " ";
         }
         return text;

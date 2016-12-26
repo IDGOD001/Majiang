@@ -126,6 +126,18 @@ class HuConfig {
             case 51:
                 name = "海底炮";
                 break;
+            case 52:
+                name = "闷听";
+                break;
+            case 53:
+                name = "报听";
+                break;
+            case 54:
+                name = "三清";
+                break;
+            case 55:
+                name = "四清";
+                break;
             case 99:
                 name = "平胡";
                 break;

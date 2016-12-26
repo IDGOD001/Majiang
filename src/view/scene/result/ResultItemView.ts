@@ -58,10 +58,22 @@ class ResultItemView extends BaseGameSprite {
     showHu() {
         var pai;
         var o;
-        for (var i: number = 0; i < this.data.hus.length; i++) {
-            pai = this.data.hus[i];
-            o = GSConfig.getPosByIndex(1, 4, i);
-            this.addCardView(pai, this.pos.x + o.x, this.pos.y);
+        switch (game.gameType) {
+            case GameType.sichuan:
+                for (var i: number = 0; i < this.data.hus.length; i++) {
+                    pai = this.data.hus[i];
+                    o = GSConfig.getPosByIndex(1, 4, i);
+                    this.addCardView(pai, this.pos.x + o.x, this.pos.y);
+                }
+                break;
+            default:
+                var hupai = GSData.i.result.hupai;
+                if (hupai.pos_hu == this.data.pos) {
+                    pai = hupai.pai;
+                    o = GSConfig.getPosByIndex(1, 4, 1);
+                    this.addCardView(pai, this.pos.x + o.x, this.pos.y);
+                }
+                break;
         }
     }
 
@@ -92,7 +104,7 @@ class ResultItemView extends BaseGameSprite {
 
     //显示门前牌
     showDown() {
-        var checks: any[] = [1, 2, 24, 25];
+        var checks: any[] = [1, 2, 23, 24, 25, 26];
         for (var i: number = 0; i < checks.length; i++) {
             var type: number = checks[i];
             var group: any[] = this.data[type];
@@ -109,6 +121,19 @@ class ResultItemView extends BaseGameSprite {
                             this.pos.x += this.spacing;
                         }
                         break;
+                    case 23://旋风杠
+                        for (var j: number = 1; j < group.length; j++) {
+                            var pai = group[j];
+                            var centerO: any;
+                            var o = GSConfig.getPosByIndex(1, 4, j - 1);
+                            if (j == 2) {
+                                centerO = o;
+                            }
+                            this.addCardView(pai, this.pos.x + o.x, this.pos.y);
+                        }
+                        this.addCardView(group[0], this.pos.x + centerO.x, this.pos.y - 10);
+                        this.pos.x += this.spacing;
+                        break;
                     case 24://暗杠
                         for (var j: number = 0; j < group.length; j++) {
                             var pais = group[j];
@@ -118,7 +143,6 @@ class ResultItemView extends BaseGameSprite {
                                 if (k == 1) {
                                     centerO = o;
                                 }
-
                                 this.addCardView(pais[k], this.pos.x + o.x, this.pos.y, null, 0.55, 2);
                             }
 
@@ -144,6 +168,14 @@ class ResultItemView extends BaseGameSprite {
 
                             this.pos.x += this.spacing;
                         }
+                        break;
+                    case 26://中发白杠
+                        for (var j: number = 0; j < group.length; j++) {
+                            var pai = group[j];
+                            var o = GSConfig.getPosByIndex(1, 4, j);
+                            this.addCardView(pai, this.pos.x + o.x, this.pos.y);
+                        }
+                        this.pos.x += this.spacing;
                         break;
                 }
             }

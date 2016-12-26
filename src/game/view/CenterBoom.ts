@@ -1,24 +1,25 @@
 /**
  * Created by Administrator on 2016/11/5.
  */
-class CenterBoom extends egret.DisplayObjectContainer{
+class CenterBoom extends egret.DisplayObjectContainer {
 
-    bg:egret.Bitmap;
-    arrow:egret.Bitmap;
-    leftView:egret.DisplayObjectContainer;
-    rightView:egret.DisplayObjectContainer;
+    bg: egret.Bitmap;
+    arrow: egret.Bitmap;
+    leftView: egret.DisplayObjectContainer;
+    rightView: egret.DisplayObjectContainer;
 
-    leftCountText:egret.TextField;
-    roundCountText:egret.TextField;
+    leftCountText: egret.TextField;
+    roundCountText: egret.TextField;
 
-    timeEffect:TimeEffectView;
+    timeEffect: TimeEffectView;
 
 
-    constructor(){
+    constructor() {
         super();
         this.initView();
     }
-    initView(){
+
+    initView() {
 
         this.bg = new egret.Bitmap;
         this.bg.texture = GameRes.getUI("game_bg_time");
@@ -54,11 +55,19 @@ class CenterBoom extends egret.DisplayObjectContainer{
         var right_bg = new egret.Bitmap;
         right_bg.texture = GameRes.getUI("bg_001");
         right_bg.width *= 2;
+        this.rightView.addChild(right_bg);
+
         var right_text = new egret.TextField();
-        right_text.text = "局";
+        switch (game.gameType) {
+            case GameType.sichuan:
+                right_text.text = "局";
+                break;
+            default:
+                right_text.text = "圈";
+                break;
+        }
         right_text.size = 22;
         right_text.x = 50;
-        this.rightView.addChild(right_bg);
         this.rightView.addChild(right_text);
 
         this.leftCountText = new egret.TextField();
@@ -84,7 +93,7 @@ class CenterBoom extends egret.DisplayObjectContainer{
 
         this.visibleArrow(false);
 
-        egret.Tween.get(this.arrow,{loop:true}).to({alpha:0},300).to({alpha:1},300);
+        egret.Tween.get(this.arrow, {loop: true}).to({alpha: 0}, 300).to({alpha: 1}, 300);
 
         this.timeEffect = new TimeEffectView(this.shakeCallback);
 
@@ -95,7 +104,7 @@ class CenterBoom extends egret.DisplayObjectContainer{
     }
 
     //震动回调
-    shakeCallback(){
+    shakeCallback() {
         Global.phoneVibrate(2000);  //让手机震动
 
         console.log("----shake----");
@@ -104,8 +113,8 @@ class CenterBoom extends egret.DisplayObjectContainer{
     /**
      * 更新牌堆数
      */
-    updateLeftCount(){
-        this.leftCountText.text = ""+game.roomPaidui;
+    updateLeftCount() {
+        this.leftCountText.text = "" + game.roomPaidui;
     }
 
     /**
@@ -127,16 +136,16 @@ class CenterBoom extends egret.DisplayObjectContainer{
 
 
     //设置箭头方向
-    setArrowDir(dir:number){
+    setArrowDir(dir: number) {
 
-        if(dir == 0) {
+        if (dir == 0) {
             this.visibleArrow(false);
             return;
         }
 
         this.visibleArrow(true);
 
-        switch(dir){
+        switch (dir) {
             case 1:
                 this.arrow.rotation = 90;
                 break;
@@ -151,11 +160,12 @@ class CenterBoom extends egret.DisplayObjectContainer{
                 break;
         }
     }
-    visibleArrow(bool:boolean){
+
+    visibleArrow(bool: boolean) {
         this.arrow.visible = bool;
     }
 
-    reset(){
+    reset() {
         this.timeEffect.reset()
     }
 }

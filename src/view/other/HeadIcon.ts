@@ -160,15 +160,15 @@ class HeadIcon extends BaseGameSprite {
     set isTing(va: boolean) {
         switch (this.dir) {
             case 3:
-                this.img_ting.horizontalCenter = 65;
+                this.img_ting.horizontalCenter = -65;
                 this.img_ting.verticalCenter = 0;
                 break;
             default:
                 this.img_ting.horizontalCenter = 0;
-                this.img_ting.verticalCenter = 55;
+                this.img_ting.verticalCenter = -55;
                 break;
         }
-        this.img_ting.visible = true;
+        this.img_ting.visible = va;
     }
 
     setState(state: HeadIconState) {
@@ -194,7 +194,7 @@ class HeadIcon extends BaseGameSprite {
         this.isZhuang = false;
         this.isOwner = false;
         this.que = PaiType.unknow;
-        this.img_ting.visible = false;
+        this.isTing = false;
         this.player = null;
         this.img_head.source = "game_head_null";
         this.lab_nick.text = "";
