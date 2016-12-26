@@ -191,7 +191,7 @@ class GSController extends egret.EventDispatcher {
 
     //刷新解散按钮的文字
     updateJiesanButtonText() {
-        if (PublicVal.state == 1) {
+        if (PublicVal.state == StateType.ready) {
             if (PublicVal.i.ownPos == 1) {
                 this.scene.jiesanButton.getChildAt(0)["textField"].text = "解散房间";
             }
@@ -339,7 +339,7 @@ class GSController extends egret.EventDispatcher {
         if (GSData.i.backTing) {
             //听牌状态
             this.tingingView();
-            PublicVal.state = -4;
+            PublicVal.state = StateType.ting;
 
             GSData.i.tingEndShow = true;
 
@@ -693,7 +693,7 @@ class GSController extends egret.EventDispatcher {
                             //发送听牌
                             game.manager.socketManager.send(15, {"args": {"action": 4, "pai": [pai]}});
 
-                            PublicVal.state = -4;
+                            PublicVal.state = StateType.ting;
 
                             GSData.i.readyTing = false;
 
@@ -767,12 +767,12 @@ class GSController extends egret.EventDispatcher {
 
             GSData.i.readyTing = false;
 
-            PublicVal.state = -4;
+            PublicVal.state = StateType.ting;
 
             GSData.i.tingEndShow = true;
 
         }
-        if (PublicVal.state == -4) {
+        if (PublicVal.state == StateType.ting) {
 
             //听牌状态至灰
             this.tingingView();
@@ -1327,7 +1327,7 @@ class GSController extends egret.EventDispatcher {
     updateGameStyle() {
 
 
-        if (PublicVal.state == StateType.gamestart || PublicVal.state == 6) {
+        if (PublicVal.state == StateType.gamestart || PublicVal.state == StateType.replay) {
 
             this.scene.updateTableBG();
 

@@ -159,7 +159,7 @@ class TouchBehaviour implements IGameTapEvent {
                     }
                 }, "您确定发起解散房间吗？\n（当所有在线玩家同意解散之后房间将解散）");
             }
-        } else if (PublicVal.state == 6) {
+        } else if (PublicVal.state == StateType.replay) {
             game.askPanel.showMsg(function (r) {
                 if (r) {
                     Replayer.i.exit();

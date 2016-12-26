@@ -138,7 +138,7 @@ class MJView extends eui.Component {
     //重置所有子对象
     resetAllChildrenTouch() {
 
-        if (PublicVal.state == 6) {
+        if (PublicVal.state == StateType.replay) {
             return;
         }
 

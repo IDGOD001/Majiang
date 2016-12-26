@@ -68,6 +68,7 @@ class GameManager extends BaseDispatcher {
                 sound = "gang_" + gender;
                 break;
             case InterruptType.ting:
+                sound = "ting_" + gender;
                 break;
             case InterruptType.hu:
                 sound = (args[0] ? "zimo_" : "dianpao_") + gender;

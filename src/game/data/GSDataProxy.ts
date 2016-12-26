@@ -480,6 +480,9 @@ class GSDataProxy {
                 poolPai = pai[1];
                 break;
             case 4://听牌
+                game.manager.soundPlay(InterruptType.ting, pos);
+                var head:HeadIcon = GSController.i.gsView.getHeadView(dir);
+                // head.set
                 break;
             case 22://幺九杠
             // GameSound.play((pai[0].number == 1 ? "yaogang_" : "jiugang_") + this.gData.getSexByPos(pos));

@@ -101,8 +101,8 @@ class GSTotleView extends eui.Component {
         this.logoImg.source = "lymj_text";
         this.logoImg.top = 0;
         this.logoImg.right = 90;
-        this.logoImg.width *= 0.5;
-        this.logoImg.height *= 0.5;
+        // this.logoImg.width *= 0.5;
+        // this.logoImg.height *= 0.5;
 
         this.btn_close = new mui.EButton("JS_close");
         this.addChild(this.btn_close);

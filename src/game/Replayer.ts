@@ -342,7 +342,7 @@ class Replayer implements IUpdate {
     show() {
         FashionTools.setPaiColor(game.paiColor);
 
-        PublicVal.state = 6;
+        PublicVal.state = StateType.replay;
         GSController.i.startView();
         GSConfig.replayConfigInit();
 
