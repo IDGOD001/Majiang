@@ -5,7 +5,6 @@ class HeadIcon extends BaseGameSprite {
     private img_kuang_owner: eui.Image;
     private img_zhuang: eui.Image;
     private img_que: eui.Image;
-    private img_ting: eui.Image;
     private lab_nick: eui.Label;
     private lab_uid: eui.Label;
     private lab_fen: eui.Label;
@@ -16,12 +15,12 @@ class HeadIcon extends BaseGameSprite {
     private _isOwner: boolean = false;
     private _isZhuang: boolean = false;
     private _isOffline: boolean = false;
-    private _que: PaiType = PaiType.unknow;
+    private _que: CardType = CardType.unknow;
 
-    dir: Dir4;
+    dir: DirType;
     player: PlayerVo;
 
-    constructor(dir: Dir4 = Dir4.bottom) {
+    constructor(dir: DirType = DirType.bottom) {
         super();
         this.skinName = "HeadIconSkin";
         this.dir = dir;
@@ -32,7 +31,7 @@ class HeadIcon extends BaseGameSprite {
 
         this.img_headMask = new egret.Shape;
         this.img_headMask.graphics.beginFill(0);
-        this.img_headMask.graphics.drawRoundRect(0, 0, 80, 80, 30, 30);
+        this.img_headMask.graphics.drawRoundRect(4, 4, 73, 73, 20, 20);
         this.addChild(this.img_headMask);
 
         this.img_head.mask = this.img_headMask;
@@ -110,19 +109,19 @@ class HeadIcon extends BaseGameSprite {
         this.img_kuang_normal.visible = !value;
     }
 
-    set que(value: PaiType) {
+    set que(value: CardType) {
         this._que = value;
 
         this.img_que.visible = true;
 
         switch (value) {
-            case PaiType.wan:
+            case CardType.wan:
                 this.img_que.source = "img_dq_1";
                 break;
-            case PaiType.tiao:
+            case CardType.tiao:
                 this.img_que.source = "img_dq_2";
                 break;
-            case PaiType.tong:
+            case CardType.tong:
                 this.img_que.source = "img_dq_3";
                 break;
             default:
@@ -144,7 +143,7 @@ class HeadIcon extends BaseGameSprite {
         if (typeof source == "string") {
             if (source != "") {
                 var _this = this;
-                RES.getResByUrl(GameConfig.protocolType + this.player.pic.split("//")[1], function (t) {
+                RES.getResByUrl(gameConfig.protocolType + source.toString().split("//")[1], function (t) {
                     _this.img_head.source = t;
                 }, this, RES.ResourceItem.TYPE_IMAGE)
             }
@@ -155,20 +154,6 @@ class HeadIcon extends BaseGameSprite {
         else {
             this.img_head.source = source;
         }
-    }
-
-    set isTing(va: boolean) {
-        switch (this.dir) {
-            case 3:
-                this.img_ting.horizontalCenter = -65;
-                this.img_ting.verticalCenter = 0;
-                break;
-            default:
-                this.img_ting.horizontalCenter = 0;
-                this.img_ting.verticalCenter = -55;
-                break;
-        }
-        this.img_ting.visible = va;
     }
 
     setState(state: HeadIconState) {
@@ -187,14 +172,13 @@ class HeadIcon extends BaseGameSprite {
 
     reset() {
         this.isZhuang = false;
-        this.que = PaiType.unknow;
+        this.que = CardType.unknow;
     }
 
     clean() {
         this.isZhuang = false;
         this.isOwner = false;
-        this.que = PaiType.unknow;
-        this.isTing = false;
+        this.que = CardType.unknow;
         this.player = null;
         this.img_head.source = "game_head_null";
         this.lab_nick.text = "";
