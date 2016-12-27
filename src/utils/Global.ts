@@ -420,18 +420,7 @@ class Global {
 		var group: eui.Group = LayerManager.gameLayer().hornGroup;
 
 		if (group) {
-			if (group.contains(Global.hornPanel)) return;
-
-			var gameScene: MainScene = SceneManager.find("MainScene");
-
-			if (!gameScene) return;
-
-			if (!LayerManager.gameLayer().sceneLayer.contains(gameScene) || !LayerManager.gameLayer().sceneLayer.visible) {
-				group.top = 20;
-			}
-			else {
-				group.top = 120;
-			}
+			if(group.contains(Global.hornPanel)) return;
 
 			Global.hornPanel.playEff(group, size, color);
 		}
