@@ -215,7 +215,6 @@ class MainScene extends eui.Component {
     }
 
     public update(): void {
-        var my = this;
 
         var player: PlayerVo = game.player;
 
@@ -232,7 +231,7 @@ class MainScene extends eui.Component {
             this.btn_shiming.visible = true;
         }
 
-        this.head.setHeadImg(game.player.pic);
+        this.head.setHeadImg(player.pic);
 
         // if (game.player.pic != "") {
         //     RES.getResByUrl(gameConfig.protocolType + game.player.pic.split("//")[1], function (t: egret.Texture) {
