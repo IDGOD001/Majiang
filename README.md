@@ -169,6 +169,7 @@
 -define(Interrupt_Hu_Baoting,53).%%报听
 -define(Interrupt_Hu_Sanqing,54).%%三清
 -define(Interrupt_Hu_Siqing,55).%%四清
+-define(Interrupt_Hu_Queyaohuyao,56).%%缺幺胡幺
 -define(Interrupt_Hu,99).
 -define(Interrupt_Jiang,999).
 -define(Interrupt_Dingque,9999).

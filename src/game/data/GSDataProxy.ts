@@ -392,8 +392,10 @@ class GSDataProxy {
 
         game.roomPaidui = dui_num;
 
-        if (game.roomPaidui <= 4 && game.roomPaidui > 0) {
-            EffectUtils.showTips("剩余最后" + game.roomPaidui + "张", 5);
+        if (game.gameType == GameType.sichuan) {
+            if (game.roomPaidui <= 4 && game.roomPaidui > 0) {
+                EffectUtils.showTips("剩余最后" + game.roomPaidui + "张", 5);
+            }
         }
 
         if (this.gData.turnDir != 1 && PublicVal.state != StateType.shuffle) {// && this.gData.isZhuangPush) {
@@ -416,9 +418,10 @@ class GSDataProxy {
         this.gData.pushHandPai(1, pai);
 
         game.roomPaidui = dui_num;
-
-        if (game.roomPaidui <= 4 && game.roomPaidui > 0) {
-            EffectUtils.showTips("剩余最后" + game.roomPaidui + "张", 5);
+        if (game.gameType == GameType.sichuan) {
+            if (game.roomPaidui <= 4 && game.roomPaidui > 0) {
+                EffectUtils.showTips("剩余最后" + game.roomPaidui + "张", 5);
+            }
         }
 
         this.gData.turnDir = (fen ? 0 : 1);

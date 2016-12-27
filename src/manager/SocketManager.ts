@@ -58,7 +58,7 @@ class SocketManager extends SocketNetwork {
     connect() {
         this.status = ConnectStatus.connecting;
 
-        var linkType: number = gameConfig.protocolType == "https://" ? 1 : 2;
+        var linkType: number = GameConfig.protocolType == "https://" ? 1 : 2;
         var ip: string;
         var port: number;
 
@@ -68,12 +68,12 @@ class SocketManager extends SocketNetwork {
         }
         else if (game.user) {
             linkType = 2;
-            ip = gameConfig.address_test.ip;
-            port = gameConfig.address_test.port;
+            ip = GameConfig.address_test.ip;
+            port = GameConfig.address_test.port;
         }
         else {
-            ip = gameConfig.address_game.ip;
-            port = gameConfig.address_game.port;
+            ip = GameConfig.address_game.ip;
+            port = GameConfig.address_game.port;
         }
 
         this.timestamp = common.timestamp;
@@ -131,7 +131,7 @@ class SocketManager extends SocketNetwork {
                 var obj: any = JSON.parse(this.data);
 
                 if (obj.code > 0) {
-                    var msg: string = gameConfig.msgList[obj.code];
+                    var msg: string = TextConfig.errorCodes[obj.code];
                     EffectUtils.showTips(msg ? msg : "错误代码：" + obj.code, 5);
                     return;
                 }
@@ -156,7 +156,7 @@ class SocketManager extends SocketNetwork {
     private loginFail() {
         game.askPanel.showMsg(function (r: boolean) {
             if (r) {
-                Weixin.getAccessCode(gameConfig.appid, gameConfig.clientUrl, game.roomid);
+                Weixin.getAccessCode(GameConfig.appid, GameConfig.clientUrl, game.roomid);
             }
             else {
                 Weixin.closeWindow();
@@ -171,7 +171,7 @@ class SocketManager extends SocketNetwork {
         var _this = this;
         game.askPanel.showMsg(function (r: boolean) {
             if (r) {
-                Weixin.getAccessCode(gameConfig.appid, gameConfig.clientUrl, game.roomid);
+                Weixin.getAccessCode(GameConfig.appid, GameConfig.clientUrl, game.roomid);
             }
             else {
                 Weixin.closeWindow();

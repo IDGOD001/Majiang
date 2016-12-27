@@ -26,9 +26,12 @@ class HuConfig {
                 break;
             case 11:
                 name = "双飘";
+                if (game.gameType == GameType.shenyang)name = "双飘胡";
                 break;
             case 12:
-                name = "对对胡";
+                name = "单飘";
+                if (game.gameType == GameType.sichuan)name = "对对胡";
+                if (game.gameType == GameType.shenyang)name = "单飘胡";
                 break;
             case 13:
                 name = "摸宝";
@@ -83,6 +86,7 @@ class HuConfig {
                 break;
             case 36:
                 name = "金钩吊";
+                if (game.gameType == GameType.shenyang) name = "手把一";
                 break;
             case 37:
                 name = "地胡";
@@ -127,7 +131,7 @@ class HuConfig {
                 name = "海底炮";
                 break;
             case 52:
-                name = "闷听";
+                name = "闷胡";
                 break;
             case 53:
                 name = "报听";
@@ -138,8 +142,12 @@ class HuConfig {
             case 55:
                 name = "四清";
                 break;
+            case 56:
+                name = "缺幺胡幺";
+                break;
             case 99:
-                name = "平胡";
+                name = "胡";
+                if (game.gameType == GameType.sichuan) name = "平胡";
                 break;
         }
         return name;

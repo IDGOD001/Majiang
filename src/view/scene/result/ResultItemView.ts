@@ -42,6 +42,7 @@ class ResultItemView extends BaseGameSprite {
 
         this.headIcon.update(person);
         this.headIcon.isZhuang = GSData.i.result.zhuang == person.pos;
+        this.headIcon.isTing = false;
 
         this.lab_uid.text = "" + this.data.uid;
         this.lab_nick.text = "" + this.data.nick;
@@ -207,10 +208,10 @@ class ResultItemView extends BaseGameSprite {
     }
 
     private getDescription() {
-        var ting_desc: string = "";
-        if (GSData.i.hasTingRule) {
-            ting_desc = (this.data.ting == 1 ? "听牌 " : "未听牌 ");
-        }
+        // var ting_desc: string = "";
+        // if (GSData.i.hasTingRule) {
+        //     ting_desc = (this.data.ting == 1 ? "听牌 " : "未听牌 ");
+        // }
 
         var hu_types: any[] = this.data.hu_type;
         var types: any;
@@ -247,6 +248,6 @@ class ResultItemView extends BaseGameSprite {
                 hu_desc += ") ";
             }
         }
-        return ting_desc + hu_desc;
+        return hu_desc;
     }
 }
