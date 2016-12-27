@@ -31,7 +31,7 @@ class HeadIcon extends BaseGameSprite {
 
         this.img_headMask = new egret.Shape;
         this.img_headMask.graphics.beginFill(0);
-        this.img_headMask.graphics.drawRoundRect(0, 0, 80, 80, 30, 30);
+        this.img_headMask.graphics.drawRoundRect(4, 4, 73, 73, 20, 20);
         this.addChild(this.img_headMask);
 
         this.img_head.mask = this.img_headMask;

@@ -32,7 +32,6 @@ class acekit {
     }
 
     static log(message?: any, ...optionalParams: any[]): void {
-        console.log(message, optionalParams);
         egret.log(message, optionalParams);
     }
 }

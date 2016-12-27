@@ -1124,14 +1124,6 @@
 				},
 				{
 					"compress":false,
-					"key":"head_001"
-				},
-				{
-					"compress":false,
-					"key":"head_bg"
-				},
-				{
-					"compress":false,
 					"key":"head_kuang_bg"
 				},
 				{

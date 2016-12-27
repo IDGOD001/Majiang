@@ -40,8 +40,10 @@ class MainScene extends eui.Component {
     _money_text: eui.Label;
     _name: eui.Label;
 
-    _head_click: eui.Image;
-    _head: eui.Image;
+    // _head_click: eui.Image;
+    // _head: eui.Image;
+
+    head:HeadIcon;
 
     _uid: eui.Label;
 
@@ -114,7 +116,7 @@ class MainScene extends eui.Component {
         /**
          * 打开玩家信息
          */
-        this._head_click.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
+        this.head.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
             var d: RoleInfoPanel = StackManager.findDialog(RoleInfoPanel, "RoleInfoPanel");
             if (d) {
                 d.show();
@@ -177,15 +179,15 @@ class MainScene extends eui.Component {
     childrenCreated() {
         super.childrenCreated();
 
-        var _shpBeMask: egret.Shape = new egret.Shape();
-        _shpBeMask.graphics.lineStyle(0x000000);
-        _shpBeMask.graphics.beginFill(0xffffff, 1);
-        _shpBeMask.graphics.drawRoundRect(2, 2, this._head.width - 4, this._head.height - 4, 30, 30);
-        _shpBeMask.graphics.endFill();
-        _shpBeMask.x = this._head.x;
-        _shpBeMask.y = this._head.y;
-        this.head_group.addChild(_shpBeMask);
-        this._head.mask = _shpBeMask;
+        // var _shpBeMask: egret.Shape = new egret.Shape();
+        // _shpBeMask.graphics.lineStyle(0x000000);
+        // _shpBeMask.graphics.beginFill(0xffffff, 1);
+        // _shpBeMask.graphics.drawRoundRect(2, 2, this._head.width - 4, this._head.height - 4, 30, 30);
+        // _shpBeMask.graphics.endFill();
+        // _shpBeMask.x = this._head.x;
+        // _shpBeMask.y = this._head.y;
+        // this.head_group.addChild(_shpBeMask);
+        // this._head.mask = _shpBeMask;
 
         GameMusic.play("music_scene");
 
@@ -230,21 +232,23 @@ class MainScene extends eui.Component {
             this.btn_shiming.visible = true;
         }
 
-        if (game.player.pic != "") {
-            RES.getResByUrl(gameConfig.protocolType + game.player.pic.split("//")[1], function (t: egret.Texture) {
-                if (t) {
-                    game.player.playerHeadTexture = t;
-                    my._head.source = t;
-                }
-                else {
-                    my._head.source = "head_001";
+        this.head.setHeadImg(game.player.pic);
 
-                    game.player.playerHeadTexture = my._head.texture;
-                }
-
-                my._head.width = my._head.height = 77;
-
-            }, this, RES.ResourceItem.TYPE_IMAGE);
-        }
+        // if (game.player.pic != "") {
+        //     RES.getResByUrl(gameConfig.protocolType + game.player.pic.split("//")[1], function (t: egret.Texture) {
+        //         if (t) {
+        //             game.player.playerHeadTexture = t;
+        //             my._head.source = t;
+        //         }
+        //         else {
+        //             my._head.source = "head_001";
+        //
+        //             game.player.playerHeadTexture = my._head.texture;
+        //         }
+        //
+        //         my._head.width = my._head.height = 77;
+        //
+        //     }, this, RES.ResourceItem.TYPE_IMAGE);
+        // }
     }
 }
