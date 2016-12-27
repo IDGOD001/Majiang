@@ -819,7 +819,7 @@ class GSController extends egret.EventDispatcher {
 
     //显示吃碰杠功能菜单
     showFuncSelectMenu(tip: boolean = true) {
-        if ((PublicVal.state == StateType.gamestart || PublicVal.state == StateType.gameover ) && GSData.i.funcSelects.length > 0) {
+        if ((PublicVal.state == StateType.gamestart || PublicVal.state == StateType.ting ) && GSData.i.funcSelects.length > 0) {
             this.moveBack(false);
 
             this.gsView.funcSelectView.visible = true;

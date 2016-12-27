@@ -41,6 +41,7 @@ class SocketNetwork {
             this.socket = new egret.WebSocket();
             this.socket.addEventListener(egret.Event.CONNECT, this.connectHandler, this);
             this.socket.addEventListener(egret.Event.CLOSE, this.closeHandler, this);
+            this.socket.addEventListener(egret.IOErrorEvent.IO_ERROR, this.errorHandler, this);
             this.socket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this.dataHandler, this);
         }
 
@@ -66,6 +67,10 @@ class SocketNetwork {
     closeHandler() {
         this.socket.close();
         console.log("Socket连接关闭!");
+    }
+
+    errorHandler() {
+        console.log("Socket连接错误!");
     }
 
     dataHandler() {
