@@ -30,4 +30,9 @@ class acekit {
     static removeChild(display) {
         this.contains(display) && this.stage.removeChild(display);
     }
+
+    static log(message?: any, ...optionalParams: any[]): void {
+        console.log(message, optionalParams);
+        egret.log(message, optionalParams);
+    }
 }
