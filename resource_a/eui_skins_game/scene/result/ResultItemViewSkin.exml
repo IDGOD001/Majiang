@@ -23,5 +23,5 @@
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:Image id="img_hu" source="JS_hulogo" x="737" verticalCenter="0" visible="false"/>
+	<e:Image id="img_hustate" x="737" verticalCenter="0" source="JS_hulogo"/>
 </e:Skin>
