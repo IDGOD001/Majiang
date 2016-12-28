@@ -746,7 +746,7 @@ class GSDataProxy {
             for (var i: number = 0; i < GSData.i.result.person.length; i++) {
                 person = GSData.i.result.person[i];
                 if (this.gData.getDir(person.pos) == 1 && game.gameType == GameType.sichuan) {
-                    this.gData.resultType = person.hu_type.length ? 1 : 2;
+                    this.gData.resultType = person.hus.length ? 1 : 2;
                 }
             }
         }
