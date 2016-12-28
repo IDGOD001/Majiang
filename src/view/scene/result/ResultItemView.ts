@@ -51,6 +51,13 @@ class ResultItemView extends BaseGameSprite {
         this.lab_gang.text = "杠:" + this.data.gang;
         this.lab_zong.text = "合计:" + (this.data.gang + this.data.cur);
 
+        switch (game.gameType) {
+            case GameType.shenyang:
+                this.lab_hu.visible = false;
+                this.lab_gang.visible = false;
+                break;
+        }
+
         this.showDown();
         this.showUp();
         this.showHu();

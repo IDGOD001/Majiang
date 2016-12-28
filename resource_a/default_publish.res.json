@@ -1301,6 +1301,10 @@
 				{
 					"compress":false,
 					"key":"setting_progressbar2"
+				},
+				{
+					"compress":false,
+					"key":"JS_fangpao"
 				}
 			],
 			"sort":0
