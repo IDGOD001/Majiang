@@ -665,21 +665,22 @@ class Replayer implements IUpdate {
                     this.playFuncEffect(dir, funcID);
                     break;
                 case 99:
-                    if (game.gameType != GameType.shenyang) {
-                        if (pos != from) {//点炮
-                            console.log("点炮!");
+                    if (from && pos != from) {//点炮
+                        console.log("点炮!");
 
-                            // PublicVal.i.addHandPai(dir, pai, false);
+                        if (game.gameType != GameType.sichuan) PublicVal.i.addHandPai(dir, pai, false);
 
-                            PublicVal.i.popPoolPai(fromDir);
+                        PublicVal.i.popPoolPai(fromDir);
 
-                            GSController.i.updateMJView(dir);
-                            GSController.i.updatePoolPaiView(fromDir);
-                        } else {
-                            console.log("自摸胡牌!");
-                            PublicVal.i.removeHandPai(dir, pai);
-                            GSController.i.updateMJView(fromDir);
-                        }
+                        GSController.i.updateMJView(dir);
+                        GSController.i.updatePoolPaiView(fromDir);
+                    } else {
+                        console.log("自摸胡牌!");
+                        if (game.gameType == GameType.sichuan) PublicVal.i.removeHandPai(dir, pai);
+                        GSController.i.updateMJView(dir);
+                    }
+
+                    if (game.gameType == GameType.sichuan) {
                         var mjview: MJView = GSController.i.gsView.MJViews[dir];
                         mjview.pushHu(pai);
                     }
