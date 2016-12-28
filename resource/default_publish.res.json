@@ -439,7 +439,7 @@
 					"key":"F_ting"
 				}
 			],
-			"sort":0
+			"sort":1
 		},
 		{
 			"gap":4,
@@ -871,6 +871,10 @@
 				{
 					"compress":false,
 					"key":"create_siren2"
+				},
+				{
+					"compress":false,
+					"key":"text_thumbsup"
 				}
 			],
 			"sort":0
@@ -1301,6 +1305,82 @@
 				{
 					"compress":false,
 					"key":"setting_progressbar2"
+				},
+				{
+					"compress":false,
+					"key":"btn_thumbs_up"
+				},
+				{
+					"compress":false,
+					"key":"btn_red_down"
+				},
+				{
+					"compress":false,
+					"key":"btn_red_up"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_1"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_1_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_2"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_2_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_3"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_3_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_4"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_4_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down_2"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down_2_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down_3"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up_2"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up_2_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up_3"
 				}
 			],
 			"sort":0

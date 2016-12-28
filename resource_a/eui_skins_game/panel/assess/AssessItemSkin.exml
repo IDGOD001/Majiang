@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="AssessItemSkin" width="800" height="100" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group verticalCenter="0" left="10">
+		<e:Image source="record_img1"/>
+		<e:Label id="lab_rank" textColor="0xFFFFFF" fontFamily="微软雅黑" bold="true" verticalCenter="0" horizontalCenter="0" text="1"/>
+	</e:Group>
+	<e:Group height="60" verticalCenter="0" left="98" right="15">
+		<e:Image source="record_img2" left="0" right="0" top="0" bottom="0" scale9Grid="14,15,35,29"/>
+		<e:Group left="10" top="0" bottom="0" width="542">
+			<e:Group x="455" y="169" width="174">
+				<e:Label id="lab_nick1" text="nick" verticalCenter="0" fontFamily="微软雅黑" size="18" left="0" right="35" textAlign="right" touchEnabled="false"/>
+				<e:Image id="img_thumbs1" right="0" verticalCenter="-2" source="ico_thumbs_up_3"/>
+			</e:Group>
+			<e:Group y="179" x="465" width="174">
+				<e:Label id="lab_nick2" text="nick" verticalCenter="0" y="10" fontFamily="微软雅黑" size="18" left="0" right="35" textAlign="right" touchEnabled="false"/>
+				<e:Image id="img_thumbs2" source="ico_thumbs_up_3" right="0" verticalCenter="-2" x="10" y="10"/>
+			</e:Group>
+			<e:Group y="189" x="475" width="174">
+				<e:Label id="lab_nick3" verticalCenter="0" y="20" text="nick" fontFamily="微软雅黑" size="18" left="0" right="35" textAlign="right" touchEnabled="false"/>
+				<e:Image id="img_thumbs3" right="0" verticalCenter="-2" y="20" x="20" source="ico_thumbs_up_3"/>
+			</e:Group>
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="middle" gap="10"/>
+			</e:layout>
+		</e:Group>
+		<e:Button id="btn_change" label="修改" verticalCenter="0" right="10">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="btn_blue"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="20" fontFamily="微软雅黑"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+	</e:Group>
+	<e:Image source="img_line" bottom="0" y="10" left="10" right="10" locked="true"/>
+	<e:Label id="lab_roomid" bottom="5" textColor="0xBD874A" text="房间号:" fontFamily="微软雅黑" textAlign="left" size="14" y="10" width="150" right="170"/>
+	<e:Label id="lab_time" text="2016-12-30 00:00:00" bottom="5" fontFamily="微软雅黑" size="14" textColor="0xBD874A" width="160" textAlign="right" right="15"/>
+</e:Skin>

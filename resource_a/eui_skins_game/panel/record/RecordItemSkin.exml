@@ -6,6 +6,6 @@
 	<e:Label id="_rank" text="2" x="19" width="54" height="45" textAlign="center" verticalAlign="middle" fontFamily="微软雅黑" textColor="0xFFFFFF" verticalCenter="0" bold="true"/>
 	<e:Label id="_code" x="102" width="169" height="46" size="18" fontFamily="微软雅黑" lineSpacing="5" textColor="0xFFFFFF" textAlign="center" verticalAlign="middle" y="28" bold="true"/>
 	<e:Label id="_name" height="46" fontFamily="微软雅黑" width="335" size="14" x="315" lineSpacing="5" textColor="0xFFFFFF" textAlign="left" verticalAlign="middle" y="28" bold="true"/>
-	<e:Label id="_time" x="417" y="78" height="23" fontFamily="微软雅黑" lineSpacing="5" textAlign="right" width="344" size="14" verticalAlign="middle" textColor="0xBD874A" bold="true"/>
+	<e:Label id="_time" x="417" y="78" height="23" lineSpacing="5" textAlign="right" width="344" size="14" verticalAlign="middle" textColor="0xBD874A" bold="true"/>
 	<e:Image source="img_line" x="13" width="756" bottom="0"/>
 </e:Skin>
