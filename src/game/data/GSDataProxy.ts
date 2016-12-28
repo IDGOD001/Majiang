@@ -227,7 +227,8 @@ class GSDataProxy {
     S2C_DeletePai(pos: number, pai: any) {
         var dir = this.gData.getDir(pos);
         //this.gData.removeHandPai(dir, pai);
-        PublicVal.i.removeHandPai(dir, pai);
+        // PublicVal.i.removeHandPai(dir, pai);
+        PublicVal.i.removeHandPai(dir, dir == 1 ? pai : null);
 
         if (dir == 1) FashionTools.sortPai(PublicVal.i.getHandPais(dir));
 

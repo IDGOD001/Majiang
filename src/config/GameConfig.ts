@@ -51,13 +51,13 @@ class GameConfig {
 
     //对局
     static get round() {
-        var str: string = game.roomRoundMax + "";
+        var str: string = "";
         switch (game.gameType) {
             case GameType.sichuan:
-                str += "局";
+                str += game.roomRoundMax + "局";
                 break;
             default:
-                str += "圈";
+                str += (game.roomRoundMax / 4) + "圈";
                 break;
         }
 
