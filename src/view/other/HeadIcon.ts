@@ -73,6 +73,7 @@ class HeadIcon extends BaseGameSprite {
             this.lab_uid.text = "" + this.player.uid;
             this.isOwner = this.player.pos == 1;
             this.que = game.roomQue[player.dir];
+            this.isTing = false;
 
             if (this.player && PublicVal.state == StateType.ready) {
                 this.btn_kill.visible = this.player && PublicVal.state == StateType.ready && game.isRoomOwner && this.player.pos != 1;
@@ -193,6 +194,7 @@ class HeadIcon extends BaseGameSprite {
     clean() {
         this.isZhuang = false;
         this.isOwner = false;
+        this.isTing = false;
         this.que = PaiType.unknow;
         this.player = null;
         this.img_head.source = "game_head_null";

@@ -282,15 +282,14 @@ class Replayer implements IUpdate {
         var funcID: number = arr[2];
 
         switch (funcID) {
-
             case 0://过
                 if (!PublicVal.i.replayVer) return;
                 this.actions.push({index: index, action: 5, funcID: funcID, pos: pos});
                 break;
-
             case 1://吃
             case 2://碰
             case 22://幺九杠
+            case 23://旋风杠
             case 24://暗杠
             case 26://中发白杠
             case 27://幺九杠的补蛋
@@ -314,12 +313,12 @@ class Replayer implements IUpdate {
                     from: arr[3][0].pos
                 });
                 break;
-
             case 4://听牌
             case 1001://潇洒
                 this.actions.push({index: index, action: 5, funcID: funcID, pos: pos});
                 break;
             case 99://胡牌
+                // if (game.gameType == GameType.shenyang)return;
                 this.actions.push({index: index, action: 5, funcID: funcID, pai: arr[3], pos: pos, from: arr[3].pos});
                 break;
         }
@@ -547,62 +546,62 @@ class Replayer implements IUpdate {
                 }
             }, this, 100);
         }
-        function child(action: any) {
 
+        function child(action: any) {
             var funcID = action.funcID;
             var pos = action.pos;
             var from = action.from;
             var pais = action.pais;
             var pai = action.pai;
-
-
             var dir = this.returnDir(pos);
-
             var fromDir = this.returnDir(from);
 
-
             switch (funcID) {
-
                 case 1:
-
                     PublicVal.i.removeHandPai(dir, pais[0], false);
                     PublicVal.i.removeHandPai(dir, pais[2]);
                     PublicVal.i.popPoolPai(fromDir);
-
                     PublicVal.i.addFuncPai(5, dir, funcID, pais);
-
-
                     GSController.i.updateMJView(dir);
-
                     GSController.i.updatePoolPaiView(fromDir);
-
                     this.playFuncEffect(dir, funcID);
                     break;
-
                 case 2:
                     PublicVal.i.removeHandPai(dir, pais[0], false);
                     PublicVal.i.removeHandPai(dir, pais[2]);
                     PublicVal.i.popPoolPai(fromDir);
-
                     PublicVal.i.addFuncPai(4, dir, funcID, pais);
-
                     GSController.i.updateMJView(dir);
                     GSController.i.updatePoolPaiView(fromDir);
-
                     this.playFuncEffect(dir, funcID);
-
-
+                    break;
+                case 4://听
+                    var head: HeadIcon = GSController.i.gsView.getHeadView(dir);
+                    head.isTing = true;
+                    this.playFuncEffect(dir, funcID);
                     break;
                 case 22:
                     PublicVal.i.removeHandPai(dir, pais[0], false);
                     PublicVal.i.removeHandPai(dir, pais[1], false);
                     PublicVal.i.removeHandPai(dir, pais[2]);
                     PublicVal.i.addFuncPai(3, dir, funcID, pais, pais[0].number, true);
-
                     GSController.i.updateMJView(dir);
-
                     this.playFuncEffect(dir, funcID);
+                    break;
+                case 23:
+                    PublicVal.i.removeHandPai(dir, pais[0], false);
+                    PublicVal.i.removeHandPai(dir, pais[1], false);
+                    PublicVal.i.removeHandPai(dir, pais[2], false);
+                    PublicVal.i.removeHandPai(dir, pais[3]);
 
+                    PublicVal.i.addFuncPai(4, dir, funcID, pais[1]);
+                    PublicVal.i.addFuncPai(4, dir, funcID, pais[2]);
+                    PublicVal.i.addFuncPai(4, dir, funcID, pais[3]);
+                    PublicVal.i.addFuncPai(4, dir, funcID, pais[0]);
+
+                    // PublicVal.i.addFuncPai(4, dir, funcID, pais, pais[0].number, true);
+                    GSController.i.updateMJView(dir);
+                    this.playFuncEffect(dir, funcID);
                     break;
                 case 24://暗杠
                     PublicVal.i.removeHandPai(dir, pais[0], false);
@@ -610,126 +609,85 @@ class Replayer implements IUpdate {
                     PublicVal.i.removeHandPai(dir, pais[2], false);
                     PublicVal.i.removeHandPai(dir, pais[3]);
                     PublicVal.i.addFuncPai(1, dir, funcID, pais);
-
                     GSController.i.updateMJView(dir);
-
                     this.playFuncEffect(dir, funcID);
                     break;
                 case 25://明杠
-
                     var pai0 = pais[0];
                     var hasPeng: boolean = PublicVal.i.removePengFunc(dir, pai0);
                     if (hasPeng) {//有碰的明杠
-
                         PublicVal.i.removeHandPai(dir, pai0);
-
                     } else {
-
                         PublicVal.i.popPoolPai(fromDir);
                         PublicVal.i.removeHandPai(dir, pai0, false);
                         PublicVal.i.removeHandPai(dir, pai0, false);
                         PublicVal.i.removeHandPai(dir, pai0);
-
                     }
                     PublicVal.i.addFuncPai(2, dir, funcID, pais);
 
                     GSController.i.updateMJView(dir);
                     GSController.i.updatePoolPaiView(fromDir);
-
                     this.playFuncEffect(dir, funcID);
-
                     break;
                 case 26://中发白杠
-
                     PublicVal.i.removeHandPai(dir, pais[0], false);
                     PublicVal.i.removeHandPai(dir, pais[1], false);
                     PublicVal.i.removeHandPai(dir, pais[2]);
                     PublicVal.i.addFuncPai(0, dir, funcID, pais, 0, true);
-
                     GSController.i.updateMJView(dir);
-
                     this.playFuncEffect(dir, funcID);
-
                     break;
-
                 case 27://幺九杠 补蛋
-
                     //pais.length -= 3;
-
                     var sPais = pais.slice(0, -3);
-
                     var everPai = PublicVal.i.getPai(dir, 22, sPais[0].number);
-
                     var everSrc = [1, 1, 1];
-
                     for (var i: number = 0; i < sPais.length; i++) {
-
                         everSrc[sPais[i].type - 1]++;
-
                     }
                     everPai.ever = everSrc;
-
                     PublicVal.i.removeHandPai(dir, sPais[0]);
-
                     GSController.i.updateMJView(dir);
-
                     this.playFuncEffect(dir, funcID);
 
                     break;
                 case 28://中发白 补蛋
-
                     //pais.length -= 3;
-
                     var sPais = pais.slice(0, -3);
-
                     var everPai = PublicVal.i.getPai(dir, 26);
-
                     var everSrc = [1, 1, 1];
-
                     for (var i: number = 0; i < sPais.length; i++) {
                         everSrc[sPais[i].number - 1]++;
                     }
                     everPai.ever = everSrc;
-
                     PublicVal.i.removeHandPai(dir, sPais[0]);
-
                     GSController.i.updateMJView(dir);
-
                     this.playFuncEffect(dir, funcID);
-
                     break;
-                case 4://听
-
-                    this.playFuncEffect(dir, funcID);
-
-                    break;
-
                 case 99:
+                    if (game.gameType != GameType.shenyang) {
+                        if (pos != from) {//点炮
+                            console.log("点炮!");
 
-                    if (pos != from) {//点炮
-                        console.log("点炮!");
+                            // PublicVal.i.addHandPai(dir, pai, false);
 
-                        // PublicVal.i.addHandPai(dir, pai, false);
+                            PublicVal.i.popPoolPai(fromDir);
 
-                        PublicVal.i.popPoolPai(fromDir);
-
-                        GSController.i.updateMJView(dir);
-                        GSController.i.updatePoolPaiView(fromDir);
-                    } else {
-                        console.log("自摸胡牌!");
-                        PublicVal.i.removeHandPai(dir, pai);
-                        GSController.i.updateMJView(fromDir);
+                            GSController.i.updateMJView(dir);
+                            GSController.i.updatePoolPaiView(fromDir);
+                        } else {
+                            console.log("自摸胡牌!");
+                            PublicVal.i.removeHandPai(dir, pai);
+                            GSController.i.updateMJView(fromDir);
+                        }
+                        var mjview: MJView = GSController.i.gsView.MJViews[dir];
+                        mjview.pushHu(pai);
                     }
 
-                    var mjview: MJView = GSController.i.gsView.MJViews[dir];
-                    mjview.pushHu(pai);
-
                     this.playFuncEffect(dir, funcID);
-
                     break;
             }
         }
-
     }
 
     playFuncEffect(dir: number, funcID: number) {

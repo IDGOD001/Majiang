@@ -141,7 +141,7 @@ class GSController extends egret.EventDispatcher {
                 this.closeGSView();
                 this.gsResultView.visible = false;
                 break;
-            case 6://回放界面
+            case StateType.replay://回放界面
                 this.gsView.visible = true;
 
                 this.scene.waitText.visible = false;

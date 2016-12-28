@@ -93,26 +93,17 @@ class PublicVal {
 
     //往功能牌型里添加牌 排序 方位 功能 牌
     addFuncPai(sort: number, dir: number, action: number, pai: any[], number: number = 0, ever: any = null) {
-
         var funcPais = PublicVal.i.getFuncPais(dir);
-
         if (ever != null) ever = [1, 1, 1];
-
         if (action == 1) {
-
             pai[0].number > pai[2].number && pai.reverse();
         }
 
         var addPaiObj: any = {pai: pai, number: number, ever: ever};
-
         for (var i: number = 0; i < funcPais.length; i++) {
-
             var obj = funcPais[i];
-
             if (obj.action == action) {
-
                 obj.pais.push(addPaiObj);
-
                 return;
             }
         }
