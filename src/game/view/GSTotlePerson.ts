@@ -146,25 +146,50 @@ class GSTotlePerson extends eui.Component {
         }
 
 
-        var numlist: number[] = [
-            this.pserson.zimo_num,
-            this.pserson.paorcv_num,
-            this.pserson.pao_num,
-            this.pserson.gang_an_num,
-            this.pserson.gang_ming_num,
-            this.pserson.chajiao_num,
-            this.pserson.cur
-        ];
+        var numlist: number[] = [];
+        var txtList: string[] = [];
+        switch (game.gameType) {
+            case GameType.sichuan:
+                numlist = [
+                    this.pserson.zimo_num,
+                    this.pserson.paorcv_num,
+                    this.pserson.pao_num,
+                    this.pserson.gang_an_num,
+                    this.pserson.gang_ming_num,
+                    this.pserson.chajiao_num,
+                    this.pserson.cur
+                ];
 
-        var txtList: string[] = [
-            "自  摸",
-            "接  炮",
-            "点  炮",
-            "暗  杠",
-            "明  杠",
-            "查大叫",
-            "积  分"
-        ];
+                txtList = [
+                    "自  摸",
+                    "接  炮",
+                    "点  炮",
+                    "暗  杠",
+                    "明  杠",
+                    "查大叫",
+                    "积  分"
+                ];
+                break;
+            case GameType.shenyang:
+                numlist = [
+                    this.pserson.zhuang_num,
+                    this.pserson.hu_num,
+                    this.pserson.pao_num,
+                    this.pserson.gang_an_num,
+                    this.pserson.gang_ming_num,
+                    this.pserson.cur
+                ];
+
+                txtList = [
+                    "坐  庄",
+                    "胡  牌",
+                    "点  炮",
+                    "暗  杠",
+                    "明  杠",
+                    "积  分"
+                ];
+                break;
+        }
 
         for (var i = 0; i < numlist.length; i++) {
             var label: eui.Label = new eui.Label();

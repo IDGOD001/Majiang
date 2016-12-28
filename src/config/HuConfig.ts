@@ -59,6 +59,7 @@ class HuConfig {
                 break;
             case 21:
                 name = "扫底胡";
+                if(game.gameType == GameType.shenyang)name = "海底捞月";
                 break;
             case 24:
                 name = "暗杠";
@@ -102,6 +103,7 @@ class HuConfig {
                 break;
             case 41:
                 name = "杠上炮";
+                if (game.gameType == GameType.shenyang) name = "流泪";
                 break;
             case 42:
                 name = "将七对";

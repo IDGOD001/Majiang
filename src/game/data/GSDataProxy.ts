@@ -810,8 +810,6 @@ class GSDataProxy {
                 hu_left.push(hupai.pai);
             }
 
-            hu_left.pop();
-
             GSController.i.playEffect(huDir, 99);
         }
         GSController.i.hupaiShow();

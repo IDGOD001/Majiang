@@ -24,10 +24,10 @@
 			<e:Group left="150" top="140">
 				<e:RadioButton y="20" x="20" width="170" selected="false" label="点炮包一家" id="btn_rule_0" groupName="shenyang_dianpao"/>
 				<e:RadioButton id="btn_rule_1" x="10" y="10" label="点炮包三家" selected="true" width="170" groupName="shenyang_dianpao"/>
-				<e:CheckBox id="btn_rule_2" y="20" label="摆夹" x="20" width="170" selected="true"/>
 				<e:CheckBox id="btn_rule_3" y="30" label="吃开门" x="30" selected="true" width="170"/>
 				<e:CheckBox id="btn_rule_4" y="40" label="闷胡" x="40" width="170" selected="true"/>
 				<e:CheckBox id="btn_rule_5" y="50" label="报听加倍" x="50" selected="true" width="170"/>
+				<e:CheckBox id="btn_rule_2" y="20" label="摆夹" x="20" width="170" selected="false" visible="false"/>
 				<e:layout>
 					<e:TileLayout requestedColumnCount="3"/>
 				</e:layout>

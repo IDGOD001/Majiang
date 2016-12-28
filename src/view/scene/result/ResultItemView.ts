@@ -70,14 +70,23 @@ class ResultItemView extends BaseGameSprite {
                 break;
             default:
                 var hupai = GSData.i.result.hupai;
-
                 this.img_hu.visible = hupai.pos_hu == this.data.pos;
 
-                if (hupai.pos_hu == this.data.pos) {
-                    pai = hupai.pai;
-                    this.addCardView(pai, this.pos.x, this.pos.y);
-
-                }
+                // pai = hupai.pai;
+                // if (hupai.pos_hu == this.data.pos) {
+                //     var huDir = GSData.i.getDir(hupai.pos_hu);
+                //     var hu_left: any[] = GSData.i.getResultPersonLeft(huDir);
+                //
+                //     var leftLen: number = hu_left.length;
+                //     for (var k: number = 0; k < leftLen; k++) {
+                //         if (hu_left[k].number == pai.number && hu_left[k].type == pai.type) {
+                //             hu_left.splice(k, 1);
+                //             break;
+                //         }
+                //     }
+                //
+                //     this.addCardView(pai, this.pos.x, this.pos.y);
+                // }
                 break;
         }
     }
@@ -89,6 +98,23 @@ class ResultItemView extends BaseGameSprite {
 
         var pai;
         var o;
+
+        // var hupai = GSData.i.result.hupai;
+        // pai = hupai.pai;
+        //
+        // if (hupai.pos_hu == this.data.pos) {
+        //     var huDir = GSData.i.getDir(hupai.pos_hu);
+        //     var hu_left: any[] = GSData.i.getResultPersonLeft(huDir);
+        //
+        //     var leftLen: number = hu_left.length;
+        //     for (var k: number = 0; k < leftLen; k++) {
+        //         if (hu_left[k].number == pai.number && hu_left[k].type == pai.type) {
+        //             hu_left.splice(k, 1);
+        //             break;
+        //         }
+        //     }
+        // }
+
         for (var i: number = 0; i < this.data.left.length; i++) {
             pai = this.data.left[i];
             o = GSConfig.getPosByIndex(1, 4, i);
@@ -97,14 +123,15 @@ class ResultItemView extends BaseGameSprite {
 
         this.pos.x += o.x + 75;
 
-        // //判断手牌长度进行间隔错位
-        // if (GSConfig.handLens[this.data.left.length]) {
-        //     var cardView: CardView = <CardView>this.paiGroup.getElementAt(this.paiGroup.numElements - 1);
-        //     if (cardView) {
-        //         cardView.posView(cardView.pos.x + this.spacing, cardView.pos.y);
-        //         this.pos.x += this.spacing;
-        //     }
-        // }
+        if (game.gameType != GameType.sichuan) {
+            if (GSConfig.handLens[this.data.left.length]) {//判断手牌长度进行间隔错位
+                var cardView: CardView = <CardView>this.paiGroup.getElementAt(this.paiGroup.numElements - 1);
+                if (cardView) {
+                    cardView.posView(cardView.pos.x + this.spacing, cardView.pos.y);
+                    this.pos.x += this.spacing;
+                }
+            }
+        }
     }
 
     //显示门前牌
