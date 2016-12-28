@@ -20,9 +20,8 @@ class ActivityPanel extends BasePanel {
     childrenCreated() {
         super.childrenCreated();
 
-        this.bgView.setType(BgViewType.curtain);
+        this.bgView.setType(BgViewType.tapered);
         this.bgView.setTitle("shop_txt");
-        this.bgView.setCurtain(CurtainType.red);
 
         this.lab_description.text = "" + this.activit[1].content;
 

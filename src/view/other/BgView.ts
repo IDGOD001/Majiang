@@ -21,7 +21,7 @@ class BgView extends BaseGameSprite {
     childrenCreated() {
         super.childrenCreated();
 
-        this.setType(BgViewType.decorate);
+        this.setType(BgViewType.pattern);
 
         this.close.addEventListener(egret.TouchEvent.TOUCH_TAP, this.closeHandler, this);
     }
@@ -60,11 +60,14 @@ class BgView extends BaseGameSprite {
             case BgViewType.normal:
                 this.skinState = "normal";
                 break;
-            case BgViewType.curtain:
-                this.skinState = "curtain";
+            case BgViewType.pattern:
+                this.skinState = "pattern";
                 break;
-            case BgViewType.decorate:
-                this.skinState = "decorate";
+            case BgViewType.tapered:
+                this.skinState = "tapered";
+                break;
+            case BgViewType.tapegreen:
+                this.skinState = "tapegreen";
                 break;
         }
     }
@@ -75,25 +78,6 @@ class BgView extends BaseGameSprite {
      */
     setTitle(source: egret.Texture | string) {
         this.title.source = source;
-    }
-
-    /**
-     * 设置布幔类型
-     * @param type
-     */
-    setCurtain(type: CurtainType) {
-        switch (type) {
-            case CurtainType.green:
-                this.curtain.source = "dialog_head_img";
-                this.curtain.y = -6;
-                this.title.y = 13;
-                break;
-            case CurtainType.red:
-                this.curtain.source = "shop_dialog_head_img";
-                this.curtain.y = -28;
-                this.title.y = 0;
-                break;
-        }
     }
 }
 
@@ -108,5 +92,5 @@ enum CurtainType {
  * 类型
  */
 enum BgViewType {
-    normal, curtain, decorate
+    normal, pattern, tapered, tapegreen
 }
