@@ -62,6 +62,8 @@ class GSData {
     readyTing: boolean;
     //牌局准备好
     roundReady: number;
+    //听牌方向
+    ting_list:any[];
 
     //是否显示功能菜单
     isShowFunc: boolean;
@@ -95,6 +97,7 @@ class GSData {
         this.lastZhuangPos = 0;
         this.hasTingRule = false;
         this.isLianZhuang = false;
+        this.ting_list = [];
     }
 
     //继续回合的部分数据重置

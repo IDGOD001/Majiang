@@ -348,6 +348,16 @@ class GSController extends egret.EventDispatcher {
                 this.delayAutoPushPai();
             }
         }
+
+        var tl = GSDataProxy.i.gData.ting_list;
+        if (tl) {
+            for (var ti = 0; ti < tl.length; ti++) {
+                var pos: number = tl[ti];
+                var dir: number = GSData.i.getDir(pos);
+                var head = this.gsView.headViews[dir];
+                head.isTing = true;
+            }
+        }
     }
 
     //开始游戏

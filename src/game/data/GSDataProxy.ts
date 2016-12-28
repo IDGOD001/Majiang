@@ -28,31 +28,29 @@ class GSDataProxy {
         PublicVal.i.bao = obj.bao;
 
         this.gData.turnPos = obj.turn;
-
         this.gData.zhuangPos = obj.zhuang;
-
         this.gData.lastZhuangPos = obj.zhuang;
-
         this.gData.backTing = obj.ting;
+        this.gData.ting_list = obj.ting_list;
 
         game.roomPaidui = obj.dui_num;
-
         game.roomRoundCur = obj.cur_round;
-
         game.roomRoundMax = obj.max_round;
 
-        switch (this.gData.rebackData.ex_status) {
-            case 0://初始化
-                break;
-            case 1://换三张
-                game.status = GameStatus.changeThree;
-                break;
-            case 2://订缺
-                game.status = GameStatus.missing;
-                break;
-            case 3://游戏开始
-                game.status = GameStatus.gamestart;
-                break;
+        if (game.gameType == GameType.sichuan) {
+            switch (this.gData.rebackData.ex_status) {
+                case 0://初始化
+                    break;
+                case 1://换三张
+                    game.status = GameStatus.changeThree;
+                    break;
+                case 2://订缺
+                    game.status = GameStatus.missing;
+                    break;
+                case 3://游戏开始
+                    game.status = GameStatus.gamestart;
+                    break;
+            }
         }
 
         //步骤大于4，表示过了开局杠牌时间
@@ -378,8 +376,6 @@ class GSDataProxy {
         //GSController.i.showFuncSelectMenu();
 
         FashionTools.autoPass();
-
-
     }
 
     //轮到哪个方向出牌

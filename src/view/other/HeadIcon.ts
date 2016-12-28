@@ -73,7 +73,6 @@ class HeadIcon extends BaseGameSprite {
             this.lab_uid.text = "" + this.player.uid;
             this.isOwner = this.player.pos == 1;
             this.que = game.roomQue[player.dir];
-            this.isTing = false;
 
             if (this.player && PublicVal.state == StateType.ready) {
                 this.btn_kill.visible = this.player && PublicVal.state == StateType.ready && game.isRoomOwner && this.player.pos != 1;
