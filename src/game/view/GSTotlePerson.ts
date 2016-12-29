@@ -32,8 +32,8 @@ class GSTotlePerson extends eui.Component {
     }
 
     private onUpdate(data: any) {
-        var appraise: any = data.appraise;
-        if (appraise && appraise[this.pserson.uid]) {
+        var appraise: any = data;
+        if (appraise && appraise.hasOwnProperty(this.pserson.uid)) {
             this.zan.source = appraise[this.pserson.uid] == 1 ? "ico_thumbs_up_4" : "ico_thumbs_down_4";
         }
     }

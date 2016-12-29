@@ -44,16 +44,16 @@ class AssessItem extends BaseGameSprite {
                         if (typeof list == "object" && key != game.player.uid) {
                             person = {};
                             person.uid = key;
-                            person.nick = list[0].nick;
+                            person.nick = list[0];
                             person.zan = list[1];
-                            person.pic = list[2].pic;
+                            person.pic = list[2];
                             person.id = this.data.id;
 
                             data[person.uid] = person;
                         }
                     }
                     changePanel.show();
-                    changePanel.update(data);
+                    changePanel.update(obj);
                 }
                 break;
         }
@@ -76,6 +76,8 @@ class AssessItem extends BaseGameSprite {
                 index++;
             }
         }
+
+        this.btn_change.visible = rank == 1;
     }
 
     private setThumbs(img: eui.Image, thumbsup: boolean) {

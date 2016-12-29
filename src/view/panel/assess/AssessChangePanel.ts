@@ -21,6 +21,8 @@ class AssessChangePanel extends BasePanel {
     private thumbsdown_3: eui.RadioButton;
     private btn_confirm: eui.Button;
 
+    private list: any[] = [];
+
     constructor() {
         super();
 
@@ -38,20 +40,27 @@ class AssessChangePanel extends BasePanel {
     private clickHandler(e: egret.TouchEvent) {
         switch (e.currentTarget) {
             case this.btn_confirm:
-                for (var i: number = 1; i <= 3; i++) {
-
+                var appraise: any = {};
+                for (var i: number = 0; i < this.list.length; i++) {
+                    appraise[this.list[i]] = this["thumbsup_" + (i + 1)].selected ? 1 : 0;
                 }
-                game.manager.socketManager.send(29, {});
+                game.manager.socketManager.send(29, {
+                    args: {
+                        id: this.data.id,
+                        appraise: appraise
+                    }
+                });
+
+                this.hide();
                 break;
         }
     }
 
     update(obj: any) {
 
-        this.scroller.viewport.scrollV = 0;
-        this.scroller.validateNow();
+        this.data = obj;
 
-        this.group.removeChildren();
+        this.list = [];
 
         var person: any;
         var index: number = 1;
@@ -61,7 +70,9 @@ class AssessChangePanel extends BasePanel {
             this["head_" + index].setHeadImg(person.pic);
             this["nick_" + index].text = person.nick;
             this["thumbsup_" + index].selected = person.zan == 1;
+            this["thumbsdown_" + index].selected = person.zan == 0;
 
+            this.list.push(person.uid);
 
             index++;
         }

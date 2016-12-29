@@ -2275,6 +2275,16 @@
 			"name":"text_thumbsup",
 			"type":"image",
 			"url":"assets/game/text/text_thumbsup.png"
+		},
+		{
+			"name":"ico_thumbs_down_4",
+			"type":"image",
+			"url":"assets/game/ico_thumbs_down_4.png"
+		},
+		{
+			"name":"ico_thumbs_up_4",
+			"type":"image",
+			"url":"assets/game/ico_thumbs_up_4.png"
 		}
 	]
 }

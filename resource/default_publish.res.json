@@ -1377,6 +1377,14 @@
 				{
 					"compress":false,
 					"key":"red_game_btn"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down_4"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up_4"
 				}
 			],
 			"sort":0

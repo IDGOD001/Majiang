@@ -115,8 +115,8 @@ class GSTotleView extends eui.Component {
         this.btn_assess.skinName = "skins.Button_BlueSkin";
         this.btn_assess.label = "修改评价";
         this.addChild(this.btn_assess);
-        this.btn_assess.top = 20;
-        this.btn_assess.right = 100;
+        this.btn_assess.top = 140;
+        this.btn_assess.right = 20;
 
         this.btn_share = new mui.EButton("game_invite_button", "分享总成绩", 26);
         this.addChild(this.btn_share);
@@ -165,6 +165,7 @@ class GSTotleView extends eui.Component {
                     changePanel.show();
                     changePanel.update(obj);
                 }
+                this.btn_assess.visible = false;
                 break;
             case this.btn_close:
                 this.onClose();
@@ -197,6 +198,7 @@ class GSTotleView extends eui.Component {
 
         if (!obj) return;
 
+        this.btn_assess.visible = true;
 
         this._group.removeChildren();
 
