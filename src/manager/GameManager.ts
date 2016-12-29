@@ -51,6 +51,7 @@ class GameManager extends BaseDispatcher {
                 }
                 else {
                     sound = "gang_" + gender;
+                    GSController.i.gsView.playFuncEffect(dir, 25);
                 }
                 break;
             case InterruptType.angang:
@@ -59,18 +60,21 @@ class GameManager extends BaseDispatcher {
                 }
                 else {
                     sound = "gang_" + gender;
+                    GSController.i.gsView.playFuncEffect(dir, 24);
                 }
                 break;
             case InterruptType.zigang:
                 sound = "gang_" + gender;
-                // sound = "xuanfenggang_" + gender;
+                GSController.i.gsView.playFuncEffect(dir, 26);
                 break;
             case InterruptType.fenggang:
                 sound = "gang_" + gender;
+                GSController.i.gsView.playFuncEffect(dir, 23);
                 break;
             case InterruptType.ting:
                 sound = "ting_" + gender;
                 nodown = true;
+                GSController.i.gsView.playFuncEffect(dir, 4);
                 break;
             case InterruptType.hu:
                 sound = (args[0] ? "zimo_" : "dianpao_") + gender;
