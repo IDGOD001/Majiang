@@ -35,7 +35,7 @@ class AssessItem extends BaseGameSprite {
                 if (changePanel) {
                     var data: any = {};
                     var obj: any = {};
-
+                    obj.id = this.data.id;
                     obj.data = data;
                     var list: any;
                     var person: any;
