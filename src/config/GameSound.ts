@@ -1,5 +1,7 @@
 class GameSound {
 
+    static isTinging:boolean = false;
+
     /**
      * 播放
      * @param name  音乐文件名
@@ -18,7 +20,7 @@ class GameSound {
             RES.getResAsync(name, function () {
                 var sound = RES.getRes(name);
                 var soundChannel = sound.play(startTime, loops);
-                soundChannel.volume = +GameLocal.getData(GameLocal.musicVolume);
+                soundChannel.volume = +GameLocal.getData(GameLocal.soundVolume);
             }, this);
         }
     }

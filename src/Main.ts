@@ -19,6 +19,7 @@ class Main extends eui.UILayer {
         var port = variables.variables["port"];
         var code = variables.variables["code"];
 
+        roomid = roomid == "" ? 0 : roomid;
         user = user == "" ? null : user;
         ip = ip == "" ? null : ip;
         port = port == "" ? null : port;

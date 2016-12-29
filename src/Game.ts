@@ -44,7 +44,7 @@ class game {
     //房间-规则
     static roomRules: any[] = [];
     //房间-规则文本
-    static get roomRuleText():string {
+    static get roomRuleText(): string {
         return RuleConfig.ruleText(this.roomRules);
     }
 
@@ -68,6 +68,8 @@ class game {
     static roomHuan: any = {};
     //房间-玩家缺门记录
     static roomQue: any = {};
+//房间-玩家听牌记录
+    static roomTing: any = {};
     //房间-牌堆剩余
     static roomPaidui: number;
     //房间-庄家方向
@@ -112,7 +114,7 @@ class game {
         game.paiStyle = +GameLocal.getData(GameLocal.style);
         game.paiColor = +GameLocal.getData(GameLocal.color);
 
-        switch (this.gameType){
+        switch (this.gameType) {
             case GameType.sichuan:
                 GameConfig.address_test.ip = "192.168.2.251";
                 GameConfig.address_test.port = 10615;
@@ -152,6 +154,7 @@ class game {
         this.statusComplete = false;
         this.roomHuan = {};
         this.roomQue = {};
+        this.roomTing = {};
         this.isHu = false;
         game.manager.dispatchEvent(EffectEvent.CleanAll);
     }
@@ -166,6 +169,11 @@ class game {
     //用户所在的牌桌位置
     static get userPos() {
         return this.roomPlayers[this.player.uid].pos;
+    }
+
+    //用户所在的牌桌方向
+    static get userDir() {
+        return GSData.i.getDir(this.roomPlayers[this.player.uid].pos);
     }
 
     //舞台宽度

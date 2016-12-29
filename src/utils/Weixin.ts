@@ -167,11 +167,11 @@ class Weixin {
 
         var body: BodyMenuShareAppMessage = new BodyMenuShareAppMessage();
 
-        if (roomid) {
-            body.title = "【" + game.roomOwner.nick + "】邀请你加入房间:" + (roomid.split("").join(" ")) + "-【" + GameConfig.name + "】";
+        if (Number(roomid) && roomid.length >= 4) {
+            body.title = "【" + game.roomOwner.nick + "】邀请你加入房间:" + (roomid.split("").join(" ")) + "-【" + GameConfig.gameName + "】";
 
             if (game.roomRoundMax > 0) {
-                body.desc = "【" + GameConfig.round + "】" + game.roomRuleText;
+                body.desc = "【" + GameConfig.gameRound + "】" + game.roomRuleText;
             }
             else {
                 body.desc = " " + game.roomRuleText;
@@ -180,7 +180,7 @@ class Weixin {
             body.link = GameConfig.clientUrl + "?roomid=" + roomid;
         }
         else {
-            body.title = "【" + GameConfig.name + "】无需下载，点击开战！";
+            body.title = "【" + GameConfig.gameName + "】无需下载，点击开战！";
             body.desc = "私房麻将馆，好友组局，微信登录，玩牌交友两不误！";
             body.link = "" + GameConfig.clientUrl;
         }
@@ -208,7 +208,7 @@ class Weixin {
         }
 
         var body: BodyMenuShareTimeline = new BodyMenuShareTimeline();
-        body.title = "【" + GameConfig.name + "】无需下载，点击开战！";
+        body.title = "【" + GameConfig.gameName + "】无需下载，点击开战！";
         if (roomid) {
             body.link = GameConfig.clientUrl + "?roomid=" + roomid;
         }

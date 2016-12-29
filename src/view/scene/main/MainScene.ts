@@ -193,7 +193,7 @@ class MainScene extends eui.Component {
 
         this.update();
 
-        if (game.roomid) {
+        if (game.roomid && String(game.roomid).length >= 4) {
             game.manager.socketManager.send(3, {
                 args: {
                     roomid: +game.roomid,

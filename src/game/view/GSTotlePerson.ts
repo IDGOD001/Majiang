@@ -35,6 +35,7 @@ class GSTotlePerson extends eui.Component {
         var pos: number = +this.pserson.pos;
 
         this.head = new HeadIcon();
+        this.head.skinState = "intable";
         this.addChild(this.head);
         // this._head.x = 40;
         this.head.y = 20;

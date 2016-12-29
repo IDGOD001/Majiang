@@ -35,7 +35,7 @@ class GameConfig {
     static ChangeThreeTime: number = 60;
 
     //游戏名称
-    static get name() {
+    static get gameName() {
         var str: string;
         switch (game.gameType) {
             case GameType.sichuan:
@@ -50,7 +50,7 @@ class GameConfig {
     }
 
     //对局
-    static get round() {
+    static get gameRound() {
         var str: string = "";
         switch (game.gameType) {
             case GameType.sichuan:

@@ -489,6 +489,9 @@ class GSDataProxy {
                 break;
             case 4://听牌
                 game.manager.soundPlay(InterruptType.ting, pos);
+                game.roomTing[dir] = true;
+                GameSound.isTinging = true;
+
                 var head:HeadIcon = GSController.i.gsView.getHeadView(dir);
                 head.isTing = true;
                 break;
@@ -682,13 +685,17 @@ class GSDataProxy {
     //S2C 更新打入池中的牌子
     S2C_PoolPai(obj: any) {
 
-        GameSound.play(obj.data.type + "_" + obj.data.number + "_" + this.gData.getSexByPos(obj.data.pos));
-        GameSound.play("sound_throw");
-
         var dir = this.gData.getDir(obj.data.pos);
 
         this.gData.currPoolPai = obj.data;
         this.gData.currPoolPai.dir = dir;
+
+        if (!GameSound.isTinging) {
+            GameSound.play(obj.data.type + "_" + obj.data.number + "_" + this.gData.getSexByPos(obj.data.pos));
+            GameSound.play("sound_throw");
+        }
+
+        GameSound.isTinging = false;
 
         //添加池牌数据
         PublicVal.i.pushPoolPai(dir, this.gData.currPoolPai);
