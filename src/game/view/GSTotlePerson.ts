@@ -2,39 +2,21 @@
  * 结算当单个人
  */
 class GSTotlePerson extends eui.Component {
-    /**
-     * 玩家头像
-     */
-    private _head: HeadIcon;
+    //玩家头像
+    private head: HeadIcon;
+    //玩家姓名
+    private nick: eui.Label;
+    //大赢家
+    private win: eui.Image;
+    //最佳炮手
+    private pao: eui.Image;
 
-    /**
-     * 玩家姓名
-     */
-    private _name: eui.Label;
-
-    /**
-     * 玩家数据
-     */
-    public pserson: any;
-
-    /**
-     * 大赢家
-     */
-    private iswin: eui.Image;
-
-    /**
-     * 最佳炮手
-     */
-    private pao_img: eui.Image;
-
-    /**
-     * 奖励显示容器
-     */
+    //奖励显示容器
     private card_group: eui.Group;
 
-    /**
-     * @param p
-     */
+    //玩家数据
+    public pserson: any;
+
     constructor(p: any) {
         super();
 
@@ -49,57 +31,46 @@ class GSTotlePerson extends eui.Component {
         this.removeChildren();
 
         var nick = this.pserson.nick;
-        var pic = this.pserson.pic;
-
+        var pic:string = this.pserson.pic;
         var pos: number = +this.pserson.pos;
 
-        this._head = new HeadIcon();
-        this.addChild(this._head);
+        this.head = new HeadIcon();
+        this.addChild(this.head);
         // this._head.x = 40;
-        this._head.y = 20;
+        this.head.y = 20;
 
         RES.getResByUrl(pic, function (t: egret.Texture) {
-            if (t) this._head.setHeadImg(t);
+            if (t) this.head.setHeadImg(t);
 
         }, this, RES.ResourceItem.TYPE_IMAGE);
 
-        this._name = new eui.Label();
-        this.addChild(this._name);
-        this._name.text = "" + nick;
-        this._name.size = 20;
-        this._name.textAlign = "center";
-        this._name.textColor = 0xffffff;
-        this._name.fontFamily = GameConfig.defaultFont;
+        this.nick = new eui.Label();
+        this.addChild(this.nick);
+        this.nick.text = "" + nick;
+        this.nick.size = 20;
+        this.nick.textAlign = "center";
+        this.nick.textColor = 0xffffff;
+        this.nick.fontFamily = GameConfig.defaultFont;
 
-        this._name.y = 110;
-        this._name.x = 40 - this._name.textWidth * 0.5;
+        this.nick.y = 110;
+        this.nick.x = 40 - this.nick.textWidth * 0.5;
 
-        this.iswin = new eui.Image();
+        this.win = new eui.Image();
 
-        if (this.pserson["iswin"]) {
-            this.iswin.visible = true;
+        if (this.pserson["win"]) {
+            this.win.visible = true;
         }
         else {
-            this.iswin.visible = false;
+            this.win.visible = false;
         }
 
-        this.iswin.source = "sptWin";
+        this.win.source = "sptWin";
 
-        this.pao_img = new eui.Image();
+        this.pao = new eui.Image();
+        this.pao.source = "sptFangPao";
+        this.pao.visible = this.pserson["ispao"];
 
-        if (this.pserson["ispao"]) {
-            this.pao_img.visible = true;
-        }
-        else {
-            this.pao_img.visible = false;
-        }
-
-        this.pao_img.source = "sptFangPao";
-
-        if (+pos == 1)   //房主奖励
-        {
-            this._head.isOwner = true;
-        }
+        this.head.isOwner = +pos == 1;
 
         var new_card: number = this.pserson.new_card;
 
@@ -122,7 +93,7 @@ class GSTotlePerson extends eui.Component {
 
             if (+pos == 1)   //房主奖励
             {
-                this._head.isOwner = true;
+                this.head.isOwner = true;
 
                 timg.source = "card_jiangli2";
             }
@@ -203,7 +174,7 @@ class GSTotlePerson extends eui.Component {
             if (i == (numlist.length - 1)) {
                 label.y = 140 + ((label.textHeight + 20) * i) + 20;
 
-                this.iswin.y = label.y - 20;
+                this.win.y = label.y - 20;
 
                 if (this.card_group) this.card_group.y = label.y + 30;
             }
@@ -211,17 +182,17 @@ class GSTotlePerson extends eui.Component {
                 label.y = 140 + ((label.textHeight + 20) * i);
             }
 
-            if (i == 2) this.pao_img.y = label.y - 20;
+            if (i == 2) this.pao.y = label.y - 20;
         }
 
-        this.addChild(this.pao_img);
-        this.addChild(this.iswin);
+        this.addChild(this.pao);
+        this.addChild(this.win);
 
-        this.iswin.x = -10;
-        this.pao_img.x = -5;
+        this.win.x = -10;
+        this.pao.x = -5;
 
-        this.iswin.alpha = 0.6;
-        this.pao_img.alpha = 0.6;
+        this.win.alpha = 0.6;
+        this.pao.alpha = 0.6;
 
         if (this.card_group) this.card_group.x = -45;
     }

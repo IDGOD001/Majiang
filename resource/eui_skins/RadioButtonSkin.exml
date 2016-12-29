@@ -12,6 +12,6 @@
                  source.disabledAndSelected="check_on_btn" source="check_off_btn"/>
         <e:Label id="labelDisplay" size="18"
                  textAlign="center" verticalAlign="middle"
-                 fontFamily="微软雅黑" textColor="0xA07A4B"/>
+                 fontFamily="微软雅黑" textColor="0xA07A4B" textColor.upAndSelected="0xFE0004" textColor.downAndSelected="0xFE0004" textColor.disabledAndSelected="0xFE0004"/>
     </e:Group>
 </e:Skin>

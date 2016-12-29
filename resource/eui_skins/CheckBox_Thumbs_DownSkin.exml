@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.CheckBox_Thumbs_DownSkin" states="up,down,disabled,upAndSelected,downAndSelected,disabledAndSelected" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image scale9Grid="39,5,75,30" width.disabledAndSelected="100%" width="100%" source="btn_red_down" source.upAndSelected="btn_red_up" source.downAndSelected="btn_red_up" source.disabledAndSelected="btn_red_up"/>
+	<e:Image horizontalCenter="0.5" verticalCenter="-2.5" source="ico_thumbs_down_2_0" source.upAndSelected="ico_thumbs_down_2" source.downAndSelected="ico_thumbs_down_2" source.disabledAndSelected="ico_thumbs_down_2"/>
+</e:Skin>
