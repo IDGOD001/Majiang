@@ -46,7 +46,7 @@ class AssessChangePanel extends BasePanel {
         }
     }
 
-    update(data: any) {
+    update(obj: any) {
 
         this.scroller.viewport.scrollV = 0;
         this.scroller.validateNow();
@@ -55,8 +55,8 @@ class AssessChangePanel extends BasePanel {
 
         var person: any;
         var index: number = 1;
-        for (var key in data) {
-            person = data[key];
+        for (var key in obj.data) {
+            person = obj.data[key];
 
             this["head_" + index].setHeadImg(person.pic);
             this["nick_" + index].text = person.nick;
