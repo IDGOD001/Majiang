@@ -1377,10 +1377,6 @@
 				{
 					"compress":false,
 					"key":"red_game_btn"
-				},
-				{
-					"compress":false,
-					"key":"JS_fangpao"
 				}
 			],
 			"sort":0
