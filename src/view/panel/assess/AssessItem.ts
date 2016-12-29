@@ -31,12 +31,51 @@ class AssessItem extends BaseGameSprite {
     private clickHandler(e: egret.TouchEvent) {
         switch (e.currentTarget) {
             case this.btn_change:
+                var changePanel: AssessChangePanel = StackManager.findDialog(AssessChangePanel, "AssessChangePanel");
+                if (changePanel) {
+                    var data: any = {};
+                    var obj: any = {};
+
+                    obj.data = data;
+                    var list: any;
+                    var person: any;
+                    for (var key in this.data) {
+                        list = this.data[key];
+                        if (typeof list == "object" && key != game.player.uid) {
+                            person = {};
+                            person.uid = key;
+                            person.nick = list[0].nick;
+                            person.zan = list[1];
+                            person.pic = list[2].pic;
+                            person.id = this.data.id;
+
+                            data[person.uid] = person;
+                        }
+                    }
+                    changePanel.show();
+                    changePanel.update(data);
+                }
                 break;
         }
     }
 
-    update(data: any) {
+    update(data: any, rank: number) {
+        this.data = data;
 
+        this.lab_rank.text = "" + rank;
+        this.lab_time.text = "" + StringUtils.getYTDByTimestamp(data.time * 1000) + " " + StringUtils.getHMSByTimestamp(data.time * 1000);
+        this.lab_roomid.text = "房间号:" + data.roomid;
+
+        var list: any;
+        var index: number = 1;
+        for (var key in data) {
+            list = data[key];
+            if (typeof list == "object" && key != game.player.uid) {
+                this["lab_nick" + index].text = "" + list[0];
+                this.setThumbs(this["img_thumbs" + index], list[1] == 1);
+                index++;
+            }
+        }
     }
 
     private setThumbs(img: eui.Image, thumbsup: boolean) {

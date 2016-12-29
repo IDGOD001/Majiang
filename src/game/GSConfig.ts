@@ -34,7 +34,7 @@ class Rule{
 //游戏配置
 class GSConfig {
 
-    static auto: boolean = false;
+    static auto: boolean = true;
 
     static width: number = 960;
 

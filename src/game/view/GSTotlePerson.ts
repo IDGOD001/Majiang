@@ -4,6 +4,8 @@
 class GSTotlePerson extends eui.Component {
     //玩家头像
     private head: HeadIcon;
+    //赞
+    private zan: eui.Image;
     //玩家姓名
     private nick: eui.Label;
     //大赢家
@@ -25,24 +27,38 @@ class GSTotlePerson extends eui.Component {
 
     createChildren() {
         super.createChildren();
+
+        game.manager.addEventListener(SynchroEvent.Assess, this.onUpdate, this);
+    }
+
+    private onUpdate(data: any) {
+        var appraise: any = data.appraise;
+        if (appraise && appraise[this.pserson.uid]) {
+            this.zan.source = appraise[this.pserson.uid] == 1 ? "ico_thumbs_up_4" : "ico_thumbs_down_4";
+        }
     }
 
     refresh() {
         this.removeChildren();
 
         var nick = this.pserson.nick;
-        var pic:string = this.pserson.pic;
+        var pic: string = this.pserson.pic;
         var pos: number = +this.pserson.pos;
 
         this.head = new HeadIcon();
-        this.addChild(this.head);
         // this._head.x = 40;
         this.head.y = 20;
+        this.addChild(this.head);
 
         RES.getResByUrl(pic, function (t: egret.Texture) {
             if (t) this.head.setHeadImg(t);
-
         }, this, RES.ResourceItem.TYPE_IMAGE);
+
+        this.zan = new eui.Image();
+        this.zan.source = "ico_thumbs_up_4";
+        this.zan.x = this.head.x + this.head.width;
+        this.zan.y = this.head.y + 50;
+        this.addChild(this.zan);
 
         this.nick = new eui.Label();
         this.addChild(this.nick);
@@ -70,7 +86,7 @@ class GSTotlePerson extends eui.Component {
         this.pao.source = "sptFangPao";
         this.pao.visible = this.pserson["ispao"];
 
-        this.head.isOwner = +pos == 1;
+        this.head.isOwner = pos == 1;
 
         var new_card: number = this.pserson.new_card;
 

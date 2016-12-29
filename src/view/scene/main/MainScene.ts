@@ -14,13 +14,10 @@ class MainScene extends eui.Component {
     };
 
     private btn_create: mui.EButton;
-
     private btn_join: mui.EButton;
-
     private btn_record: mui.EButton;
-
+    private btn_assess: mui.EButton;
     public btn_shiming: mui.EButton;
-
     private btn_add: eui.Image;
 
     public constructor() {
@@ -43,7 +40,7 @@ class MainScene extends eui.Component {
     // _head_click: eui.Image;
     // _head: eui.Image;
 
-    head:HeadIcon;
+    head: HeadIcon;
 
     _uid: eui.Label;
 
@@ -67,78 +64,54 @@ class MainScene extends eui.Component {
         this.btn_record.verticalCenter = -134;
         this.addChildAt(this.btn_record, this.numChildren - 1);
 
+        this.btn_assess = new mui.EButton("btn_thumbs_up");
+        this.btn_assess.horizontalCenter = 407;
+        this.btn_assess.verticalCenter = 0;
+        this.addChildAt(this.btn_assess, this.numChildren - 1);
+
         this.btn_shiming = new mui.EButton("btn_shiming");
         this.btn_shiming.horizontalCenter = -407;
         this.btn_shiming.verticalCenter = -134;
         this.btn_shiming.visible = false;
         this.addChildAt(this.btn_shiming, this.numChildren - 1);
 
-        /**
-         * 打开加入游戏
-         */
-        this.btn_join.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
-            StackManager.open(JoininPanel, "JoininPanel");
+        this.head.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
+        this.btn_add.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
+        this.btn_shiming.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
+        this.btn_create.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
+        this.btn_join.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
+        this.btn_record.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
+        this.btn_assess.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
+    }
 
-        }, this);
-
-        /**
-         * 打开创建游戏
-         */
-        this.btn_create.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
-            StackManager.open(CreatePanel, "CreatePanel");
-
-        }, this);
-
-        /**
-         * 打开战绩
-         */
-        this.btn_record.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
-            StackManager.open(RecordPanel, "RecordPanel");
-
-            // var rt:egret.RenderTexture = new egret.RenderTexture();
-            // var clip:egret.Rectangle = new egret.Rectangle(0,0,this._head.width, this._head.height);
-            // rt.drawToTexture( this._head, clip);
-            // var testImg:egret.Bitmap = new egret.Bitmap();
-            // testImg.texture = rt;
-            // var t:egret.Texture = rt;
-            // console.log(t.toDataURL("image/png", clip));
-            // t.saveToFile("image/png", "", clip);
-        }, this);
-
-        /**
-         * 打开说明
-         */
-        this.btn_add.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
-            StackManager.open(TipsPanel, "TipsPanel");
-
-        }, this);
-
-        /**
-         * 打开玩家信息
-         */
-        this.head.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
-            var d: RoleInfoPanel = StackManager.findDialog(RoleInfoPanel, "RoleInfoPanel");
-            if (d) {
-                d.show();
-                d.refreshRole();
-            }
-        }, this);
-
-        /**
-         * 打开实名认证
-         */
-        this.btn_shiming.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
-            StackManager.open(RealPanel, "RealPanel");
-        }, this);
-
-        /**
-         * 添加金钱说明
-         */
-        //TipsManager.addTips(this._money,"再点也不会变多 <(￣︶￣)>！", 1);
-
-        //this.bg_img.width = gameConfig.curWidth();
-
-        //this.bg_img.height = gameConfig.curHeight();
+    private clickHandler(e:egret.TouchEvent) {
+        switch (e.currentTarget) {
+            case this.head:
+                var d: RoleInfoPanel = StackManager.findDialog(RoleInfoPanel, "RoleInfoPanel");
+                if (d) {
+                    d.show();
+                    d.refreshRole();
+                }
+                break;
+            case this.btn_add:
+                StackManager.open(TipsPanel, "TipsPanel");
+                break;
+            case this.btn_shiming:
+                StackManager.open(RealPanel, "RealPanel");
+                break;
+            case this.btn_create:
+                StackManager.open(CreatePanel, "CreatePanel");
+                break;
+            case this.btn_join:
+                StackManager.open(JoininPanel, "JoininPanel");
+                break;
+            case this.btn_record:
+                StackManager.open(RecordPanel, "RecordPanel");
+                break;
+            case this.btn_assess:
+                StackManager.open(AssessPanel, "AssessPanel");
+                break;
+        }
     }
 
     /**
@@ -178,16 +151,6 @@ class MainScene extends eui.Component {
 
     childrenCreated() {
         super.childrenCreated();
-
-        // var _shpBeMask: egret.Shape = new egret.Shape();
-        // _shpBeMask.graphics.lineStyle(0x000000);
-        // _shpBeMask.graphics.beginFill(0xffffff, 1);
-        // _shpBeMask.graphics.drawRoundRect(2, 2, this._head.width - 4, this._head.height - 4, 30, 30);
-        // _shpBeMask.graphics.endFill();
-        // _shpBeMask.x = this._head.x;
-        // _shpBeMask.y = this._head.y;
-        // this.head_group.addChild(_shpBeMask);
-        // this._head.mask = _shpBeMask;
 
         GameMusic.play("music_scene");
 
@@ -232,22 +195,5 @@ class MainScene extends eui.Component {
         }
 
         this.head.setHeadImg(player.pic);
-
-        // if (game.player.pic != "") {
-        //     RES.getResByUrl(gameConfig.protocolType + game.player.pic.split("//")[1], function (t: egret.Texture) {
-        //         if (t) {
-        //             game.player.playerHeadTexture = t;
-        //             my._head.source = t;
-        //         }
-        //         else {
-        //             my._head.source = "head_001";
-        //
-        //             game.player.playerHeadTexture = my._head.texture;
-        //         }
-        //
-        //         my._head.width = my._head.height = 77;
-        //
-        //     }, this, RES.ResourceItem.TYPE_IMAGE);
-        // }
     }
 }

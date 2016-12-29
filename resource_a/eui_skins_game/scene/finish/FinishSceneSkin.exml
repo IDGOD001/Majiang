@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="FinishSceneSkin" width="960" height="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="img_pjjs" horizontalCenter="0" top="30" locked="true"/>
+	<e:Label text="标签" x="75" fontFamily="微软雅黑" size="20" top="80" bold="true"/>
+</e:Skin>
