@@ -25,6 +25,8 @@ class AssessBar extends BaseGameSprite {
         super.childrenCreated();
 
         this.foreGroup.mask = this.foreGroupMask;
+
+        this.updateView();
     }
 
     update(cai: number, zan: number) {
@@ -35,6 +37,10 @@ class AssessBar extends BaseGameSprite {
         this.zong = this.cai + this.zan;
         this.level = this.getLevel();
 
+        this.updateView();
+    }
+
+    updateView() {
         var index: number = Math.ceil(this.level / 5);
         var len: number = this.level % 5;
         len = len == 0 ? 5 : len;
