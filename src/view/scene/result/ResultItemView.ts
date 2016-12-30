@@ -31,7 +31,7 @@ class ResultItemView extends BaseGameSprite {
 
         this.pos = new egret.Point();
 
-        this.headIcon.setState(HeadIconState.ingame);
+        this.headIcon.skinState = "inresult";
     }
 
     update(person: any) {
@@ -41,6 +41,7 @@ class ResultItemView extends BaseGameSprite {
 
         this.headIcon.update(person);
         this.headIcon.isZhuang = GSData.i.result.zhuang == person.pos;
+        this.headIcon.bar.hide();
 
         this.lab_uid.text = "" + this.data.uid;
         this.lab_nick.text = "" + this.data.nick;

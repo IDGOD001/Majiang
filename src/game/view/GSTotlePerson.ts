@@ -6,8 +6,6 @@ class GSTotlePerson extends eui.Component {
     private head: HeadIcon;
     //赞
     private zan: eui.Image;
-    //玩家姓名
-    private nick: eui.Label;
     //大赢家
     private win: eui.Image;
     //最佳炮手
@@ -17,12 +15,12 @@ class GSTotlePerson extends eui.Component {
     private card_group: eui.Group;
 
     //玩家数据
-    public pserson: any;
+    public person: any;
 
     constructor(p: any) {
         super();
 
-        this.pserson = p;
+        this.person = p;
     }
 
     createChildren() {
@@ -33,26 +31,24 @@ class GSTotlePerson extends eui.Component {
 
     private onUpdate(data: any) {
         var appraise: any = data;
-        if (appraise && appraise.hasOwnProperty(this.pserson.uid)) {
-            this.zan.source = appraise[this.pserson.uid] == 1 ? "ico_thumbs_up_4" : "ico_thumbs_down_4";
+        if (appraise && appraise.hasOwnProperty(this.person.uid)) {
+            this.zan.source = appraise[this.person.uid] == 1 ? "ico_thumbs_up_4" : "ico_thumbs_down_4";
         }
     }
 
     refresh() {
         this.removeChildren();
 
-        var nick = this.pserson.nick;
-        var pic: string = this.pserson.pic;
-        var pos: number = +this.pserson.pos;
+        var nick = this.person.nick;
+        var pos: number = +this.person.pos;
 
         this.head = new HeadIcon();
+        this.head.skinState = "intheend";
         // this._head.x = 40;
         this.head.y = 20;
         this.addChild(this.head);
 
-        RES.getResByUrl(pic, function (t: egret.Texture) {
-            if (t) this.head.setHeadImg(t);
-        }, this, RES.ResourceItem.TYPE_IMAGE);
+        this.head.update(this.person);
 
         this.zan = new eui.Image();
         this.zan.source = "ico_thumbs_up_4";
@@ -60,20 +56,9 @@ class GSTotlePerson extends eui.Component {
         this.zan.y = this.head.y + 50;
         this.addChild(this.zan);
 
-        this.nick = new eui.Label();
-        this.addChild(this.nick);
-        this.nick.text = "" + nick;
-        this.nick.size = 20;
-        this.nick.textAlign = "center";
-        this.nick.textColor = 0xffffff;
-        this.nick.fontFamily = gameConfig.FontFamily;
-
-        this.nick.y = 110;
-        this.nick.x = 40 - this.nick.textWidth * 0.5;
-
         this.win = new eui.Image();
 
-        if (this.pserson["win"]) {
+        if (this.person["win"]) {
             this.win.visible = true;
         }
         else {
@@ -84,11 +69,9 @@ class GSTotlePerson extends eui.Component {
 
         this.pao = new eui.Image();
         this.pao.source = "sptFangPao";
-        this.pao.visible = this.pserson["ispao"];
+        this.pao.visible = this.person["ispao"];
 
-        this.head.isOwner = pos == 1;
-
-        var new_card: number = this.pserson.new_card;
+        var new_card: number = this.person.new_card;
 
         console.log(">>  " + new_card);
 
@@ -107,14 +90,10 @@ class GSTotlePerson extends eui.Component {
             var cardcha: eui.Image = new eui.Image();
             cardcha.source = "card_cha";
 
-            if (+pos == 1)   //房主奖励
-            {
-                this.head.isOwner = true;
-
+            if (+pos == 1) {//房主奖励
                 timg.source = "card_jiangli2";
             }
-            else   //新人奖励
-            {
+            else {//新人奖励
                 timg.source = "card_jiangli1";
             }
 
@@ -134,13 +113,13 @@ class GSTotlePerson extends eui.Component {
 
 
         var numlist: number[] = [
-            this.pserson.zimo_num,
-            this.pserson.paorcv_num,
-            this.pserson.pao_num,
-            this.pserson.gang_an_num,
-            this.pserson.gang_ming_num,
-            this.pserson.chajiao_num,
-            this.pserson.cur
+            this.person.zimo_num,
+            this.person.paorcv_num,
+            this.person.pao_num,
+            this.person.gang_an_num,
+            this.person.gang_ming_num,
+            this.person.chajiao_num,
+            this.person.cur
         ];
 
         var txtList: string[] = [
@@ -163,14 +142,14 @@ class GSTotlePerson extends eui.Component {
             label.x = 40 - label.textWidth * 0.5;
 
             if (i == (numlist.length - 1)) {
-                label.y = 140 + ((label.textHeight + 20) * i) + 20;
+                label.y = 145 + ((label.textHeight + 20) * i) + 20;
 
                 this.win.y = label.y - 20;
 
                 if (this.card_group) this.card_group.y = label.y + 30;
             }
             else {
-                label.y = 140 + ((label.textHeight + 20) * i);
+                label.y = 145 + ((label.textHeight + 20) * i);
             }
 
             if (i == 2) this.pao.y = label.y - 20;

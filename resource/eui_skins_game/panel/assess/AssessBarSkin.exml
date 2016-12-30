@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="AssessBarSkin" currentState="level1" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="level1,level2,level3,level4,level0" >
+	<e:Group id="backGroup">
+		<e:Image source="ico_evaluate_1_0" source.level1="ico_evaluate_1_0"/>
+		<e:Image source="ico_evaluate_1_0" x="10" y="10" includeIn="level2,level3,level4,level0"/>
+		<e:Image source="ico_evaluate_1_0" y="20" x="20" includeIn="level3,level4,level0"/>
+		<e:Image source="ico_evaluate_1_0" y="30" x="30" includeIn="level4,level0"/>
+		<e:Image source="ico_evaluate_1_0" y="40" x="40" includeIn="level0"/>
+		<e:layout>
+			<e:HorizontalLayout gap="0"/>
+		</e:layout>
+	</e:Group>
+	<e:Group id="foreGroup">
+		<e:Image source="ico_evaluate_1"/>
+		<e:Image source="ico_evaluate_1" x="10" y="10" includeIn="level2,level3,level4,level0"/>
+		<e:Image source="ico_evaluate_1" y="20" x="20" includeIn="level3,level4,level0"/>
+		<e:Image source="ico_evaluate_1" y="30" x="30" includeIn="level4,level0"/>
+		<e:Image source="ico_evaluate_1" y="40" x="40" includeIn="level0"/>
+		<e:layout>
+			<e:HorizontalLayout gap="0"/>
+		</e:layout>
+	</e:Group>
+	<e:Rect id="foreGroupMask" top="0" bottom="0"/>
+</e:Skin>

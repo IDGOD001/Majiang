@@ -237,7 +237,7 @@ class GSTotleView extends eui.Component {
             if (this.roleList[k]) {
                 head = this.roleList[k];
 
-                head.pserson = ps;
+                head.person = ps;
             }
             else {
                 head = new GSTotlePerson(ps);
@@ -255,15 +255,15 @@ class GSTotleView extends eui.Component {
             var pn: GSTotlePerson = this.roleList[pi];
 
 
-            if (+pn.pserson["pao_num"] > 0) {
-                pn.pserson["ispao"] = true;
+            if (+pn.person["pao_num"] > 0) {
+                pn.person["ispao"] = true;
             }
 
             for (var k = 0; k < paolist.length; k++) {
                 var kn: number = paolist[k];
 
-                if (+pn.pserson["pao_num"] < kn) {
-                    pn.pserson["ispao"] = false;
+                if (+pn.person["pao_num"] < kn) {
+                    pn.person["ispao"] = false;
                 }
             }
         }
