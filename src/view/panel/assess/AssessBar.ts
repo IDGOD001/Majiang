@@ -25,43 +25,38 @@ class AssessBar extends BaseGameSprite {
         super.childrenCreated();
 
         this.foreGroup.mask = this.foreGroupMask;
-
-        this.update(this.cai, this.zan);
     }
 
     update(cai: number, zan: number) {
 
-        this.cai = cai;
-        this.zan = zan;
+        this.cai = !cai ? 0 : cai;
+        this.zan = !zan ? 0 : zan;
+
         this.zong = this.cai + this.zan;
         this.level = this.getLevel();
 
-        this.updateView();
+        var index: number = Math.ceil(this.level / 5);
+        var len: number = this.level % 5;
+        len = len == 0 ? 5 : len;
+
+        this.backGroup.removeChildren();
+        this.foreGroup.removeChildren();
+
+        var ico: eui.Image;
+        for (var i: number = 0; i < len; i++) {
+            ico = new eui.Image();
+            ico.source = "ico_evaluate_" + index + "_0";
+            this.backGroup.addChild(ico);
+
+            ico = new eui.Image();
+            ico.source = "ico_evaluate_" + index;
+            this.foreGroup.addChild(ico);
+        }
 
         this.rate = this.zong == 0 ? 0 : ((this.cai * 2) / this.zong);
         this.rate = this.rate > 1 ? 1 : this.rate;
 
         this.foreGroupMask.width = (1 - this.rate) * this.width;
-
-        console.log(this.zan, this.cai, this.zong, this.rate);
-    }
-
-    updateView() {
-        this.skinState = "level" + (this.level % 5);
-
-        var ico: eui.Image;
-        var index: number = 0;
-        while (index < this.backGroup.numElements) {
-            ico = <eui.Image>this.backGroup.getElementAt(index);
-            ico.source = "ico_evaluate_" + Math.ceil(this.level / 5) + "_0";
-            index++
-        }
-        index = 0;
-        while (index < this.foreGroup.numElements) {
-            ico = <eui.Image>this.foreGroup.getElementAt(index);
-            ico.source = "ico_evaluate_" + Math.ceil(this.level / 5);
-            index++
-        }
     }
 
     //获取等级
