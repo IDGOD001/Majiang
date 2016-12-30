@@ -39,12 +39,11 @@ class GSTotlePerson extends eui.Component {
     refresh() {
         this.removeChildren();
 
-        var nick = this.person.nick;
         var pos: number = +this.person.pos;
 
         this.head = new HeadIcon();
         this.head.skinState = "intheend";
-        // this._head.x = 40;
+        // this.head.x = 40;
         this.head.y = 20;
         this.addChild(this.head);
 
@@ -55,6 +54,8 @@ class GSTotlePerson extends eui.Component {
         this.zan.x = this.head.x + this.head.width;
         this.zan.y = this.head.y + 50;
         this.addChild(this.zan);
+
+        this.zan.visible = this.person.uid != game.player.uid;
 
         this.win = new eui.Image();
 
