@@ -23,8 +23,7 @@
 				<e:HorizontalLayout verticalAlign="middle" gap="10"/>
 			</e:layout>
 		</e:Group>
-		<e:Button id="btn_change" label="修改评价" verticalCenter="0" right="10" skinName="skins.Button_BlueSkin">
-		</e:Button>
+		<e:Button id="btn_change" label="修改评价" right="10" verticalCenter="0" skinName="skins.Button_BlueSkin"/>
 	</e:Group>
 	<e:Image source="img_line" bottom="0" y="10" left="10" right="10" locked="true"/>
 	<e:Label id="lab_roomid" bottom="5" textColor="0xBD874A" text="房间号:" fontFamily="微软雅黑" textAlign="left" size="14" y="10" width="150" right="170"/>

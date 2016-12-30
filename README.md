@@ -49,7 +49,8 @@
 -define(Action_Card_Update,24).%卡数变化
 -define(Action_Msg_Broadcast,25).%牌桌 消息广播
 -define(Action_Msg_Broadcast_All,26).%所有消息广播
-
+-define(Action_Appraise_Get,28).%获取记录
+-define(Action_Appraise_Commit,29).%提交修改记录
 
 
 # -----------------------------------规则

@@ -34,6 +34,10 @@ class PlayerVo extends BaseDataVo {
     cur: number;
     //玩家总共拥有过的房卡数量
     zong: number;
+    //踩一下次数
+    cai:number;
+    //赞一下次数
+    zan:number;
 
     //位置
     pos: number = -1;

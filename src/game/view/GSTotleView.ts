@@ -28,9 +28,14 @@ class GSTotleView extends eui.Component {
     private btn_close: mui.EButton;
 
     /**
+     * 修改评价
+     */
+    private btn_assess: eui.Button;
+
+    /**
      * 分享按钮
      */
-    private btn_fen: mui.EButton;
+    private btn_share: mui.EButton;
 
     /**
      * 结束时间
@@ -47,12 +52,13 @@ class GSTotleView extends eui.Component {
      */
     private roleList: Array<any> = [];
 
-
     /**
      * 分数列表
      * @type {Array}
      */
     private fenList: Array<any> = [];
+
+    private data: any;
 
     constructor() {
         super();
@@ -88,8 +94,6 @@ class GSTotleView extends eui.Component {
 
         var layout: eui.HorizontalLayout = new eui.HorizontalLayout();
         layout.horizontalAlign = "center";
-        //layout.verticalAlign = "middle";
-
         layout.gap = 70;
         layout.paddingTop = 100;
 
@@ -108,15 +112,20 @@ class GSTotleView extends eui.Component {
         this.addChild(this.btn_close);
         this.btn_close.top = 20;
         this.btn_close.right = 20;
-        this.btn_close.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
 
-        this.btn_fen = new mui.EButton("game_invite_button", "分享总成绩", 26);
-        this.addChild(this.btn_fen);
-        this.btn_fen.textImg.scaleX = this.btn_fen.textImg.scaleY = 1.2;
-        this.btn_fen.horizontalCenter = 0;
-        this.btn_fen.bottom = 5;
-        this.btn_fen.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFen, this);
-        this.btn_fen.textField.verticalCenter = -5;
+        this.btn_assess = new eui.Button();
+        this.btn_assess.skinName = "skins.Button_BlueSkin";
+        this.btn_assess.label = "修改评价";
+        this.addChild(this.btn_assess);
+        this.btn_assess.top = 140;
+        this.btn_assess.right = 20;
+
+        this.btn_share = new mui.EButton("game_invite_button", "分享总成绩", 26);
+        this.addChild(this.btn_share);
+        this.btn_share.textImg.scaleX = this.btn_share.textImg.scaleY = 1.2;
+        this.btn_share.horizontalCenter = 0;
+        this.btn_share.bottom = 5;
+        this.btn_share.textField.verticalCenter = -5;
 
         this.endTime = new eui.Label();
         this.addChild(this.endTime);
@@ -126,13 +135,50 @@ class GSTotleView extends eui.Component {
         this.endTime.fontFamily = GameConfig.defaultFont;
         this.endTime.right = 10;
         this.endTime.bottom = 70;
+
+        this.btn_close.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
+        this.btn_share.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
+        this.btn_assess.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
     }
 
-    private onFen(): void {
-        Weixin.onClickShare(this.fenList);
+    private clickHandler(e: egret.TouchEvent) {
+        switch (e.currentTarget) {
+            case this.btn_assess:
+                var changePanel: AssessChangePanel = StackManager.findDialog(AssessChangePanel, "AssessChangePanel");
+                if (changePanel) {
+                    var data: any = {};
+                    var obj:any = {};
+                    obj.data = data;
+                    var person: any;
+                    for (var i: number = 0; i < this.data.persons.length; i++) {
+                        if (this.data.persons[i].uid != game.player.uid) {
+                            person = {};
+                            person.uid = this.data.persons[i].uid;
+                            person.pic = this.data.persons[i].pic;
+                            person.nick = this.data.persons[i].nick;
+                            person.zan = 1;
+
+                            data[person.uid] = person;
+                        }
+                        else {
+                            obj.id = this.data.persons[i].appraise_id;
+                        }
+                    }
+                    changePanel.show();
+                    changePanel.update(obj);
+                }
+                this.btn_assess.visible = false;
+                break;
+            case this.btn_close:
+                this.onClose();
+                break;
+            case this.btn_share:
+                Weixin.onClickShare(this.fenList);
+                break;
+        }
     }
 
-    public onClose(): void {
+    onClose(){
         var p = this.parent;
 
         if (p && p.contains(this)) {
@@ -145,6 +191,7 @@ class GSTotleView extends eui.Component {
     }
 
     public show(obj: any): void {
+
         var p = LayerManager.gameLayer().mainLayer;
 
         this.top = this.right = this.bottom = this.left = 0;
@@ -153,9 +200,11 @@ class GSTotleView extends eui.Component {
 
         if (!obj) return;
 
+        this.btn_assess.visible = true;
 
         this._group.removeChildren();
 
+        this.data = obj;
 
         var persons: Array<any> = []; //数组 四个人
 
@@ -190,7 +239,7 @@ class GSTotleView extends eui.Component {
             if (this.roleList[k]) {
                 head = this.roleList[k];
 
-                head.pserson = ps;
+                head.person = ps;
             }
             else {
                 head = new GSTotlePerson(ps);
@@ -208,15 +257,15 @@ class GSTotleView extends eui.Component {
             var pn: GSTotlePerson = this.roleList[pi];
 
 
-            if (+pn.pserson["pao_num"] > 0) {
-                pn.pserson["ispao"] = true;
+            if (+pn.person["pao_num"] > 0) {
+                pn.person["ispao"] = true;
             }
 
             for (var k = 0; k < paolist.length; k++) {
                 var kn: number = paolist[k];
 
-                if (+pn.pserson["pao_num"] < kn) {
-                    pn.pserson["ispao"] = false;
+                if (+pn.person["pao_num"] < kn) {
+                    pn.person["ispao"] = false;
                 }
             }
         }

@@ -6,6 +6,8 @@ class RoleInfoPanel extends BasePanel {
     private lab_rate: eui.Label;
     private lab_id: eui.Label;
     private lab_ip: eui.Label;
+    private lab_thumbsup: eui.Label;
+    private lab_thumbsdown: eui.Label;
 
     public constructor() {
         super();
@@ -28,5 +30,7 @@ class RoleInfoPanel extends BasePanel {
         this.lab_rate.text = "游戏次数：" + player.game_times + "  掉线率：" + player.drop_rate + "%";
         this.lab_id.text = "I D：" + player.uid;
         this.lab_ip.text = "I P：" + player.ip;
+        this.lab_thumbsup.text = "" + player.zan;
+        this.lab_thumbsdown.text = "" + player.cai;
     }
 }

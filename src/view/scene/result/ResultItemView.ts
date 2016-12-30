@@ -32,7 +32,7 @@ class ResultItemView extends BaseGameSprite {
 
         this.pos = new egret.Point();
 
-        this.headIcon.setState(HeadIconState.ingame);
+        this.headIcon.skinState = "inresult";
     }
 
     update(person: any) {

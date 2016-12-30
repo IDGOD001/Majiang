@@ -6,6 +6,7 @@ class HeadIcon extends BaseGameSprite {
     private img_zhuang: eui.Image;
     private img_que: eui.Image;
     private img_ting: eui.Image;
+    bar: AssessBar;
     private lab_nick: eui.Label;
     private lab_uid: eui.Label;
     private lab_fen: eui.Label;
@@ -73,6 +74,9 @@ class HeadIcon extends BaseGameSprite {
             this.lab_uid.text = "" + this.player.uid;
             this.isOwner = this.player.pos == 1;
             this.que = game.roomQue[player.dir];
+
+            this.bar.show();
+            this.bar.update(player.cai, player.zan);
 
             if (this.player && PublicVal.state == StateType.ready) {
                 this.btn_kill.visible = this.player && PublicVal.state == StateType.ready && game.isRoomOwner && this.player.pos != 1;
@@ -195,6 +199,7 @@ class HeadIcon extends BaseGameSprite {
         this.isOwner = false;
         this.isTing = false;
         this.que = PaiType.unknow;
+        this.bar.hide();
         this.player = null;
         this.img_head.source = "game_head_null";
         this.lab_nick.text = "";

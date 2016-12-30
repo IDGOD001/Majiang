@@ -16,14 +16,14 @@ class game {
     static manager: GameManager = GameManager.i;
     //询问提示面板
     static askPanel: TipsAskPanel;
+    //警示提示
+    static warning: TipsWarning;
     //最顶层显示面板
     static topPanel: BasePanel;
-    //规则
-    static ruleVo: GameRuleVo;
-    //换三张
-    static changeThreeVo: ChangeThreeVo;
     //解散房间
     static dissolution: DissolutionVo;
+    //换三张
+    static changeThreeVo: ChangeThreeVo;
 
     //服务器地址
     static ip: any;
@@ -105,10 +105,10 @@ class game {
 
         stage.addChild(LayerManager.gameLayer());
         this.askPanel = new TipsAskPanel();
+        this.warning = new TipsWarning();
 
         game.player = new PlayerVo();
 
-        game.ruleVo = new GameRuleVo();
         game.changeThreeVo = new ChangeThreeVo();
 
         game.paiStyle = +GameLocal.getData(GameLocal.style);

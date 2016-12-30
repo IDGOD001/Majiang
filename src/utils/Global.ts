@@ -27,55 +27,6 @@ class Global {
 	static ipwarmLabel: eui.Label;
 	static ipwarmisshow: boolean = false;
 
-	// /**
-	//  * 掉线处理
-	//  */
-	// static reLogin(): void {
-	// 	var count: number = game.connectCount;
-    //
-	// 	switch (count) {
-	// 		case 0:
-	// 			Global.sendLoad();
-	// 			break;
-	// 		case 1:
-	// 			game.askPanel.showMsg(function (r) {
-	// 				Global.sendLoad();
-	// 			}, "您已经掉线，请点击确定重连！");
-	// 			break;
-	// 		default:
-	// 			game.player.code = null;
-	// 			Global.sendLoad();
-	// 			break;
-	// 	}
-	// }
-    //
-	// /**
-	//  * 掉线后发送重新登录消息  或者  重新拉取授权
-	//  */
-	// static sendLoad() {
-	// 	var p = game.player;
-    //
-	// 	if (p.code) {
-	// 		game.manager.socketManager.send(1, {"uid": p.uid, "code": p.code, "length": p.code.length});
-	// 		game.connectCount++;
-	// 	}
-	// 	else {
-	// 		var count: number = +GameLocal.getData(GameLocal.loginAccessCode);
-    //
-	// 		if (count < 2) {
-	// 			Weixin.getAccessCode(GameConfig.appid, GameConfig.clientUrl, game.roomid);
-	// 			count++;
-	// 			GameLocal.setData(GameLocal.loginAccessCode, count);
-	// 		}
-	// 		else {
-	// 			game.askPanel.showMsg(function (r) {
-	// 				NativeApi.setLocalData("getAccessCode", 0);
-	// 				Weixin.closeWindow();
-	// 			}, "登录失败，请退出游戏重试！\n\n(请检查是否在其他设备登录)");
-	// 		}
-	// 	}
-	// }
-
 	/**
 	 * 手机震动
 	 * @param num 震动时间
@@ -90,13 +41,10 @@ class Global {
 	 * 显示IP相同提示
 	 * @param arr
 	 */
-	static showIP(arr: Array<any> = []): void {
-		if (this.ipwarmisshow) return;
+	static showIP(arr: any[] = []): void {
+		if (!arr || arr.length <= 1) return;
 
-		if (!arr || arr.length <= 0) return;
-
-		var isT: boolean = false;
-
+		var hasSame: boolean = false;
 		for (var i = 0; i < arr.length; i++) {
 			var pi = arr[i];
 
@@ -110,55 +58,16 @@ class Global {
 				if (+pi.uid == +pj.uid) continue;
 
 				if (pi.ip == pj.ip) {
-					isT = true;
+					hasSame = true;
 					break;
 				}
 			}
 
-			if (isT) break;
+			if (hasSame) break;
 		}
+		if (!hasSame) return;
 
-		if (!isT) return;
-
-
-		this.ipwarmisshow = true;
-		if (!this.ipwarmGroup) {
-			this.ipwarmGroup = new eui.Group();
-			this.ipwarmGroup.width = game.stageWidth;
-			this.ipwarmGroup.height = 50;
-			this.ipwarmGroup.touchEnabled = false;
-			this.ipwarmGroup.touchChildren = false;
-		}
-
-		if (!this.ipwarmSprite) {
-			this.ipwarmSprite = new egret.Sprite();
-			this.ipwarmSprite.graphics.clear();
-			this.ipwarmSprite.graphics.beginFill(0x0, 0.5);
-			this.ipwarmSprite.graphics.drawRoundRect(0, 0, this.ipwarmGroup.width, this.ipwarmGroup.height, 30, 30);
-			this.ipwarmSprite.graphics.endFill();
-			this.ipwarmGroup.addChild(this.ipwarmSprite);
-		}
-
-		if (!this.ipwarmLabel) {
-			this.ipwarmLabel = new eui.Label();
-			this.ipwarmLabel.horizontalCenter = 0;
-			this.ipwarmLabel.verticalCenter = 0;
-			this.ipwarmLabel.textAlign = "center";
-			this.ipwarmLabel.size = 20;
-			this.ipwarmLabel.fontFamily = GameConfig.defaultFont;
-			this.ipwarmLabel.text = "注意：有玩家IP地址相同，请点击玩家头像查看";
-			this.ipwarmGroup.addChild(this.ipwarmLabel);
-		}
-
-		var group = LayerManager.gameLayer();
-		group.addChild(this.ipwarmGroup);
-		this.ipwarmGroup.y = game.stageHeight;
-
-		var my = this;
-		egret.Tween.get(my.ipwarmGroup, {loop: false}).to({y: game.stageHeight - my.ipwarmGroup.height + 5}, 1000).to({}, 5000).to({y: game.stageHeight}, 1000).call(function () {
-			group.removeChild(my.ipwarmGroup);
-			my.ipwarmisshow = false;
-		}, my);
+		game.warning.play("注意：有玩家IP地址相同，请点击玩家头像查看");
 	}
 
 	/**

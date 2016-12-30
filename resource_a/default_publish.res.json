@@ -1381,6 +1381,14 @@
 				{
 					"compress":false,
 					"key":"JS_fangpao"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down_4"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up_4"
 				}
 			],
 			"sort":0
