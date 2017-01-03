@@ -23,7 +23,7 @@ class GameSound {
             RES.getResAsync(name, function () {
                 _this.sound = RES.getRes(name);
                 _this.soundChannel = _this.sound.play(startTime, loops);
-                _this.soundVolume = +GameLocal.getData(GameLocal.musicVolume);
+                _this.soundVolume = +GameLocal.getData(GameLocal.soundVolume);
             }, this);
         }
     }

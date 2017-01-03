@@ -83,4 +83,10 @@ class MessageID {
 
     static _27: number = 27;  //实名认证
     static S27: number = 27;
+
+    static _28: number = 28;  //获取评价
+    static S28: number = 28;
+
+    static _29: number = 29;  //修改评价
+    static S29: number = 29;
 }

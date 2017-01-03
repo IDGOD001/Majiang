@@ -22,7 +22,7 @@ class RecordPanel extends BasePanel {
     childrenCreated() {
         super.childrenCreated();
 
-        this.bgView.setType(BgViewType.curtain);
+        this.bgView.setType(BgViewType.tapegreen);
         this.bgView.setTitle("record_txt");
     }
 

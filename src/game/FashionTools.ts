@@ -6,35 +6,35 @@ class FashionTools {
     //自动出牌
     static autoPush() {
 
-        /* if(GSConfig.auto) {
+        if (GSConfig.auto) {
 
-         var pai = GSData.i.getCatchPai(1);
+            var pai = GSData.i.getCatchPai(1);
 
-         SocketManager.getInstance().getGameConn().send(4, {"args": pai});
-         }*/
+            game.manager.socketManager.send(4, {"args": pai});
+        }
     }
 
     //自动过
     static autoPass() {
 
-        /* if(GSConfig.auto) {
+        if (GSConfig.auto) {
 
-         SocketManager.getInstance().getGameConn().send(15, {"args": {"action": 0, "pai": []}});
+            game.manager.socketManager.send(15, {"args": {"action": 0, "pai": []}});
 
-         GSController.i.hideFuncSelectMenu();
+            GSController.i.hideFuncSelectMenu();
 
 
-         var pais = GSData.i.getHandPais(1);
+            var pais = PublicVal.i.getHandPais(1);
 
-         if(pais){
+            if (pais) {
 
-         if(GSConfig.handLens[pais.length]) {
+                if (GSConfig.handLens[pais.length]) {
 
-         FashionTools.autoPush();
-         }
-         }
+                    FashionTools.autoPush();
+                }
+            }
 
-         }*/
+        }
     }
 
     /**

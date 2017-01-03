@@ -29,8 +29,6 @@ class CreateSiren2View extends CreateBaseView {
     //番数
     private rate: number = 2;
 
-    private ruleVo: GameRuleVo;
-
     public constructor() {
         super();
 

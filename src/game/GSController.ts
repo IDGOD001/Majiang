@@ -1329,27 +1329,24 @@ class GSController extends egret.EventDispatcher {
 
     //更新游戏风格
     updateGameStyle() {
-
-
         if (PublicVal.state == StateType.gamestart || PublicVal.state == 6) {
-
             this.scene.updateTableBG();
 
             this.gsView.baoPaiView.cardView.changeBGStyle();
             this.gsResultView.baoPaiView.cardView.changeBGStyle();
 
             for (var i: number = 1; i <= 4; i++) {
-
                 var mjView = this.gsView.MJViews[i];
-
                 for (var j: number = 0; j < mjView.handCon.numChildren; j++) {
-
                     var cardView = <CardView>mjView.handCon.getChildAt(j);
                     cardView.changeBGStyle();
                 }
                 for (var j: number = 0; j < mjView.poolCon.numChildren; j++) {
-
                     var cardView = <CardView>mjView.poolCon.getChildAt(j);
+                    cardView.changeBGStyle();
+                }
+                for (var j: number = 0; j < mjView.huview.container.numChildren; j++) {
+                    var cardView = <CardView>mjView.huview.container.getChildAt(j);
                     cardView.changeBGStyle();
                 }
             }

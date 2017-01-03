@@ -39,12 +39,12 @@
 			<e:Button id="btn_start">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
-						<e:Image width="100%" height="100%" source="game_create" source.down="game_create"/>
-						<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" fontFamily="微软雅黑"/>
+						<e:Image width="100%" height="100%" source="game_create" source.down="game_create" verticalCenter="0" horizontalCenter="0" scaleX.down="0.95" scaleY.down="0.95"/>
+	<e:Image source="create_kspj" verticalCenter="-5" horizontalCenter="0.5" scaleY.down="0.95" scaleX.down="0.95"/>
 					</e:Skin>
 				</e:skinName>
 			</e:Button>
-			<e:Image source="create_kspj" verticalCenter="-5" horizontalCenter="0" touchEnabled="false"/>
+			<e:Image source="create_kspj" verticalCenter="-5" horizontalCenter="0" touchEnabled="false" visible="false"/>
 		</e:Group>
 	</e:Group>
 </e:Skin>

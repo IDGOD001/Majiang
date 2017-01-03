@@ -5,6 +5,7 @@ class HeadIcon extends BaseGameSprite {
     private img_kuang_owner: eui.Image;
     private img_zhuang: eui.Image;
     private img_que: eui.Image;
+    bar: AssessBar;
     private lab_nick: eui.Label;
     private lab_uid: eui.Label;
     private lab_fen: eui.Label;
@@ -31,7 +32,7 @@ class HeadIcon extends BaseGameSprite {
 
         this.img_headMask = new egret.Shape;
         this.img_headMask.graphics.beginFill(0);
-        this.img_headMask.graphics.drawRoundRect(0, 0, 80, 80, 30, 30);
+        this.img_headMask.graphics.drawRoundRect(4, 4, 73, 73, 20, 20);
         this.addChild(this.img_headMask);
 
         this.img_head.mask = this.img_headMask;
@@ -72,6 +73,9 @@ class HeadIcon extends BaseGameSprite {
             this.lab_uid.text = "" + this.player.uid;
             this.isOwner = this.player.pos == 1;
             this.que = game.roomQue[player.dir];
+
+            this.bar.show();
+            this.bar.update(player.cai, player.zan);
 
             if (this.player && PublicVal.state == StateType.ready) {
                 this.btn_kill.visible = this.player && PublicVal.state == StateType.ready && game.isRoomOwner && this.player.pos != 1;
@@ -143,7 +147,7 @@ class HeadIcon extends BaseGameSprite {
         if (typeof source == "string") {
             if (source != "") {
                 var _this = this;
-                RES.getResByUrl(gameConfig.protocolType + this.player.pic.split("//")[1], function (t) {
+                RES.getResByUrl(gameConfig.protocolType + source.toString().split("//")[1], function (t) {
                     _this.img_head.source = t;
                 }, this, RES.ResourceItem.TYPE_IMAGE)
             }
@@ -179,6 +183,7 @@ class HeadIcon extends BaseGameSprite {
         this.isZhuang = false;
         this.isOwner = false;
         this.que = CardType.unknow;
+        this.bar.hide();
         this.player = null;
         this.img_head.source = "game_head_null";
         this.lab_nick.text = "";

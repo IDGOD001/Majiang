@@ -25,7 +25,7 @@ class JoininPanel extends BasePanel {
     childrenCreated() {
         super.childrenCreated();
 
-        this.bgView.setType(BgViewType.curtain);
+        this.bgView.setType(BgViewType.tapegreen);
         this.bgView.setTitle("joingame_txt");
 
         var arr: eui.Button[] = [

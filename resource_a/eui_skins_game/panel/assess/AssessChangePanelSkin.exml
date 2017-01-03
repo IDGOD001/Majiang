@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="AssessChangePanelSkin" width="650" height="380" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<ns1:BgView left="0" right="0" bottom="0" top="0" skinName="BgViewSkin"/>
+	<e:Group right="40" bottom="110" left="40" top="40" x="10" y="10">
+		<e:Image source="panel_1" left="0" bottom="0" top="0" right="0" scale9Grid="18,19,26,17"/>
+		<e:Scroller id="scroller" right="0" left="0" top="0" bottom="0">
+			<e:Group id="group" height="396">
+				<e:layout>
+					<e:VerticalLayout horizontalAlign="justify" verticalAlign="top" paddingTop="5" paddingBottom="5" paddingLeft="10" paddingRight="10"/>
+				</e:layout>
+				<e:Group x="577" y="612" height="70">
+					<e:Group horizontalCenter="0" top="0" bottom="0">
+						<ns1:HeadIcon id="head_1" skinName="HeadIconSkin" scaleX="0.64" scaleY="0.64"/>
+						<e:Label id="nick_1" text="nick" verticalCenter="0" fontFamily="微软雅黑" size="24" textColor="0x774D33" width="200"/>
+						<e:RadioButton id="thumbsup_1" x="719" y="621" skinName="skins.CheckBox_Thumbs_UpSkin" groupName="assess_p1" selected="true"/>
+						<e:RadioButton id="thumbsdown_1" y="631" x="729" skinName="skins.CheckBox_Thumbs_DownSkin" groupName="assess_p1"/>
+						<e:layout>
+							<e:HorizontalLayout verticalAlign="middle"/>
+						</e:layout>
+					</e:Group>
+					<e:Image source="img_line" bottom="0" left="0" right="0"/>
+				</e:Group>
+				<e:Group y="622" height="70" x="587">
+					<e:Group horizontalCenter="0" bottom="0" top="0">
+						<ns1:HeadIcon id="head_2" scaleY="0.64" skinName="HeadIconSkin" scaleX="0.64" xmlns:ns1="*"/>
+						<e:Label id="nick_2" textColor="0x774D33" text="nick" fontFamily="微软雅黑" width="200" verticalCenter="0" size="24"/>
+						<e:RadioButton id="thumbsup_2" y="621" selected="true" skinName="skins.CheckBox_Thumbs_UpSkin" groupName="assess_p2" x="719"/>
+						<e:RadioButton id="thumbsdown_2" y="631" skinName="skins.CheckBox_Thumbs_DownSkin" groupName="assess_p2" x="729"/>
+						<e:layout>
+							<e:HorizontalLayout verticalAlign="middle"/>
+						</e:layout>
+					</e:Group>
+					<e:Image source="img_line" bottom="0" left="0" right="0"/>
+				</e:Group>
+				<e:Group y="632" height="70" x="597">
+					<e:Group horizontalCenter="0" bottom="0" top="0">
+						<ns1:HeadIcon id="head_3" scaleY="0.64" skinName="HeadIconSkin" scaleX="0.64" xmlns:ns1="*"/>
+						<e:Label id="nick_3" textColor="0x774D33" text="nick" fontFamily="微软雅黑" width="200" verticalCenter="0" size="24"/>
+						<e:RadioButton id="thumbsup_3" y="621" selected="true" skinName="skins.CheckBox_Thumbs_UpSkin" groupName="assess_p3" x="719"/>
+						<e:RadioButton id="thumbsdown_3" y="631" skinName="skins.CheckBox_Thumbs_DownSkin" groupName="assess_p3" x="729"/>
+						<e:layout>
+							<e:HorizontalLayout verticalAlign="middle"/>
+						</e:layout>
+					</e:Group>
+				</e:Group>
+			</e:Group>
+		</e:Scroller>
+	</e:Group>
+	<e:Button id="btn_confirm" label="提交" skinName="skins.Button_GreenSkin" bottom="40" horizontalCenter="0"/>
+</e:Skin>

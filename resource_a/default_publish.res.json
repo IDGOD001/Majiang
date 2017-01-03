@@ -439,7 +439,7 @@
 					"key":"F_ting"
 				}
 			],
-			"sort":0
+			"sort":1
 		},
 		{
 			"gap":4,
@@ -874,7 +874,7 @@
 				},
 				{
 					"compress":false,
-					"key":"logo"
+					"key":"text_thumbsup"
 				}
 			],
 			"sort":0
@@ -1100,10 +1100,6 @@
 				},
 				{
 					"compress":false,
-					"key":"blue_game_btn"
-				},
-				{
-					"compress":false,
 					"key":"btn_shiming"
 				},
 				{
@@ -1125,14 +1121,6 @@
 				{
 					"compress":false,
 					"key":"game_head_null"
-				},
-				{
-					"compress":false,
-					"key":"head_001"
-				},
-				{
-					"compress":false,
-					"key":"head_bg"
 				},
 				{
 					"compress":false,
@@ -1193,10 +1181,6 @@
 				{
 					"compress":false,
 					"key":"record_img2"
-				},
-				{
-					"compress":false,
-					"key":"red_game_btn"
 				},
 				{
 					"compress":false,
@@ -1296,10 +1280,6 @@
 				},
 				{
 					"compress":false,
-					"key":"share_img"
-				},
-				{
-					"compress":false,
 					"key":"shop_dialog_head_img"
 				},
 				{
@@ -1313,6 +1293,98 @@
 				{
 					"compress":false,
 					"key":"setting_progressbar2"
+				},
+				{
+					"compress":false,
+					"key":"btn_thumbs_up"
+				},
+				{
+					"compress":false,
+					"key":"btn_red_down"
+				},
+				{
+					"compress":false,
+					"key":"btn_red_up"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_1"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_1_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_2"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_2_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_3"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_3_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_4"
+				},
+				{
+					"compress":false,
+					"key":"ico_evaluate_4_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down_2"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down_2_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down_3"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up_2"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up_2_0"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up_3"
+				},
+				{
+					"compress":false,
+					"key":"blue_game_btn"
+				},
+				{
+					"compress":false,
+					"key":"red_game_btn"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_down_4"
+				},
+				{
+					"compress":false,
+					"key":"ico_thumbs_up_4"
 				}
 			],
 			"sort":0
@@ -1353,6 +1425,10 @@
 		{
 			"compress":false,
 			"key":"table_mask"
+		},
+		{
+			"compress":false,
+			"key":"share_img"
 		}
 	]
 }

@@ -46,17 +46,17 @@ class S9 {
             case 6://补杠提示
                 game.manager.dispatchEvent(EffectEvent.CardThrow, [GSData.i.getDir(obj.data.data.pos), obj.data.data.pai]);
                 break;
-            case 7://换三张
+            case 9://换三张
                 game.status = GameStatus.changeThree;
                 game.statusComplete = false;
                 break;
-            case 8://订缺
+            case 10://订缺
                 game.status = GameStatus.missing;
                 game.statusComplete = false;
                 game.isQue = true;
                 game.manager.dispatchEvent(EffectEvent.Que);
                 break;
-            case 9://同步换三张
+            case 11://同步换三张
                 var dir: number = GSDataProxy.i.gData.getDir(obj.data.data);
                 game.roomHuan[dir] = true;
                 for (var i: number = 0; i < 3; i++) {
@@ -65,7 +65,7 @@ class S9 {
                 GSController.i.updateMJView(dir, false, false);
                 GSController.i.gsView.updateState();
                 break;
-            case 10://同步订缺
+            case 12://同步订缺
                 for (var key in obj.data.data) {
                     game.roomQue[GSDataProxy.i.gData.getDir(Number(key))] = obj.data.data[key];
                 }

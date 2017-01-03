@@ -20,9 +20,10 @@
     -define(Event_Type_Interrupt_Other,4).%别人触发中断
     -define(Event_Type_Bu_Rob,5).%补杠被劫
     -define(Event_Type_Bu_Rob_Pre,6).%我要补杠,有人能截啊
-    -define(Event_Type_Huansanzhang,7).%换三张
-    -define(Event_Type_Dingque,8).%定缺
-    -define(Event_Type_Huansanzhang_Other,9).%有人提交了换三张
+    -define(Event_Type_Huansanzhang,9).%换三张
+    -define(Event_Type_Dingque,10).%定缺
+    -define(Event_Type_Huansanzhang_Other,11).%有人提交了换三张
+    -define(Event_Type_Dingque_Over,12).%定缺完成
 ]
 -define(Action_Room_Start,10).%开启游戏
 -define(Action_Room_Pai,11).%同步牌信息
@@ -48,7 +49,8 @@
 -define(Action_Card_Update,24).%卡数变化
 -define(Action_Msg_Broadcast,25).%牌桌 消息广播
 -define(Action_Msg_Broadcast_All,26).%所有消息广播
-
+-define(Action_Appraise_Get,28).%获取记录
+-define(Action_Appraise_Commit,29).%提交修改记录
 
 
 # -----------------------------------规则

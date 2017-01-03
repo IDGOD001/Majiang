@@ -7,6 +7,7 @@ class SocketManager extends SocketNetwork {
 
     private status: ConnectStatus;
     private timestamp: number;
+    private timeoutid:number;
 
     public Agree: any = {};
 
@@ -28,7 +29,9 @@ class SocketManager extends SocketNetwork {
     closeHandler() {
         super.closeHandler();
 
-        console.log(this.timestamp, common.timestamp);
+        console.log(common.timestamp, this.timestamp, this.timeoutid);
+
+        egret.clearTimeout(this.timeoutid);
 
         switch (this.status) {
             case ConnectStatus.connecting://连接中断开
@@ -75,6 +78,8 @@ class SocketManager extends SocketNetwork {
 
         this.timestamp = common.timestamp;
 
+        this.timeoutid = egret.setTimeout(this.close, this, 10000);
+
         super.connect(ip, port, linkType);
     }
 
@@ -96,6 +101,8 @@ class SocketManager extends SocketNetwork {
 
     readUTF() {
         super.readUTF();
+
+        egret.clearTimeout(this.timeoutid);
 
         console.log("==================", this.data);
 
