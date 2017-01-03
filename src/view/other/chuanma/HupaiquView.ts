@@ -19,7 +19,7 @@ class HupaiquView extends egret.DisplayObjectContainer {
     private layNum: number = 4;
 
     private halo: egret.Bitmap;
-    private container: egret.DisplayObjectContainer;
+    container: egret.DisplayObjectContainer;
     private dir: number;
 
     public constructor(dir: number) {
