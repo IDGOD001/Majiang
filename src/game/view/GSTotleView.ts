@@ -30,7 +30,7 @@ class GSTotleView extends eui.Component {
     /**
      * 修改评价
      */
-    private btn_assess: eui.Button;
+    btn_assess: eui.Button;
 
     /**
      * 分享按钮
@@ -165,7 +165,7 @@ class GSTotleView extends eui.Component {
                     changePanel.show();
                     changePanel.update(obj);
                 }
-                this.btn_assess.visible = false;
+                // this.btn_assess.visible = false;
                 break;
             case this.btn_close:
                 this.onClose();

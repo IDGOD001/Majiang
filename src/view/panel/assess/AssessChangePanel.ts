@@ -52,6 +52,8 @@ class AssessChangePanel extends BasePanel {
                 });
 
                 this.hide();
+
+                GSController.i.gsTitleView.btn_assess.visible = false;
                 break;
         }
     }
