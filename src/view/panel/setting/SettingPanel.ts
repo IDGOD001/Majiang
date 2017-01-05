@@ -71,7 +71,7 @@ class SettingPanel extends BasePanel {
         GameLocal.setData(GameLocal.music, this.btn_music.selected ? 0 : 1);
 
         this.btn_music.selected ? GameMusic.stop() : GameMusic.play("music_scene");
-        this.btn_music.label = this.btn_music.selected ? "关闭音乐" : "开启音乐";
+        this.btn_music.label = this.btn_music.selected ? "开启音乐" : "关闭音乐";
         this.slider_music.enable = !this.btn_music.selected;
     }
 
@@ -79,7 +79,7 @@ class SettingPanel extends BasePanel {
         GameLocal.setData(GameLocal.sound, this.btn_sound.selected ? 0 : 1);
 
         this.btn_sound.selected && GameMusic.stop();
-        this.btn_sound.label = this.btn_sound.selected ? "关闭音效" : "开启音效";
+        this.btn_sound.label = this.btn_sound.selected ? "开启音效" : "关闭音效";
         this.slider_sound.enable = !this.btn_sound.selected;
     }
 
@@ -108,8 +108,8 @@ class SettingPanel extends BasePanel {
         this.slider_music.value = +GameLocal.getData(GameLocal.musicVolume) * 100;
         this.slider_sound.value = +GameLocal.getData(GameLocal.soundVolume) * 100;
 
-        this.btn_music.label = this.btn_music.selected ? "关闭音乐" : "开启音乐";
-        this.btn_sound.label = this.btn_sound.selected ? "关闭音效" : "开启音效";
+        this.btn_music.label = this.btn_music.selected ? "开启音乐" : "关闭音乐";
+        this.btn_sound.label = this.btn_sound.selected ? "开启音效" : "关闭音效";
 
         this.slider_music.enable = !this.btn_music.selected;
         this.slider_sound.enable = !this.btn_sound.selected;
