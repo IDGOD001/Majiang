@@ -84,7 +84,7 @@ class RecordXItem extends eui.Component {
     createChildren() {
         super.createChildren();
 
-        this.btn = new mui.EButton("btn_blue", "回  放");
+        this.btn = new mui.EButton("btn_blue", "播  放");
 
         this.addChild(this.btn);
 
