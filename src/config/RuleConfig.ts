@@ -7,7 +7,7 @@ enum RuleType {
     fengding = 19, zimojiadi = 9, zimojiafan, dianganghua_pao, dianganghua_zimo, huansanzhang, yaojiujiangdui, menqingzhongzhang, tiandihu,
     paizhang = 23, kaertiao,
     xuezhandaodi = 17, xueliuchenghe, sanren_2 = 20, sanren_3, siren_2,
-    baijia = 101, chikaimen, menhu, baotingjiabei, baoyijia
+    baijia = 101, chikaimen, menhu, baotingjiabei, baoyijia, zhangmao, xiganghu
 }
 
 /**

@@ -9,11 +9,14 @@ class CreateShenyangView extends CreateBaseView {
     private btn_quan_4: eui.RadioButton;
     private btn_quan_8: eui.RadioButton;
 
+    private ruleGroup: eui.Group;
     private btn_rule_1: eui.CheckBox;
     private btn_rule_2: eui.CheckBox;
     private btn_rule_3: eui.CheckBox;
     private btn_rule_4: eui.CheckBox;
     private btn_rule_5: eui.CheckBox;
+    private btn_rule_6: eui.CheckBox;
+    private btn_rule_7: eui.CheckBox;
 
     public constructor() {
         super();
@@ -43,7 +46,7 @@ class CreateShenyangView extends CreateBaseView {
         rule.push(RuleType.kouting);
 
         var box: eui.CheckBox;
-        for (var i: number = 0; i <= 5; i++) {
+        for (var i: number = 0; i < this.ruleGroup.numElements; i++) {
             box = this["btn_rule_" + i];
             if (box && box.selected) {
                 switch (i) {
@@ -64,6 +67,12 @@ class CreateShenyangView extends CreateBaseView {
                         break;
                     case 5:
                         rule.push(RuleType.baotingjiabei);
+                        break;
+                    case 6:
+                        rule.push(RuleType.zhangmao);
+                        break;
+                    case 7:
+                        rule.push(RuleType.xiganghu);
                         break;
                 }
             }
