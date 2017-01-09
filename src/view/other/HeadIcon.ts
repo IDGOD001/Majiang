@@ -44,7 +44,7 @@ class HeadIcon extends BaseGameSprite {
     }
 
     private clickHandler(e: egret.TouchEvent) {
-        if (PublicVal.state == StateType.replay) {
+        if (PublicVal.state == 6) {
             return;
         }
         switch (e.target) {
@@ -65,6 +65,10 @@ class HeadIcon extends BaseGameSprite {
 
     update(player: PlayerVo) {
         this.player = player;
+
+        if(PublicVal.state == 6){
+            this.skinState = "replay";
+        }
 
         if (player) {
 

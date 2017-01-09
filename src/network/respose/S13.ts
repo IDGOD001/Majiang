@@ -20,7 +20,5 @@ class S13 {
 
             game.dissolution = null;
         }
-
-        game.roomClean();
     }
 }

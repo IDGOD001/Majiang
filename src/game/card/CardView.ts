@@ -191,7 +191,7 @@ class CardView extends egret.DisplayObjectContainer {
     }
 
     set enabled(value) {
-        this.bg.alpha = value ? 1 : .7;
+        this.bg.alpha = value ? 1 : .5;
     }
 
     //移出

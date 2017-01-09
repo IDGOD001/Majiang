@@ -79,11 +79,11 @@ class GSConfig {
     //54，590
     //手中牌起始位置 dx,dy 明牌的间隔
     static gameHandPos = {
-        1: {x: 60, y: 580, dx: 178, dy: 0, px: 60, py: 0},
-        2: {x: 850, y: 495, dx: 0, dy: -88, px: 0, py: -45},
-        3: {x: 625, y: 47, dx: -96, dy: 0, px: -35, py: 0},
-        4: {x: 110, y: 124, dx: 0, dy: 90, px: 0, py: 45},
-        5: {x: 140, y: 580, dx: 178, dy: 0, px: 60, py: 0}
+        1: {x: 60,  y: 580,dx:178,dy:0,px:60,py:0},
+        2: {x: 840, y: 495,dx:0,dy:-88,px:0,py:-45},
+        3: {x: 625, y: 47,dx:-96,dy:0,px:-35,py:0},
+        4: {x: 120, y: 124,dx:0,dy:90,px:0,py:45},
+        5: {x: 140,  y: 580,dx:178,dy:0,px:60,py:0}
     };
     /*
      重放手牌的起点位置
@@ -210,7 +210,7 @@ class GSConfig {
                 topRot: -90,
                 topScaleX: 0.75,
                 spacH: 25,
-                spacV: 40,
+                spacV: 43,
                 showTop: true
             })
         },
@@ -261,7 +261,7 @@ class GSConfig {
                 topRot: 90,
                 topScaleX: 0.75,
                 spacH: 25,
-                spacV: 40,
+                spacV: 43,
                 showTop: true
             })
         },
@@ -331,7 +331,7 @@ class GSConfig {
     ];
 
 
-    static funcSelectRes = ["F_guo", "F_chi", "F_peng", "F_gang", "F_budan", "F_ting", "F_hu"];
+    static funcSelectRes = ["F_guo", "F_chi", "F_peng", "F_gang", "F_budan", "F_ting", "F_hu", "F_pao"];
 
     static actionPVP = {
         0: 0,
@@ -345,6 +345,7 @@ class GSConfig {
         26: 3,
         27: 4,
         28: 4,
+        98: 7,
         99: 6
     };
 

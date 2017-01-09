@@ -39,9 +39,15 @@ class GSTotlePerson extends eui.Component {
     refresh() {
         this.removeChildren();
 
+        var data = game.roomPlayers[this.person.uid];
+        this.person.cai = data.cai;
+        this.person.zan = data.zan;
+
         var pos: number = +this.person.pos;
 
         this.head = new HeadIcon();
+        this.head.touchEnabled = false;
+        this.head.touchChildren = false;
         this.head.skinState = "intheend";
         // this.head.x = 40;
         this.head.y = 20;
