@@ -38,7 +38,6 @@ class SettingPanel extends BasePanel {
 
     private changeSoundVolume(): void {
         GameLocal.setData(GameLocal.soundVolume, this.slider_sound.value / 100);
-        GameSound.soundVolume = this.slider_music.value / 100;
     }
 
     private changeMusicVolumeEnd(): void {
