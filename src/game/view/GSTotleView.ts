@@ -186,6 +186,8 @@ class GSTotleView extends eui.Component {
 
             GSController.i.exit();
         }
+
+        game.roomClean();
     }
 
     public show(obj: any): void {
