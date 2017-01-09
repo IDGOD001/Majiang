@@ -492,7 +492,7 @@ class GSDataProxy {
                 game.roomTing[dir] = true;
                 GameSound.isTinging = true;
 
-                var head:HeadIcon = GSController.i.gsView.getHeadView(dir);
+                var head: HeadIcon = GSController.i.gsView.getHeadView(dir);
                 head.isTing = true;
                 break;
             case 22://幺九杠
@@ -636,7 +636,7 @@ class GSDataProxy {
                 else {
                     game.manager.soundPlay(InterruptType.hu, data.turn, this.gData.turnDir == dir);
 
-                    if(this.gData.turnDir != dir){
+                    if (this.gData.turnDir != dir) {
                         GSController.i.gsView.playFuncEffect(this.gData.getDir(pai.pos), 98);
                     }
                 }

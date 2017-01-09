@@ -34,7 +34,6 @@ class GameManager extends BaseDispatcher {
     soundPlay(type: InterruptType, pos: number, ...args) {
         var gender: Gender = GSDataProxy.i.gData.getSexByPos(pos);
         var dir: Dir4 = GSDataProxy.i.gData.getDir(pos);
-        var nodown: boolean = false;
         var sound: string;
         switch (type) {
             case InterruptType.chi:
@@ -73,7 +72,6 @@ class GameManager extends BaseDispatcher {
                 break;
             case InterruptType.ting:
                 sound = "ting_" + gender;
-                nodown = true;
                 GSController.i.gsView.playFuncEffect(dir, 4);
                 break;
             case InterruptType.hu:
@@ -98,8 +96,6 @@ class GameManager extends BaseDispatcher {
         }
 
         GameSound.play(sound);
-        if (!nodown) {
-            GameSound.play("sound_down");
-        }
+        GameSound.play("sound_down");
     }
 }
