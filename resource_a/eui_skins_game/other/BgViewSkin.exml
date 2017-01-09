@@ -4,7 +4,7 @@
 	<e:Image y="-6" horizontalCenter="0.5" x="20" includeIn="tapegreen,tapered" source="dialog_head_img" source.tapered="shop_dialog_head_img" horizontalCenter.tapered="0.5" y.tapered="-28"/>
 	<e:Image source="setting_huawen" top="30" horizontalCenter="-219.5" scaleX="-1" x="10" y="10" includeIn="pattern"/>
 	<e:Image source="setting_huawen" top="30" horizontalCenter="220.5" x="10" y="10" includeIn="pattern"/>
-	<e:Image id="title" y="13" horizontalCenter="1" x="10" includeIn="tapegreen,pattern,tapered" horizontalCenter.pattern="1" y.pattern="14" horizontalCenter.tapegreen="0" horizontalCenter.tapered="0" y.tapered="-4"/>
+	<e:Image id="title" y="13" includeIn="tapegreen,pattern,tapered" y.pattern="14" horizontalCenter.tapegreen="0" horizontalCenter.tapered="0" y.tapered="-4" horizontalCenter.normal="0" horizontalCenter.pattern="0"/>
 	<e:Button right="-20" top="-20" id="close" x="10" y="10">
 		<e:skinName>
 			<e:Skin states="up,down,disabled" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">

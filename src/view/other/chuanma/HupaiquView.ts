@@ -126,7 +126,7 @@ class HupaiquView extends egret.DisplayObjectContainer {
                 this.y = 420;
                 break;
             case 2:
-                this.x = 735;
+                this.x = 725;
                 this.y = 150;
                 break;
             case 3:
@@ -134,7 +134,7 @@ class HupaiquView extends egret.DisplayObjectContainer {
                 this.y = 120;
                 break;
             case 4:
-                this.x = 140;
+                this.x = 150;
                 this.y = 415;
                 break;
         }

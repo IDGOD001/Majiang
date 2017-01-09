@@ -613,6 +613,10 @@ class GSDataProxy {
                 }
                 else {
                     game.manager.playEffect(InterruptType.hu, data.turn, this.gData.turnDir == dir);
+
+                    if(this.gData.turnDir != dir){
+                        GSController.i.gsView.playFuncEffect(this.gData.getDir(pai.pos), 98);
+                    }
                 }
 
                 if (this.gData.turnDir != dir) {//接炮胡

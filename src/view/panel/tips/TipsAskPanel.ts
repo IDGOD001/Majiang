@@ -52,7 +52,7 @@ class TipsAskPanel extends BasePanel {
         }
         else {
             this.btn_cancel.visible = true;
-            this.btn_confirm.horizontalCenter = 100;
+            this.btn_confirm.horizontalCenter = 120;
         }
     }
 }

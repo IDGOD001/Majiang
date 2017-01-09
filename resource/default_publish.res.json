@@ -1385,6 +1385,10 @@
 				{
 					"compress":false,
 					"key":"ico_thumbs_up_4"
+				},
+				{
+					"compress":false,
+					"key":"F_pao"
 				}
 			],
 			"sort":0
