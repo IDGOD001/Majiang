@@ -254,17 +254,9 @@ class GSView extends egret.Sprite {
 
     //更新房间信息
     updateRoom() {
-        var isEnter: boolean;
         for (var i: number = 1; i <= 4; i++) {
             var headView = this.headViews[i];
-
-            isEnter = !headView.player;
-
             headView.update(GSData.i.getRoomPlayerByDir(i));
-
-            if (isEnter && headView.bar.rate > 0.5 && headView.bar.zong != 0) {
-                game.warning.play("警告：有玩家评价过低，请点击头像查看。");
-            }
         }
 
         this.updateState();
