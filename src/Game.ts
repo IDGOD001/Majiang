@@ -83,7 +83,7 @@ class game {
     static isQue: boolean = false;
     //是否正在胡牌中
     static isHu: boolean = false;
-    //是否正在听牌中
+
     static isTinging: boolean = false;
 
     //当前状态
@@ -122,6 +122,9 @@ class game {
                 GameConfig.address_test.port = 10615;
                 break;
             case GameType.shenyang:
+                GameConfig.address_test.ip = "192.168.2.251";
+                GameConfig.address_test.port = 13415;
+                break;
             default:
                 GameConfig.address_test.ip = "192.168.2.22";
                 GameConfig.address_test.port = 10415;
