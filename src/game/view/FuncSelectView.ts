@@ -220,12 +220,25 @@ class FuncSelectView extends egret.DisplayObjectContainer {
 
                 icon.name = "" + i;
 
+                this.ZoomInIcon(icon);
+
             } else {
 
                 icon.visible = false;
             }
 
         }
+
+    }
+
+    //放大
+    ZoomInIcon(icon:egret.Bitmap){
+
+        icon.touchEnabled = false;
+
+        icon.scaleX = icon.scaleY = .2;
+
+        egret.Tween.get(icon).to({scaleX:1,scaleY:1},600,egret.Ease.quintInOut).call(_=>{icon.touchEnabled = true;},this);
 
     }
 

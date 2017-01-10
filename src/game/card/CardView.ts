@@ -100,7 +100,11 @@ class CardView extends egret.DisplayObjectContainer {
 
     /////////////////////
 
+    bgCon:egret.DisplayObjectContainer;
+
     bg: egret.Bitmap;
+
+    light:egret.Bitmap;
 
     top: egret.DisplayObjectContainer;
 
@@ -129,8 +133,15 @@ class CardView extends egret.DisplayObjectContainer {
 
         //this.entity = entity;
 
+        this.bgCon = new egret.DisplayObjectContainer;
+
         this.bg = new egret.Bitmap;
-        this.addChild(this.bg);
+        this.bgCon.addChild(this.bg);
+
+        this.light =new egret.Bitmap;
+        this.bgCon.addChild(this.light);
+
+        this.addChild(this.bgCon);
 
         /*        this.iconBG = new eui.Rect(2,2,0x6aacc1);
          this.iconBG.touchEnabled = false;
@@ -188,10 +199,16 @@ class CardView extends egret.DisplayObjectContainer {
     unactivate() {
         this.touchEnabled = this.hotArea.visible = false;
         this.enabled = true;
+        this.lighted = false;
     }
 
     set enabled(value) {
         this.bg.alpha = value ? 1 : .5;
+    }
+
+    set lighted(value){
+
+        this.light.visible = value;
     }
 
     //移出
@@ -240,6 +257,12 @@ class CardView extends egret.DisplayObjectContainer {
         var bg_res = bgStyle + this.resType;
 
         this.bg.texture = GameRes.getCard(bg_res);
+
+        if(this.lightRes) {
+            this.light.texture = GameRes.getCard(this.lightRes);
+        }else{
+            this.light.texture = null;
+        }
     }
 
 
@@ -283,10 +306,14 @@ class CardView extends egret.DisplayObjectContainer {
 
     resType:number;
 
+    lightRes:string;
+
     reDraw() {
         //var _style  = (this.style == 4 ? 3 : this.style);
 
         //var _dir = (this.dir == 4 ? 2 : this.dir);
+
+        this.pRule = GSConfig.posRulePlus[this.dir][this.style];
 
         var type = this.dir * 10 + this.style;
 
@@ -330,6 +357,8 @@ class CardView extends egret.DisplayObjectContainer {
         }
         this.resType = type;
 
+        this.lightRes = this.pRule.light;
+
         this.changeBGStyle();
 
         this.countText.y = text_arg.y;
@@ -358,13 +387,11 @@ class CardView extends egret.DisplayObjectContainer {
 
         ////////////////////////////////////////
 
-        this.pRule = GSConfig.posRulePlus[this.dir][this.style];
+        this.bgCon.anchorOffsetX = this.pRule.bgosX;
+        this.bgCon.anchorOffsetY = this.pRule.bgosY;
 
-        this.bg.anchorOffsetX = this.pRule.bgosX;
-        this.bg.anchorOffsetY = this.pRule.bgosY;
-
-        this.bg.scaleX = this.pRule.bgScaleX;
-        this.bg.scaleY = this.pRule.bgScaleY;
+        this.bgCon.scaleX = this.pRule.bgScaleX;
+        this.bgCon.scaleY = this.pRule.bgScaleY;
 
         this.top.anchorOffsetX = this.pRule.toposX;
         this.top.anchorOffsetY = this.pRule.toposY;

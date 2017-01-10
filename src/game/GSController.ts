@@ -1150,7 +1150,7 @@ class GSController extends egret.EventDispatcher {
                     && cardView.pai
                     && cardView.pai.number == pai.number
                     && cardView.pai.type == pai.type) {
-                    cardView.enabled = false;
+                    cardView.lighted = true;
                     this.sameCardViews.push(cardView);
                 }
             }
@@ -1161,7 +1161,7 @@ class GSController extends egret.EventDispatcher {
                     cardView.pai
                     && cardView.pai.number == pai.number
                     && cardView.pai.type == pai.type) {
-                    cardView.enabled = false;
+                    cardView.lighted = true;
                     this.sameCardViews.push(cardView);
                 }
             }
@@ -1175,7 +1175,7 @@ class GSController extends egret.EventDispatcher {
 
         while (this.sameCardViews.length) {
 
-            this.sameCardViews.shift().enabled = true;
+            this.sameCardViews.shift().lighted = false;
         }
 
     }
