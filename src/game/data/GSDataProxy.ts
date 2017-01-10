@@ -862,6 +862,7 @@ class GSDataProxy {
         delete game.roomPlayers[leave_uid];
 
         Global.showIP(this.gData.roomPlayers);
+        Global.showWarning(this.gData.roomPlayers);
 
         this.gData.roomOwnDir = this.gData.getDir(1);
 

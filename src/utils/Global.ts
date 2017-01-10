@@ -71,6 +71,35 @@ class Global {
 	}
 
 	/**
+	 * 显示评价过低警告
+	 * @param arr
+	 */
+	static showWarning(arr) {
+		if (!arr || arr.length <= 1) return;
+
+		var hasSame: boolean = false;
+		for (var i = 0; i < arr.length; i++) {
+			var pi = arr[i];
+
+			if (!pi) continue;
+
+			var zong: number = Number(pi.cai) + Number(pi.zan);
+			var rate: number = zong == 0 ? 0 : ((pi.cai * 2) / zong);
+			rate = rate > 1 ? 1 : rate;
+
+			if (zong != 0 && rate > 0.5) {
+				hasSame = true;
+				break;
+			}
+
+			if (hasSame) break;
+		}
+		if (!hasSame) return;
+
+		game.warning.play("警告：有玩家评价过低，请点击头像查看。");
+	}
+
+	/**
 	 * 聊天表情
 	 * @param some
 	 */
