@@ -78,7 +78,7 @@ class Main extends eui.UILayer {
 
         HttpNetwork.pull(GameConfig.protocolType + GameConfig.address_http.ip + ":" + GameConfig.address_http.port, function (obj) {
             if (obj.message != "error") {
-                var data:any = JSON.parse(obj.message);
+                var data: any = JSON.parse(obj.message);
                 Weixin.config(
                     GameConfig.appid,
                     data.timestamp,
@@ -129,5 +129,14 @@ class Main extends eui.UILayer {
     private startGame() {
         game.init(this.stage);
         SceneManager.open("LoadingScene");
+
+        var str:string = "1";
+        console.log(typeof str);
+        console.log(typeof Number(str));
+
+
+        str = "chat";
+        console.log(typeof str);
+        console.log(typeof Number(str));
     }
 }

@@ -1,27 +1,44 @@
 class GameSound {
 
-    static isTinging:boolean = false;
+    static isTinging: boolean = false;
 
     /**
      * 播放
      * @param name  音乐文件名
-     * @param startTime 开始播放的时间 默认是0
-     * @param loops  播放次数<= 0循环播放，>0播放该次数,默认为0
-     * @constructor
      */
-    static play(name: string, startTime: number = 0, loops: number = 1) {
+    static play(name: string) {
 
         //检测是否关闭
         if (+GameLocal.getData(GameLocal.sound) == 0) {
             return;
         }
 
+        if (this.isTinging) {
+        }
+
         if (RES.hasRes(name)) {
             RES.getResAsync(name, function () {
                 var sound = RES.getRes(name);
-                var soundChannel = sound.play(startTime, loops);
+                var soundChannel = sound.play(0, 1);
                 soundChannel.volume = +GameLocal.getData(GameLocal.soundVolume);
             }, this);
         }
+    }
+
+    /**
+     * 是否是牌的声音
+     * @param name
+     * @returns {boolean}
+     */
+    private static isPaiSound(name: string) {
+        var isPai: boolean = false;
+        var arr: any[] = name.split("_");
+        if (arr.length == 3) {
+            for (var i: number = 0; i < arr.length; i++) {
+
+            }
+        }
+
+        return isPai;
     }
 }

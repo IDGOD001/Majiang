@@ -95,7 +95,7 @@ class GameManager extends BaseDispatcher {
                 break;
         }
 
-        GameSound.play(sound);
         GameSound.play("sound_down");
+        GameSound.play(sound);
     }
 }
