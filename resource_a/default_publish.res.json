@@ -1389,6 +1389,18 @@
 				{
 					"compress":false,
 					"key":"F_pao"
+				},
+				{
+					"compress":false,
+					"key":"light_2"
+				},
+				{
+					"compress":false,
+					"key":"light_3"
+				},
+				{
+					"compress":false,
+					"key":"light_1"
 				}
 			],
 			"sort":0
@@ -1433,18 +1445,6 @@
 		{
 			"compress":false,
 			"key":"share_img"
-		},
-		{
-			"compress":false,
-			"key":"light_2"
-		},
-		{
-			"compress":false,
-			"key":"light_3"
-		},
-		{
-			"compress":false,
-			"key":"light_1"
 		}
 	]
 }
