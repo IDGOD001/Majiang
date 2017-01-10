@@ -83,6 +83,8 @@ class game {
     static isQue: boolean = false;
     //是否正在胡牌中
     static isHu: boolean = false;
+    //是否正在听牌中
+    static isTinging: boolean = false;
 
     //当前状态
     static status: GameStatus = GameStatus.gamestart;

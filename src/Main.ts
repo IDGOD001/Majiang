@@ -129,14 +129,5 @@ class Main extends eui.UILayer {
     private startGame() {
         game.init(this.stage);
         SceneManager.open("LoadingScene");
-
-        var str:string = "1";
-        console.log(typeof str);
-        console.log(typeof Number(str));
-
-
-        str = "chat";
-        console.log(typeof str);
-        console.log(typeof Number(str));
     }
 }

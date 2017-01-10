@@ -5,6 +5,7 @@
 	<e:Image id="img_kuang_owner" source="game_head_room" x="-11" y="-7" includeIn="ingame,intable,intheend,inresult,replay" visible="false"/>
 	<e:Image id="img_zhuang" source="game_zhuang" x="-11" y="-10" includeIn="ingame" visible="false"/>
 	<e:Image id="img_que" source="img_dq_1" x="47" y="47" width="30" height="30" includeIn="ingame"/>
+	<e:Image id="img_ting" source="ting_icon1" includeIn="ingame"/>
 	<e:Button id="btn_kill" x="51" y="-10" width="40" height="40" includeIn="intable">
 		<e:skinName>
 			<e:Skin states="up,down,disabled">

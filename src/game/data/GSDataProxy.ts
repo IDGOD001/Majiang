@@ -490,7 +490,7 @@ class GSDataProxy {
             case 4://听牌
                 game.manager.soundPlay(InterruptType.ting, pos);
                 game.roomTing[dir] = true;
-                GameSound.isTinging = true;
+                game.isTinging = true;
 
                 var head: HeadIcon = GSController.i.gsView.getHeadView(dir);
                 head.isTing = true;
@@ -694,12 +694,15 @@ class GSDataProxy {
         this.gData.currPoolPai = obj.data;
         this.gData.currPoolPai.dir = dir;
 
-        if (!GameSound.isTinging) {
-            GameSound.play(obj.data.type + "_" + obj.data.number + "_" + this.gData.getSexByPos(obj.data.pos));
-            GameSound.play("sound_throw");
-        }
+        GameSound.play("sound_throw");
 
-        GameSound.isTinging = false;
+        if (game.isTinging) {
+            game.isTinging = false;
+            GameSound.play("ting_" + this.gData.getSexByPos(obj.data.pos), obj.data.type + "_" + obj.data.number + "_" + this.gData.getSexByPos(obj.data.pos));
+        }
+        else {
+            GameSound.play(obj.data.type + "_" + obj.data.number + "_" + this.gData.getSexByPos(obj.data.pos));
+        }
 
         //添加池牌数据
         PublicVal.i.pushPoolPai(dir, this.gData.currPoolPai);
