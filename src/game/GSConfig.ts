@@ -1,34 +1,34 @@
 /**
  * Created by Administrator on 2016/10/28.
  */
-class Rule{
+class Rule {
 
-    bgosX:number;
-    bgosY:number;
+    bgosX: number;
+    bgosY: number;
 
-    bgScaleX:number = 1;
-    bgScaleY:number = 1;
+    bgScaleX: number = 1;
+    bgScaleY: number = 1;
 
-    toposX:number;
-    toposY:number;
+    toposX: number;
+    toposY: number;
     //表相旋转角度
-    topRot:number = 0;
-    topScaleX:number = 1;
-    topScaleY:number = 1;
+    topRot: number = 0;
+    topScaleX: number = 1;
+    topScaleY: number = 1;
 
-    spacH:number;
-    spacV:number;
+    spacH: number;
+    spacV: number;
 
-    showTop:boolean;
+    showTop: boolean;
+    light: string;
 
-    scale:number = 1;
+    scale: number = 1;
 
-    constructor(obj:any){
+    constructor(obj: any) {
 
-        for(var prop in obj) this[prop] = obj[prop];
+        for (var prop in obj) this[prop] = obj[prop];
 
     }
-
 }
 
 //游戏配置
@@ -171,9 +171,9 @@ class GSConfig {
                 topScaleY: 0.9,
                 spacH: 56,
                 spacV: 70,
-                showTop: true
+                showTop: true,light:"light_3"
             }),
-            4: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 40, showTop: true}),
+            4: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 40, showTop: true,light:"light_1"}),
             5: new Rule({
                 bgosX: 32,
                 bgosY: 40,
@@ -199,7 +199,7 @@ class GSConfig {
                 topScaleX: 0.75,
                 spacH: 25,
                 spacV: 24,
-                showTop: true
+                showTop: true,light:"light_2"
             }),
             4: new Rule({
                 bgosX: 23,
@@ -211,7 +211,7 @@ class GSConfig {
                 topScaleX: 0.75,
                 spacH: 25,
                 spacV: 43,
-                showTop: true
+                showTop: true,light:"light_2"
             })
         },
         3: {
@@ -235,8 +235,8 @@ class GSConfig {
                 spacV: 36,
                 showTop: false
             }),
-            3: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 34, showTop: true}),
-            4: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 40, showTop: true})
+            3: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 34, showTop: true,light:"light_1"}),
+            4: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 40, showTop: true,light:"light_1"})
 
         },
         4: {
@@ -251,7 +251,7 @@ class GSConfig {
                 topScaleX: 0.75,
                 spacH: 25,
                 spacV: 24,
-                showTop: true
+                showTop: true,light:"light_2"
             }),
             4: new Rule({
                 bgosX: 23,
@@ -262,7 +262,7 @@ class GSConfig {
                 topScaleX: 0.75,
                 spacH: 25,
                 spacV: 43,
-                showTop: true
+                showTop: true,light:"light_2"
             })
         },
         5: {
@@ -286,9 +286,9 @@ class GSConfig {
                 topScaleY: 0.9,
                 spacH: 56,
                 spacV: 70,
-                showTop: true
+                showTop: true,light:"light_3"
             }),
-            4: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 40, showTop: true}),
+            4: new Rule({bgosX: 18, bgosY: 23, toposX: 13, toposY: 19, spacH: 30, spacV: 40, showTop: true,light:"light_3"}),
             5: new Rule({
                 bgosX: 32,
                 bgosY: 40,

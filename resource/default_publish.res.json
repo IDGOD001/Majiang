@@ -1433,6 +1433,18 @@
 		{
 			"compress":false,
 			"key":"share_img"
+		},
+		{
+			"compress":false,
+			"key":"light_2"
+		},
+		{
+			"compress":false,
+			"key":"light_3"
+		},
+		{
+			"compress":false,
+			"key":"light_1"
 		}
 	]
 }
