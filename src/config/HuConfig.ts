@@ -147,6 +147,9 @@ class HuConfig {
             case 56:
                 name = "缺幺胡幺";
                 break;
+            case 70:
+                name = "长毛";
+                break;
             case 99:
                 name = "胡";
                 if (game.gameType == GameType.sichuan) name = "平胡";

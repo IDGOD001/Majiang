@@ -7,7 +7,7 @@ enum RuleType {
     fengding = 19, zimojiadi = 9, zimojiafan, dianganghua_pao, dianganghua_zimo, huansanzhang, yaojiujiangdui, menqingzhongzhang, tiandihu,
     paizhang = 23, kaertiao,
     xuezhandaodi = 17, xueliuchenghe, sanren_2 = 20, sanren_3, siren_2,
-    baijia = 101, chikaimen, menhu, baotingjiabei, baoyijia, zhangmao, xiganghu
+    baijia = 101, chikaimen, menhu, baotingjiabei, baoyijia, zhangmao = 130, xiganghu
 }
 
 /**
@@ -48,6 +48,8 @@ class RuleConfig {
         103: "闷胡",
         104: "报听加倍",
         105: "包一家",
+        130: "长毛",
+        131: "喜杠胡",
     };
 
     //特殊规则的处理

@@ -114,6 +114,10 @@
 -define(Choice_Rule_Baotingjiabei,104).
 %%包一家
 -define(Choice_Rule_Baoyijia,105).
+%%长毛
+-define(Choice_Rule_Zhangmao,130).
+%%喜杠胡
+-define(Choice_Rule_Xiganghu,131).
 
 # -----------------------------------中断类型
 
@@ -172,6 +176,7 @@
 -define(Interrupt_Hu_Sanqing,54).%%三清
 -define(Interrupt_Hu_Siqing,55).%%四清
 -define(Interrupt_Hu_Queyaohuyao,56).%%缺幺胡幺
+-define(Interrupt_Hu_Zhangmao,70).%%长毛
 -define(Interrupt_Hu,99).
 -define(Interrupt_Jiang,999).
 -define(Interrupt_Dingque,9999).
