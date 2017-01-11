@@ -45,8 +45,6 @@ class HeadIcon extends BaseGameSprite {
 
         this.img_offline.mask = this.img_offlineMask;
 
-        this.isOffline = false;
-
         this.clean();
 
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickHandler, this);
@@ -203,7 +201,7 @@ class HeadIcon extends BaseGameSprite {
         this.bar.hide();
         this.player = null;
         this.img_head.source = "game_head_null";
-        this.isOffline = true;
+        this.isOffline = false;
         this.lab_nick.text = "";
         this.lab_uid.text = "";
         this.lab_fen.text = "";
