@@ -64,7 +64,7 @@ class GSConfig {
     //头像目标位置
     static headTargetPos = {
         1: {x: 10, y: 420},
-        2: {x: 870, y: 280},
+        2: {x: 886, y: 280},
         3: {x: 695, y: 10},
         4: {x: 10, y: 280}
     };
@@ -90,9 +90,9 @@ class GSConfig {
      */
     static replayHandPos = {
         1: {x: 60, y: 580, dx: 178, dy: 0, px: 60, py: 0},
-        2: {x: 850, y: 495, dx: 0, dy: -88, px: 0, py: -45},
+        2: {x: 840, y: 495, dx: 0, dy: -88, px: 0, py: -45},
         3: {x: 625, y: 47, dx: -96, dy: 0, px: -35, py: 0},
-        4: {x: 110, y: 124, dx: 0, dy: 90, px: 0, py: 45}
+        4: {x: 120, y: 124, dx: 0, dy: 90, px: 0, py: 45}
 
     };
 

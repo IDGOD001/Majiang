@@ -106,7 +106,7 @@ class GSView extends egret.Sprite {
         this.rightTopButtonCon.x = GSConfig.width - 184;
         this.rightTopButtonCon.y = 18;
 
-        this.rightButtonCon.x = GSConfig.width - 85;
+        this.rightButtonCon.x = GSConfig.width - 82;
         this.rightButtonCon.y = 412;
 
 
