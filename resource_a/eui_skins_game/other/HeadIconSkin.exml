@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="HeadIconSkin" currentState="normal" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"  width="80" states="normal,intable,ingame,inresult,intheend,replay"  height="80">
 	<e:Image id="img_head" source="game_head_null" left="4" right="3" top="4" bottom="3"/>
+	<e:Image id="img_offline" source="game_head_lixian" verticalCenter="0" horizontalCenter="0" includeIn="intable,ingame"/>
 	<e:Image id="img_kuang_normal" source="head_kuang_bg" x="-11" y="-7"/>
 	<e:Image id="img_kuang_owner" source="game_head_room" x="-11" y="-7" includeIn="ingame,intable,intheend,inresult,replay" visible="false"/>
 	<e:Image id="img_zhuang" source="game_zhuang" x="-11" y="-10" includeIn="ingame" visible="false"/>
