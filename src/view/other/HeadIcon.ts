@@ -1,6 +1,7 @@
 class HeadIcon extends BaseGameSprite {
 
     private img_head: eui.Image;
+    private img_offline: eui.Image;
     private img_kuang_normal: eui.Image;
     private img_kuang_owner: eui.Image;
     private img_zhuang: eui.Image;
@@ -13,10 +14,10 @@ class HeadIcon extends BaseGameSprite {
     private btn_kill: eui.Button;
 
     private img_headMask: egret.Shape;
+    private img_offlineMask: egret.Shape;
 
     private _isOwner: boolean = false;
     private _isZhuang: boolean = false;
-    private _isOffline: boolean = false;
     private _que: PaiType = PaiType.unknow;
 
     dir: Dir4;
@@ -37,6 +38,13 @@ class HeadIcon extends BaseGameSprite {
         this.addChild(this.img_headMask);
 
         this.img_head.mask = this.img_headMask;
+
+        this.img_offlineMask = new egret.Shape;
+        this.img_offlineMask.graphics.beginFill(0);
+        this.img_offlineMask.graphics.drawRoundRect(4, 4, 73, 73, 20, 20);
+        this.addChild(this.img_offlineMask);
+
+        this.img_offline.mask = this.img_offlineMask;
 
         this.clean();
 
@@ -66,7 +74,7 @@ class HeadIcon extends BaseGameSprite {
     update(player: PlayerVo) {
         this.player = player;
 
-        if(PublicVal.state == 6){
+        if (PublicVal.state == 6) {
             this.skinState = "replay";
         }
 
@@ -96,15 +104,18 @@ class HeadIcon extends BaseGameSprite {
 
     updateHeadImg() {
         this.img_head.source = null;
+        this.img_offline.visible = false;
 
         if (!this.player) {
             this.img_head.source = "game_head_null";
-        } else if (this.player.status == "offline") {
-            this.img_head.source = "game_head_lixian";
-        }
-        else {
+        } else {
+            this.isOffline = this.player.status == "offline";
             this.setHeadImg(this.player.pic);
         }
+    }
+
+    set isOffline(va: boolean) {
+        this.img_offline.visible = va;
     }
 
     set isZhuang(value: boolean) {
@@ -206,6 +217,7 @@ class HeadIcon extends BaseGameSprite {
         this.bar.hide();
         this.player = null;
         this.img_head.source = "game_head_null";
+        this.isOffline = true;
         this.lab_nick.text = "";
         this.lab_uid.text = "";
         this.lab_fen.text = "";
