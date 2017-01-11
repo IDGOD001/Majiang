@@ -819,6 +819,7 @@ class GSDataProxy {
                 this.formatLeft(hu_left, hupai.pai);
             } else {
                 hu_left.push(hupai.pai);
+                GSController.i.gsView.playFuncEffect(this.gData.getDir(hupai.pos), 98);
             }
 
             GSController.i.playEffect(huDir, 99);

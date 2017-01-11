@@ -106,7 +106,7 @@ class HeadIcon extends BaseGameSprite {
 
     updateHeadImg() {
         this.img_head.source = null;
-        this.img_offline.visible = false;
+        this.isOffline = false;
 
         if (!this.player) {
             this.img_head.source = "game_head_null";
