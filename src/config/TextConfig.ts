@@ -43,7 +43,7 @@ class TextConfig {
         },
         2: {
             id: 2,
-            text: "不是，你嘎哈呢啊，你打的咋这慢呢？。"
+            text: "不是，你嘎哈呢啊，你打的咋这慢呢？"
         },
         3: {
             id: 3,
@@ -75,19 +75,19 @@ class TextConfig {
         },
         10: {
             id: 12,
-            text: "oh money money go my home",
+            text: "oh money money go my home。",
         },
         11: {
             id: 13,
-            text: "傻愣的，打牌要快啊"
+            text: "傻愣的，打牌要快啊。"
         },
         12: {
             id: 14,
-            text: "你那是啥网络呀，太差了"
+            text: "你那是啥网络呀，太差了。"
         },
         13: {
             id: 15,
-            text: "都别点啊，我自摸"
+            text: "都别点啊，我自摸。"
         },
         14: {
             id: 16,
@@ -99,15 +99,15 @@ class TextConfig {
         },
         16: {
             id: 18,
-            text: "为什么受伤的总是我"
+            text: "为什么受伤的总是我。"
         },
         17: {
             id: 19,
-            text: "咋又你胡了，这脑袋嗡一下"
+            text: "咋又你胡了，这脑袋嗡一下。"
         },
         18: {
             id: 20,
-            text: "别拦着我啊，连坐五庄"
+            text: "别拦着我啊，连坐五庄。"
         }
     };
 }
