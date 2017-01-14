@@ -20,6 +20,11 @@
         }
     </style>
 
+	<script>
+		document.write('<script src="https://mj.h5sd.com/notices/notice_sichuan.js?v=' + Math.random() +
+				'"><\/script>');
+	</script>
+
     <!--这个标签为通过egret提供的第三方库的方式生成的 javascript 文件。删除 modules_files 标签后，库文件加载列表将不会变化，请谨慎操作！-->
     <!--modules_files_start-->
 	<script egret="lib" src="libs/modules/egret/egret.js" src-release="libs/modules/egret/egret.min.js"></script>
@@ -277,7 +282,11 @@
          data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
     </div>
     <script>
-        //默认使用 WebGL 渲染模式
+
+		document.mjnotice_time = mjnotice_time;
+		document.mjnotice_list = mjnotice_list;
+
+		//默认使用 WebGL 渲染模式
         egret.runEgret({renderMode:"canvas"});
     </script>
 </body>

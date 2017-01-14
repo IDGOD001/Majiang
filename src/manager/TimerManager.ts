@@ -15,10 +15,10 @@ class TimerManager extends BaseDispatcher {
 
     private timer: egret.Timer;
 
-    private testHorn: number = 0;
-
     public constructor() {
         super();
+
+        this.notice_time = game.notice_time;
 
         this.timer = new egret.Timer(1000);
         this.timer.addEventListener(egret.TimerEvent.TIMER, this.onTimerHandler, this);
@@ -28,23 +28,27 @@ class TimerManager extends BaseDispatcher {
     private onTimerHandler() {
         this.dispatchEvent(TimerManager.Second);
 
+        this.notice();
+    }
 
-        this.testHorn++;
 
-        if (this.testHorn >= 120) {
-            this.testHorn = 0;
+    private notice_time: number = 0;
+    private notice_index: number = 0;
 
-            game.hornList.push(gameConfig.gamewarmList[game.gamewarmIndex]);
+    private notice() {
 
-            game.gamewarmIndex++;
+        if (game.notice_list.length) {
+            if (++this.notice_time >= game.notice_time) {
 
-            if (game.gamewarmIndex >= gameConfig.gamewarmList.length) {
-                game.gamewarmIndex = 0;
+                game.notice_list_play.push(game.notice_list[this.notice_index++]);
+
+                this.notice_time = 0;
+                this.notice_index = this.notice_index >= game.notice_list.length ? 0 : this.notice_index;
             }
-        }
 
-        if (game.hornList.length > 0) {
-            Global.showHorn(20, 0x40f8ff);
+            if (game.notice_list_play.length > 0) {
+                Global.showHorn(20, 0x40f8ff);
+            }
         }
     }
 }

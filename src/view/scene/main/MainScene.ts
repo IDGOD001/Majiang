@@ -165,9 +165,6 @@ class MainScene extends eui.Component {
             });
         }
 
-        var num: number = Math.floor(Math.random() * gameConfig.gamewarmList.length);
-        game.hornList.push(gameConfig.gamewarmList[num]);
-
         egret.setTimeout(this.onWeiJs, this, 1000);
     }
 

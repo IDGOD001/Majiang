@@ -1,3 +1,4 @@
+import JsonAnalyzer = RES.JsonAnalyzer;
 class Main extends eui.UILayer {
 
     /**
@@ -65,25 +66,6 @@ class Main extends eui.UILayer {
         }, this, "action=serverlist");
     }
 
-    private wxConfig() {
-        var sss: any = {"role": "user", "mod": "mod_auths", "fun": "auth_signature", "args": {}};
-
-        var arr: Array<string> = ["closeWindow", "hideMenuItems", "onMenuShareAppMessage", "onMenuShareTimeline", "startRecord", "stopRecord", "onVoiceRecordEnd", "playVoice", "pauseVoice", "stopVoice", "onVoicePlayEnd", "uploadVoice", "downloadVoice"];
-
-        HttpNetwork.pull(gameConfig.protocolType + gameConfig.address_http.ip + ":" + gameConfig.address_http.port, function (obj) {
-            if (obj.message != "error") {
-                var data:any = JSON.parse(obj.message);
-                Weixin.config(
-                    gameConfig.appid,
-                    data.timestamp,
-                    data.noncestr,
-                    data.signature,
-                    arr
-                );
-            }
-        }, this, "action=" + JSON.stringify(sss));
-    }
-
     protected createChildren(): void {
         super.createChildren();
 
@@ -121,7 +103,48 @@ class Main extends eui.UILayer {
     }
 
     private startGame() {
+
+        game.notice_time = document["mjnotice_time"];
+        game.notice_list = document["mjnotice_list"];
+
         game.init(this.stage);
         SceneManager.open("LoadingScene");
+    }
+
+    /**
+     * 微信授权配置
+     */
+    private wxConfig() {
+        var sss: any = {"role": "user", "mod": "mod_auths", "fun": "auth_signature", "args": {}};
+
+        var arr: Array<string> = ["closeWindow", "hideMenuItems", "onMenuShareAppMessage", "onMenuShareTimeline", "startRecord", "stopRecord", "onVoiceRecordEnd", "playVoice", "pauseVoice", "stopVoice", "onVoicePlayEnd", "uploadVoice", "downloadVoice"];
+
+        HttpNetwork.pull(gameConfig.protocolType + gameConfig.address_http.ip + ":" + gameConfig.address_http.port, function (obj) {
+            if (obj.message != "error") {
+                var data:any = JSON.parse(obj.message);
+                Weixin.config(
+                    gameConfig.appid,
+                    data.timestamp,
+                    data.noncestr,
+                    data.signature,
+                    arr
+                );
+            }
+        }, this, "action=" + JSON.stringify(sss));
+    }
+}
+
+class JsonpReq {
+    private static _regID:number = 0;
+    public static completeCall:any = {};
+    public static process(url:string, callback:Function, callobj:any):void {
+        JsonpReq.completeCall["call_"+JsonpReq._regID] = callback.bind(callobj);
+        JsonpReq.startLoader(url, JsonpReq._regID++);
+    }
+
+    private static startLoader(url, id:number):void{
+        var script = document.createElement('script');
+        script.src = url + "JsonpReq.completeCall.call_" + id +"";
+        document.body.appendChild(script);
     }
 }

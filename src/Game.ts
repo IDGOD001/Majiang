@@ -89,10 +89,13 @@ class game {
 
     //战绩详情用户列表
     static recordInfos: any;
-    //游戏提示播放顺序
-    static gamewarmIndex: number = 0;
+
+    //公告时间
+    static notice_time: any = 120;
+    //公告列表
+    static notice_list: any[] = [];
     //喇叭列表
-    static hornList: string[] = [];
+    static notice_list_play: any[] = [];
 
     static init(stage) {
         this.stage = stage;
