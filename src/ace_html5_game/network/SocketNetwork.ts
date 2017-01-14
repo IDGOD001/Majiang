@@ -21,7 +21,7 @@ class SocketNetwork {
      */
     close() {
         this.socket.close();
-        acekit.log("关闭Socket连接!");
+        console.log("关闭Socket连接!");
     }
 
     /**
@@ -50,23 +50,23 @@ class SocketNetwork {
         switch (this.linkType) {
             case 1:
                 this.socket.connectByUrl("wss://" + this.ip + ":" + this.port);
-                acekit.log("url=", "wss://" + this.ip + ":" + this.port);
+                console.log("url=", "wss://" + this.ip + ":" + this.port);
                 break;
             case 2:
                 this.socket.connect(this.ip, this.port);
-                acekit.log("url=", ip + ":" + port);
+                console.log("url=", ip + ":" + port);
                 break;
         }
-        acekit.log("Socket连接中...", this.linkType);
+        console.log("Socket连接中...", this.linkType);
     }
 
     connectHandler() {
-        acekit.log("Socket连接成功!");
+        console.log("Socket连接成功!");
     }
 
     closeHandler() {
         this.socket.close();
-        acekit.log("Socket连接关闭!");
+        console.log("Socket连接关闭!");
     }
 
     errorHandler() {

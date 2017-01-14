@@ -93,10 +93,13 @@ class game {
 
     //战绩详情用户列表
     static recordInfos: any;
-    //广播索引
-    static noticeIndex: number = 0;
-    //广播内容列表
-    static noticeList: string[] = [];
+
+    //公告时间
+    static notice_time: any = 120;
+    //公告列表
+    static notice_list: any[] = [];
+    //喇叭列表
+    static notice_list_play: any[] = [];
 
     static init(stage) {
         this.stage = stage;
